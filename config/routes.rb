@@ -1,9 +1,12 @@
 Audioplus::Application.routes.draw do
-  resources :quotations
+  resources :clients do
+    resources :quotations
+  end
 
-  resources :item_details
+  resources :quotations do
+    resources :item_details
+  end
 
-  resources :clients
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
