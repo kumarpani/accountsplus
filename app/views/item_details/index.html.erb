@@ -20,9 +20,9 @@
         <td><%= item_detail.description %></td>
         <td><%= item_detail.price %></td>
         <td><%= item_detail.decimal %></td>
-        <td><%= link_to 'Show', item_detail %></td>
-        <td><%= link_to 'Edit', edit_item_detail_path(item_detail) %></td>
-        <td><%= link_to 'Destroy', item_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', quotation_item_detail_path(@quotation, item_detail) %></td>
+        <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail) %></td>
+        <td><%= link_to 'Destroy', [@quotation, item_detail], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Item detail', new_item_detail_path %>
+<%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation) %>

@@ -30,7 +30,7 @@ class QuotationsController < ApplicationController
     @quotation = @client.quotations.build(params[:quotation])
     respond_to do |format|
       if @quotation.save
-        format.html { redirect_to client_quotations_path(@client), notice: 'Quotation was successfully created.' }
+        format.html { redirect_to quotation_item_details_path(@quotation), notice: 'Quotation was successfully created.' }
         format.json { render action: 'show', status: :created, location: @quotation }
       else
         format.html { render action: 'new' }

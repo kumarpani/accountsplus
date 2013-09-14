@@ -1,4 +1,4 @@
-<%= form_for(@item_detail) do |f| %>
+<%= form_for([@quotation, @item_detail]) do |f| %>
   <% if @item_detail.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@item_detail.errors.count, "error") %> prohibited this item_detail from being saved:</h2>
@@ -22,10 +22,6 @@
   <div class="field">
     <%= f.label :price %><br>
     <%= f.text_field :price %>
-  </div>
-  <div class="field">
-    <%= f.label :decimal %><br>
-    <%= f.text_field :decimal %>
   </div>
   <div class="actions">
     <%= f.submit %>

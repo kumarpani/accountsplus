@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @item_detail %> |
-<%= link_to 'Back', item_details_path %>
+<%= link_to 'Show', quotation_item_detail_path(@quotation, @item_detail) %> |
+<%= link_to 'Back', quotation_item_details_path(@quotation) %>

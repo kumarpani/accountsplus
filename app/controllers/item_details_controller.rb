@@ -1,20 +1,22 @@
 class ItemDetailsController < ApplicationController
   before_action :set_item_detail, only: [:show, :edit, :update, :destroy]
+  before_filter :load_quotation
 
   # GET /item_details
   # GET /item_details.json
   def index
-    @item_details = ItemDetail.all
+    @item_details = @quotation.item_details
   end
 
   # GET /item_details/1
   # GET /item_details/1.json
   def show
+    @item_detail = @quotation.item_details.find(params[:id])
   end
 
   # GET /item_details/new
   def new
-    @item_detail = ItemDetail.new
+    @item_detail = @quotation.item_details.build
   end
 
   # GET /item_details/1/edit
@@ -24,7 +26,7 @@ class ItemDetailsController < ApplicationController
   # POST /item_details
   # POST /item_details.json
   def create
-    @item_detail = ItemDetail.new(item_detail_params)
+    @item_detail = @quotation.item_details.build(params[:item_detail])
 
     respond_to do |format|
       if @item_detail.save
@@ -59,6 +61,11 @@ class ItemDetailsController < ApplicationController
       format.html { redirect_to item_details_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def load_quotation
+    @quotation = Quotation.find(params[:quotation_id])
   end
 
   private
