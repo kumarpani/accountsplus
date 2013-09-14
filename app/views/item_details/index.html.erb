@@ -1,12 +1,22 @@
-<h1>Listing item_details</h1>
+<h1>Quotation Details</h1>
 
+<h2>
+  <p>
+    Client name: <%= @quotation.client.name %>
+  </p>
+  <p>
+    Client address: <%= @quotation.client.address %>
+  </p>
+  <p>
+    Quotation: <%= @quotation.name %>
+  </p>
+</h2>
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Price</th>
-      <th>Decimal</th>
       <th></th>
       <th></th>
       <th></th>
@@ -19,15 +29,21 @@
         <td><%= item_detail.name %></td>
         <td><%= item_detail.description %></td>
         <td><%= item_detail.price %></td>
-        <td><%= item_detail.decimal %></td>
         <td><%= link_to 'Show', quotation_item_detail_path(@quotation, item_detail) %></td>
         <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail) %></td>
         <td><%= link_to 'Destroy', [@quotation, item_detail], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    <tr>
+      <td>Total:</td>
+      <td></td>
+      <td><%= number_to_currency @quotation.total_price %></td>
+    </tr>
   </tbody>
 </table>
 
 <br>
 
 <%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation) %>
+<%= link_to 'Back to all Quotations', client_quotations_path(@quotation.client) %>
+<%= link_to 'Back to all Clients', clients_path %>

@@ -27,7 +27,7 @@ class QuotationsController < ApplicationController
   # POST /quotations
   # POST /quotations.json
   def create
-    @quotation = @client.quotations.build(params[:quotation])
+    @quotation = @client.quotations.build(quotation_params)
     respond_to do |format|
       if @quotation.save
         format.html { redirect_to quotation_item_details_path(@quotation), notice: 'Quotation was successfully created.' }
@@ -76,6 +76,6 @@ class QuotationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def quotation_params
-    params.require(:quotation).permit(:client_id)
+    params.require(:quotation).permit(:client_id, :name)
   end
 end

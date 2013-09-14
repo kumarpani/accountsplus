@@ -26,11 +26,11 @@ class ItemDetailsController < ApplicationController
   # POST /item_details
   # POST /item_details.json
   def create
-    @item_detail = @quotation.item_details.build(params[:item_detail])
+    @item_detail = @quotation.item_details.build(item_detail_params)
 
     respond_to do |format|
       if @item_detail.save
-        format.html { redirect_to @item_detail, notice: 'Item detail was successfully created.' }
+        format.html { redirect_to quotation_item_details_path(@quotation), notice: 'Item detail was successfully created.' }
         format.json { render action: 'show', status: :created, location: @item_detail }
       else
         format.html { render action: 'new' }
@@ -44,7 +44,7 @@ class ItemDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @item_detail.update(item_detail_params)
-        format.html { redirect_to @item_detail, notice: 'Item detail was successfully updated.' }
+        format.html { redirect_to quotation_item_details_path(@quotation), notice: 'Item detail was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -58,7 +58,7 @@ class ItemDetailsController < ApplicationController
   def destroy
     @item_detail.destroy
     respond_to do |format|
-      format.html { redirect_to item_details_url }
+      format.html { redirect_to quotation_item_details_path(@quotation) }
       format.json { head :no_content }
     end
   end

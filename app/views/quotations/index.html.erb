@@ -1,9 +1,14 @@
 <h1>Listing quotations</h1>
 
+<h2>
+   <p>Client name:
+     <%= @client.name %>
+   </p>
+</h2>
 <table>
   <thead>
     <tr>
-      <th>Client</th>
+      <th>Name</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,9 +18,9 @@
   <tbody>
     <% @quotations.each do |quotation| %>
       <tr>
-        <td><%= quotation.client_id %></td>
-        <td><%= link_to 'Show', client_quotation_path(@client, quotation) %></td>
-        <td><%= link_to 'Edit', edit_client_quotation_path(@client, quotation) %></td>
+        <td><%= quotation.name %></td>
+        <td><%= link_to 'Show', quotation_item_details_path(quotation) %></td>
+        <td><%= link_to 'Edit', quotation_item_details_path(quotation) %></td>
         <td><%= link_to 'Destroy', [@client, quotation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
