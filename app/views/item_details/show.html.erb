@@ -15,5 +15,10 @@
   <%= @item_detail.price %>
 </p>
 
+<p>
+  <strong>Quantity:</strong>
+  <%= @item_detail.quantity %>
+</p>
+
 <%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, @item_detail) %> |
 <%= link_to 'Back', quotation_item_details_path(@quotation) %>
