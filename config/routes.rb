@@ -11,6 +11,8 @@ Audioplus::Application.routes.draw do
     resources :item_details
   end
 
+  resources :dashboard, only: :index
+
   root 'clients#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
