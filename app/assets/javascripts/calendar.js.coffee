@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+makeParentClassConfirmed = -> $('.Confirmed').parent().parent().addClass "Confirmed"
+makeParentClassPending = -> $('.Pending').parent().parent().addClass "Pending"
+
+$(document).ready makeParentClassConfirmed
+$(document).on('page:load', makeParentClassConfirmed)
+
+$(document).ready makeParentClassPending
+$(document).on('page:load', makeParentClassPending)

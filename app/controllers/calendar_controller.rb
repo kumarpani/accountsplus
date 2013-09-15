@@ -1,5 +1,5 @@
 class CalendarController < ApplicationController
   def index
-    @confirmed_quotations = Quotation.where(status: 'Confirmed')
+    @all_quotations = Quotation.where.not(status: 'Closed')
   end
 end

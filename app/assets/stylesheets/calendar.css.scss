@@ -1,1 +1,18 @@
-.calendar td { height: 100px; width: 14.28%; }
+.calendar td {
+  height: 100px;
+  width: 14.28%;
+}
+
+.events.Confirmed{
+  background-color: #2ecc71 !important;
+  a {
+    background-color: #2ecc71;
+  }
+}
+
+.events.Pending{
+  background-color: #f39c12;
+  a {
+    background-color: #f39c12;
+  }
+}
