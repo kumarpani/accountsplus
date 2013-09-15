@@ -23,7 +23,7 @@
         <td><%= quotation.name %></td>
         <td><%= quotation.event_date %></td>
         <td><%= quotation.status %></td>
-        <td><%= link_to 'Show', quotation_item_details_path(quotation) %></td>
+        <td><%= link_to 'Show Quotation', quotation_item_details_path(quotation) %></td>
         <td><%= link_to 'Edit', edit_client_quotation_path(@client, quotation) %></td>
         <td><%= link_to 'Delete', [@client, quotation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
