@@ -23,13 +23,14 @@
   </tbody>
 </table>
 
-<div class="grid_6">
+<div>
   <h2>Pending Payments</h2>
   <table class="table table-bordered">
     <thead>
     <tr>
       <th>Client Name</th>
       <th>Phone Number</th>
+      <th>Email</th>
       <th>Owes</th>
     </tr>
     </thead>
@@ -38,6 +39,7 @@
       <tr>
         <td><%= quotation[:client].name %></td>
         <td><%= quotation[:client].phone_number %></td>
+        <td><%= quotation[:client].email %></td>
         <td><%= number_to_currency(quotation[:owes], locale: :in) %></td>
       </tr>
     <% end %>
@@ -45,13 +47,14 @@
   </table>
 </div>
 
-<div class="grid_6">
+<div>
   <h2>Pending Quotations</h2>
   <table class="table table-bordered">
     <thead>
     <tr>
       <th>Client Name</th>
       <th>Phone Number</th>
+      <th>Email</th>
       <th>Quotation</th>
     </tr>
     </thead>
@@ -60,6 +63,7 @@
       <tr>
         <td><%= quotation.client.name %></td>
         <td><%= quotation.client.phone_number %></td>
+        <td><%= quotation.client.email %></td>
         <td><%= quotation.name %></td>
       </tr>
     <% end %>
