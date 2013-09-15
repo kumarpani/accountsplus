@@ -29,13 +29,15 @@
     <thead>
     <tr>
       <th>Client Name</th>
+      <th>Phone Number</th>
       <th>Owes</th>
     </tr>
     </thead>
     <tbody>
     <% @pending_payments.each do |quotation| %>
       <tr>
-        <td><%= quotation[:client_name] %></td>
+        <td><%= quotation[:client].name %></td>
+        <td><%= quotation[:client].phone_number %></td>
         <td><%= number_to_currency(quotation[:owes], locale: :in) %></td>
       </tr>
     <% end %>
@@ -49,6 +51,7 @@
     <thead>
     <tr>
       <th>Client Name</th>
+      <th>Phone Number</th>
       <th>Quotation</th>
     </tr>
     </thead>
@@ -56,6 +59,7 @@
     <% @pending_quotations.each do |quotation| %>
       <tr>
         <td><%= quotation.client.name %></td>
+        <td><%= quotation.client.phone_number %></td>
         <td><%= quotation.name %></td>
       </tr>
     <% end %>

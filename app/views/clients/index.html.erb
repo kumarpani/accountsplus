@@ -4,6 +4,7 @@
     <tr>
       <th>Name</th>
       <th>Address</th>
+      <th>Phone Number</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,6 +16,7 @@
       <tr>
         <td><%= client.name %></td>
         <td><%= client.address %></td>
+        <td><%= client.phone_number %></td>
         <td><%= link_to 'Show', client_quotations_path(client) %></td>
         <td><%= link_to 'Edit', edit_client_path(client) %></td>
       </tr>

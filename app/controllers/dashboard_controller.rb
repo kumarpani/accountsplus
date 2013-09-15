@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   def index
     @upcoming_quotations = Quotation.where("event_date >= ? AND status == 'Confirmed'", Date.today).order("event_date ASC")
     @pending_payments = Quotation.where(status: 'Confirmed').group(:client_id).map { |quot|
-      {client_name: quot.client.name,
+      {client: quot.client,
        owes: quot.client.quotations
        .select { |q| q.status == 'Confirmed' }
        .sum { |q| q.total_price } -
