@@ -8,6 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap-datepicker
  *= require reset
  *= require_self
  *= require_tree .
@@ -16,6 +17,12 @@
 @import "bootstrap";
 h1 {
   font-size: 24px;
+}
+
+body {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
 }
 
 a {

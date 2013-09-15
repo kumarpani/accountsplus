@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  client_id: 1
+  description: MyText
+  mode: MyString
+  paid_on: 2013-09-15
+  amount: 9.99
+
+two:
+  client_id: 1
+  description: MyText
+  mode: MyString
+  paid_on: 2013-09-15
+  amount: 9.99

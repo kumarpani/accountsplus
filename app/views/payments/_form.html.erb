@@ -1,0 +1,42 @@
+<%= form_for(@payment) do |f| %>
+  <% if @payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
+
+      <ul>
+      <% @payment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :client_id %><br>
+
+    <% clients_array = Client.all.map {|client| [client.name, client.id]}%>
+    <%= f.select(:client_id, options_for_select(clients_array, @payment.client.nil? ? 1 : @payment.client.id)) %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :mode %>
+    <%= f.text_field :mode %>
+  </div>
+  <div class="field">
+    <%= f.label :paid_on %>
+    <%= f.text_field :paid_on %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  <script>
+    $('#payment_paid_on').datepicker({format: 'yyyy-mm-dd'});
+  </script>
+<% end %>
