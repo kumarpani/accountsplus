@@ -32,7 +32,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @confirmed_quotations.each do |quotation| %>
+  <% @pending_payments.each do |quotation| %>
     <tr>
       <td><%= quotation[:client_name] %></td>
       <td><%= number_to_currency(quotation[:owes], locale: :in) %></td>
