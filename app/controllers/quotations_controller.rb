@@ -44,7 +44,7 @@ class QuotationsController < ApplicationController
   def update
     respond_to do |format|
       if @quotation.update(quotation_params)
-        format.html { redirect_to client_quotations_path(@client), notice: 'Quotation was successfully updated.' }
+        format.html { redirect_to quotation_item_details_path(@quotation), notice: 'Quotation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -76,6 +76,6 @@ class QuotationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def quotation_params
-    params.require(:quotation).permit(:client_id, :name)
+    params.require(:quotation).permit(:client_id, :name, :status)
   end
 end

@@ -1,1 +1,1 @@
-json.extract! @quotation, :client_id, :created_at, :updated_at
+json.extract! @quotation, :client_id, :name, :status, :created_at, :updated_at

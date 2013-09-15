@@ -10,6 +10,12 @@
   <p>
     Quotation: <%= @quotation.name %>
   </p>
+  <p class="status">
+    Status: <%= @quotation.status %>
+  </p>
+  <p>
+    <%= link_to 'Edit Quotation details', edit_client_quotation_path(@quotation.client, @quotation) %>
+  </p>
 </h2>
 <table class="table table-condensed table-striped table-bordered">
   <thead>
