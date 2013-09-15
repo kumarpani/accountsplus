@@ -12,6 +12,7 @@ Audioplus::Application.routes.draw do
   end
 
   resources :dashboard, only: :index
+  resources :calendar, only: :index
 
   root 'dashboard#index'
 

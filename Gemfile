@@ -35,6 +35,7 @@ end
 gem 'bootstrap-sass', '~> 2.3.2.1'
 gem 'devise'
 gem 'bootstrap-datepicker-rails'
+gem 'simple_calendar', '~> 0.1.9'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
