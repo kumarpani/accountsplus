@@ -1,58 +1,59 @@
 <h1>Quotation Details</h1>
 
-<h2>
-  <p>
-    Client name: <%= @quotation.client.name %>
-  </p>
-  <p>
-    Client address: <%= @quotation.client.address %>
-  </p>
-  <p>
-    Quotation: <%= @quotation.name %>
-  </p>
-  <p class="status">
-    Status: <%= @quotation.status %>
-  </p>
-  <p>
-    Event Date: <%= @quotation.event_date %>
-  </p>
-  <p>
-    <%= link_to 'Edit Quotation details', edit_client_quotation_path(@quotation.client, @quotation) %>
-  </p>
-</h2>
+<p>
+  Client name: <%= @quotation.client.name %>
+</p>
+<p>
+  Client address: <%= @quotation.client.address %>
+</p>
+<p>
+  Quotation: <%= @quotation.name %>
+</p>
+<p class="status">
+  Status: <%= @quotation.status %>
+</p>
+<p>
+  Event Date: <%= @quotation.event_date %>
+</p>
+<br/>
+<p>
+  <%= link_to 'Edit Quotation details', edit_client_quotation_path(@quotation.client, @quotation) %>
+</p>
+<br/>
+
 <table class="table table-condensed table-striped table-bordered">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Net Price</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Net Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @item_details.each do |item_detail| %>
-      <tr>
-        <td><%= item_detail.name %></td>
-        <td><%= item_detail.description %></td>
-        <td><%= item_detail.price %></td>
-        <td><%= item_detail.quantity %></td>
-        <td><%= item_detail.net_price %></td>
-        <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail) %></td>
-        <td><%= link_to 'Delete', [@quotation, item_detail], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <% @item_details.each do |item_detail| %>
     <tr>
-      <td>Total:</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><%= number_to_currency(@quotation.total_price,locale: :in) %></td>
+      <td><%= item_detail.name %></td>
+      <td><%= item_detail.description %></td>
+      <td><%= item_detail.price %></td>
+      <td><%= item_detail.quantity %></td>
+      <td><%= item_detail.net_price %></td>
+      <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail) %></td>
+      <td><%= link_to 'Delete', [@quotation, item_detail], method: :delete, data: {confirm: 'Are you sure?'} %></td>
     </tr>
+  <% end %>
+  <tr>
+    <td>Total:</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%= number_to_currency(@quotation.total_price, locale: :in) %></td>
+  </tr>
   </tbody>
 </table>
 
