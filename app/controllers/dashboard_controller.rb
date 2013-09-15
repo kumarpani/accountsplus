@@ -10,5 +10,6 @@ class DashboardController < ApplicationController
        .sum { |q| q.total_price } -
            quot.client.payments.sum { |p| p.amount }} }
     .select { |p| p[:owes] != 0.0 }
+    @pending_quotations = Quotation.where(status: 'Pending')
   end
 end

@@ -9,24 +9,19 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require bootstrap-datepicker
+ *= require bootstrap
+ *= require 960
  *= require reset
  *= require_self
  *= require_tree .
  */
 
-@import "bootstrap";
 h1 {
   font-size: 24px;
 }
 
 h2 {
   font-size: 18px;
-}
-
-body {
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 5px;
 }
 
 a {

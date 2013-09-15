@@ -23,20 +23,42 @@
   </tbody>
 </table>
 
-<h2>Pending Payments</h2>
-<table class="table table-bordered">
-  <thead>
-  <tr>
-    <th>Client Name</th>
-    <th>Owes</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @pending_payments.each do |quotation| %>
+<div class="grid_6">
+  <h2>Pending Payments</h2>
+  <table class="table table-bordered">
+    <thead>
     <tr>
-      <td><%= quotation[:client_name] %></td>
-      <td><%= number_to_currency(quotation[:owes], locale: :in) %></td>
+      <th>Client Name</th>
+      <th>Owes</th>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% @pending_payments.each do |quotation| %>
+      <tr>
+        <td><%= quotation[:client_name] %></td>
+        <td><%= number_to_currency(quotation[:owes], locale: :in) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="grid_6">
+  <h2>Pending Quotations</h2>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Client Name</th>
+      <th>Quotation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @pending_quotations.each do |quotation| %>
+      <tr>
+        <td><%= quotation.client.name %></td>
+        <td><%= quotation.name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

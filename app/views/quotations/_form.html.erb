@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.select(:status, options_for_select(["Pending", "Confirmed"], @quotation.status.nil? ? "Pending" : @quotation.status)) %>
+    <%= f.select(:status, options_for_select(["Pending", "Confirmed", "Closed"], @quotation.status.nil? ? "Pending" : @quotation.status)) %>
   </div>
 
   <div class="actions">
