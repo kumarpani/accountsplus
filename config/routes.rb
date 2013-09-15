@@ -13,7 +13,7 @@ Audioplus::Application.routes.draw do
 
   resources :dashboard, only: :index
 
-  root 'clients#index'
+  root 'dashboard#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

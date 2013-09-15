@@ -1,8 +1,25 @@
 <h1>Dashboard</h1>
 
-<%= link_to 'Clients', clients_path%> |
-<%= link_to 'Payments', payments_path%>
+<%= link_to 'Clients', clients_path %> |
+<%= link_to 'Payments', payments_path %>
 
-<p>
-  <h2>List of upcoming events</h2>
-</p>
+<h2>List of upcoming events</h2>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>Event Date</th>
+    <th>Name</th>
+    <th>Quotation</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @upcoming_quotations.each do |quotation| %>
+    <tr>
+      <td><%= quotation.event_date %></td>
+      <td><%= quotation.client.name %></td>
+      <td><%= quotation.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -16,11 +16,19 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :event_date %><br>
+    <%= f.text_field :event_date %>
+  </div>
+  <div class="field">
     <%= f.label :status %><br>
     <%= f.select(:status, options_for_select(["Pending", "Confirmed"], @quotation.status.nil? ? "Pending" : @quotation.status)) %>
   </div>
 
-    <div class="actions">
+  <div class="actions">
     <%= f.submit %>
   </div>
+
+  <script>
+    $('#quotation_event_date').datepicker({format: 'yyyy-mm-dd'});
+  </script>
 <% end %>
