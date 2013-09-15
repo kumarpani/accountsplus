@@ -1,6 +1,6 @@
 class ItemDetailsController < ApplicationController
   before_action :set_item_detail, only: [:show, :edit, :update, :destroy]
-  before_filter :load_quotation
+  before_filter :load_quotation, :authenticate_user!
 
   # GET /item_details
   # GET /item_details.json

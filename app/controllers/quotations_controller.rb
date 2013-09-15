@@ -1,6 +1,6 @@
 class QuotationsController < ApplicationController
   before_action :set_quotation, only: [:show, :edit, :update, :destroy]
-  before_filter :load_client
+  before_filter :load_client, :authenticate_user!
 
   # GET /quotations
   # GET /quotations.json
