@@ -4,7 +4,6 @@
 <%= link_to 'Payments', payments_path %>
 
 <h2>List of upcoming events</h2>
-
 <table class="table table-bordered">
   <thead>
   <tr>
@@ -19,6 +18,24 @@
       <td><%= quotation.event_date %></td>
       <td><%= quotation.client.name %></td>
       <td><%= quotation.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Pending Payments</h2>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>Client Name</th>
+    <th>Owes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @confirmed_quotations.each do |quotation| %>
+    <tr>
+      <td><%= quotation[:client_name] %></td>
+      <td><%= number_to_currency(quotation[:owes], locale: :in) %></td>
     </tr>
   <% end %>
   </tbody>
