@@ -1,33 +1,31 @@
 class QuotationsController < ApplicationController
   before_action :set_quotation, only: [:show, :edit, :update, :destroy]
-  before_filter :load_client, :authenticate_user!
+  before_filter :authenticate_user!
 
   # GET /quotations
   # GET /quotations.json
   def index
-    @quotations = @client.quotations
+    @quotations = params[:client_id].nil? ? Quotation.all : Quotation.where(client_id: params[:client_id])
   end
 
   # GET /quotations/1
   # GET /quotations/1.json
   def show
-    @quotation = @client.quotations.find(params[:id])
   end
 
   # GET /quotations/new
   def new
-    @quotation = @client.quotations.build
+    @quotation = Quotation.new(params.select { |key, _| %w(client_id name status event_date).member? key })
   end
 
   # GET /quotations/1/edit
   def edit
-    @quotation = @client.quotations.find(params[:id])
   end
 
   # POST /quotations
   # POST /quotations.json
   def create
-    @quotation = @client.quotations.build(quotation_params)
+    @quotation = Quotation.new(quotation_params)
     respond_to do |format|
       if @quotation.save
         format.html { redirect_to quotation_item_details_path(@quotation), notice: 'Quotation was successfully created.' }
@@ -61,11 +59,6 @@ class QuotationsController < ApplicationController
       format.html { redirect_to quotations_url }
       format.json { head :no_content }
     end
-  end
-
-  private
-  def load_client
-    @client = Client.find(params[:client_id])
   end
 
   private

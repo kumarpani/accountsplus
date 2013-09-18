@@ -19,7 +19,7 @@
         <td><%= client.address %></td>
         <td><%= client.phone_number %></td>
         <td><%= client.email %></td>
-        <td><%= link_to 'Show Quotations', client_quotations_path(client) %></td>
+        <td><%= link_to 'Show Quotations', quotations_path(:client_id => client.id) %></td>
         <td><%= link_to 'Edit', edit_client_path(client) %></td>
       </tr>
     <% end %>

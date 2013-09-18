@@ -1,16 +1,13 @@
 Audioplus::Application.routes.draw do
 
-  resources :payments
 
   devise_for :users
-  resources :clients do
-    resources :quotations
-  end
 
-  resources :quotations, only: :index do
+  resources :payments
+  resources :clients
+  resources :quotations do
     resources :item_details
   end
-
   resources :dashboard, only: :index
   resources :calendar, only: :index
 

@@ -1,10 +1,5 @@
 <h1>Quotations</h1>
 
-<h2>
-   <p>Client name:
-     <%= @client.name %>
-   </p>
-</h2>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -24,13 +19,13 @@
         <td><%= quotation.event_date %></td>
         <td><%= quotation.status %></td>
         <td><%= link_to 'Show Quotation', quotation_item_details_path(quotation) %></td>
-        <td><%= link_to 'Edit', edit_client_quotation_path(@client, quotation) %></td>
-        <td><%= link_to 'Delete', [@client, quotation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_quotation_path(quotation) %></td>
+        <td><%= link_to 'Delete', quotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
 
-<%= link_to 'New Quotation', new_client_quotation_path(@client) %>
+<%= link_to 'New Quotation', new_quotation_path %>
 <%= link_to 'Back to all Clients', clients_path %>
