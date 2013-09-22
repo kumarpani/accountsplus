@@ -30,6 +30,7 @@
     <th>Sl. No.</th>
     <th>Particulars</th>
     <th>Quantity</th>
+    <th>Days</th>
     <th>Price</th>
     <th></th>
     <th></th>
@@ -43,6 +44,7 @@
       <td><%= index + 1 %></td>
       <td><%= item_detail.particulars %></td>
       <td><%= item_detail.quantity %></td>
+      <td><%= item_detail.days %></td>
       <td><%= item_detail.price %></td>
       <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail) %></td>
       <td><%= link_to 'Delete', [@quotation, item_detail], method: :delete, data: {confirm: 'Are you sure?'} %></td>
@@ -50,6 +52,7 @@
   <% end %>
   <tr>
     <td>Total:</td>
+    <td></td>
     <td></td>
     <td></td>
     <td><%= number_to_currency(@quotation.total_price, locale: :in) %></td>
