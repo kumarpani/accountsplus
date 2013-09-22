@@ -24,7 +24,8 @@
 <table class="table table-condensed table-striped table-bordered">
   <thead>
   <tr>
-    <th>Description</th>
+    <th>Sl. No.</th>
+    <th>Particulars</th>
     <th>Quantity</th>
     <th>Price</th>
     <th></th>
@@ -34,9 +35,10 @@
   </thead>
 
   <tbody>
-  <% @item_details.each do |item_detail| %>
+  <% @item_details.each_with_index do |item_detail, index| %>
     <tr>
-      <td><%= item_detail.description %></td>
+      <td><%= index + 1 %></td>
+      <td><%= item_detail.particulars %></td>
       <td><%= item_detail.quantity %></td>
       <td><%= item_detail.price %></td>
       <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail) %></td>
