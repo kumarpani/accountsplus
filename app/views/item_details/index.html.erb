@@ -48,6 +48,7 @@
   <tr>
     <td>Total:</td>
     <td></td>
+    <td></td>
     <td><%= number_to_currency(@quotation.total_price, locale: :in) %></td>
   </tr>
   </tbody>
@@ -55,4 +56,5 @@
 
 <p><%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation) %></p>
 <%= link_to 'Back to all Quotations', quotations_path %> |
+<%= link_to 'Print', quotation_print_quotations_path(@quotation) %> |
 <%= link_to 'Back to all Clients', clients_path %>

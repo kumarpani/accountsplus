@@ -1,0 +1,2 @@
+module PrintQuotationsHelper
+end

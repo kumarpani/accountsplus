@@ -1,0 +1,46 @@
+<div class="grid_8 prefix_1">
+  Quotation No: <%= @quotation.id %><br/>
+  To:
+  <p>
+    <%= @quotation.client.name %>,<br/>
+    <%= @quotation.client.address %>
+  </p>
+</div>
+<div class="grid_3">
+  <p>
+    <br/>
+    Date: <%= @quotation.updated_at.to_date %><br/>
+    Event Date: <%= @quotation.event_date %>
+  </p>
+</div>
+<br/>
+
+
+<div class="grid_10 prefix_1">
+  <table class="table table-condensed table-striped table-bordered">
+    <thead>
+    <tr>
+      <th>Sl. No.</th>
+      <th>Particulars</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @quotation.item_details.each_with_index do |item_detail, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= item_detail.particulars %></td>
+        <td><%= item_detail.quantity %></td>
+        <td><%= item_detail.price %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>Total:</td>
+      <td></td>
+      <td><%= number_to_currency(@quotation.total_price, locale: :in) %></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
