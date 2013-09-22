@@ -1,5 +1,11 @@
 <div class="grid_8 prefix_1">
-  Quotation No: <%= @quotation.id %><br/>
+  <% if @quotation.status == 'Confirmed' %>
+    Invoice No: <%= @quotation.id %>
+    <br/>
+  <% else %>
+    Quotation No: <%= @quotation.id %>
+    <br/>
+  <% end %>
   To:
   <p>
     <%= @quotation.client.name %>,<br/>
