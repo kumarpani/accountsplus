@@ -32,7 +32,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'bootstrap-sass', '~> 2.3.2.1'
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
 gem 'devise'
 gem 'bootstrap-datepicker-rails'
 gem 'simple_calendar', '~> 0.1.9'
