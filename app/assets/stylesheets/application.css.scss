@@ -50,12 +50,30 @@ form {
 
   textarea, input[type="text"], input[type="email"], input[type="password"], select {
     @extend .form-control;
-    width: 50%;
+    width: 20%;
   }
 
   .field {
     @extend .form-group;
   }
+}
+
+.info {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-info;
+}
+
+.edit {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-primary;
+}
+
+.destroy {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-danger;
 }
 
 body {

@@ -34,7 +34,6 @@
     <th>Price</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
   </thead>
 
@@ -46,8 +45,8 @@
       <td><%= item_detail.quantity %></td>
       <td><%= item_detail.days %></td>
       <td><%= item_detail.price %></td>
-      <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail) %></td>
-      <td><%= link_to 'Delete', [@quotation, item_detail], method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit' %></td>
+      <td><%= link_to 'Delete', [@quotation, item_detail], method: :delete, data: {confirm: 'Are you sure?'}, class: 'destroy' %></td>
     </tr>
   <% end %>
   <tr>

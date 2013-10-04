@@ -18,9 +18,9 @@
         <td><%= quotation.name %></td>
         <td><%= quotation.event_date %></td>
         <td><%= quotation.status %></td>
-        <td><%= link_to 'Show Quotation', quotation_item_details_path(quotation) %></td>
-        <td><%= link_to 'Edit', edit_quotation_path(quotation) %></td>
-        <td><%= link_to 'Delete', quotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', quotation_item_details_path(quotation), class: 'info' %></td>
+        <td><%= link_to 'Edit', edit_quotation_path(quotation), class: 'edit' %></td>
+        <td><%= link_to 'Delete', quotation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'destroy' %></td>
       </tr>
     <% end %>
   </tbody>
