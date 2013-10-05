@@ -24,40 +24,61 @@
 </p>
 <br/>
 
-<table class="table table-condensed table-striped table-bordered">
-  <thead>
-  <tr>
-    <th>Sl. No.</th>
-    <th>Particulars</th>
-    <th>Quantity</th>
-    <th>Days</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table table-condensed table-striped table-bordered">
+      <thead>
+      <tr>
+        <th>Sl. No.</th>
+        <th>Particulars</th>
+        <th>Quantity</th>
+        <th>Days</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
 
-  <tbody>
-  <% @item_details.each_with_index do |item_detail, index| %>
-    <tr>
-      <td><%= index + 1 %></td>
-      <td><%= item_detail.particulars %></td>
-      <td><%= item_detail.quantity %></td>
-      <td><%= item_detail.days %></td>
-      <td><%= item_detail.price %></td>
-      <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit' %></td>
-      <td><%= link_to 'Delete', [@quotation, item_detail], method: :delete, data: {confirm: 'Are you sure?'}, class: 'destroy' %></td>
-    </tr>
-  <% end %>
-  <tr>
-    <td>Total:</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><%= number_to_currency(@quotation.total_price, locale: :in) %></td>
-  </tr>
-  </tbody>
-</table>
+      <tbody>
+      <% @item_details.each_with_index do |item_detail, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= item_detail.particulars %></td>
+          <td><%= item_detail.quantity %></td>
+          <td><%= item_detail.days %></td>
+          <td><%= item_detail.price %></td>
+          <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit' %></td>
+          <td><%= link_to 'Delete', [@quotation, item_detail], method: :delete, data: {confirm: 'Are you sure?'}, class: 'destroy' %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td>Total:</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= number_to_currency(@quotation.total_price, locale: :in) %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3 cold-md-offset-1">
+    <table class="table table-condensed table-striped table-bordered col-md-3 col-md-offset-1">
+      <thead>
+      <tr>
+        <th>Vendor</th>
+        <th>Amount</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @item_details.each_with_index do |item_detail| %>
+        <tr>
+          <td><%= item_detail.payment ? item_detail.payment.client.name : '-' %></td>
+          <td><%= item_detail.payment ? item_detail.payment.amount : '' %></td>
+        </tr>
+      <% end %>
+      </table>
+  </div>
+</div>
 
 <p><%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation) %></p>
 <%= link_to 'Back to all Quotations', quotations_path %> |

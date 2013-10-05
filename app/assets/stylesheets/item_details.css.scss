@@ -1,0 +1,9 @@
+.item-list {
+  @extend .table;
+  @extend .col-md-8;
+}
+
+.vendor-list {
+  @extend .table;
+  @extend .col-md-3;
+}

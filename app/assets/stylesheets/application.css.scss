@@ -60,19 +60,19 @@ form {
 
 .info {
   @extend .btn;
-  @extend .btn-sm;
+  @extend .btn-xs;
   @extend .btn-info;
 }
 
 .edit {
   @extend .btn;
-  @extend .btn-sm;
+  @extend .btn-xs;
   @extend .btn-primary;
 }
 
 .destroy {
   @extend .btn;
-  @extend .btn-sm;
+  @extend .btn-xs;
   @extend .btn-danger;
 }
 
