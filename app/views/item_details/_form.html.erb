@@ -37,7 +37,7 @@
     <div class="field">
       <%= p.label :client_id, 'Vendor' %>
       <br>
-      <% clients_array = Client.all.map { |client| [client.name, client.id] } %>
+      <% clients_array = Client.all.map { |client| [client.company_name, client.id] } %>
       <%= p.select(:client_id, options_for_select(clients_array, @item_detail.payment.nil? ? 0 : @item_detail.payment.client.id), prompt: 'Select Vendor') %>
     </div>
     <div class="field">

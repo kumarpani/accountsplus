@@ -14,7 +14,7 @@
   <div class="field">
     <%= f.label :client_id %><br>
 
-    <% clients_array = Client.all.map {|client| [client.name, client.id]}%>
+    <% clients_array = Client.all.map {|client| [client.company_name, client.id]}%>
     <%= f.select(:client_id, options_for_select(clients_array, @payment.client.nil? ? 1 : @payment.client.id)) %>
   </div>
   <div class="field">

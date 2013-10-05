@@ -1,6 +1,6 @@
 <h1><%= @quotation.status == 'Confirmed' ? 'Invoice Details' : 'Quotation Details' %></h1>
 <p>
-  Client name: <%= @quotation.client.name %>
+  Client name: <%= @quotation.client.company_name %>
 </p>
 <p>
   Client address: <%= @quotation.client.address %>
@@ -73,7 +73,7 @@
       <tbody>
       <% @item_details.each_with_index do |item_detail| %>
         <tr>
-          <td><%= item_detail.payment ? item_detail.payment.client.name : '-' %></td>
+          <td><%= item_detail.payment ? item_detail.payment.client.company_name : '-' %></td>
           <td><%= item_detail.payment ? item_detail.payment.amount : '' %></td>
         </tr>
       <% end %>

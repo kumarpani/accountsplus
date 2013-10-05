@@ -5,7 +5,7 @@
         params[:status].include?('Confirmed') ? 'Invoices' : 'Quotations'
       end %>
   <% if !@client.nil? %>
-    for <i><%= @client.name %></i>
+    for <i><%= @client.company_name %></i>
   <% end %>
 </h1>
 <br>

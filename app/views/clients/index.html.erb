@@ -2,7 +2,7 @@
 <table class="table table-striped">
   <thead>
   <tr>
-    <th>Name</th>
+    <th>Company Name</th>
     <th>Address</th>
     <th>Phone Number</th>
     <th>Email</th>
@@ -15,7 +15,7 @@
   <tbody>
   <% @clients.each do |client| %>
     <tr>
-      <td><%= client.name %></td>
+      <td><%= client.company_name %></td>
       <td><%= client.address %></td>
       <td><%= client.phone_number %></td>
       <td><%= client.email %></td>
