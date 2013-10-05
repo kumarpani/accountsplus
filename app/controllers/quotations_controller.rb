@@ -1,6 +1,6 @@
 class QuotationsController < ApplicationController
   before_action :set_quotation, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!
+  before_filter :load_client, :authenticate_user!
 
   # GET /quotations
   # GET /quotations.json
@@ -59,6 +59,11 @@ class QuotationsController < ApplicationController
       format.html { redirect_to quotations_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def load_client
+    @client = params[:client_id].nil? ? nil : Client.find(params[:client_id]);
   end
 
   private

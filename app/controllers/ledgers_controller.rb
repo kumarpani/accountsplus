@@ -6,9 +6,10 @@ class LedgersController < ApplicationController
   # GET /ledgers.json
   def index
     @ledger_details = @client.quotations.keep_if { |q| q.status == 'Confirmed' }.map { |q|
-      {date: q.created_at, description: q.name, debit: q.total_price}
+      {date: q.created_at, description: q.name, credit: q.total_price}
     };
-    @ledger_details = @ledger_details + @client.payments.map { |p| {date: p.paid_on, description: p.description + p.mode, credit: p.amount} }
+    @ledger_details = @ledger_details + @client.payments.keep_if { |p| p.item_detail.nil? || p.item_detail.quotation.status == 'Confirmed' }.map { |p|
+      {date: p.paid_on, description: (p.description || '') + (p.mode || ''), debit: p.amount} }
     @ledger_details.sort_by! { |l| l[:date] }
     balance = 0.0;
     @ledger_details = @ledger_details.map { |l|
