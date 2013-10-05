@@ -2,7 +2,6 @@
   <% if @quotation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@quotation.errors.count, 'error') %> prohibited this quotation from being saved:</h2>
-
       <ul>
         <% @quotation.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>

@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Contact Person Name:</strong>
+  <%= @client.contact_person_name %>
+</p>
+
+<p>
   <strong>Address:</strong>
   <%= @client.address %>
 </p>
@@ -16,8 +21,18 @@
 </p>
 
 <p>
+  <strong>Phone Number 1:</strong>
+  <%= @client.phone_number_1 %>
+</p>
+
+<p>
   <strong>Email:</strong>
   <%= @client.email %>
 </p>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
+<p>
+  <strong>Email 1:</strong>
+  <%= @client.email_1 %>
+</p>
+
+<%= link_to 'Edit', edit_client_path(@client), class: :default%>

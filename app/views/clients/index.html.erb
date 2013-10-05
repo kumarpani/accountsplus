@@ -15,7 +15,7 @@
   <tbody>
   <% @clients.each do |client| %>
     <tr>
-      <td><%= client.company_name %></td>
+      <td><%= link_to client.company_name, client_path(client.id)%></td>
       <td><%= client.address %></td>
       <td><%= client.phone_number %></td>
       <td><%= client.email %></td>
