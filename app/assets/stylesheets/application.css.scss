@@ -38,6 +38,16 @@ body {
   float: right;
 }
 
+.Pending {
+  @extend .btn-xs;
+  @extend .btn-warning;
+}
+
+.Confirmed {
+  @extend .btn-xs;
+  @extend .btn-success;
+}
+
 input[type="submit"] {
   @extend .btn;
   @extend .btn-default;

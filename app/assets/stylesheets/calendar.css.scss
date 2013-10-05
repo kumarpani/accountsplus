@@ -3,16 +3,9 @@
   width: 14.28%;
 }
 
-.events.Confirmed{
-  background-color: #2ecc71 !important;
-  a {
-    background-color: #2ecc71;
-  }
+.calendar-event {
+  width: 100%;
+  display: block;
 }
 
-.events.Pending{
-  background-color: #f39c12 !important;
-  a {
-    background-color: #f39c12;
-  }
-}
+
