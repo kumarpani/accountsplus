@@ -30,6 +30,10 @@
     <%= f.text_field :event_date %>
   </div>
   <div class="field">
+    <%= f.label :days %><br>
+    <%= f.text_field :days %>
+  </div>
+  <div class="field">
     <%= f.label :status %><br>
     <%= f.select(:status, options_for_select(["Pending", "Confirmed", "Closed"], @quotation.status.nil? ? "Pending" : @quotation.status)) %>
   </div>

@@ -18,6 +18,9 @@
 <p>
   Event Date: <%= @quotation.event_date %>
 </p>
+<p>
+  Days: <%= @quotation.days || 1 %>
+</p>
 <br/>
 <p>
   <%= link_to 'Edit Quotation details', edit_quotation_path(@quotation) %>
