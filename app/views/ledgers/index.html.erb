@@ -5,7 +5,7 @@
 <p>
   Client address: <%= @client.address %>
 </p>
-
+<p><%= link_to 'Add Payment', new_payment_path(:client_id => @client.id), class: 'info add-payment'%><br/></p>
 <table class="table table-condensed table-striped table-bordered">
   <thead>
   <tr>

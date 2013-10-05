@@ -16,6 +16,7 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new
+    @payment.client = params[:client_id].nil? ? @payment.client : Client.find(params[:client_id]);
   end
 
   # GET /payments/1/edit
