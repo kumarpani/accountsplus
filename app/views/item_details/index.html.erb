@@ -1,5 +1,4 @@
-<h1>Quotation Details</h1>
-
+<h1><%= @quotation.status == 'Confirmed' ? 'Invoice Details' : 'Quotation Details' %></h1>
 <p>
   Client name: <%= @quotation.client.name %>
 </p>
@@ -8,9 +7,6 @@
 </p>
 <p>
   Quotation: <%= @quotation.name %>
-</p>
-<p class="status">
-  Status: <%= @quotation.status %>
 </p>
 <p>
   Venue: <%= @quotation.venue %>
@@ -24,9 +20,8 @@
 <p>
   Type: <%= @quotation.invoice_type %>
 </p>
-<br/>
 <p>
-  <%= link_to 'Edit Quotation details', edit_quotation_path(@quotation) %>
+  <%= link_to 'Edit', edit_quotation_path(@quotation), class: 'edit' %>
 </p>
 <br/>
 
@@ -86,7 +81,7 @@
   </div>
 </div>
 
-<p><%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation) %></p>
-<%= link_to 'Back to all Quotations', quotations_path %> |
-<%= link_to 'Print', quotation_print_quotations_path(@quotation) %> |
-<%= link_to 'Back to all Clients', clients_path %>
+<p><%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'info' %></p>
+<%= link_to 'Back to all Quotations', quotations_path, class: 'default' %>
+<%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %>
+<%= link_to 'Back to all Clients', clients_path, class: 'default' %>

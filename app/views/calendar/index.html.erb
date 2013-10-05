@@ -1,8 +1,8 @@
 <h1> Calendar </h1>
 <% empty_date_lambda = lambda do |date| %>
-  <%= link_to 'new', new_quotation_path(:event_date => date), class: 'btn-xs btn-default calendar-event' %>
+  <%= link_to 'new', new_quotation_path(:event_date => date), class: 'btn-xs btn btn-default calendar-event' %>
 <% end %>
 
 <%= calendar @all_quotations, empty_date: empty_date_lambda do |quotation| %>
-  <div><%= link_to quotation.name, quotation_item_details_path(quotation), class: "calendar-event #{quotation.status}" %></div>
+  <div><%= link_to quotation.name, quotation_item_details_path(quotation), class: "btn calendar-event #{quotation.status}" %></div>
 <% end %>

@@ -74,6 +74,12 @@ form {
   @extend .btn-info;
 }
 
+.default {
+  @extend .btn;
+  @extend .btn-xs;
+  @extend .btn-default;
+}
+
 .edit {
   @extend .btn;
   @extend .btn-xs;
@@ -89,15 +95,3 @@ form {
 body {
   padding-top: 50px;
 }
-
-//a {
-//  background-color: #ecf0f1;
-//  color: #2c3e50;
-//  &:visited {
-//    color: #2c3e50;
-//  }
-//  &:hover {
-//    background-color: #2c3e50;
-//    color: #ecf0f1;
-//  }
-//}
