@@ -81,7 +81,7 @@
   </div>
 </div>
 
-<p><%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'info' %></p>
-<%= link_to 'Back to all Quotations', quotations_path, class: 'default' %>
-<%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %>
-<%= link_to 'Back to all Clients', clients_path, class: 'default' %>
+<p>
+  <%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'default' %>
+  <%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %>
+</p>
