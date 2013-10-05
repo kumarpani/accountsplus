@@ -4,38 +4,49 @@
       <h2><%= pluralize(@quotation.errors.count, "error") %> prohibited this quotation from being saved:</h2>
 
       <ul>
-      <% @quotation.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @quotation.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.label :client_id %><br>
+    <%= f.label :client_id %>
+    <br>
 
-    <% clients_array = Client.all.map {|client| [client.name, client.id]}%>
+    <% clients_array = Client.all.map { |client| [client.name, client.id] } %>
     <%= f.select(:client_id, options_for_select(clients_array, @quotation.client.nil? ? 1 : @quotation.client.id)) %>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name %>
+    <br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :venue %><br>
+    <%= f.label :venue %>
+    <br>
     <%= f.text_area :venue %>
   </div>
   <div class="field">
-    <%= f.label :event_date %><br>
+    <%= f.label :event_date %>
+    <br>
     <%= f.text_field :event_date %>
   </div>
   <div class="field">
-    <%= f.label :days %><br>
+    <%= f.label :days %>
+    <br>
     <%= f.text_field :days %>
   </div>
   <div class="field">
-    <%= f.label :status %><br>
-    <%= f.select(:status, options_for_select(["Pending", "Confirmed", "Closed"], @quotation.status.nil? ? "Pending" : @quotation.status)) %>
+    <%= f.label :invoice_type %>
+    <br>
+    <%= f.select(:invoice_type, options_for_select(['Invoice', 'Performa Invoice'], @quotation.status.nil? ? 'Invoice' : @quotation.status)) %>
+  </div>
+  <div class="field">
+    <%= f.label :status %>
+    <br>
+    <%= f.select(:status, options_for_select(['Pending', 'Confirmed', 'Closed'], @quotation.status.nil? ? 'Pending' : @quotation.status)) %>
   </div>
 
   <div class="actions">

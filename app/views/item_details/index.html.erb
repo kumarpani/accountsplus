@@ -21,6 +21,9 @@
 <p>
   Days: <%= @quotation.days || 1 %>
 </p>
+<p>
+  Type: <%= @quotation.invoice_type %>
+</p>
 <br/>
 <p>
   <%= link_to 'Edit Quotation details', edit_quotation_path(@quotation) %>
