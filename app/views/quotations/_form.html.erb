@@ -41,7 +41,7 @@
   <div class="field">
     <%= f.label :invoice_type %>
     <br>
-    <%= f.select(:invoice_type, options_for_select(['Invoice', 'Performa Invoice'], @quotation.status.nil? ? 'Invoice' : @quotation.status)) %>
+    <%= f.select(:invoice_type, options_for_select(['Invoice', 'Proforma Invoice'], @quotation.status.nil? ? 'Invoice' : @quotation.status)) %>
   </div>
   <div class="field">
     <%= f.label :status %>

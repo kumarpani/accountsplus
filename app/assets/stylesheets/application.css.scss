@@ -24,8 +24,20 @@ h2 {
   font-size: 18px;
 }
 
-body {
+.rest-of-the-world {
   background-color: #ecf0f1;
+}
+
+.next-month {
+  @extend .glyphicon;
+  @extend .glyphicon-chevron-right;
+  float: right;
+}
+
+.previous-month {
+  @extend .glyphicon;
+  @extend .glyphicon-chevron-left;
+  float: left;
 }
 
 .main {

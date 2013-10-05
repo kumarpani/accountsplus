@@ -1,29 +1,31 @@
-<div class="grid_8 prefix_1">
-  <% if @quotation.status == 'Confirmed' %>
-    Invoice No: <%= @quotation.id %>
-    <br/>
-  <% else %>
-    Quotation No: <%= @quotation.id %>
-    <br/>
-  <% end %>
-  To:
-  <p>
-    <%= @quotation.client.name %>,<br/>
-    <%= @quotation.client.address %>
-  </p>
-</div>
-<div class="grid_3">
-  <p>
-    <br/>
-    Date: <%= @quotation.updated_at.to_date %><br/>
-    Event Date: <%= @quotation.event_date %><br/>
-    Venue: <%= @quotation.venue %>
-  </p>
+<div class="row">
+  <div class="col-md-8 col-md-offset-1">
+    <% if @quotation.status == 'Confirmed' %>
+      Invoice No: <%= @quotation.id %>
+      <br/>
+    <% else %>
+      Quotation No: <%= @quotation.id %>
+      <br/>
+    <% end %>
+    To:
+    <p>
+      <%= @quotation.client.name %>,<br/>
+      <%= @quotation.client.address %>
+    </p>
+  </div>
+  <div class="col-md-3">
+    <p>
+      <br/>
+      Date: <%= @quotation.updated_at.to_date %><br/>
+      Event Date: <%= @quotation.event_date %><br/>
+      Venue: <%= @quotation.venue %>
+    </p>
+  </div>
 </div>
 <br/>
 
 
-<div class="grid_10 prefix_1">
+<div class="col-md-10 col-md-offset-1">
   <table class="table table-condensed table-striped table-bordered">
     <thead>
     <tr>
