@@ -1,25 +1,27 @@
 <h1><%= @quotation.status == 'Confirmed' ? 'Invoice Details' : 'Quotation Details' %></h1>
-<p>
-  Client name: <%= @quotation.client.company_name %>
-</p>
-<p>
-  Client address: <%= @quotation.client.address %>
-</p>
-<p>
-  Quotation: <%= @quotation.name %>
-</p>
-<p>
-  Venue: <%= @quotation.venue %>
-</p>
-<p>
-  Event Date: <%= @quotation.event_date %>
-</p>
-<p>
-  Days: <%= @quotation.days || 1 %>
-</p>
-<p>
-  Type: <%= @quotation.invoice_type %>
-</p>
+
+<table class="table">
+  <tr>
+      <td><strong>Client name & Address:</strong></td>
+      <td><p><%= @quotation.client.company_name %></p><p><%= @quotation.client.address %></p></td>
+  </tr>
+
+  <tr>
+      <td><strong>Event name and Venue:</strong></td>
+      <td><p><%= @quotation.name %></p><p><%= @quotation.venue %></p></td>
+  </tr>
+
+  <tr>
+      <td><strong>Duration:</strong></td>
+      <td><p>Starting <b><%= @quotation.event_date %></b> for <b><%= @quotation.days || 1 %></b> day(s)</p></td>
+  </tr>
+
+  <tr>
+      <td><strong>Invoice Type:</strong></td>
+      <td><p><%= @quotation.invoice_type %></p></td>
+  </tr>
+  <tr><td></td><td><p></p></td></tr>
+  </table>
 <p>
   <%= link_to 'Edit', edit_quotation_path(@quotation), class: 'edit' %>
 </p>
@@ -30,11 +32,11 @@
     <table class="table table-condensed table-striped table-bordered">
       <thead>
       <tr>
-        <th>Sl. No.</th>
-        <th>Particulars</th>
-        <th>Quantity</th>
-        <th>Days</th>
-        <th>Price</th>
+        <th><strong>Sl. No.</strong></th>
+        <th><strong>Particulars</strong></th>
+        <th><strong>Quantity</strong></th>
+        <th><strong>Days</strong></th>
+        <th><strong>Price</strong></th>
         <th></th>
         <th></th>
       </tr>
@@ -53,7 +55,7 @@
         </tr>
       <% end %>
       <tr>
-        <td>Total:</td>
+        <td><strong>Total:</strong></td>
         <td></td>
         <td></td>
         <td></td>
@@ -66,8 +68,8 @@
     <table class="table table-condensed table-striped table-bordered col-md-3 col-md-offset-1">
       <thead>
       <tr>
-        <th>Vendor</th>
-        <th>Amount</th>
+        <th><strong>Vendor</strong></th>
+        <th><strong>Amount</strong></th>
       </tr>
       </thead>
       <tbody>
