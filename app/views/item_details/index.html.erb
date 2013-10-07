@@ -13,7 +13,7 @@
 
   <tr>
       <td><strong>Duration:</strong></td>
-      <td><p>Starting <b><%= @quotation.event_date %></b> for <b><%= @quotation.days || 1 %></b> day(s)</p></td>
+      <td><p><b><%= @quotation.event_date.strftime("%d/%b/%Y") %></b> for <b><%= @quotation.days || 1 %></b> day(s)</p></td>
   </tr>
 
   <tr>

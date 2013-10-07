@@ -20,7 +20,7 @@
   <tbody>
   <% @ledger_details.each do |ledger_detail| %>
     <tr>
-      <td><%= ledger_detail[:date].to_date %></td>
+      <td><%= ledger_detail[:date].to_date.strftime("%d/%m/%Y") %></td>
       <td><%= ledger_detail[:description] %></td>
       <td><%= ledger_detail[:debit] %></td>
       <td><%= ledger_detail[:credit] %></td>

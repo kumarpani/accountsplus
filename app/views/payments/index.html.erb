@@ -20,7 +20,7 @@
       <td><%= payment.client.company_name %></td>
       <td><%= payment.description %></td>
       <td><%= payment.mode %></td>
-      <td><%= payment.paid_on %></td>
+      <td><%= payment.paid_on.strftime("%d/%m/%Y")%></td>
       <td><%= payment.amount %></td>
       <td><%= link_to 'Show', payment, class: :info %></td>
       <td><%= link_to 'Edit', edit_payment_path(payment), class: :edit%></td>
