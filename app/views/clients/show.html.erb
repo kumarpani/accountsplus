@@ -1,38 +1,42 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Company Name:</strong>
-  <%= @client.company_name %>
+  <strong><h1>Client Details:</h1></strong>
+  <br>
 </p>
 
-<p>
-  <strong>Contact Person Name:</strong>
-  <%= @client.contact_person_name %>
-</p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @client.address %>
-</p>
-
-<p>
-  <strong>Phone Number:</strong>
-  <%= @client.phone_number %>
-</p>
-
-<p>
-  <strong>Phone Number 1:</strong>
-  <%= @client.phone_number_1 %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
-
-<p>
-  <strong>Email 1:</strong>
-  <%= @client.email_1 %>
-</p>
+<table class="table table-striped">
+  <tbody>
+      <tr>
+        <td><strong>Client Name:</strong></td>
+        <td><%= @client.company_name %></td>
+      </tr>
+      <tr>
+        <td><strong>Contact Person Name:</strong></td>
+        <td><%= @client.contact_person_name %></td>
+        </tr>
+      <tr>
+        <td><strong>Address:</strong></td>
+        <td><%= @client.address %></td>
+        </tr>
+      <tr>
+        <td><strong>Phone Number:</strong></td>
+        <td><%= @client.phone_number %></td>
+        </tr>
+      <tr>
+        <td><strong>Phone Number 2</strong>:</td>
+        <td><%= @client.phone_number_1 %></td>
+        </tr>
+      <tr>
+        <td><strong>Email:</strong></td>
+        <td><%= @client.email %></td>
+        </tr>
+      <tr>
+        <td><strong>Email 2:</strong></td>
+        <td><%= @client.email_1 %></td>
+      </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_client_path(@client), class: :default%>
