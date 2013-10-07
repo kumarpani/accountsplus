@@ -1,4 +1,4 @@
-<h1>Listing payments</h1>
+<h1>Payments</h1>
 
 <table class="table table-striped">
   <thead>
@@ -8,6 +8,7 @@
     <th><strong>Mode</strong></th>
     <th><strong>Paid on</strong></th>
     <th><strong>Amount</strong></th>
+    <th><strong>Type</strong></th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,6 +23,7 @@
       <td><%= payment.mode %></td>
       <td><%= payment.paid_on.strftime("%d/%m/%Y")%></td>
       <td><%= payment.amount %></td>
+      <td><%= payment.payment_type %></td>
       <td><%= link_to 'Show Details', payment, class: :info %></td>
       <td><%= link_to 'Destroy', payment, method: :delete, data: {confirm: 'Are you sure?'}, class: :destroy %></td>
     </tr>
