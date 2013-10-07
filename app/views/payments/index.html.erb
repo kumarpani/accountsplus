@@ -22,8 +22,7 @@
       <td><%= payment.mode %></td>
       <td><%= payment.paid_on.strftime("%d/%m/%Y")%></td>
       <td><%= payment.amount %></td>
-      <td><%= link_to 'Show', payment, class: :info %></td>
-      <td><%= link_to 'Edit', edit_payment_path(payment), class: :edit%></td>
+      <td><%= link_to 'Show Details', payment, class: :info %></td>
       <td><%= link_to 'Destroy', payment, method: :delete, data: {confirm: 'Are you sure?'}, class: :destroy %></td>
     </tr>
   <% end %>

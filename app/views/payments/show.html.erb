@@ -25,5 +25,6 @@
   <%= @payment.amount %>
 </p>
 
-<%= link_to 'Edit', edit_payment_path(@payment) %> |
+
+<%= link_to 'Edit', edit_payment_path(@payment), class: :edit%> |
 <%= link_to 'Back', payments_path %>
