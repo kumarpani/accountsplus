@@ -36,7 +36,10 @@
         <td><strong>Email 2:</strong></td>
         <td><%= @client.email_1 %></td>
       </tr>
+
+
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_client_path(@client), class: :default%>
+<td><%= link_to 'Edit', edit_client_path(@client), class: 'edit' %></td>
+

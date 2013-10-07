@@ -22,7 +22,6 @@
       <td><%= link_to 'Quotations', quotations_path(:client_id => client.id, :status => ['Pending', 'Closed']), class: 'info' %></td>
       <td><%= link_to 'Invoices', quotations_path(:client_id => client.id, :status => ['Confirmed']), class: 'info' %></td>
       <td><%= link_to 'Ledger', client_ledgers_path(client), class: 'info' %></td>
-      <td><%= link_to 'Edit', edit_client_path(client), class: 'edit' %></td>
     </tr>
   <% end %>
   </tbody>
