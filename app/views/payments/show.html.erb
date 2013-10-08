@@ -1,29 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Client:</strong>
-  <%= @payment.client_id %>
-</p>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
 
-<p>
-  <strong>Description:</strong>
-  <%= @payment.description %>
-</p>
-
-<p>
-  <strong>Mode:</strong>
-  <%= @payment.mode %>
-</p>
-
-<p>
-  <strong>Paid on:</strong>
-  <%= @payment.paid_on.strftime("%d/%m/%Y") %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @payment.amount %>
-</p>
+  <tbody>
+      <tr>
+        <td><strong>Client</strong></td>
+        <td><%= @payment.client.company_name %></td>
+      </tr>
+      <tr>
+        <td><strong>Description</strong></td>
+        <td><%= @payment.description %></td>
+      </tr>
+      <tr>
+        <td><strong>Mode</strong></td>
+        <td><%= @payment.mode %></td>
+      </tr>
+      <tr>
+        <td><strong>Paid on</strong></td>
+        <td><%= @payment.paid_on.strftime("%d/%m/%Y")%></td>
+      </tr>
+      <tr>
+        <td><strong>Amount</strong></td>
+        <td><%= @payment.amount %></td>
+      </tr>
+      <tr>
+        <td><strong>Type</strong></td>
+        <td><%= @payment.payment_type %></td>
+      </tr>
+  </tbody>
+</table>
 
 
 <%= link_to 'Edit', edit_payment_path(@payment), class: :edit%> |
