@@ -36,9 +36,7 @@
 
     <div class="field">
       <%= f.label :payment_type %><br>
-
-      <% type_array = %w(Debit Credit)%>
-      <%= f.select(:payment_type, options_for_select(type_array)) %>
+      <%= f.select(:payment_type, options_for_select(%w(Debit Credit))) %>
     </div>
 
 

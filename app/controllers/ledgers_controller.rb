@@ -9,7 +9,10 @@ class LedgersController < ApplicationController
       {date: q.created_at, description: q.name, credit: q.total_price}
     };
     @ledger_details = @ledger_details + @client.payments.keep_if { |p| p.item_detail.nil? || p.item_detail.quotation.status == 'Confirmed' }.map { |p|
-      {date: p.paid_on, description: (p.description || '') + (p.mode || ''), debit: p.amount} }
+      payment = {date: p.paid_on, description: (p.description || '') + (p.mode || '')}
+      payment[p.payment_type.downcase.to_sym] = p.amount
+      payment
+    }
     @ledger_details.sort_by! { |l| l[:date] }
     balance = 0.0;
     @ledger_details = @ledger_details.map { |l|

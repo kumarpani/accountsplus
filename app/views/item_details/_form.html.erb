@@ -33,6 +33,7 @@
   </div>
   <%= f.fields_for(:payment_attributes, @item_detail.payment) do |p| %>
     <%= p.hidden_field :id %>
+    <%= p.hidden_field :payment_type, :value => 'Debit' %>
     <%= p.hidden_field :paid_on, :value => @item_detail.payment.nil? ? DateTime.now : @item_detail.payment.paid_on %>
     <div class="field">
       <%= p.label :client_id, 'Vendor' %>
