@@ -47,7 +47,12 @@
     <br>
     <%= f.select(:status, options_for_select(['Pending', 'Confirmed', 'Closed'], @quotation.status.nil? ? 'Pending' : @quotation.status)) %>
   </div>
-
+  <div class="field">
+    <ul>
+      <li><%= f.check_box(:tac, {:multiple => true}, 'tac 1', nil) %> tac 2</li>
+      <li><%= f.check_box(:tac, {:multiple => true}, 'tac 2', nil) %> tac 1</li>
+    </ul>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

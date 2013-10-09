@@ -56,4 +56,10 @@
     </tr>
     </tbody>
   </table>
+  <ul class="tac">
+    <strong>Terms and Conditions:</strong>
+    <% @quotation.tac.each do |t| %>
+    <li><%= t %></li>
+    <% end %>
+  </ul>
 </div>
