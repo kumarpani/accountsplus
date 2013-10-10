@@ -36,7 +36,8 @@
         <td><%= quotation[:client].company_name %></td>
         <td><%= quotation[:client].phone_number %></td>
         <td><%= quotation[:client].email %></td>
-        <td><%= number_to_currency(quotation[:owes], locale: :in) %></td>
+        <!--<td><%= number_to_currency(quotation[:owes], locale: :in) %></td>-->
+        <td><%=quotation[:owes]%></td>
       </tr>
     <% end %>
     </tbody>

@@ -59,7 +59,8 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><%= number_to_currency(@quotation.total_price, locale: :in) %></td>
+        <!--<td><%= number_to_currency(@quotation.total_price, locale: :in) %></td> Not working in Windows-->
+        <td><%=@quotation.total_price%></td>
       </tr>
       </tbody>
     </table>
