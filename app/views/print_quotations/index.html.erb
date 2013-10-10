@@ -1,10 +1,15 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-1">
     <% if @quotation.status == 'Confirmed' %>
-      Invoice No: <%= @quotation.id %>
+        <%#
+        # No need to show invoice number for now. Till we generate it sequentially for invoices
+        #Invoice No: <%= @quotation.id %>
       <br/>
     <% else %>
-      Quotation No: <%= @quotation.id %>
+        <%#
+        # No need to show quotation number for now
+        #Quotation No: <%= @quotation.id %>
+
       <br/>
     <% end %>
     To:

@@ -48,6 +48,7 @@
     <%= f.select(:status, options_for_select(['Pending', 'Confirmed', 'Closed'], @quotation.status.nil? ? 'Pending' : @quotation.status)) %>
   </div>
 
+  <strong>Terms and Conditions:</strong>
   <div class="field">
     <ul>
       <% get_terms_and_conditions.each do |t| %>
