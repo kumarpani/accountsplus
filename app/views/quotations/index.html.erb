@@ -2,7 +2,7 @@
   <%= if params[:status].nil? then
         'Quotations'
       else
-        params[:status].include?('Confirmed') ? 'Invoices' : 'Quotations'
+        params[:status].include?('Invoice') ? 'Invoices' : 'Quotations'
       end %>
   <% if !@client.nil? %>
     for <i><%= @client.company_name %></i>
@@ -29,7 +29,7 @@
       <td><%= quotation.event_date %></td>
       <td><%= quotation.status %></td>
       <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info' %></td>
-      <!--<td><%= link_to 'Delete', quotation, method: :delete, data: {confirm: 'Are you sure?'}, class: 'destroy' %></td> Delete not needed -->
+      <td><%= link_to 'Delete', quotation, method: :delete, data: {confirm: 'Are you sure?'}, class: 'destroy' %></td> Delete not needed
     </tr>
   <% end %>
   </tbody>
