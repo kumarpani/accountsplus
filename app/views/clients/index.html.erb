@@ -22,6 +22,8 @@
       <td><%= link_to 'Quotations', quotations_path(:client_id => client.id, :status => ['Pending', 'Confirmed', 'Closed']), class: 'info' %></td>
       <td><%= link_to 'Invoices', quotations_path(:client_id => client.id, :status => ['Invoice']), class: 'info' %></td>
       <td><%= link_to 'Ledger', client_ledgers_path(client), class: 'info' %></td>
+      <td><%= button_to 'Delete', client, {:onclick => "return confirm('WARNING : Are you sure to DELETE this Client ? All Quotations and payment details would be lost! You will not be able to UnDo this')", method: :delete}%></td>
+
     </tr>
   <% end %>
   </tbody>

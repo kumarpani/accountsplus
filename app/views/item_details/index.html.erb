@@ -51,7 +51,8 @@
           <td><%= item_detail.days %></td>
           <td><%= item_detail.price %></td>
           <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit' %></td>
-          <td><%= link_to 'Delete', [@quotation, item_detail], method: :delete, data: {confirm: 'Are you sure?'}, class: 'destroy' %></td>
+          <td><%= button_to 'Delete', [@quotation, item_detail], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", method: :delete}%></td>
+
         </tr>
       <% end %>
       <tr>

@@ -29,7 +29,7 @@
       <td><%= quotation.event_date %></td>
       <td><%= quotation.status %></td>
       <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info' %></td>
-      <td><%= link_to 'Delete', quotation, method: :delete, data: {confirm: 'Are you sure?'}, class: 'destroy' %></td> Delete not needed
+      <td><%= button_to 'Delete', quotation, {:onclick => "return confirm('WARNING : Are you sure to DELETE this quotation Permanently? You will not be able retrieve this quotation again')", :method=>:delete} %></td>
     </tr>
   <% end %>
   </tbody>

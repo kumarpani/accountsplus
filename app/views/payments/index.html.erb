@@ -25,7 +25,8 @@
       <td><%= payment.amount %></td>
       <td><%= payment.payment_type %></td>
       <td><%= link_to 'Show Details', payment, class: :info %></td>
-      <td><%= link_to 'Destroy', payment, method: :delete, data: {confirm: 'Are you sure?'}, class: :destroy %></td>
+      <td><%= button_to 'Delete', payment, {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete} %></td>
+
     </tr>
   <% end %>
   </tbody>
