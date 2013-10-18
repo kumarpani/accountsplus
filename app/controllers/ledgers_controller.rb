@@ -19,6 +19,9 @@ class LedgersController < ApplicationController
       balance = l[:balance] = balance - (l[:debit] || 0.0) + (l[:credit] || 0.0)
       l
     }
+
+    @ledger_details = @ledger_details.sort_by{|l| l[:date]}.reverse
+
   end
 
   private
