@@ -1,4 +1,4 @@
-<h1><%= @quotation.status == 'Confirmed' ? 'Invoice Details' : 'Quotation Details' %></h1>
+<h1><%= @quotation.status == 'Invoice' ? 'Invoice Details' : 'Quotation Details'%> <i>(Status : <%= @quotation.status%>)</i></h1>
 
 <table class="table">
   <tr>

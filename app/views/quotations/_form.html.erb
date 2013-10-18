@@ -48,16 +48,19 @@
     <%= f.select(:status, options_for_select(['Pending', 'Confirmed', 'Invoice', 'Closed'], @quotation.status.nil? ? 'Pending' : @quotation.status)) %>
   </div>
 
-  <strong>Terms and Conditions:</strong>
-  <div class="field">
-    <ul>
-      <% get_terms_and_conditions.each do |t| %>
-        <li><%= f.check_box(:tac, {:multiple => true}, t, nil)%> <%= t %></li>
-      <% end %>
-    </ul>
-  </div>
+    <% if @quotation.status != 'Invoice'%>
+      <strong>Terms and Conditions:</strong>
+      <div class="field">
+        <ul>
+          <% get_terms_and_conditions.each do |t| %>
+            <li><%= f.check_box(:tac, {:multiple => true}, t, nil)%> <%= t %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-  <div class="actions">
+
+    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
