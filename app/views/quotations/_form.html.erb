@@ -10,6 +10,13 @@
     </div>
   <% end %>
 
+
+    <div class="actions" style="text-align: right;">
+      <%= f.submit %>
+      <%=link_to 'Back To Quotation', quotation_item_details_path(@quotation.id)%>
+
+    </div>
+
   <div class="field">
     <%= f.label :client_id %>
     <br>
@@ -60,7 +67,4 @@
     <% end %>
 
 
-    <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
