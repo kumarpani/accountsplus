@@ -1,4 +1,8 @@
 <%= form_for([@quotation, @item_detail]) do |f| %>
+    <% if flash[:notice] %>
+        <div id="notice"><i>* <%= flash[:notice] %></i></div> <br>
+    <% end %>
+
   <% if @item_detail.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@item_detail.errors.count, "error") %> prohibited this item_detail from being saved:</h2>
@@ -47,7 +51,10 @@
       <%= p.text_field :amount %>
     </div>
   <% end %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+
+      <%= f.submit %>
+      <%=link_to 'Back To Quotation', quotation_item_details_path(@quotation.id)%>
+
+    </div>
 <% end %>

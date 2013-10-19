@@ -30,8 +30,11 @@ class ItemDetailsController < ApplicationController
 
     respond_to do |format|
       if @item_detail.save
-        format.html { redirect_to quotation_item_details_path(@quotation), notice: 'Item detail was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @item_detail }
+        format.html {
+          flash[:notice] = 'Item detail was successfully created.'
+          redirect_to action: 'new'
+        }
+
       else
         format.html { render action: 'new' }
         format.json { render json: @item_detail.errors, status: :unprocessable_entity }
