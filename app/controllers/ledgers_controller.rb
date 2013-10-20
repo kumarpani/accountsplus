@@ -20,7 +20,7 @@ class LedgersController < ApplicationController
       l
     }
 
-    @ledger_details = @ledger_details.sort_by{|l| l[:date]}.reverse
+    @ledger_details = @ledger_details.sort_by {|l| l[:date]}
 
   end
 
