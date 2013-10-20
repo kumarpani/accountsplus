@@ -7,6 +7,9 @@ class QuotationsController < ApplicationController
   def index
     @quotations = params[:client_id].nil? ? Quotation.all : Quotation.where(client_id: params[:client_id])
     @quotations = params[:status].nil? ? @quotations : @quotations.keep_if {|q| params[:status].include? q.status}
+
+    @quotations = @quotations.sort_by {|e| e[:event_date]}.reverse
+
   end
 
   # GET /quotations/1
