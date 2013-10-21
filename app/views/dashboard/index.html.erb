@@ -3,9 +3,10 @@
 <table class="table table-bordered">
   <thead>
   <tr>
-    <th>Event Date</th>
-    <th>Name</th>
-    <th>Quotation</th>
+    <th><b>Event Date</b></th>
+    <th><b>Client</b></th>
+    <th><b>Event Name</b></th>
+    <th><b>Day(s)</b></th>
   </tr>
   </thead>
   <tbody>
@@ -14,6 +15,7 @@
       <td><%= quotation.event_date %></td>
       <td><%= quotation.client.company_name %></td>
       <td><%= quotation.name %></td>
+      <td><%= quotation.days %></td>
     </tr>
   <% end %>
   </tbody>
@@ -24,44 +26,22 @@
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th>Client Name</th>
-      <th>Phone Number</th>
-      <th>Email</th>
-      <th>Owes</th>
+      <th><b>Client Name</b></th>
+      <th><b>Contact Person</b></th>
+      <th><b>Phone Number</b></th>
+      <th><b>Email</b></th>
+      <th><b>Owes</b></th>
     </tr>
     </thead>
     <tbody>
     <% @pending_payments.each do |quotation| %>
       <tr>
         <td><%= quotation[:client].company_name %></td>
+        <td><%= quotation[:client].contact_person_name %></td>
         <td><%= quotation[:client].phone_number %></td>
         <td><%= quotation[:client].email %></td>
         <!--<td><%= number_to_currency(quotation[:owes], locale: :in) %></td>-->
         <td><%=quotation[:owes]%></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
-
-<div>
-  <h2>Pending Quotations</h2>
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <th>Client Name</th>
-      <th>Phone Number</th>
-      <th>Email</th>
-      <th>Quotation</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @pending_quotations.each do |quotation| %>
-      <tr>
-        <td><%= quotation.client.company_name %></td>
-        <td><%= quotation.client.phone_number %></td>
-        <td><%= quotation.client.email %></td>
-        <td><%= quotation.name %></td>
       </tr>
     <% end %>
     </tbody>
