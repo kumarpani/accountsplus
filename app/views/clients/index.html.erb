@@ -3,16 +3,21 @@
     <%= link_to 'Add New Client', new_client_path, class: :new%>
 </div>
 
+<style>
+    table {border-collapse:collapse; table-layout:fixed; width:310px;}
+    table td {border:solid 1px #fab; word-wrap:break-word;}
+</style>
+
 <table class="table table-striped">
   <thead>
   <tr>
-    <th><strong>Company Name</strong></th>
-    <th><strong>Contact Person</strong></th>
-    <th><strong>Phone Number</strong></th>
-    <th><strong>Email</strong></th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th width=155px;><strong>Company Name</strong></th>
+    <th width=175px;><strong>Contact Person</strong></th>
+    <th width=110px;><strong>Ph Number</strong></th>
+    <th width=207px;><strong>Email</strong></th>
+    <th width=85px;></th>
+    <th width=70px;></th>
+    <th width=70px;></th>
   </tr>
   </thead>
 
@@ -26,7 +31,7 @@
       <td><%= link_to 'Quotations', quotations_path(:client_id => client.id, :status => ['Pending', 'Confirmed', 'Closed']), class: 'info' %></td>
       <td><%= link_to 'Invoices', quotations_path(:client_id => client.id, :status => ['Invoice']), class: 'info' %></td>
       <td><%= link_to 'Ledger', client_ledgers_path(client), class: 'info' %></td>
-      <td><%= button_to 'Delete', client, {:onclick => "return confirm('WARNING : Are you sure to DELETE this Client ? All Quotations and payment details would be lost! You will not be able to UnDo this')", method: :delete}%></td>
+      <td><%= button_to 'X', client, {:onclick => "return confirm('WARNING : Are you sure to DELETE this Client ? All Quotations and payment details would be lost! You will not be able to UnDo this')", method: :delete}%></td>
 
     </tr>
   <% end %>
