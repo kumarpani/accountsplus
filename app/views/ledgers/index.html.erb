@@ -1,11 +1,11 @@
 <h1>Ledger</h1>
 <p>
-  Client name: <%= @client.company_name %>
+  <%= @client.company_name %><br>
+  <%= @client.address %>
 </p>
-<p>
-  Client address: <%= @client.address %>
-</p>
-<p><%= link_to 'Add Payment', new_payment_path(:client_id => @client.id), class: 'info add-payment'%><br/></p>
+<div class="actions" style="text-align: right;">
+    <%= link_to 'Add New Payment', new_payment_path(:client_id => @client.id), class: 'new'%>
+</div>
 <table class="table table-condensed table-striped table-bordered">
   <thead>
   <tr>
