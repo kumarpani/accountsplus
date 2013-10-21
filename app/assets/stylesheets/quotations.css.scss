@@ -1,0 +1,23 @@
+.left {
+  float: left;
+  width: 200px;
+  text-align: left;
+  margin: 2px 10px;
+  display: inline
+}
+.right {
+  float: right;
+  text-align: right;
+  margin: 25px 10px;
+  display: inline;
+}
+
+.status {
+  float: right;
+  text-align: right;
+  margin: 22px 10px;
+  display: inline;
+  color: brown;
+  font-size: 20px;
+
+}

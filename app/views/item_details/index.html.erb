@@ -1,30 +1,34 @@
-<h1><%= @quotation.status == 'Invoice' ? 'Invoice Details' : 'Quotation Details'%> <i>(Status : <%= @quotation.status%>)</i></h1>
-<div class="actions" style="text-align: right;">
+
+<div class='left'><h1><%= @quotation.status == 'Invoice' ? 'Invoice Details' : 'Quotation Details'%></h1></div>
+<div class="right actions" style="text-align: right;">
   <% if @quotation.status != 'Invoice' || @quotation.invoice_type == 'Proforma Invoice'%>
       <%= link_to 'Edit', edit_quotation_path(@quotation), class: 'edit' %>
   <%end%>
 </div>
 
+<div class='status'><i>(Status : <%= @quotation.status%>)</i></div>
+
+
 
 <table class="table">
   <tr>
       <td><strong>Client name & Address:</strong></td>
-      <td><p><%= @quotation.client.company_name %></p><p><%= @quotation.client.address %></p></td>
+      <td><%= @quotation.client.company_name %><br><%= @quotation.client.address %></td>
   </tr>
 
   <tr>
       <td><strong>Event name and Venue:</strong></td>
-      <td><p><%= @quotation.name %></p><p><%= @quotation.venue %></p></td>
+      <td><%= @quotation.name %><br><%= @quotation.venue %></td>
   </tr>
 
   <tr>
       <td><strong>Duration:</strong></td>
-      <td><p><b><%= @quotation.event_date %></b> for <b><%= @quotation.days || 1 %></b> day(s)</p></td>
+      <td><b><%= @quotation.event_date %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
   </tr>
 
   <tr>
       <td><strong>Invoice Type:</strong></td>
-      <td><p><%= @quotation.invoice_type %></p></td>
+      <td><%= @quotation.invoice_type %></td>
   </tr>
   </table>
 <br/>
