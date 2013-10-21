@@ -1,4 +1,8 @@
 <h1>Clients</h1>
+<div class="actions" style="text-align: right;">
+    <%= link_to 'Add New Client', new_client_path, class: :new%>
+</div>
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -28,4 +32,3 @@
   <% end %>
   </tbody>
 </table>
-<%= link_to 'New Client', new_client_path, class: :info %>

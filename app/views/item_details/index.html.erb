@@ -1,4 +1,10 @@
 <h1><%= @quotation.status == 'Invoice' ? 'Invoice Details' : 'Quotation Details'%> <i>(Status : <%= @quotation.status%>)</i></h1>
+<div class="actions" style="text-align: right;">
+  <% if @quotation.status != 'Invoice' || @quotation.invoice_type == 'Proforma Invoice'%>
+      <%= link_to 'Edit', edit_quotation_path(@quotation), class: 'edit' %>
+  <%end%>
+</div>
+
 
 <table class="table">
   <tr>
@@ -20,13 +26,7 @@
       <td><strong>Invoice Type:</strong></td>
       <td><p><%= @quotation.invoice_type %></p></td>
   </tr>
-  <tr><td></td><td><p></p></td></tr>
   </table>
-<p>
-  <% if @quotation.status != 'Invoice' || @quotation.invoice_type == 'Proforma Invoice'%>
-      <%= link_to 'Edit', edit_quotation_path(@quotation), class: 'edit' %>
-  <%end%>
-</p>
 <br/>
 
 <div class="row">

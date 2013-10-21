@@ -1,5 +1,9 @@
 <h1>Payments</h1>
 
+<div class="actions" style="text-align: right;">
+  <%= link_to 'Add New Payment', new_payment_path, class: :new %>
+</div>
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -33,5 +37,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Payment', new_payment_path, class: :info %>
