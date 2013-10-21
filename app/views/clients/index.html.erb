@@ -3,7 +3,7 @@
   <thead>
   <tr>
     <th><strong>Company Name</strong></th>
-    <th><strong>Address</strong></th>
+    <th><strong>Contact Person</strong></th>
     <th><strong>Phone Number</strong></th>
     <th><strong>Email</strong></th>
     <th></th>
@@ -16,7 +16,7 @@
   <% @clients.each do |client| %>
     <tr>
       <td><%= link_to client.company_name, client_path(client.id)%></td>
-      <td><%= client.address %></td>
+      <td><%= client.contact_person_name %></td>
       <td><%= client.phone_number %></td>
       <td><%= client.email %></td>
       <td><%= link_to 'Quotations', quotations_path(:client_id => client.id, :status => ['Pending', 'Confirmed', 'Closed']), class: 'info' %></td>
