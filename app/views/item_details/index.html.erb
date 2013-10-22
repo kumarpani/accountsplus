@@ -1,14 +1,12 @@
 
 <div class='left'><h1><%= @quotation.status == 'Invoice' ? 'Invoice Details' : 'Quotation Details'%></h1></div>
 <div class="right actions" style="text-align: right;">
-  <% if @quotation.status != 'Invoice' || @quotation.invoice_type == 'Proforma Invoice'%>
+  <% if true%>
       <%= link_to 'Edit', edit_quotation_path(@quotation), class: 'edit' %>
   <%end%>
 </div>
 
 <div class='status'><i>(Status : <%= @quotation.status%>)</i></div>
-
-
 
 <table class="table">
   <tr>
@@ -57,19 +55,29 @@
           <td><%= item_detail.days %></td>
           <td><%= item_detail.price %></td>
 
-          <% if @quotation.status != 'Invoice' || @quotation.invoice_type == 'Proforma Invoice'%>
+          <% if @quotation.is_open_for_edits?%>
             <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit' %></td>
             <td><%= button_to 'Delete', [@quotation, item_detail], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", method: :delete}%></td>
          <%end%>
 
         </tr>
       <% end %>
+
+        <% if @quotation.is_service_tax_row_needed?%>
+          <tr>
+            <td></td>
+            <td>Service Tax</td>
+            <td></td>
+            <td></td>
+            <td><%= @quotation.service_tax %></td>
+          </tr>
+        <% end %>
+
       <tr>
         <td><strong>Total:</strong></td>
         <td></td>
         <td></td>
         <td></td>
-        <!--<td><%= number_to_currency(@quotation.total_price, locale: :in) %></td> Not working in Windows-->
         <td><%=@quotation.total_price%></td>
       </tr>
       </tbody>
@@ -95,7 +103,7 @@
 </div>
 
 <p>
-  <% if @quotation.status != 'Invoice' || @quotation.invoice_type == 'Proforma Invoice'%>
+  <% if @quotation.is_open_for_edits?%>
       <%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'default' %>
   <%end%>
   <%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %>

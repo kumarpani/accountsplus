@@ -22,6 +22,7 @@
   <tr>
     <th><strong>Name</strong></th>
     <th><strong>Event Date</strong></th>
+    <th><strong>Invoice Type</strong></th>
     <th><strong>Status</strong></th>
     <th></th>
     <th></th>
@@ -34,6 +35,7 @@
     <tr>
       <td><%= quotation.name %></td>
       <td><%= quotation.event_date %></td>
+      <td><%= quotation.invoice_type %></td>
       <td><%= quotation.status %></td>
       <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info' %></td>
       <td><%= button_to 'Delete', quotation, {:onclick => "return confirm('WARNING : Are you sure to DELETE this quotation Permanently? You will not be able retrieve this quotation again')", :method=>:delete} %></td>
