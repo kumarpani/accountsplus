@@ -1,15 +1,12 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-1">
-    <% if @quotation.status == 'Confirmed' %>
-        <%#
-        # No need to show invoice number for now. Till we generate it sequentially for invoices
-        #Invoice No: <%= @quotation.id %>
+    <% if @quotation.is_a_complete_invoice? %>
+      Invoice No: <%= @quotation.invoice_number %>
       <br/>
     <% else %>
-        <%#
+      <%#
         # No need to show quotation number for now
         #Quotation No: <%= @quotation.id %>
-
       <br/>
     <% end %>
     To:
@@ -62,26 +59,44 @@
     </tbody>
   </table>
 
-  <% if @quotation.status == 'Invoice'%>
-      <strong>Account Details for NEFT or RTGS</strong>
-      <table class="table table-condensed table-bordered" width="200">
-        <tbody>
-        <tr><td>Account Name</td><td>Audioplus</td></tr>
-        <tr><td>Name of the Bank & Branch</td><td>HDFC Bank Ltd, Seshadripuram</td></tr>
-        <tr><td>Bank Account Number</td><td>03672021637</td></tr>
-        <tr><td>Type of Account</td><td>Current Account</td></tr>
-        <tr><td>IFSC Code</td><td>HDFC0000367</td></tr>
-        <tr><td>MICR Code</td><td>560240018</td></tr>
-        </tbody>
-      </table>
-
+  <% if @quotation.status == 'Invoice' %>
+    <strong>Account Details for NEFT or RTGS</strong>
+    <table class="table table-condensed table-bordered" width="200">
+      <tbody>
+      <tr>
+        <td>Account Name</td>
+        <td>Audioplus</td>
+      </tr>
+      <tr>
+        <td>Name of the Bank & Branch</td>
+        <td>HDFC Bank Ltd, Seshadripuram</td>
+      </tr>
+      <tr>
+        <td>Bank Account Number</td>
+        <td>03672021637</td>
+      </tr>
+      <tr>
+        <td>Type of Account</td>
+        <td>Current Account</td>
+      </tr>
+      <tr>
+        <td>IFSC Code</td>
+        <td>HDFC0000367</td>
+      </tr>
+      <tr>
+        <td>MICR Code</td>
+        <td>560240018</td>
+      </tr>
+      </tbody>
+    </table>
   <% else %>
-
-    <ul class="tac">
-    <strong>Terms and Conditions:</strong>
-    <% @quotation.tac.each do |t| %>
-        <li><%= t %></li>
+    <% if !@quotation.tac.nil? %>
+      <ul class="tac">
+        <strong>Terms and Conditions:</strong>
+        <% @quotation.tac.each do |t| %>
+          <li><%= t %></li>
+        <% end %>
+      </ul>
     <% end %>
-    </ul>
   <% end %>
 </div>

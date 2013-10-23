@@ -4,7 +4,7 @@ class Quotation < ActiveRecord::Base
   accepts_nested_attributes_for :item_details, :allow_destroy => true, :reject_if => :client_is_unknown
 
   validates_presence_of :event_date
-  before_save :update_service_tax
+  before_save :populate_invoice_details
 
 
   serialize :tac
@@ -17,14 +17,15 @@ class Quotation < ActiveRecord::Base
     self.service_tax + item_details.to_a.sum(&:price)
   end
 
-  def update_service_tax
+  def populate_invoice_details
     self.service_tax = 0.0
     if status == 'Invoice' && invoice_type == 'Invoice'
+      self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
       self.service_tax = ((total_price * 12.36)/100).floor
     end
   end
 
-  def is_service_tax_row_needed?
+  def is_a_complete_invoice?
     self.status == 'Invoice' && self.invoice_type == 'Invoice'
   end
 
