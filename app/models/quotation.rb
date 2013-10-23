@@ -20,7 +20,7 @@ class Quotation < ActiveRecord::Base
   def update_service_tax
     self.service_tax = 0.0
     if status == 'Invoice' && invoice_type == 'Invoice'
-      self.service_tax = (total_price * 12.36)/100
+      self.service_tax = ((total_price * 12.36)/100).floor
     end
   end
 
