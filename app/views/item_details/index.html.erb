@@ -22,7 +22,7 @@
 
   <tr>
     <td><strong>Duration:</strong></td>
-    <td><b><%= @quotation.event_date %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
+    <td><b><%= @quotation.event_date.strftime("%d/%m/%Y")%></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
   </tr>
 
   <tr>

@@ -25,7 +25,7 @@
       <td><%= payment.client.company_name %></td>
       <td><%= payment.description %></td>
       <td><%= payment.mode %></td>
-      <td><%= payment.paid_on%></td>
+      <td><%= payment.paid_on.strftime("%d/%m/%Y")%></td>
       <td><%= payment.amount %></td>
       <td><%= payment.payment_type %></td>
       <td><%= link_to 'Show Details', payment, class: :info %></td>

@@ -44,6 +44,6 @@
     <%= f.submit %>
   </div>
   <script>
-    $('#payment_paid_on').datepicker({format: 'yyyy-mm-dd'});
+    $('#payment_paid_on').datepicker({format: 'dd-mm-yyyy', autoclose:true, todayHighlight:true, clearBtn:true})
   </script>
 <% end %>
