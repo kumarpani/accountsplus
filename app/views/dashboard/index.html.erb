@@ -1,6 +1,13 @@
-<h1>Dashboard</h1>
+<div class="header">
+  <h1>Dashboard</h1>
+  <div class="nav">
+    <h2><%=DateTime.now.to_date.strftime("%d/%m/%Y")%></h2>
+  </div>
+</div>
+
+
 <h2>List of upcoming events</h2>
-<table class="table table-bordered">
+<table class="table table-striped">
   <thead>
   <tr>
     <th><b>Event Date</b></th>
@@ -23,7 +30,7 @@
 
 <div>
   <h2>Pending Payments</h2>
-  <table class="table table-bordered">
+  <table class="table table-striped">
     <thead>
     <tr>
       <th><b>Client Name</b></th>

@@ -1,11 +1,12 @@
-<div class='left'><h1><%= @quotation.status == 'Invoice' ? 'Invoice Details' : 'Quotation Details' %></h1></div>
-<div class="right actions" style="text-align: right;">
-  <% if true %>
-    <%= link_to 'Edit', edit_quotation_path(@quotation), class: 'edit' %>
-  <% end %>
+<div class="header">
+  <h1><%= @quotation.status == 'Invoice' ? 'Invoice Details' : 'Quotation Details' %>
+    &nbsp; | &nbsp;
+    <i><font color="blue">(Status : <%= @quotation.status %>)</font></i></h1>
+  <div class="nav">
+    <h2><%= link_to 'Edit', edit_quotation_path(@quotation)%> </h2>
+  </div>
 </div>
 
-<div class='status'><i>(Status : <%= @quotation.status %>)</i></div>
 
 <table class="table">
   <tr>

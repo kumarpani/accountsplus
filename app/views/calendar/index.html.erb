@@ -1,4 +1,9 @@
-<h1> Calendar </h1>
+<div class="header">
+  <h1>Calender</h1>
+  <div class="nav">
+    <h2><%=DateTime.now.to_date.strftime("%d/%m/%Y")%></h2>
+  </div>
+</div>
 <% empty_date_lambda = lambda do |date| %>
   <%= link_to '+', new_quotation_path(:event_date => date), class: 'btn-xs btn btn-default calendar-event' %>
 <% end %>
