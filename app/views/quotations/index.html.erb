@@ -12,7 +12,7 @@
 
   <div class="nav">
 
-    <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @client.id%>
+    <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @client.id, :company_name => @client.company_name %>
     &nbsp; | &nbsp;
     <%= link_to 'Ledger', client_ledgers_path(@client)%>
     &nbsp; | &nbsp;

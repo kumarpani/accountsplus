@@ -1,5 +1,11 @@
 <div class="header">
-  <h1>Payments</h1>
+  <% if params[:client_id].nil? %>
+  <h1>All Payments</h1>
+      <%else%>
+      <h1>Payments for <i><%= params[:company_name] %></i></h1>
+
+<%end%>
+
   <div class="nav">
     <%= link_to 'Add New Payment', new_payment_path, class: :new %>
   </div>
