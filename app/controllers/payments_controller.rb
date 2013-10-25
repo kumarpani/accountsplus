@@ -5,7 +5,11 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.all.reverse_order
+    if !params[:client_id].nil?
+      @payments = Payment.where(:client_id => params[:client_id]).order(:paid_on).reverse_order
+    else
+      @payments = Payment.all.order(:paid_on).reverse_order
+    end
   end
 
   # GET /payments/1
