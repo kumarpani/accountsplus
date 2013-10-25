@@ -5,6 +5,14 @@
   </div>
 </div>
 
+<%=form_tag clients_path, :method => 'get' do %>
+        <%= text_field_tag :search, params[:search], :style => 'float:left;' %>
+        <%= submit_tag 'Search', :name => nil, :style => 'float:left;' %>
+<%end%>
+
+
+<% if !@clients.nil? %>
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -34,3 +42,4 @@
   <% end %>
   </tbody>
 </table>
+<%end%>
