@@ -47,19 +47,19 @@
   <div class="field">
     <%= f.label :invoice_type %>
     <br>
-    <%= f.select(:invoice_type, options_for_select(['Invoice', 'Proforma Invoice'], @quotation.invoice_type.nil? ? 'Invoice' : @quotation.invoice_type)) %>
+    <%= f.select(:invoice_type, options_for_select([INVOICE, PROFORMA], @quotation.invoice_type.nil? ? INVOICE : @quotation.invoice_type)) %>
   </div>
   <div class="field">
     <%= f.label :status %>
     <br>
     <% if @quotation.status.nil? %>
-      <%= f.select(:status, options_for_select(['Pending', 'Confirmed', 'Closed'], @quotation.status.nil? ? 'Pending' : @quotation.status)) %>
+      <%= f.select(:status, options_for_select([PENDING, CONFIRMED, CLOSED], @quotation.status.nil? ? PENDING : @quotation.status)) %>
     <%else%>
-      <%= f.select(:status, options_for_select(['Pending', 'Confirmed', 'Invoice',  'Closed'], @quotation.status.nil? ? 'Pending' : @quotation.status)) %>
+      <%= f.select(:status, options_for_select([PENDING, CONFIRMED, INVOICE, CLOSED], @quotation.status.nil? ? PENDING : @quotation.status)) %>
     <%end%>
   </div>
 
-    <% if @quotation.status != 'Invoice'%>
+    <% if @quotation.status != INVOICE%>
       <strong>Terms and Conditions:</strong>
       <div class="field">
         <ul>

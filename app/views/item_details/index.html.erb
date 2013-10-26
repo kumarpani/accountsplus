@@ -1,5 +1,5 @@
 <div class="header">
-  <h1><%= @quotation.status == 'Invoice' ? 'Invoice Details' : 'Quotation Details' %>
+  <h1><%= @quotation.status == INVOICE ? 'Invoice Details' : 'Quotation Details' %>
     &nbsp; | &nbsp;
     <i><font color="blue">(Status : <%= @quotation.status %>)</font></i>
   </h1>

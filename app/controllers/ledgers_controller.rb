@@ -5,10 +5,10 @@ class LedgersController < ApplicationController
   # GET /ledgers
   # GET /ledgers.json
   def index
-    @ledger_details = @client.quotations.keep_if { |q| q.status == 'Invoice' }.map { |q|
+    @ledger_details = @client.quotations.keep_if { |q| q.status == INVOICE }.map { |q|
       {date: q.event_date, description: q.name, credit: q.total_price}
     };
-    @ledger_details = @ledger_details + @client.payments.keep_if { |p| p.item_detail.nil? || p.item_detail.quotation.status == 'Invoice' }.map { |p|
+    @ledger_details = @ledger_details + @client.payments.keep_if { |p| p.item_detail.nil? || p.item_detail.quotation.status == INVOICE }.map { |p|
       payment = {date: p.paid_on, description: (p.description || '') + (p.mode || '')}
       payment[p.payment_type.downcase.to_sym] = p.amount
       payment

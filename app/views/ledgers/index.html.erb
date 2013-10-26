@@ -4,7 +4,7 @@
   <div class="nav">
     <h2>
       <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @client.id, :company_name => @client.company_name %>   &nbsp;|&nbsp;
-      <%= link_to 'Invoices', :controller => 'quotations', :action => 'index', :client_id => @client.id, :status => 'Invoice' %>   &nbsp;|&nbsp;
+      <%= link_to 'Invoices', :controller => 'quotations', :action => 'index', :client_id => @client.id, :status => INVOICE %>   &nbsp;|&nbsp;
       <%= link_to '+ Add New Payment', new_payment_path(:client_id => @client.id), class: 'new'%>
     </h2>
   </div>

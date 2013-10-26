@@ -19,7 +19,7 @@ class Quotation < ActiveRecord::Base
 
   def populate_invoice_details
     self.service_tax = 0.0
-    if status == 'Invoice' && invoice_type == 'Invoice'
+    if status == INVOICE && invoice_type == INVOICE
       self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
       self.service_tax = ((total_price * 12.36)/100).floor
       self.invoice_raised_date = Date.today
@@ -27,11 +27,11 @@ class Quotation < ActiveRecord::Base
   end
 
   def is_a_complete_invoice?
-    self.status == 'Invoice' && self.invoice_type == 'Invoice'
+    self.status == INVOICE && self.invoice_type == INVOICE
   end
 
   def is_open_for_edits?
-    self.status != 'Invoice' || self.invoice_type == 'Proforma Invoice'
+    self.status != INVOICE || self.invoice_type == PROFORMA
   end
 
 end

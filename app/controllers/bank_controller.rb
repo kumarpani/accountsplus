@@ -4,7 +4,7 @@ class BankController < ApplicationController
       @s_date = Date.parse(params[:start_date], '%d/%m/%Y')
       @e_date = Date.parse(params[:end_date], '%d/%m/%Y')
 
-      @bank = Quotation.where('invoice_type = ? AND status = ? AND invoice_raised_date >= ? AND invoice_raised_date <= ?', 'Invoice', 'Invoice', @s_date, @e_date)
+      @bank = Quotation.where('invoice_type = ? AND status = ? AND invoice_raised_date >= ? AND invoice_raised_date <= ?', INVOICE, INVOICE, @s_date, @e_date)
     end
   end
 end
