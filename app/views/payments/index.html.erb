@@ -7,7 +7,13 @@
 
   <div class="nav">
     <h2>
-      <%= link_to 'Add New Payment', new_payment_path, class: :new %>
+      <% !if params[:client_id] %>
+          <%= link_to 'Invoices', :controller => 'quotations', :action => 'index', :client_id => params[:client_id], :status => 'Invoice' %>
+          &nbsp;|&nbsp;
+          <%= link_to 'Ledger', :controller => 'ledgers', :action => 'index', :client_id => params[:client_id]%>
+           &nbsp; | &nbsp;
+      <%end%>
+      <%= link_to '+ Add New Payment', new_payment_path, class: :new %>
     </h2>
   </div>
 </div>

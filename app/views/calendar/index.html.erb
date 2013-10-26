@@ -4,6 +4,7 @@
     <h2><%=DateTime.now.to_date.strftime("%d %B, %Y")%></h2>
   </div>
 </div>
+
 <% empty_date_lambda = lambda do |date| %>
   <%= link_to '+', new_quotation_path(:event_date => date), class: 'btn-xs btn btn-default calendar-event' %>
 <% end %>

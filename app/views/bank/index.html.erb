@@ -4,6 +4,7 @@
     <h2><%=DateTime.now.to_date.strftime("%d %B, %Y")%></h2>
   </div>
 </div>
+
 <p>Please enter both start and end dates:</p>
 <%=form_tag do%>
     <%= text_field_tag :start_date, params[:start_date], :style => 'float:left;' %>
