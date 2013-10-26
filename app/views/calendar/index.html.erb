@@ -1,7 +1,7 @@
 <div class="header">
   <h1>Calender</h1>
   <div class="nav">
-    <h2><%=DateTime.now.to_date.strftime("%d/%m/%Y")%></h2>
+    <h2><%=DateTime.now.to_date.strftime("%d %B, %Y")%></h2>
   </div>
 </div>
 <% empty_date_lambda = lambda do |date| %>

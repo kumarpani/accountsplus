@@ -1,4 +1,6 @@
 Audioplus::Application.routes.draw do
+  post "bank/index"
+  get "bank/index"
   devise_for :users
 
   resources :payments
