@@ -1,14 +1,13 @@
 <div class="header">
   <% if params[:client_id].nil? %>
-  <h1>All Payments</h1>
-      <%else%>
+    <h1>All Payments</h1>
+  <%else%>
       <h1>Payments for <i><%= params[:company_name] %></i></h1>
-
-<%end%>
+  <%end%>
 
   <div class="nav">
     <h2>
-    <%= link_to 'Add New Payment', new_payment_path, class: :new %>
+      <%= link_to 'Add New Payment', new_payment_path, class: :new %>
     </h2>
   </div>
 </div>
