@@ -54,7 +54,7 @@
     <table class="table table-condensed table-striped table-bordered">
       <thead>
       <tr>
-        <th><strong>Sl. No.</strong></th>
+        <th nowrap><strong>Sl. No.</strong></th>
         <th><strong>Particulars</strong></th>
         <th><strong>Quantity</strong></th>
         <th><strong>Days</strong></th>
@@ -105,6 +105,7 @@
         <thead>
         <tr>
           <th><strong>Vendor</strong></th>
+          <th><strong>Quantity</strong></th>
           <th><strong>Amount</strong></th>
         </tr>
         </thead>
@@ -112,6 +113,7 @@
         <% @item_details.each_with_index do |item_detail| %>
           <tr>
             <td><%= item_detail.vendor ? item_detail.vendor.company_name : '-' %></td>
+            <td><%= item_detail.vendor ? item_detail.vendor_quantity : '-' %></td>
             <td><%= item_detail.vendor ? item_detail.vendor_price : '' %></td>
           </tr>
         <% end %>
