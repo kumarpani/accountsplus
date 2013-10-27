@@ -16,14 +16,14 @@
 
 <% if !@bank.nil? %>
 
-  <br><br><br>
+  <br><br>
   <p> Service tax details between :
     <b>
       <%= Date.parse(params[:start_date], '%d/%m/%Y').strftime("%d %B, %Y") %>  &nbsp;&nbsp;|&nbsp;&nbsp;
       <%= Date.parse(params[:end_date], '%d/%m/%Y').strftime("%d %B, %Y") %>
     </b>
   </p>
-  <br>
+
   <table class="table table-condensed table-striped table-bordered">
     <thead>
     <tr>
@@ -36,9 +36,9 @@
     </thead>
 
     <tbody>
-    <% @bank.each do |b| %>
+    <% @bank.each_with_index do |b, index| %>
       <tr>
-        <td></td>
+        <td><%= index + 1 %></td>
         <td><%= b[:invoice_number] %></td>
         <td><%= b[:invoice_raised_date].strftime('%d/%m/%Y') %></td>
         <td><%= b[:event_name] %></td>
