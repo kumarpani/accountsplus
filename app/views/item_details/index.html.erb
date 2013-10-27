@@ -59,8 +59,6 @@
         <th><strong>Quantity</strong></th>
         <th><strong>Days</strong></th>
         <th><strong>Price</strong></th>
-        <th></th>
-        <th></th>
       </tr>
       </thead>
 
@@ -73,7 +71,7 @@
           <td><%= item_detail.days %></td>
           <td><%= item_detail.price %></td>
 
-          <% if true %>
+          <% if @quotation.status != INVOICE %>
             <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit' %></td>
             <td><%= button_to 'Delete', [@quotation, item_detail], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", method: :delete} %></td>
           <% end %>
@@ -112,8 +110,8 @@
       <tbody>
       <% @item_details.each_with_index do |item_detail| %>
         <tr>
-          <td><%= item_detail.payment ? item_detail.payment.client.company_name : '-' %></td>
-          <td><%= item_detail.payment ? item_detail.payment.amount : '' %></td>
+          <td><%= item_detail.vendor ? item_detail.vendor.company_name : '-' %></td>
+          <td><%= item_detail.vendor ? item_detail.vendor_price : '' %></td>
         </tr>
       <% end %>
       </table>

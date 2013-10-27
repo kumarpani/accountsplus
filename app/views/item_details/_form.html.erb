@@ -14,9 +14,9 @@
   </script>
 
 <%= form_for([@quotation, @item_detail]) do |f| %>
-    <% if flash[:notice] %>
-        <div id="notice"><i>* <%= flash[:notice] %></i></div> <br>
-    <% end %>
+  <% if flash[:notice] %>
+    <div id="notice"><i>* <%= flash[:notice] %></i></div> <br>
+  <% end %>
 
   <% if @item_detail.errors.any? %>
     <div id="error_explanation">
@@ -53,26 +53,26 @@
     <br>
     <%= f.text_field :price %>
   </div>
-  <%= f.fields_for(:payment_attributes, @item_detail.payment) do |p| %>
-    <%= p.hidden_field :id %>
-    <%= p.hidden_field :payment_type, :value => 'Debit' %>
-    <%= p.hidden_field :paid_on, :value => @item_detail.payment.nil? ? DateTime.now : @item_detail.payment.paid_on %>
-    <div class="field">
-      <%= p.label :client_id, 'Vendor' %>
-      <br>
-      <% clients_array = Client.all.map { |client| [client.company_name, client.id] } %>
-      <%= p.select(:client_id, options_for_select(clients_array, @item_detail.payment.nil? ? 0 : @item_detail.payment.client.id), prompt: 'Select Vendor') %>
-    </div>
-    <div class="field">
-      <%= p.label :amount %>
-      <br>
-      <%= p.text_field :amount %>
-    </div>
-  <% end %>
-    <div class="actions">
+  <div class="field">
+    <%= f.label :vendor_id, 'Vendor' %>
+    <br>
+    <% clients_array = Client.all.map { |client| [client.company_name, client.id] } %>
+    <%= f.select(:vendor_id, options_for_select(clients_array, @item_detail.vendor_id.nil? ? 0 : @item_detail.vendor_id), prompt: 'Select Vendor') %>
+  </div>
+  <div class="field">
+    <%= f.label :vendor_quantity, 'Vendor Quantity' %>
+    <br>
+    <%= f.text_field :vendor_quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :vendor_price, 'Vendor Price' %>
+    <br>
+    <%= f.text_field :vendor_price %>
+  </div>
+  <div class="actions">
 
-      <%= f.submit %>
-      <%=link_to 'Back To Quotation', quotation_item_details_path(@quotation.id)%>
+    <%= f.submit %>
+    <%= link_to 'Back To Quotation', quotation_item_details_path(@quotation.id) %>
 
-    </div>
+  </div>
 <% end %>
