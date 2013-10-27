@@ -3,7 +3,7 @@ class Quotation < ActiveRecord::Base
   has_many :item_details, :dependent => :delete_all
   accepts_nested_attributes_for :item_details, :allow_destroy => true, :reject_if => :client_is_unknown
 
-  validates_presence_of :event_date
+  validates_presence_of :event_date, :name
   before_save :populate_invoice_details
 
 
