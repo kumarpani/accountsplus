@@ -6,7 +6,7 @@
 </div>
 
 <% empty_date_lambda = lambda do |date| %>
-  <%= link_to '+', new_quotation_path(:event_date => date), class: 'btn-xs btn btn-default calendar-event' %>
+  <%= link_to '+', new_quotation_path(:event_date => date.strftime("%d/%m/%Y")), class: 'btn-xs btn btn-default calendar-event' %>
 <% end %>
 
 <%= calendar @all_quotations, :prev_text => '', :next_text => '', empty_date: empty_date_lambda do |quotation| %>
