@@ -7,6 +7,8 @@
   </div>
 </div>
 
+<p>Search by entering part of Company name / Contact person / Phone number / Email address:</p>
+
 <%=form_tag clients_path, :method => 'get' do %>
         <%= text_field_tag :search, params[:search], :style => 'float:left;' %>
         <%= submit_tag 'Search', :name => nil, :style => 'float:left;' %>
