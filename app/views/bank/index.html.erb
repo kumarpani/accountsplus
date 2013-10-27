@@ -8,9 +8,9 @@
 
 <p>Please enter both start and end dates:</p>
 <%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
-  <%= text_field_tag :start_date, params[:start_date], class: 'form-control' %>
-  <%= text_field_tag :end_date, params[:end_date], class: 'form-control' %>
-  <%= submit_tag 'Search' %>
+  <%= text_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: 'Start Date' %>
+  <%= text_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: 'End Date' %>
+  <%= submit_tag 'Search', name: nil  %>
 <% end %>
 
 
