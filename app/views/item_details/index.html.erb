@@ -8,10 +8,10 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;
 
       <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @quotation.client.id, :company_name => @quotation.client.company_name %>
-        &nbsp; | &nbsp;
-        <%= link_to 'Ledger', client_ledgers_path(@quotation.client)%>
-        &nbsp; | &nbsp;
-        <%= link_to 'Edit', edit_quotation_path(@quotation)%> &nbsp; ]</h2>
+      &nbsp; | &nbsp;
+      <%= link_to 'Ledger', client_ledgers_path(@quotation.client) %>
+      &nbsp; | &nbsp;
+      <%= link_to 'Edit', edit_quotation_path(@quotation) %> &nbsp; ]</h2>
 
 
   </div>
@@ -33,7 +33,7 @@
 
   <tr>
     <td><strong>Duration:</strong></td>
-    <td><b><%= @quotation.event_date.strftime("%d/%m/%Y")%></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
+    <td><b><%= @quotation.event_date.strftime("%d/%m/%Y") %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
   </tr>
 
   <tr>
@@ -99,23 +99,25 @@
       </tbody>
     </table>
   </div>
-  <div class="col-md-3 cold-md-offset-1">
-    <table class="table table-condensed table-striped table-bordered col-md-3 col-md-offset-1">
-      <thead>
-      <tr>
-        <th><strong>Vendor</strong></th>
-        <th><strong>Amount</strong></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @item_details.each_with_index do |item_detail| %>
+  <% if @quotation.status == INVOICE %>
+    <div class="col-md-3 cold-md-offset-1">
+      <table class="table table-condensed table-striped table-bordered col-md-3 col-md-offset-1">
+        <thead>
         <tr>
-          <td><%= item_detail.vendor ? item_detail.vendor.company_name : '-' %></td>
-          <td><%= item_detail.vendor ? item_detail.vendor_price : '' %></td>
+          <th><strong>Vendor</strong></th>
+          <th><strong>Amount</strong></th>
         </tr>
-      <% end %>
-      </table>
-  </div>
+        </thead>
+        <tbody>
+        <% @item_details.each_with_index do |item_detail| %>
+          <tr>
+            <td><%= item_detail.vendor ? item_detail.vendor.company_name : '-' %></td>
+            <td><%= item_detail.vendor ? item_detail.vendor_price : '' %></td>
+          </tr>
+        <% end %>
+        </table>
+    </div>
+  <% end %>
 </div>
 
 <p>

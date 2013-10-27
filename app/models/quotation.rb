@@ -45,7 +45,7 @@ class Quotation < ActiveRecord::Base
     end
   end
 
-  def method_missing method_sym, args
+  def method_missing(method_name, *arguments, &block)
 
   end
 end
