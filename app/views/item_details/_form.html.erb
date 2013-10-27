@@ -1,3 +1,18 @@
+<script>
+    $(function() {
+        $('.editable-select').editableSelect(
+                {
+                    bg_iframe: true,
+                    onSelect: function(list_item) {
+                    },
+                    case_sensitive: false, // If set to true, the user has to type in an exact
+                    // match for the item to get highlighted
+                    items_then_scroll: 10 // If there are more than 10 items, display a scrollbar
+                }
+        );
+    });
+  </script>
+
 <%= form_for([@quotation, @item_detail]) do |f| %>
     <% if flash[:notice] %>
         <div id="notice"><i>* <%= flash[:notice] %></i></div> <br>
@@ -18,7 +33,10 @@
   <div class="field">
     <%= f.label :particulars %>
     <br>
-    <%= f.text_field :particulars %>
+    <% item_array = ItemDetail.all.sort_by{|u| u.particulars.downcase}.uniq{|d| d[:particulars]}.map { |i| [i.id, i.particulars] } %>
+    <%= f.select :particulars, options_for_select(item_array,0), { :include_blank=>true }, { :class => 'editable-select'}%>
+
+
   </div>
   <div class="field">
     <%= f.label :quantity %>
