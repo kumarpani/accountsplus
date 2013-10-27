@@ -25,9 +25,9 @@
     <%= f.select(:client_id, options_for_select(clients_array, @quotation.client.nil? ? 1 : @quotation.client.id)) %>
   </div>
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label :event_name %>
     <br>
-    <%= f.text_field :name %>
+    <%= f.text_field :event_name %>
   </div>
   <div class="field">
     <%= f.label :venue %>

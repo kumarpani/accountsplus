@@ -43,7 +43,7 @@
   <tbody>
   <% @quotations.each do |quotation| %>
     <tr>
-      <td><%= quotation.name %></td>
+      <td><%= quotation.event_name %></td>
       <td><%= quotation.event_date.strftime("%d/%m/%Y")%></td>
       <td><%= quotation.invoice_type %></td>
       <td><%= quotation.status %></td>

@@ -19,7 +19,7 @@ class QuotationsController < ApplicationController
 
   # GET /quotations/new
   def new
-    @quotation = Quotation.new(params.select { |key, _| %w(client_id name status event_date).member? key })
+    @quotation = Quotation.new(params.select { |key, _| %w(client_id event_name status event_date).member? key })
   end
 
   # GET /quotations/1/edit
@@ -78,6 +78,6 @@ class QuotationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def quotation_params
-    params.require(:quotation).permit(:client_id, :name, :status, :event_date, :venue, :days, :invoice_type, :tac => [])
+    params.require(:quotation).permit(:client_id, :event_name, :status, :event_date, :venue, :days, :invoice_type, :tac => [])
   end
 end
