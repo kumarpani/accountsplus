@@ -14,3 +14,10 @@
   padding-top: 5px;
   background-color: #ecf0f1;
 }
+
+.calendar .day.today {
+  background: darkturquoise;
+}
+.calendar .day.not-current-month {
+  background: darkgray;
+}

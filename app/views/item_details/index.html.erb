@@ -1,16 +1,19 @@
 <div class="header">
   <h1><%= @quotation.status == INVOICE ? 'Invoice Details' : 'Quotation Details' %>
-    &nbsp; | &nbsp;
-    <i><font color="blue">(Status : <%= @quotation.status %>)</font></i>
   </h1>
 
   <div class="nav">
     <h2>
-        <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @quotation.client.id, :company_name => @quotation.client.company_name %>
+      <b class='<%= @quotation.status %>'>Status : <%= @quotation.status %></b>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;
+
+      <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @quotation.client.id, :company_name => @quotation.client.company_name %>
         &nbsp; | &nbsp;
         <%= link_to 'Ledger', client_ledgers_path(@quotation.client)%>
         &nbsp; | &nbsp;
-        <%= link_to 'Edit', edit_quotation_path(@quotation)%> </h2>
+        <%= link_to 'Edit', edit_quotation_path(@quotation)%> &nbsp; ]</h2>
+
+
   </div>
 </div>
 
