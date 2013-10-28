@@ -34,7 +34,7 @@
     <%= f.label :particulars %>
     <br>
     <% item_array = ItemDetail.all.sort_by{|u| u.particulars.downcase}.uniq{|d| d[:particulars]}.map { |i| [i.id, i.particulars] } %>
-    <%= f.select :particulars, options_for_select(item_array,0), { :include_blank=>true }, { :class => 'editable-select'}%>
+    <%= f.select :particulars, options_for_select(item_array, @item_detail.particulars), { :include_blank=>true }, { :class => 'editable-select'}%>
 
 
   </div>

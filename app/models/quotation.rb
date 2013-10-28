@@ -31,7 +31,7 @@ class Quotation < ActiveRecord::Base
       self.item_details.select {|i| !i.vendor_id.nil? }.group_by {|i| i.vendor_id}.each_pair {|vendor_id, items|
         vendor_payment_record = Payment.find_or_create_by(quotation_id: self.id, client_id: vendor_id)
         sum = items.reduce(0) { |sum, item_detail| sum + item_detail.vendor_price }
-        vendor_payment_record.update(amount: sum, payment_type: 'Debit', paid_on: DateTime.now, description: "#{self.event_date} #{self.event_name}")
+        vendor_payment_record.update(amount: sum, payment_type: 'Debit', paid_on: DateTime.now, description: "#{self.event_date.strftime('%d/%m/%Y')} #{self.event_name}")
       }
     end
   end
