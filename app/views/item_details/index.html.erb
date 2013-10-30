@@ -18,7 +18,9 @@
 
 <table class="table">
   <tr>
-    <%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit' %>
+    <% if @quotation.is_open_for_edits? %>
+        <%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit' %>
+    <%end%>
   </tr>
   <tr>
     <td><strong>Client name & Address:</strong></td>
@@ -72,7 +74,7 @@
           <td><%= item_detail.days %></td>
           <td><%= item_detail.price %></td>
 
-          <% if @quotation.status != INVOICE %>
+          <% if @quotation.is_open_for_edits? %>
             <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit' %></td>
             <td><%= button_to 'Delete', [@quotation, item_detail], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", method: :delete} %></td>
           <% end %>

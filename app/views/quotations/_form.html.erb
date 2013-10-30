@@ -59,7 +59,7 @@
     <%end%>
   </div>
 
-    <% if @quotation.status != INVOICE%>
+    <% if @quotation.is_open_for_edits?%>
       <strong>Terms and Conditions:</strong>
       <div class="field">
         <ul>

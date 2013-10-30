@@ -48,7 +48,11 @@
       <td><%= quotation.invoice_type %></td>
       <td><%= quotation.status %></td>
       <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info' %></td>
-      <td><%= button_to 'Delete', quotation, {:onclick => "return confirm('WARNING : Are you sure to DELETE this quotation Permanently? You will not be able retrieve this quotation again')", :method=>:delete} %></td>
+      <td>
+        <%if quotation.is_open_for_edits?%>
+            <%= button_to 'Delete', quotation, {:onclick => "return confirm('WARNING : Are you sure to DELETE this quotation Permanently? You will not be able retrieve this quotation again')", :method=>:delete} %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
   </tbody>
