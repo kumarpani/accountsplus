@@ -12,7 +12,7 @@
 
 
     <div class="actions" style="text-align: right;">
-      <%= f.submit %>
+      <%= submit_tag 'Update Quotation', {:onclick => "return confirm('WARNING : Are you sure updating quotations. If you are raising INVOICE, please be sure of details.')"}%>
       <%=link_to 'Back To Quotation', quotation_item_details_path(@quotation.id)%>
 
     </div>
@@ -37,7 +37,7 @@
   <div class="field">
     <%= f.label :event_date %>
     <br>
-    <%= f.text_field :event_date %>
+    <%= f.text_field :event_date, :value => @quotation.event_date.strftime('%d/%m/%Y')%>
   </div>
   <div class="field">
     <%= f.label :days %>
