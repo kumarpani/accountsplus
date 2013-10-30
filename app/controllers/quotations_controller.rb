@@ -60,7 +60,7 @@ class QuotationsController < ApplicationController
   def destroy
     @quotation.destroy
     respond_to do |format|
-      format.html { redirect_to quotations_url }
+      format.html { redirect_to quotations_path(:client_id => @quotation.client_id) }
       format.json { head :no_content }
     end
   end
