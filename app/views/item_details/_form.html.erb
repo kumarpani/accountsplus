@@ -57,7 +57,7 @@
     <%= f.label :vendor_id, 'Vendor' %>
     <br>
     <% clients_array = Client.all.map { |client| [client.company_name, client.id] } %>
-    <%= f.select(:vendor_id, options_for_select(clients_array, @item_detail.vendor_id.nil? ? 0 : @item_detail.vendor_id), prompt: 'Select Vendor') %>
+    <%= f.select(:vendor_id, options_for_select(clients_array, @item_detail.vendor_id.nil? ? 0 : @item_detail.vendor_id), { :include_blank => true }, prompt: 'Select Vendor') %>
   </div>
   <div class="field">
     <%= f.label :vendor_quantity, 'Vendor Quantity' %>
