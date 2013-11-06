@@ -31,6 +31,7 @@
       <th><strong>Invoice Number</strong></th>
       <th><strong>Invoice Date</strong></th>
       <th><strong>Name</strong></th>
+      <th><strong>Event Total</strong></th>
       <th><strong>Service Tax</strong></th>
     </tr>
     </thead>
@@ -42,6 +43,7 @@
         <td><%= b[:invoice_number] %></td>
         <td><%= b[:invoice_raised_date].strftime('%d/%m/%Y') %></td>
         <td><%= Client.find(b[:client_id]).company_name %></td>
+        <td><%= Quotation.find(b[:id]).total_price %></td>
         <td><%= b[:service_tax] %></td>
       </tr>
     <% end %>
@@ -50,6 +52,7 @@
       <td></td>
       <td></td>
       <td><b> Total: </b></td>
+      <td><b><%= @bank.sum(&:total_price) %></b></td>
       <td><b><%= @bank.sum(&:service_tax) %></b></td>
     </tr>
 <% end %>
