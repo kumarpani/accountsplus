@@ -45,6 +45,13 @@
         <td><%= b[:service_tax] %></td>
       </tr>
     <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><b> Total: </b></td>
+      <td><b><%= @bank.sum(&:service_tax) %></b></td>
+    </tr>
 <% end %>
 </tbody>
 </table>
