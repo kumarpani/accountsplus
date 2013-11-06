@@ -43,6 +43,12 @@
     <td><strong>Invoice Type:</strong></td>
     <td><%= @quotation.invoice_type %></td>
   </tr>
+
+  <tr>
+    <td><strong>Notes:</strong></td>
+    <td><%= @quotation.notes %></td>
+  </tr>
+
   <tr>
     <% if @quotation.is_a_complete_invoice? %>
       <td><strong>Invoice Number:</strong></td>
