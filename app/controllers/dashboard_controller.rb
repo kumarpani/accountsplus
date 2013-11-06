@@ -8,7 +8,9 @@ class DashboardController < ApplicationController
        owes: quot.client.quotations
        .select { |q| q.status == INVOICE }
        .sum { |q| q.total_price } -
-           quot.client.payments.sum { |p| p.amount }} }
+           quot.client.payments.select{|d| d.payment_type == 'Debit'}.sum { |p| p.amount } +
+           quot.client.payments.select{|c| c.payment_type == 'Credit'}.sum { |p| p.amount }
+      } }
     .select { |p| p[:owes] != 0.0 }
     @pending_payments = @pending_payments.sort_by {|o| o[:owes]}.reverse
   end
