@@ -41,7 +41,7 @@
         <td><%= index + 1 %></td>
         <td><%= b[:invoice_number] %></td>
         <td><%= b[:invoice_raised_date].strftime('%d/%m/%Y') %></td>
-        <td><%= b[:event_name] %></td>
+        <td><%= Client.find(b[:client_id]).company_name %></td>
         <td><%= b[:service_tax] %></td>
       </tr>
     <% end %>
