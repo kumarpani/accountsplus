@@ -37,7 +37,11 @@
   <div class="field">
     <%= f.label :event_date %>
     <br>
-    <%= f.text_field :event_date, :value => @quotation.event_date.strftime('%d/%m/%Y')%>
+    <% if @quotation.event_date.nil? %>
+        <%= f.text_field :event_date%>
+    <%else%>
+        <%= f.text_field :event_date, :value => @quotation.event_date.strftime('%d/%m/%Y')%>
+    <%end%>
   </div>
   <div class="field">
     <%= f.label :days %>
