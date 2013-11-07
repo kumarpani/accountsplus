@@ -53,7 +53,7 @@ class Quotation < ActiveRecord::Base
     ((self.service_tax * 1)/100).round(2)
   end
 
-  def service_tax_only
+  def service_tax_at_12_percent
     self.service_tax - self.education_cess - self.higher_education_cess
   end
 
