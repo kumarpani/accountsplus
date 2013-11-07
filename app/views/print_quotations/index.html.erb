@@ -49,8 +49,16 @@
         <td><%= item_detail.price %></td>
       </tr>
     <% end %>
+    <% if @quotation.is_a_complete_invoice? %>
+        <tr>
+          <td></td>
+          <td>Service Tax</td>
+          <td></td><td></td>
+          <td><%= @quotation.service_tax %></td>
+        </tr>
+    <% end %>
     <tr>
-      <td>Total:</td>
+    <td>Total:</td>
       <td></td>
       <td></td>
       <td></td>
