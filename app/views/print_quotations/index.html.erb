@@ -79,10 +79,14 @@
     </tbody>
   </table>
 
-  <% if @quotation.status == INVOICE %>
+  <% if @quotation.is_a_complete_invoice? %>
     <strong>Account Details for NEFT or RTGS</strong>
     <table class="table table-condensed table-bordered" width="200">
       <tbody>
+      <tr>
+        <td>Service Tax Number</td>
+        <td>AKAPP9970EST001</td>
+      </tr>
       <tr>
         <td>Account Name</td>
         <td>Audioplus</td>
