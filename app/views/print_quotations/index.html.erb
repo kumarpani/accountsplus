@@ -52,9 +52,21 @@
     <% if @quotation.is_a_complete_invoice? %>
         <tr>
           <td></td>
-          <td>Service Tax</td>
+          <td>Service Tax @ 12%</td>
           <td></td><td></td>
-          <td><%= @quotation.service_tax %></td>
+          <td><%= @quotation.service_tax_only %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Education Cess @ 2% (On S.T)</td>
+          <td></td><td></td>
+          <td><%= @quotation.education_cess %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Sec. & Higher Edu. Cess @ 1% (On S.T)</td>
+          <td></td><td></td>
+          <td><%= @quotation.higher_education_cess %></td>
         </tr>
     <% end %>
     <tr>
@@ -62,7 +74,7 @@
       <td></td>
       <td></td>
       <td></td>
-      <td><%= number_to_currency(@quotation.total_price, locale: :in) %></td>
+      <td><%= @quotation.total_price %></td>
     </tr>
     </tbody>
   </table>

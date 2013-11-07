@@ -45,6 +45,18 @@ class Quotation < ActiveRecord::Base
     end
   end
 
+  def education_cess
+     ((self.service_tax * 2)/100).round(2)
+  end
+
+  def higher_education_cess
+    ((self.service_tax * 1)/100).round(2)
+  end
+
+  def service_tax_only
+    self.service_tax - self.education_cess - self.higher_education_cess
+  end
+
   def method_missing(method_name, *arguments, &block)
 
   end
