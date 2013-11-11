@@ -1,3 +1,11 @@
+<h2 style="text-align: center; font-size: 20px;"><b>
+  <% if @quotation.status == INVOICE %>
+      Invoice
+  <% else %>
+      Quotation
+  <% end %>
+</b></h2>
+
 <div class="row">
   <div class="col-md-8 col-md-offset-1">
     <% if @quotation.is_a_complete_invoice? %>
@@ -123,4 +131,5 @@
       </ul>
     <% end %>
   <% end %>
+  <p>For Audio Plus</p>
 </div>
