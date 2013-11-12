@@ -10,3 +10,16 @@ hr {
 .tac {
   list-style: disc;
 }
+
+.printInvoiceTable tr th, .printInvoiceTable tr td{
+  padding: 2px 0 0 5px;
+}
+
+.printLeft {
+  float: left;
+  width: 50%;
+}
+
+.printRight {
+  text-align: right;
+}

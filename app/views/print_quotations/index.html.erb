@@ -6,8 +6,8 @@
   <% end %>
 </b></h2>
 
-<div class="row">
-  <div class="col-md-8 col-md-offset-1">
+<div class="">
+  <div class="printLeft">
     <% if @quotation.is_a_complete_invoice? %>
       Invoice No: <%= @quotation.invoice_number %>
       <br/>
@@ -23,7 +23,7 @@
       <%= @quotation.client.address %>
     </p>
   </div>
-  <div class="col-md-3">
+  <div class="printLeft printRight">
     <p>
       <br/>
       Date: <%= @quotation.updated_at.to_date.strftime("%d/%m/%Y") %><br/>
@@ -35,8 +35,8 @@
 <br/>
 
 
-<div class="col-md-10 col-md-offset-1">
-  <table class="print table-bordered table-striped" style="width: 100%">
+<div class="">
+  <table class="printInvoiceTable table-bordered table-striped" style="width: 100%">
     <thead>
     <tr>
       <th>Sl. No.</th>
@@ -90,7 +90,7 @@
 
   <% if @quotation.is_a_complete_invoice? %>
     <strong>Account Details for NEFT or RTGS</strong>
-      <table class="print table-bordered" style="width: 100%">
+      <table class="printInvoiceTable table-bordered" style="width: 100%">
       <tbody>
       <tr>
         <td>Service Tax Number</td>
@@ -132,5 +132,6 @@
       </ul>
     <% end %>
   <% end %>
+  <br>
   <p>For Audio Plus</p>
 </div>
