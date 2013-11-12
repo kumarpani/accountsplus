@@ -36,7 +36,7 @@
 
 
 <div class="col-md-10 col-md-offset-1">
-  <table class="table table-condensed table-striped table-bordered">
+  <table class="print table-bordered table-striped" style="width: 100%">
     <thead>
     <tr>
       <th>Sl. No.</th>
@@ -86,10 +86,11 @@
     </tr>
     </tbody>
   </table>
+  <br>
 
   <% if @quotation.is_a_complete_invoice? %>
     <strong>Account Details for NEFT or RTGS</strong>
-    <table class="table table-condensed table-bordered" width="200">
+      <table class="print table-bordered" style="width: 100%">
       <tbody>
       <tr>
         <td>Service Tax Number</td>
