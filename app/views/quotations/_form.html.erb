@@ -14,59 +14,52 @@
     <div class="actions" style="text-align: right;">
       <%= submit_tag 'Update Quotation', {:onclick => "return confirm('WARNING : Are you sure updating quotations. If you are raising INVOICE, please be sure of details.')"}%>
       <%=link_to 'Back To Quotation', quotation_item_details_path(@quotation.id)%>
-
     </div>
 
-  <div class="field">
-    <%= f.label :client_id %>
-    <br>
+    <ul class="field_container">
+      <li>
+        <%= f.label :client_id %>
+        <% clients_array = Client.all.map { |client| [client.company_name, client.id] } %>
+        <%= f.select(:client_id, options_for_select(clients_array, @quotation.client.nil? ? 1 : @quotation.client.id)) %>
+      </li>
+      <li>
+        <%= f.label :event_name %>
+        <%= f.text_field :event_name %>
+      </li>
+      <li>
+        <%= f.label :venue %>
+        <%= f.text_area :venue %>
+      </li>
+      <li>
+        <%= f.label :event_date %>
+        <% if @quotation.event_date.nil? %>
+            <%= f.text_field :event_date%>
+        <%else%>
+            <%= f.text_field :event_date, :value => @quotation.event_date.strftime('%d/%m/%Y')%>
+        <%end%>
+      </li>
+      <li>
+        <%= f.label :days %>
+        <%= f.text_field :days %>
+      </li>
+      <li>
+        <%= f.label :invoice_type %>
+        <%= f.select(:invoice_type, options_for_select([INVOICE, PROFORMA], @quotation.invoice_type.nil? ? INVOICE : @quotation.invoice_type)) %>
+      </li>
+      <li>
+        <%= f.label :status %>
+        <% if @quotation.status.nil? %>
+            <%= f.select(:status, options_for_select([PENDING, CONFIRMED, CLOSED], @quotation.status.nil? ? PENDING : @quotation.status)) %>
+        <%else%>
+            <%= f.select(:status, options_for_select([PENDING, CONFIRMED, INVOICE, CLOSED], @quotation.status.nil? ? PENDING : @quotation.status)) %>
+        <%end%>
+      </li>
+      <li>
+        <%= f.label :notes %>
+        <%= f.text_area :notes%>
+      </li>
+    </ul>
 
-    <% clients_array = Client.all.map { |client| [client.company_name, client.id] } %>
-    <%= f.select(:client_id, options_for_select(clients_array, @quotation.client.nil? ? 1 : @quotation.client.id)) %>
-  </div>
-  <div class="field">
-    <%= f.label :event_name %>
-    <br>
-    <%= f.text_field :event_name %>
-  </div>
-  <div class="field">
-    <%= f.label :venue %>
-    <br>
-    <%= f.text_area :venue %>
-  </div>
-  <div class="field">
-    <%= f.label :event_date %>
-    <br>
-    <% if @quotation.event_date.nil? %>
-        <%= f.text_field :event_date%>
-    <%else%>
-        <%= f.text_field :event_date, :value => @quotation.event_date.strftime('%d/%m/%Y')%>
-    <%end%>
-  </div>
-  <div class="field">
-    <%= f.label :days %>
-    <br>
-    <%= f.text_field :days %>
-  </div>
-  <div class="field">
-    <%= f.label :invoice_type %>
-    <br>
-    <%= f.select(:invoice_type, options_for_select([INVOICE, PROFORMA], @quotation.invoice_type.nil? ? INVOICE : @quotation.invoice_type)) %>
-  </div>
-  <div class="field">
-    <%= f.label :status %>
-    <br>
-    <% if @quotation.status.nil? %>
-      <%= f.select(:status, options_for_select([PENDING, CONFIRMED, CLOSED], @quotation.status.nil? ? PENDING : @quotation.status)) %>
-    <%else%>
-      <%= f.select(:status, options_for_select([PENDING, CONFIRMED, INVOICE, CLOSED], @quotation.status.nil? ? PENDING : @quotation.status)) %>
-    <%end%>
-  </div>
-  <div class="field">
-    <%= f.label :notes %>
-    <br>
-    <%= f.text_area :notes%>
-  </div>
 
     <% if @quotation.is_open_for_edits?%>
       <strong>Terms and Conditions:</strong>
