@@ -11,34 +11,36 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :company_name %><br>
-    <%= f.text_field :company_name %>
-  </div>
-  <div class="field">
-    <%= f.label :contact_person_name %><br>
-    <%= f.text_field :contact_person_name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
-  </div>
-  <div class="field">
-    <%= f.label :phone_number %><br>
-    <%= f.text_field :phone_number %>
-  </div>
-  <div class="field">
-    <%= f.label :phone_number_1 %><br>
-    <%= f.text_field :phone_number_1 %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :email_1 %><br>
-    <%= f.text_field :email_1 %>
-  </div>
+  <ul class="field_container">
+    <li>
+      <%= f.label :company_name %>
+      <%= f.text_field :company_name %>
+    </li>
+    <li>
+      <%= f.label :contact_person_name %>
+      <%= f.text_field :contact_person_name %>
+    </li>
+    <li>
+      <%= f.label :address %>
+      <%= f.text_area :address %>
+    </li>
+    <li>
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number %>
+    </li>
+    <li>
+      <%= f.label :phone_number_1 %>
+      <%= f.text_field :phone_number_1 %>
+    </li>
+    <li>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </li>
+    <li>
+      <%= f.label :email_1 %><br>
+      <%= f.text_field :email_1 %>
+    </li>
+  </ul>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -19,9 +19,7 @@
 .header {
   width: 100%;
   height: 60px;
-  background: none repeat scroll 0 0 floralwhite;
   text-align: justify;
-  border-bottom: 3px solid #BABABA;
   display: inline-block;
 }
 
@@ -34,15 +32,28 @@
   line-height:0;
 }
 
-.nav {
-  font-size:15px;
+.navbar {
+  font-size:13px;
+  text-transform: uppercase;
   display: inline-block;
   vertical-align: baseline;
+  background-color: #4d95b1;
+border-bottom: solid #026890;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+  color: #FFF;
 }
 
 h1 {
   font-size: 22px;
   display: inline-block;
+  color: #3f4950;
+  padding-bottom: 20px;
+  border-bottom: dotted 2px #007ca3;
+  width: 100%;
+  float: left;
+  margin-bottom: 28px;
 }
 
 
@@ -51,7 +62,9 @@ h2 {
 }
 
 .rest-of-the-world {
-  background-color: #ecf0f1;
+  background-color: #EFEFEF;
+  font-family: Arial;
+  font-size: 14px;
 }
 
 .next-month {
@@ -68,8 +81,12 @@ h2 {
 
 .main {
   background-color: #ffffff;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid rgba(0,0,0,.3);
+  box-shadow: 0 0 10px #999;
+  float: left;
+  min-height: 700px;
 }
 
 .logout {
@@ -92,18 +109,23 @@ h2 {
 }
 
 input[type="submit"] {
-  @extend .btn;
-  @extend .btn-default;
+  color: #fff;
+  background-color: #007ca3;
+  border-color: #cccccc;
+  border-radius: 5px;
+  padding: 7px 12px;
+  margin-left: 21%;
 }
 
 form {
   label {
     @extend .control-label;
+    color: #555;
   }
 
   textarea, input[type="text"], input[type="email"], input[type="password"], select {
     @extend .form-control;
-    width: 20%;
+    width: 30%;
   }
 
   .field {
@@ -144,3 +166,21 @@ body {
 
 }
 
+.field_container, .field_container li{
+  float: left;
+  width: 100%;
+}
+
+.field_container li{
+  padding-bottom: 25px;
+}
+
+.field_container label{
+  float: left;
+  width: 20%;
+  margin-right: 10px; 
+}
+
+.field_container input{
+  float: left;
+}
