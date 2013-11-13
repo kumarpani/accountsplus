@@ -1,7 +1,7 @@
 <div class="header">
   <h1>Ledger for <i><%= @client.company_name %></i></h1>
 
-  <div class="nav">
+  <div class="headerAfter">
     <h2>
       <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @client.id, :company_name => @client.company_name %>   &nbsp;|&nbsp;
       <%= link_to 'Invoices', :controller => 'quotations', :action => 'index', :client_id => @client.id, :status => INVOICE %>   &nbsp;|&nbsp;

@@ -5,7 +5,7 @@
       <h1>Payments for <i><%= params[:company_name] %></i></h1>
   <%end%>
 
-  <div class="nav">
+  <div class="headerAfter">
     <h2>
       <% !if params[:client_id] %>
           <%= link_to 'Invoices', :controller => 'quotations', :action => 'index', :client_id => params[:client_id], :status => INVOICE %>

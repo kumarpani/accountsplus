@@ -21,15 +21,16 @@
   height: 60px;
   text-align: justify;
   display: inline-block;
+
+  background: none repeat scroll 0 0 #ecf0f1;
+  border-bottom: 3px solid #BABABA;
 }
 
-.header:after{
-  content: '';
+.headerAfter{
   display: inline-block;
-  width: 100%;
-  height: 0;
-  font-size:0px;
-  line-height:0;
+  float: right;
+  vertical-align: baseline;
+
 }
 
 .navbar {
@@ -49,11 +50,6 @@ h1 {
   font-size: 22px;
   display: inline-block;
   color: #3f4950;
-  padding-bottom: 20px;
-  border-bottom: dotted 2px #007ca3;
-  width: 100%;
-  float: left;
-  margin-bottom: 28px;
 }
 
 
