@@ -1,5 +1,11 @@
 <div class="header">
-  <h1><%= @quotation.status == INVOICE ? 'Invoice Details' : 'Quotation Details' %>
+  <h1><%if @quotation.is_a_complete_invoice? %>
+        Invoice Details
+      <%elsif @quotation.invoice_type == PROFORMA && @quotation.status == INVOICE %>
+        Proforma Invoice Details
+      <%else%>
+        Quotation Details
+      <%end%>
   </h1>
 
   <div class="headerAfter">
