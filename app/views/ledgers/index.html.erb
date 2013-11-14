@@ -30,6 +30,12 @@
       <td><%= ledger_detail[:debit] %></td>
       <td><%= ledger_detail[:credit] %></td>
       <td><%= ledger_detail[:balance] %></td>
+      <td>
+      <% if !ledger_detail[:id].nil? %>
+        <%= link_to 'Show Details', quotation_item_details_url(ledger_detail[:id]), class: 'info' %>
+      <%end%>
+      </td>
+
     </tr>
   <% end %>
   </tbody>
