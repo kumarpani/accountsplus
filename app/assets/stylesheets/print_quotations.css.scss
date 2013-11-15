@@ -11,8 +11,13 @@ hr {
   list-style: disc;
 }
 
-.printInvoiceTable tr th, .printInvoiceTable tr td{
+.printInvoiceTable tr td{
   padding: 2px 0 0 5px;
+}
+
+.printInvoiceTable tr th{
+  padding: 2px 0 0 5px;
+  font-weight: bold;
 }
 
 .printLeft {
