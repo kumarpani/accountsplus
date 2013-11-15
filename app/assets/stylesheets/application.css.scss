@@ -21,9 +21,8 @@
   height: 60px;
   text-align: justify;
   display: inline-block;
-
-  background: none repeat scroll 0 0 #ecf0f1;
-  border-bottom: 3px solid #BABABA;
+  border-bottom: 2px dotted #007ca3;
+  margin-bottom: 15px;
 }
 
 .headerAfter{
@@ -173,8 +172,57 @@ body {
   float: left;
   width: 20%;
   margin-right: 10px; 
+  padding-top: 8px;
 }
 
 .field_container input{
   float: left;
 }
+
+.searchInput{
+  height: 30px !Important;
+}
+
+.searchBtn{
+  border-radius: 3px;
+  padding: 4px 12px;
+  margin-left: 15px;
+}
+
+.gridData{
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #999;
+  margin: 20px 0;
+  float: left;
+  width: 100%;
+}
+
+.gridData thead{
+  background-color: #EEE;
+}
+
+.gridData tr th, .gridData tr td{
+  padding: 8px 5px;
+  border-right: solid 1px #ccc;
+  color: #3F4950;
+}
+
+.gridData .deleteBtn{
+  font-size: 12px;
+}
+
+.gridData a{
+  color: #007ca3;
+}
+
+a.info{
+  color: #FFF;
+}
+
+.deleteBtn{
+  background-color: #666 !Important;
+  border-radius: 3px;
+}
+
+
