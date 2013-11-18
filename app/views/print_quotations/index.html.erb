@@ -26,8 +26,8 @@
   <div class="printLeft printRight">
     <p>
       <br/>
-      Date: <%= @quotation.updated_at.to_date.strftime("%d/%m/%Y") %><br/>
-      Event Date: <%= @quotation.event_date.strftime("%d/%m/%Y") %><br/>
+      Date: <%= display_date(@quotation.updated_at) %><br/>
+      Event Date: <%= display_date(@quotation.event_date) %><br/>
       Venue: <%= @quotation.venue %>
     </p>
   </div>

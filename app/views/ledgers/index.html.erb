@@ -8,7 +8,6 @@
       <%= link_to '+ Add New Payment', new_payment_path(:client_id => @client.id), class: 'new'%>
     </h2>
   </div>
-
 </div>
 
 <table class="table table-condensed gridData table-striped table-bordered">
@@ -25,7 +24,7 @@
   <tbody>
   <% @ledger_details.each do |ledger_detail| %>
     <tr>
-      <td><%= ledger_detail[:date].to_date.strftime("%d/%m/%Y") %></td>
+      <td><%= display_date(ledger_detail[:date]) %></td>
       <td><%= ledger_detail[:description] %></td>
       <td><%= ledger_detail[:debit] %></td>
       <td><%= ledger_detail[:credit] %></td>

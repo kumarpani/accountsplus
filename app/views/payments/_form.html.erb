@@ -11,38 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :client_id %><br>
-
-    <% clients_array = Client.all.map {|client| [client.company_name, client.id]}%>
-    <%= f.select(:client_id, options_for_select(clients_array, @payment.client.nil? ? 1 : @payment.client.id)) %>
-  </div>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :mode %>
-    <%= f.text_field :mode %>
-  </div>
-  <div class="field">
-    <%= f.label :paid_on %>
-    <%= f.text_field :paid_on %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %>
-    <%= f.text_field :amount %>
-  </div>
-
-    <div class="field">
-      <%= f.label :payment_type %><br>
+  <ul class="field_container">
+    <li>
+      <%= f.label :client_id %>
+      <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @payment.client.nil? ? 1 : @payment.client.id)) %>
+    </li>
+    <li>
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </li>
+    <li>
+      <%= f.label :mode %>
+      <%= f.text_field :mode %>
+    </li>
+    <li>
+      <%= f.label :paid_on %>
+      <%= f.text_field :paid_on %>
+    </li>
+    <li>
+      <%= f.label :amount %>
+      <%= f.text_field :amount %>
+    </li>
+    <li>
+      <%= f.label :payment_type %>
       <%= f.select(:payment_type, options_for_select(%w(Debit Credit))) %>
-    </div>
+    </li>
+  </ul>
 
-
-    <div class="actions">
+  <div class="actions">
     <%= f.submit %>
   </div>
+
   <script>
     $('#payment_paid_on').datepicker({format: 'dd-mm-yyyy', autoclose:true, todayHighlight:true, clearBtn:true})
   </script>

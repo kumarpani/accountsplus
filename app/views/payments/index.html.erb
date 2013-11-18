@@ -1,10 +1,4 @@
-<div class="header">
-  <% if params[:client_id].nil? %>
-    <h1>All Payments</h1>
-  <%else%>
-      <h1>Payments for <i><%= params[:company_name] %></i></h1>
-  <%end%>
-
+<div class="header"><h1><%= get_header_for_payments(params[:client_id], params[:company_name]) %></h1>
   <div class="headerAfter">
     <h2>
       <% !if params[:client_id] %>
@@ -39,7 +33,7 @@
       <td><%= payment.client.company_name %></td>
       <td><%= payment.description %></td>
       <td><%= payment.mode %></td>
-      <td><%= payment.paid_on.strftime("%d/%m/%Y")%></td>
+      <td><%= display_date(payment.paid_on) %></td>
       <td><%= payment.amount %></td>
       <td><%= payment.payment_type %></td>
       <td><%= link_to 'Show Details', payment, class: :info %></td>

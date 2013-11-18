@@ -1,11 +1,5 @@
 <div class="header">
-  <h1><%if @quotation.is_a_complete_invoice? %>
-        Invoice Details
-      <%elsif @quotation.invoice_type == PROFORMA && @quotation.status == INVOICE %>
-        Proforma Invoice Details
-      <%else%>
-        Quotation Details
-      <%end%>
+  <h1><%=get_header_for_quotation(@quotation)%>
   </h1>
 
   <div class="headerAfter">
@@ -25,7 +19,7 @@
 <table class="table">
   <tr>
     <% if @quotation.is_open_for_edits? %>
-        <%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit' %>
+        <%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit', :style => 'float:right' %>
     <%end%>
   </tr>
   <tr>
@@ -42,7 +36,7 @@
 
   <tr>
     <td><strong>Duration:</strong></td>
-    <td><b><%= @quotation.event_date.strftime("%d/%m/%Y") %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
+    <td><b><%= display_date(@quotation.event_date) %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
   </tr>
 
   <tr>
@@ -87,7 +81,7 @@
           <td><%= item_detail.price %></td>
 
           <% if @quotation.is_open_for_edits? %>
-            <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit' %></td>
+            <td><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit', :style => 'color:white'%></td>
             <td><%= button_to 'X', [@quotation, item_detail], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", :method => :delete, :class => 'deleteBtn'} %></td>
           <% end %>
 

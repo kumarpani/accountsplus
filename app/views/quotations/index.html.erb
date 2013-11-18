@@ -44,7 +44,7 @@
   <% @quotations.each do |quotation| %>
     <tr>
       <td><%= quotation.event_name %></td>
-      <td><%= quotation.event_date.strftime("%d/%m/%Y")%></td>
+      <td><%= display_date(quotation.event_date) %></td>
       <td><%= quotation.invoice_type %></td>
       <td><%= quotation.status %></td>
       <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info' %></td>

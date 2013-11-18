@@ -19,8 +19,7 @@
     <ul class="field_container">
       <li>
         <%= f.label :client_id %>
-        <% clients_array = Client.all.map { |client| [client.company_name, client.id] } %>
-        <%= f.select(:client_id, options_for_select(clients_array, @quotation.client.nil? ? 1 : @quotation.client.id)) %>
+        <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @quotation.client.nil? ? 1 : @quotation.client.id)) %>
       </li>
       <li>
         <%= f.label :event_name %>
@@ -35,7 +34,7 @@
         <% if @quotation.event_date.nil? %>
             <%= f.text_field :event_date%>
         <%else%>
-            <%= f.text_field :event_date, :value => @quotation.event_date.strftime('%d/%m/%Y')%>
+            <%= f.text_field :event_date, :value => display_date(@quotation.event_date)%>
         <%end%>
       </li>
       <li>
@@ -71,8 +70,6 @@
         </ul>
       </div>
     <% end %>
-
-    <p>For Audio Plus</p>
 
     <script>
         $('#quotation_event_date').datepicker({format: 'dd-mm-yyyy', autoclose:true, todayHighlight:true, clearBtn:true})
