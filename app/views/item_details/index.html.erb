@@ -80,15 +80,15 @@
       <tbody>
       <% @item_details.each_with_index do |item_detail, index| %>
         <tr>
-          <td width=10px;><%= index + 1 %></td>
+          <td width=10px; class="alignCenter"><%= index + 1 %></td>
           <td width=300px;><%= item_detail.particulars %></td>
           <td width=10px; class="alignCenter"><%= item_detail.quantity %></td>
           <td width=10px; class="alignCenter"><%= item_detail.days %></td>
           <td width=50px; class="alignRight"><%= item_detail.price %></td>
 
           <% if @quotation.is_open_for_edits? %>
-            <td width=30px;><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit', :style => 'color:white'%></td>
-            <td width=10px;><%= button_to 'X', [@quotation, item_detail], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", :method => :delete, :class => 'deleteBtn'} %></td>
+            <td width=60px; class="alignCenter"><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit', :style => 'color:white'%></td>
+            <td width=50px; class="alignCenter"><%= button_to 'X', [@quotation, item_detail], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", :method => :delete, :class => 'deleteBtn'} %></td>
           <% end %>
 
         </tr>
