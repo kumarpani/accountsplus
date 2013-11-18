@@ -5,10 +5,9 @@
   <div class="headerAfter">
     <h2>
       <b class='<%= @quotation.status %>'>Status : <%= @quotation.status %></b>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @quotation.client.id, :company_name => @quotation.client.company_name %>
-      &nbsp; | &nbsp;
+          &nbsp; | &nbsp;
       <%= link_to 'Ledger', client_ledgers_path(@quotation.client) %>
     </h2>
 
@@ -16,47 +15,54 @@
 </div>
 
 
-<table class="table">
-  <tr>
+<div class="row">
+  <div class="col-md-5">
+      <table class="table table-striped table-bordered">
+          <tr>
+            <td><strong>Client name & Address:</strong></td>
+            <td><%= @quotation.client.company_name %>
+              <br><%= @quotation.client.address %></td>
+          </tr>
+          <tr>
+            <td><strong>Event name and Venue:</strong></td>
+            <td><%= @quotation.event_name %>
+              <br><%= @quotation.venue %></td>
+          </tr>
+          <tr>
+            <td><strong>Duration:</strong></td>
+            <td><b><%= display_date(@quotation.event_date) %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
+          </tr>
+        </table>
+    </div>
+
+  <div class="col-md-5 cold-md-offset-0">
+    <table class="table table-condensed table-striped table-bordered col-md-5 col-md-offset-0">
+      <tr>
+        <td><strong>Invoice Type:</strong></td>
+        <td><%= @quotation.invoice_type %></td>
+      </tr>
+
+      <tr>
+        <td><strong>Notes:</strong></td>
+        <td><%= @quotation.notes %></td>
+      </tr>
+
+      <tr>
+        <% if @quotation.is_a_complete_invoice? %>
+            <td><strong>Invoice Number:</strong></td>
+            <td><%= @quotation.invoice_number %></td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-md-2 cold-md-offset-0">
     <% if @quotation.is_open_for_edits? %>
         <%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit', :style => 'float:right' %>
     <%end%>
-  </tr>
-  <tr>
-    <td><strong>Client name & Address:</strong></td>
-    <td><%= @quotation.client.company_name %>
-      <br><%= @quotation.client.address %></td>
-  </tr>
+  </div>
 
-  <tr>
-    <td><strong>Event name and Venue:</strong></td>
-    <td><%= @quotation.event_name %>
-      <br><%= @quotation.venue %></td>
-  </tr>
-
-  <tr>
-    <td><strong>Duration:</strong></td>
-    <td><b><%= display_date(@quotation.event_date) %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
-  </tr>
-
-  <tr>
-    <td><strong>Invoice Type:</strong></td>
-    <td><%= @quotation.invoice_type %></td>
-  </tr>
-
-  <tr>
-    <td><strong>Notes:</strong></td>
-    <td><%= @quotation.notes %></td>
-  </tr>
-
-  <tr>
-    <% if @quotation.is_a_complete_invoice? %>
-      <td><strong>Invoice Number:</strong></td>
-      <td><%= @quotation.invoice_number %></td>
-    <% end %>
-  </tr>
-</table>
-<br/>
+</div>
 
 <div class="row">
   <div class="col-md-8">
@@ -90,35 +96,27 @@
 
       <% if @quotation.is_a_complete_invoice? %>
         <tr>
-          <td></td>
-          <td>Service Tax @ 12%</td>
-          <td></td><td></td>
+          <td></td><td>Service Tax @ 12%</td><td></td><td></td>
           <td class="alignRight"><%= @quotation.service_tax_at_12_percent %></td>
         </tr>
           <tr>
-            <td></td>
-            <td>Education Cess @ 2% (On S.T)</td>
-            <td></td><td></td>
+            <td></td><td>Education Cess @ 2% (On S.T)</td><td></td><td></td>
             <td class="alignRight"><%= @quotation.education_cess %></td>
         </tr>
         <tr>
-            <td></td>
-            <td>Sec. & Higher Edu. Cess @ 1% (On S.T)</td>
-            <td></td><td></td>
+            <td></td><td>Sec. & Higher Edu. Cess @ 1% (On S.T)</td><td></td><td></td>
             <td class="alignRight"><%= @quotation.higher_education_cess %></td>
         </tr>
       <% end %>
 
       <tr>
-        <td></td>
-        <td><strong>Total:</strong></td>
-        <td></td>
-        <td></td>
+        <td></td><td><strong>Total:</strong></td><td></td><td></td>
         <td class="alignRight"><b><%= @quotation.total_price %></b></td>
       </tr>
       </tbody>
     </table>
   </div>
+
     <div class="col-md-3 cold-md-offset-1">
       <table class="table table-condensed gridData table-striped table-bordered col-md-3 col-md-offset-1">
         <thead>
