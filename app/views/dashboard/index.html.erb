@@ -1,7 +1,7 @@
 <div class="header">
   <h1>Dashboard</h1>
   <div class="headerAfter">
-    <h2><%=DateTime.now.to_date.strftime("%d/%m/%Y")%></h2>
+    <h2><%=display_verbose_date(DateTime.now)%></h2>
   </div>
 </div>
 
@@ -9,16 +9,16 @@
 <table class="table gridData table-striped">
   <thead>
   <tr>
-    <th><b>Event Date</b></th>
-    <th><b>Client</b></th>
-    <th><b>Event Name</b></th>
-    <th><b>Day(s)</b></th>
+    <th>Event Date</th>
+    <th>Client</th>
+    <th>Event Name</th>
+    <th>Day(s)</th>
   </tr>
   </thead>
   <tbody>
   <% @upcoming_quotations.each do |quotation| %>
     <tr>
-      <td><%= quotation.event_date.strftime("%d/%m/%Y")%></td>
+      <td><%= display_date(quotation.event_date)%></td>
       <td><%= quotation.client.company_name %></td>
       <td><%= quotation.event_name %></td>
       <td><%= quotation.days %></td>
@@ -32,11 +32,11 @@
   <table class="table gridData table-striped">
     <thead>
     <tr>
-      <th><b>Client Name</b></th>
-      <th><b>Contact Person</b></th>
-      <th><b>Phone Number</b></th>
-      <th><b>Email</b></th>
-      <th><b>Owes</b></th>
+      <th>Client Name</th>
+      <th>Contact Person</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Owes</th>
     </tr>
     </thead>
     <tbody>
@@ -46,8 +46,7 @@
         <td><%= quotation[:client].contact_person_name %></td>
         <td><%= quotation[:client].phone_number %></td>
         <td><%= quotation[:client].email %></td>
-        <!--<td><%= number_to_currency(quotation[:owes], locale: :in) %></td>-->
-        <td><%=quotation[:owes]%></td>
+        <td class="alignRight"><%=quotation[:owes]%></td>
       </tr>
     <% end %>
     </tbody>

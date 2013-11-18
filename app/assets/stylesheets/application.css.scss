@@ -202,7 +202,14 @@ body {
   background-color: #EEE;
 }
 
-.gridData tr th, .gridData tr td{
+.gridData tr th{
+  padding: 8px 5px;
+  border-right: solid 1px #ccc;
+  color: #3F4950;
+  font-weight: bold;
+}
+
+.gridData tr td{
   padding: 8px 5px;
   border-right: solid 1px #ccc;
   color: #3F4950;
@@ -223,6 +230,10 @@ a.info{
 .deleteBtn{
   background-color: #666 !Important;
   border-radius: 3px;
+}
+
+.alignRight{
+  text-align: right;
 }
 
 
