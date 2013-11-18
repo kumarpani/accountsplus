@@ -2,7 +2,7 @@
   <h1>Bank</h1>
 
   <div class="headerAfter">
-    <h2><%= DateTime.now.to_date.strftime("%d %B, %Y") %></h2>
+    <h2><%= display_verbose_date(DateTime.now) %></h2>
   </div>
 </div>
 
@@ -16,11 +16,11 @@
 
 <% if !@bank.nil? %>
 
-  <br><br>
+  <br>
   <p> Service tax details between :
     <b>
-      <%= Date.parse(params[:start_date], '%d/%m/%Y').strftime("%d %B, %Y") %>  &nbsp;&nbsp;|&nbsp;&nbsp;
-      <%= Date.parse(params[:end_date], '%d/%m/%Y').strftime("%d %B, %Y") %>
+      <%= display_verbose_date(params[:start_date]) %>  &nbsp;&nbsp;|&nbsp;&nbsp;
+      <%= display_verbose_date(params[:end_date]) %>
     </b>
   </p>
 
@@ -41,9 +41,9 @@
       <tr>
         <td><%= index + 1 %></td>
         <td><%= b[:invoice_number] %></td>
-        <td><%= b[:invoice_raised_date].strftime('%d/%m/%Y') %></td>
-        <td><%= Client.find(b[:client_id]).company_name %></td>
-        <td><%= Quotation.find(b[:id]).total_price %></td>
+        <td><%= display_date(b[:invoice_raised_date]) %></td>
+        <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
+        <td><%= get_total_price_by_quotation_id(b[:id]) %></td>
         <td><%= b[:service_tax] %></td>
       </tr>
     <% end %>
