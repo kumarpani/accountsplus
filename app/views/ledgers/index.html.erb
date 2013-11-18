@@ -25,13 +25,13 @@
   <% @ledger_details.each do |ledger_detail| %>
     <tr>
       <td><%= display_date(ledger_detail[:date]) %></td>
-      <td><%= ledger_detail[:description] %></td>
-      <td><%= ledger_detail[:debit] %></td>
-      <td><%= ledger_detail[:credit] %></td>
-      <td><%= ledger_detail[:balance] %></td>
+      <td width=500px;><%= ledger_detail[:description] %></td>
+      <td class="alignRight"><%= ledger_detail[:debit] %></td>
+      <td class="alignRight"><%= ledger_detail[:credit] %></td>
+      <td class="alignRight"><%= ledger_detail[:balance] %></td>
       <td>
       <% if !ledger_detail[:id].nil? %>
-        <%= link_to 'Show Details', quotation_item_details_url(ledger_detail[:id]), class: 'info' %>
+        <%= link_to 'Show Details', quotation_item_details_url(ledger_detail[:id]), class: 'info', :style => 'float:right'%>
       <%end%>
       </td>
 

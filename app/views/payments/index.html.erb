@@ -34,7 +34,7 @@
       <td><%= payment.description %></td>
       <td><%= payment.mode %></td>
       <td><%= display_date(payment.paid_on) %></td>
-      <td><%= payment.amount %></td>
+      <td class="alignRight"><%= payment.amount %></td>
       <td><%= payment.payment_type %></td>
       <td><%= link_to 'Show Details', payment, class: :info %></td>
       <td><%= link_to 'Ledger', :controller => 'ledgers', :action => 'index', :client_id => payment.client.id, class: 'info' %>

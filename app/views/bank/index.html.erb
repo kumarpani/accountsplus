@@ -43,8 +43,8 @@
         <td><%= b[:invoice_number] %></td>
         <td><%= display_date(b[:invoice_raised_date]) %></td>
         <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
-        <td><%= get_total_price_by_quotation_id(b[:id]) %></td>
-        <td><%= b[:service_tax] %></td>
+        <td class="alignRight"><%= get_total_price_by_quotation_id(b[:id]) %></td>
+        <td class="alignRight"><%= b[:service_tax] %></td>
       </tr>
     <% end %>
     <tr>
@@ -52,8 +52,8 @@
       <td></td>
       <td></td>
       <td><b> Total: </b></td>
-      <td><b><%= @bank.sum(&:total_price) %></b></td>
-      <td><b><%= @bank.sum(&:service_tax) %></b></td>
+      <td class="alignRight"><b><%= @bank.sum(&:total_price) %></b></td>
+      <td class="alignRight"><b><%= @bank.sum(&:service_tax) %></b></td>
     </tr>
 <% end %>
 </tbody>
