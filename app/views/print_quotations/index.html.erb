@@ -1,9 +1,5 @@
 <h2 style="text-align: center; font-size: 20px;"><b>
-  <% if @quotation.status == INVOICE %>
-      Invoice
-  <% else %>
-      Quotation
-  <% end %>
+  <%=get_header_for_quotation(@quotation)%>
 </b></h2>
 
 <div class="">
@@ -34,7 +30,7 @@
 </div>
 <br/>
 
-<p>
+<p style="float: left; font-size: 13px;">
   Service Tax Number : AKAPP9970EST001
 </p>
 
@@ -53,11 +49,11 @@
     <tbody>
     <% @quotation.item_details.each_with_index do |item_detail, index| %>
       <tr>
-        <td><%= index + 1 %></td>
+        <td class="alignCenter" width=6%><%= index + 1 %></td>
         <td><%= item_detail.particulars %></td>
-        <td><%= item_detail.quantity %></td>
-        <td><%= item_detail.days %></td>
-        <td><%= item_detail.price %></td>
+        <td class="alignCenter" width=7%><%= item_detail.quantity %></td>
+        <td class="alignCenter" width=5%><%= item_detail.days %></td>
+        <td class="alignRight" width=6%><%= item_detail.price %></td>
       </tr>
     <% end %>
     <% if @quotation.is_a_complete_invoice? %>
@@ -65,19 +61,19 @@
           <td></td>
           <td>Service Tax @ 12%</td>
           <td></td><td></td>
-          <td><%= @quotation.service_tax_at_12_percent %></td>
+          <td class="alignRight"><%= @quotation.service_tax_at_12_percent %></td>
         </tr>
         <tr>
           <td></td>
           <td>Education Cess @ 2% (On S.T)</td>
           <td></td><td></td>
-          <td><%= @quotation.education_cess %></td>
+          <td class="alignRight"><%= @quotation.education_cess %></td>
         </tr>
         <tr>
           <td></td>
           <td>Sec. & Higher Edu. Cess @ 1% (On S.T)</td>
           <td></td><td></td>
-          <td><%= @quotation.higher_education_cess %></td>
+          <td class="alignRight"><%= @quotation.higher_education_cess %></td>
         </tr>
     <% end %>
     <tr>
@@ -85,7 +81,7 @@
       <td><b>Total:</b></td>
       <td></td>
       <td></td>
-      <td><%= @quotation.total_price %></td>
+      <td class="alignRight"><b><%= @quotation.total_price %></b></td>
     </tr>
     </tbody>
   </table>
@@ -134,5 +130,5 @@
     <% end %>
   <% end %>
   <br>
-  <p>For Audio Plus</p>
+  <p style="float: left; font-size: 13px;">For Audio Plus</p>
 </div>

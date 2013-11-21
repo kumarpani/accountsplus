@@ -9,22 +9,29 @@ hr {
 
 .tac {
   list-style: disc;
+  font-size: 13px;
 }
 
 .printInvoiceTable tr td{
   padding: 2px 0 0 5px;
+  font-size: 13px;
 }
 
 .printInvoiceTable tr th{
   padding: 2px 0 0 5px;
   font-weight: bold;
+  font-size: 13px;
 }
 
 .printLeft {
   float: left;
   width: 50%;
+  font-size: 13px;
+
 }
 
 .printRight {
   text-align: right;
+  font-size: 13px;
+
 }
