@@ -34,6 +34,9 @@
 </div>
 <br/>
 
+<p>
+  Service Tax Number : AKAPP9970EST001
+</p>
 
 <div class="">
   <table class="printInvoiceTable table-bordered table-striped" style="width: 100%">
@@ -88,14 +91,10 @@
   </table>
   <br>
 
-  <% if @quotation.is_a_complete_invoice? %>
+  <% if params[:print_bank] == 'true' && @quotation.is_a_complete_invoice?%>
     <strong>Account Details for NEFT or RTGS</strong>
       <table class="printInvoiceTable table-bordered" style="width: 100%">
       <tbody>
-      <tr>
-        <td>Service Tax Number</td>
-        <td>AKAPP9970EST001</td>
-      </tr>
       <tr>
         <td>Account Name</td>
         <td>Audioplus</td>
@@ -122,7 +121,9 @@
       </tr>
       </tbody>
     </table>
-  <% else %>
+  <%end%>
+
+  <% if !@quotation.is_a_complete_invoice? %>
     <% if !@quotation.tac.nil? %>
       <ul class="tac">
         <strong>Terms and Conditions:</strong>

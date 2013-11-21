@@ -142,5 +142,10 @@
   <% if @quotation.is_open_for_edits? %>
     <%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'default' %>
   <% end %>
+
   <%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %>
+
+  <% if @quotation.is_a_complete_invoice? %>
+    <%= link_to 'Print with Bank', quotation_print_quotations_path(@quotation, :print_bank=>'true'), class: 'default' %>
+  <% end %>
 </p>
