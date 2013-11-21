@@ -49,11 +49,11 @@
     <tbody>
     <% @quotation.item_details.each_with_index do |item_detail, index| %>
       <tr>
-        <td class="alignCenter" width=6%><%= index + 1 %></td>
+        <td class="alignCenter"><%= index + 1 %></td>
         <td><%= item_detail.particulars %></td>
-        <td class="alignCenter" width=7%><%= item_detail.quantity %></td>
-        <td class="alignCenter" width=5%><%= item_detail.days %></td>
-        <td class="alignRight" width=6%><%= item_detail.price %></td>
+        <td class="alignCenter"><%= item_detail.quantity %></td>
+        <td class="alignCenter"><%= item_detail.days %></td>
+        <td class="alignRight"><%= item_detail.price %></td>
       </tr>
     <% end %>
     <% if @quotation.is_a_complete_invoice? %>
