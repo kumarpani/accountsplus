@@ -22,6 +22,14 @@ class LedgersController < ApplicationController
 
     @ledger_details = @ledger_details.sort_by {|l| l[:date]}
 
+  #  Apply date start date and end date filters
+    if !params[:start_date].to_s.empty? && !params[:end_date].to_s.empty?
+      @s_date = Date.parse(params[:start_date], '%d/%m/%Y')
+      @e_date = Date.parse(params[:end_date], '%d/%m/%Y')
+
+      @ledger_details = @ledger_details.select{|l| l[:date] >= @s_date and l[:date] <= @e_date}
+    end
+
   end
 
   private
