@@ -22,11 +22,11 @@
   <tbody>
   <% @ledger_details.each do |ledger_detail| %>
       <tr>
-        <td><%= display_date(ledger_detail[:date].to_date) %></td>
+        <td width=90px;><%= display_date(ledger_detail[:date].to_date) %></td>
         <td width=500px;><%= ledger_detail[:description] %></td>
-        <td class="alignRight"><%= ledger_detail[:debit] %></td>
-        <td class="alignRight"><%= ledger_detail[:credit] %></td>
-        <td class="alignRight"><%= ledger_detail[:balance] %></td>
+        <td class="alignRight" width=70px;><%= ledger_detail[:debit] %></td>
+        <td class="alignRight" width=70px;><%= ledger_detail[:credit] %></td>
+        <td class="alignRight" width=70px;><%= ledger_detail[:balance] %></td>
       </tr>
   <% end %>
   </tbody>
