@@ -23,7 +23,7 @@
     <th><strong>Type</strong></th>
     <th></th>
     <th></th>
-    <th></th>
+    <!--<th></th>-->
   </tr>
   </thead>
 
@@ -38,7 +38,7 @@
       <td><%= payment.payment_type %></td>
       <td><%= link_to 'Show Details', payment, class: :info %></td>
       <td><%= link_to 'Ledger', :controller => 'ledgers', :action => 'index', :client_id => payment.client.id, class: 'info' %>
-      <td><%= button_to 'X', payment, {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %></td>
+      <!--<td><%= button_to 'X', payment, {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %></td>-->
 
     </tr>
   <% end %>

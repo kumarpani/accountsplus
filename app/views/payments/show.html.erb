@@ -42,3 +42,6 @@
 
 <%= link_to 'Edit', edit_payment_path(@payment), class: :edit%> |
 <%= link_to 'Back', payments_path %>
+<p>
+<%= button_to 'X', payment_path(), {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %>
+</p>
