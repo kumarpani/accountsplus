@@ -1,0 +1,33 @@
+<p> Ledger for <%= params[:company_name] %>
+
+  <% if !params[:start_date].to_s.empty? && !params[:end_date].to_s.empty? %>
+  between : <b>
+    <%= display_verbose_date(params[:start_date]) %>  &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= display_verbose_date(params[:end_date]) %>
+  </b>
+</p>
+<% end %>
+
+<table class="printLedgerTable table-bordered table-striped">
+  <thead>
+  <tr>
+    <th><strong>Date</strong></th>
+    <th><strong>Description of Transaction</strong></th>
+    <th><strong>Debit</strong></th>
+    <th><strong>Credit</strong></th>
+    <th><strong>Balance</strong></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @ledger_details.each do |ledger_detail| %>
+      <tr>
+        <td><%= display_date(ledger_detail[:date].to_date) %></td>
+        <td width=500px;><%= ledger_detail[:description] %></td>
+        <td class="alignRight"><%= ledger_detail[:debit] %></td>
+        <td class="alignRight"><%= ledger_detail[:credit] %></td>
+        <td class="alignRight"><%= ledger_detail[:balance] %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

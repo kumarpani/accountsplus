@@ -58,6 +58,8 @@
   </tbody>
 </table>
 
+<%= link_to 'Print', :ledger_details => @ledger_details, :controller => 'print_ledger', :start_date => params[:start_date], :end_date => params[:end_date], :company_name => @client.company_name, class: 'default' %>
+
 
 <script>
     $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})

@@ -1,6 +1,8 @@
 Audioplus::Application.routes.draw do
   post "bank/index"
   get "bank/index"
+
+  get "print_ledger/index"
   devise_for :users
 
   resources :payments
