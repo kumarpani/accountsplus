@@ -32,7 +32,7 @@
   </thead>
 
   <tbody>
-  <% @clients.each do |client| %>
+  <% @clients.sort_by {|c| c[:company_name].downcase}.each do |client| %>
     <tr>
       <td><%= link_to client.company_name, client_path(client.id)%></td>
       <td><%= client.contact_person_name %></td>
