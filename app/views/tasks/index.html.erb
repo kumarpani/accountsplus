@@ -1,0 +1,30 @@
+<h1>Tasks</h1>
+
+
+<table class="table table-striped gridData">
+
+  <thead>
+  <tr>
+    <th width=60px;><strong>Sl. No.</strong></th>
+    <th><strong>Tasks</strong></th>
+    <th width=70px;><strong></strong></th>
+    <th width=70px;><strong></strong></th>
+  </tr>
+  </thead>
+
+  <% @tasks.each_with_index do |t, index| %>
+
+    <tr>
+      <td class="alignCenter"><%= index + 1 %></td>
+      <td><%= t.task_name %></td>
+      <td class="alignCenter"><%= link_to 'Edit', edit_task_path(t)%></td>
+      <td class="alignCenter"><%= button_to 'X', t, method: :delete, class: 'deleteBtn', data: { confirm: 'Are you sure?' } %></td>
+    <tr>
+
+  <% end %>
+
+</table>
+
+<p>
+<%= link_to 'New Task', new_task_path %>
+</p>

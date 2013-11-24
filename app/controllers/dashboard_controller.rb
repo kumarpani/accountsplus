@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    @tasks = Task.all.sort_by {|t| t[:created_at]}
     @upcoming_quotations = Quotation.where('event_date >= ? AND status == ?', Date.today, CONFIRMED).order('event_date ASC')
     @pending_payments = Quotation.where(status: INVOICE).group(:client_id).map { |quot|
       {client: quot.client,

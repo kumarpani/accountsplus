@@ -1,4 +1,6 @@
 Audioplus::Application.routes.draw do
+  resources :tasks
+
   post "bank/index"
   get "bank/index"
 
@@ -16,6 +18,7 @@ Audioplus::Application.routes.draw do
   end
   resources :dashboard, only: :index
   resources :calendar, only: :index
+  resources :tasks, only: :index
 
   root 'dashboard#index'
 

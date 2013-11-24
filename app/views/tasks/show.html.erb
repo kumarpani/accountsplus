@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<table class="gridData">
+  <td width=100px;>
+    <strong>Task name:</strong>
+  </td>
+  <td>
+    <%= @task.task_name %>
+  </td>
+</table>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

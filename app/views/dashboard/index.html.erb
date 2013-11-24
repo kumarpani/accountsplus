@@ -5,7 +5,24 @@
   </div>
 </div>
 
-<h2>List of upcoming events</h2>
+<h2><u>Tasks :</u></h2>
+<table class="table gridData table-striped">
+  <thead>
+  <tr>
+    <th width=60px;><strong>Sl. No.</strong></th>
+    <th><strong>Tasks</strong></th>
+  </tr>
+  </thead>
+
+  <% @tasks.each_with_index do |t, index| %>
+      <tr>
+        <td class="alignCenter"><%= index + 1 %></td>
+        <td><%= t.task_name %></td>
+      <tr>
+  <% end %>
+</table>
+
+<h2><u>List of upcoming events : </u></h2>
 <table class="table gridData table-striped">
   <thead>
   <tr>
@@ -27,28 +44,26 @@
   </tbody>
 </table>
 
-<div>
-  <h2>Pending Payments</h2>
-  <table class="table gridData table-striped">
-    <thead>
-    <tr>
-      <th>Client Name</th>
-      <th>Contact Person</th>
-      <th>Phone Number</th>
-      <th>Email</th>
-      <th>Owes</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @pending_payments.each do |quotation| %>
-      <tr>
-        <td><%= quotation[:client].company_name %></td>
-        <td><%= quotation[:client].contact_person_name %></td>
-        <td><%= quotation[:client].phone_number %></td>
-        <td><%= quotation[:client].email %></td>
-        <td class="alignRight"><%=quotation[:owes]%></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
+<h2><u>Pending Payments :</u></h2>
+<table class="table gridData table-striped">
+<thead>
+<tr>
+  <th>Client Name</th>
+  <th>Contact Person</th>
+  <th>Phone Number</th>
+  <th>Email</th>
+  <th>Owes</th>
+</tr>
+</thead>
+<tbody>
+<% @pending_payments.each do |quotation| %>
+  <tr>
+    <td><%= quotation[:client].company_name %></td>
+    <td><%= quotation[:client].contact_person_name %></td>
+    <td><%= quotation[:client].phone_number %></td>
+    <td><%= quotation[:client].email %></td>
+    <td class="alignRight"><%=quotation[:owes]%></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
