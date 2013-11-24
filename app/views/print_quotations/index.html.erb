@@ -32,9 +32,9 @@
 </div>
 <br/>
 
-<p style="float: left; font-size: 13px;">
-  Service Tax Number : AKAPP9970EST001
-</p>
+<% if @quotation.is_a_complete_invoice? %>
+  <p style="float: left; font-size: 13px;"> Service Tax Number : AKAPP9970EST001 </p>
+<%end%>
 
 <div class="">
   <table class="printInvoiceTable table-bordered table-striped" style="width: 100%">
