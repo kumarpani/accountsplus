@@ -16,3 +16,17 @@
 //= require bootstrap-datepicker
 //= require turbolinks
 //= require_tree .
+
+
+$(function() {
+    $('.editable-select').editableSelect(
+        {
+            bg_iframe: true,
+            onSelect: function(list_item) {
+            },
+            case_sensitive: false, // If set to true, the user has to type in an exact
+            // match for the item to get highlighted
+            items_then_scroll: 10 // If there are more than 10 items, display a scrollbar
+        }
+    );
+});

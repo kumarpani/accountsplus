@@ -36,4 +36,8 @@ module QuotationsHelper
   ]
 
   end
+
+  def get_all_sorted_venues
+    Quotation.all.sort_by{|q| q.venue.downcase}.uniq{|d| d[:venue]}.map { |i| [i.id, i.venue] }
+  end
 end
