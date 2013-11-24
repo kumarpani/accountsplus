@@ -60,4 +60,27 @@ class Quotation < ActiveRecord::Base
   def method_missing(method_name, *arguments, &block)
 
   end
+
+  def clone_with_associations
+    @new_quotation = self.dup
+    @new_quotation.status = PENDING
+    @new_quotation.event_name = '[DUPLICATE] ' + self.event_name
+    @new_quotation.invoice_number=nil
+    @new_quotation.event_date = DateTime.now.to_date
+    @new_quotation.invoice_raised_date = nil
+    @new_quotation.notes = '<< This is DUPLICATE quotation. Please update details manually as necessary >> ' + self.notes.to_s
+
+    @new_quotation.save
+
+    self.item_details.each do |i|
+      @new_i = i.dup
+      @new_i.save
+      @new_quotation.item_details << @new_i
+    end
+
+    @new_quotation
+
+  end
+
+
 end

@@ -22,6 +22,11 @@ class QuotationsController < ApplicationController
     @quotation = Quotation.new(params.select { |key, _| %w(client_id event_name status event_date).member? key })
   end
 
+  def duplicate
+    @new_dup_q = Quotation.find(params[:quotation_id]).clone_with_associations
+    redirect_to quotation_item_details_path(@new_dup_q)
+  end
+
   # GET /quotations/1/edit
   def edit
   end
