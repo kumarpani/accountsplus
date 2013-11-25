@@ -1,4 +1,14 @@
-<%= image_tag 'ap.png', :width => '100%'%>
+<div class="printLeft"><%= image_tag 'ap.png', :width => '75%'%></div>
+<div>
+  <p class="printLeft printRight">
+    U-26, 3rd Cross, Pipeline,<br/>
+    Krishnappa Block, Malleshwaram,<br/>
+    Bangalore - 5600 03<br/>
+    Tele Fax: 080 23567619, Cell: 98802 73773<br/>
+    Email: audioplus.events@gmail.com
+  </p>
+</div>
+<hr class="hr">
 
 <h2 style="text-align: center; font-size: 17px;"><b>
   <%=get_header_for_quotation(@quotation)%>
@@ -30,7 +40,7 @@
 <br/>
 
 <% if @quotation.is_a_complete_invoice? %>
-  <p style="float: left; font-size: 10px;"> Service Tax Number : AKAPP9970EST001 </p>
+  <p style="float: left; font-size: 11px;"> Service Tax Number : AKAPP9970EST001 </p>
 <%end%>
 
 <div class="">
@@ -52,7 +62,7 @@
         <td><%= item_detail.particulars %></td>
         <td class="alignCenter"><%= item_detail.quantity %></td>
         <td class="alignCenter"><%= item_detail.days %></td>
-        <td class="alignRight"><%= item_detail.price %></td>
+        <td class="alignRight"><%= number_with_precision(item_detail.price, :precision => 2) %></td>
       </tr>
     <% end %>
     <% if @quotation.is_a_complete_invoice? %>
@@ -80,14 +90,14 @@
       <td><b>Total:</b></td>
       <td></td>
       <td></td>
-      <td class="alignRight"><b><%= @quotation.total_price %></b></td>
+      <td class="alignRight"><b><%= number_with_precision(@quotation.total_price, :precision => 2) %></b></td>
     </tr>
     </tbody>
   </table>
   <br>
 
   <% if params[:print_bank] == 'true' && @quotation.is_a_complete_invoice?%>
-    <strong style="font-size: 10px">Account Details for NEFT or RTGS</strong>
+    <strong style="font-size: 11px">Account Details for NEFT or RTGS</strong>
       <table class="printInvoiceTable table-bordered" style="width: 100%">
       <tbody>
       <tr>
@@ -129,5 +139,5 @@
     <% end %>
   <% end %>
   <br>
-  <p style="float: left; font-size: 10px;">For Audio Plus</p>
+  <p style="float: left; font-size: 11px;">For Audio Plus</p>
 </div>

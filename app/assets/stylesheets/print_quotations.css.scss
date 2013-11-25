@@ -8,42 +8,42 @@
   }
 
 
-    hr {
-    border: 0;
-    clear:both;
-    display:block;
-    width: 100%;
-    background-color:#000000;
-    height: 2px;
+  hr {
+    border-color: #000000;
+    border-style: solid;
+    border-width: 1px 0 0;
+    clear: both;
+    margin: 0 0 0px;
+    height: 0;
   }
 
   .tac {
     list-style: disc;
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .printInvoiceTable tr td{
     padding: 0px 5px 0px 5px;
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .printInvoiceTable tr th{
     padding: 2px 0 0 2px;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 11px;
     text-align: center;
   }
 
   .printLeft {
     float: left;
     width: 50%;
-    font-size: 10px;
+    font-size: 11px;
 
   }
 
   .printRight {
     text-align: right;
-    font-size: 10px;
+    font-size: 11px;
 
   }
 }
