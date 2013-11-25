@@ -6,9 +6,9 @@ class PaymentsController < ApplicationController
   # GET /payments.json
   def index
     if !params[:client_id].nil?
-      @payments = Payment.where(:client_id => params[:client_id]).order(:paid_on).reverse_order
+      @payments = Payment.where(:client_id => params[:client_id]).order(:updated_at).reverse_order
     else
-      @payments = Payment.all.order(:paid_on).reverse_order
+      @payments = Payment.all.order(:updated_at).reverse_order
     end
   end
 
