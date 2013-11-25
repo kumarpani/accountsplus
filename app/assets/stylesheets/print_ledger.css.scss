@@ -3,16 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+@media print{
 
-.printLedgerTable tr td{
-  padding: 2px 0 0 5px;
-  font-size: 13px;
-}
+  body
+  {
+    margin: 0 3mm 3mm 25mm;
+    padding: 0;
+  }
 
-.printLedgerTable tr th{
-  padding: 2px 0 0 5px;
-  font-weight: bold;
-  font-size: 13px;
-  text-align: center;
+
+  .printLedgerTable tr td{
+    padding: 2px 0 0 5px;
+    font-size: 13px;
+  }
+
+  .printLedgerTable tr th{
+    padding: 2px 0 0 5px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+  }
+
 }
 

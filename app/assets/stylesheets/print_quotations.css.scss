@@ -1,44 +1,49 @@
-//body
-//{
-//  margin: 3mm 3mm 3mm 25mm;
-//}
+
+@media print{
+
+  body
+  {
+    margin: 0 3mm 3mm 25mm;
+    padding: 0;
+  }
 
 
-hr {
-  border: 0;
-  clear:both;
-  display:block;
-  width: 100%;
-  background-color:#000000;
-  height: 2px;
-}
+    hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 100%;
+    background-color:#000000;
+    height: 2px;
+  }
 
-.tac {
-  list-style: disc;
-  font-size: 13px;
-}
+  .tac {
+    list-style: disc;
+    font-size: 13px;
+  }
 
-.printInvoiceTable tr td{
-  padding: 2px 0 0 5px;
-  font-size: 13px;
-}
+  .printInvoiceTable tr td{
+    padding: 2px 0 0 5px;
+    font-size: 13px;
+  }
 
-.printInvoiceTable tr th{
-  padding: 2px 0 0 5px;
-  font-weight: bold;
-  font-size: 13px;
-  text-align: center;
-}
+  .printInvoiceTable tr th{
+    padding: 2px 0 0 5px;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+  }
 
-.printLeft {
-  float: left;
-  width: 50%;
-  font-size: 13px;
+  .printLeft {
+    float: left;
+    width: 50%;
+    font-size: 13px;
 
-}
+  }
 
-.printRight {
-  text-align: right;
-  font-size: 13px;
+  .printRight {
+    text-align: right;
+    font-size: 13px;
 
+  }
 }
