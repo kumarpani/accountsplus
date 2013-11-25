@@ -1,6 +1,6 @@
 <%= image_tag 'ap.png', :width => '100%'%>
 
-<h2 style="text-align: center; font-size: 20px;"><b>
+<h2 style="text-align: center; font-size: 17px;"><b>
   <%=get_header_for_quotation(@quotation)%>
 </b></h2>
 
@@ -16,14 +16,11 @@
       <br/>
     <% end %>
     To:
-    <p>
       <%= @quotation.client.company_name %>,<br/>
       <%= @quotation.client.address %>
-    </p>
   </div>
-  <div class="printLeft printRight">
-    <p>
-      <br/>
+  <div >
+    <p class="printLeft printRight">
       Date: <%= display_date(@quotation.updated_at) %><br/>
       Event Date: <%= display_date(@quotation.event_date) %><br/>
       Venue: <%= @quotation.venue %>
@@ -33,7 +30,7 @@
 <br/>
 
 <% if @quotation.is_a_complete_invoice? %>
-  <p style="float: left; font-size: 13px;"> Service Tax Number : AKAPP9970EST001 </p>
+  <p style="float: left; font-size: 10px;"> Service Tax Number : AKAPP9970EST001 </p>
 <%end%>
 
 <div class="">
@@ -90,7 +87,7 @@
   <br>
 
   <% if params[:print_bank] == 'true' && @quotation.is_a_complete_invoice?%>
-    <strong>Account Details for NEFT or RTGS</strong>
+    <strong style="font-size: 10px">Account Details for NEFT or RTGS</strong>
       <table class="printInvoiceTable table-bordered" style="width: 100%">
       <tbody>
       <tr>
@@ -132,5 +129,5 @@
     <% end %>
   <% end %>
   <br>
-  <p style="float: left; font-size: 13px;">For Audio Plus</p>
+  <p style="float: left; font-size: 10px;">For Audio Plus</p>
 </div>

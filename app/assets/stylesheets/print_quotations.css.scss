@@ -3,7 +3,7 @@
 
   body
   {
-    margin: 0 3mm 3mm 25mm;
+    margin: 0 10mm 3mm 25mm;
     padding: 0;
   }
 
@@ -19,31 +19,31 @@
 
   .tac {
     list-style: disc;
-    font-size: 13px;
+    font-size: 10px;
   }
 
   .printInvoiceTable tr td{
-    padding: 2px 0 0 5px;
-    font-size: 13px;
+    padding: 0px 5px 0px 5px;
+    font-size: 10px;
   }
 
   .printInvoiceTable tr th{
-    padding: 2px 0 0 5px;
+    padding: 2px 0 0 2px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 10px;
     text-align: center;
   }
 
   .printLeft {
     float: left;
     width: 50%;
-    font-size: 13px;
+    font-size: 10px;
 
   }
 
   .printRight {
     text-align: right;
-    font-size: 13px;
+    font-size: 10px;
 
   }
 }
