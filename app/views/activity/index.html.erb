@@ -45,6 +45,44 @@
 
 </table>
 
+
+<p><b> Payments Created/Updated between : <%= get_dates_message(params[:start_date], params[:end_date]) %></b> </p>
+
+<table class="table table-striped gridData">
+
+  <thead>
+  <tr>
+    <th><strong>Sl. No.</strong></th>
+    <th>Client</th>
+    <th>Description</th>
+    <th>Mode</th>
+    <th>Paid On</th>
+    <th>Amount</th>
+    <th>Type</th>
+    <th>Created On</th>
+    <th>Updated On</th>
+  </tr>
+  </thead>
+
+  <% @payments_changed.each_with_index do |p, index| %>
+
+      <tr>
+        <td class="alignCenter"><%= index + 1 %></td>
+        <td><%= p.client.company_name %></td>
+        <td><%= p.description %></td>
+        <td><%= p.mode %></td>
+        <td><%= display_date(p.paid_on) %></td>
+        <td><%= p.amount %></td>
+        <td><%= p.payment_type %></td>
+        <td><%= display_date(p.created_at.to_date) + ' | ' + p.created_at.strftime("%H:%M:%S")%></td>
+        <td><%= display_date(p.updated_at.to_date) + ' | ' + p.updated_at.strftime("%H:%M:%S")%></td>
+      <tr>
+
+  <% end %>
+
+</table>
+
+
 <script>
     $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
     $('#end_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
