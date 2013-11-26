@@ -5,23 +5,6 @@
   </div>
 </div>
 
-<h2><u>Tasks :</u></h2>
-<table class="table gridData table-striped">
-  <thead>
-  <tr>
-    <th width=60px;><strong>Sl. No.</strong></th>
-    <th><strong>Tasks</strong></th>
-  </tr>
-  </thead>
-
-  <% @tasks.each_with_index do |t, index| %>
-      <tr>
-        <td class="alignCenter"><%= index + 1 %></td>
-        <td><%= t.task_name %></td>
-      <tr>
-  <% end %>
-</table>
-
 <h2><u>List of upcoming events : </u></h2>
 <table class="table gridData table-striped">
   <thead>

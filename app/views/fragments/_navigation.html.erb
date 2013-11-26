@@ -11,12 +11,12 @@
         <li><%= link_to 'Clients', clients_path %></li>
         <li><%= link_to 'Payments', payments_path %></li>
         <li><%= link_to 'Bank', :controller => 'bank', :action => :index %></li>
-        <li><%= link_to 'Tasks', tasks_path %></li>
 
     <% end %>
     </ul>
     <% if user_signed_in? %>
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Tasks', tasks_path %></li>
         <li>
           <%= link_to(destroy_user_session_path, :method => :delete) do %>
             <span class="glyphicon glyphicon-log-out"></span>
