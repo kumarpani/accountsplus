@@ -1,0 +1,52 @@
+<div class="header">
+  <h1>Activities</h1>
+  <div class="headerAfter">
+    <h2><%=display_verbose_date(DateTime.now)%></h2>
+  </div>
+</div>
+
+<p>Please enter both start and end dates:</p>
+<%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
+    <%= text_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: 'Start Date' %>
+    <%= text_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: 'End Date' %>
+    <%= submit_tag 'Search', name: nil  %>
+<% end %>
+<hr>
+
+<p><b> Invoices raised between : <%= get_dates_message(params[:start_date], params[:end_date]) %></b> </p>
+
+<table class="table table-striped gridData">
+
+  <thead>
+  <tr>
+    <th><strong>Sl. No.</strong></th>
+    <th>Invoice Type</th>
+    <th><strong>Invoice Number</strong></th>
+    <th>Company Name</th>
+    <th>Event Date</th>
+    <th>Invoice Raised Date</th>
+    <th>Amount</th>
+  </tr>
+  </thead>
+
+  <% @invoices_raised.each_with_index do |i, index| %>
+
+    <tr>
+      <td class="alignCenter"><%= index + 1 %></td>
+      <td><%= i.invoice_type %></td>
+      <td><%= i.invoice_number %></td>
+      <td><%= i.client.company_name %></td>
+      <td><%= display_date(i.event_date) %></td>
+      <td><%= display_date(i.invoice_raised_date) %></td>
+      <td class="alignRight"><%= i.total_price %></td>
+    <tr>
+
+  <% end %>
+
+</table>
+
+<script>
+    $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+    $('#end_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+</script>
+

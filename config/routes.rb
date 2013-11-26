@@ -4,8 +4,13 @@ Audioplus::Application.routes.draw do
   post "bank/index"
   get "bank/index"
 
+  post "activity/index"
+  get "activity/index"
+
   get "print_ledger/index"
+
   post "quotations/duplicate"
+
   devise_for :users
 
   resources :payments

@@ -26,6 +26,10 @@ class Quotation < ActiveRecord::Base
     self.status != INVOICE || self.invoice_type == PROFORMA
   end
 
+  def is_proforma_invoice_being_raised?
+    self.status == INVOICE && self.invoice_type == PROFORMA && self.status_changed?
+  end
+
   def update_vendor_payments
     if self.status == INVOICE && self.status_changed?
       self.item_details.select {|i| !i.vendor_id.nil? }.group_by {|i| i.vendor_id}.each_pair {|vendor_id, items|
@@ -43,6 +47,11 @@ class Quotation < ActiveRecord::Base
       self.service_tax = ((total_price * 12.36)/100).floor
       self.invoice_raised_date = Date.today
     end
+
+    if is_proforma_invoice_being_raised?
+      self.invoice_raised_date = Date.today
+    end
+
   end
 
   def education_cess
