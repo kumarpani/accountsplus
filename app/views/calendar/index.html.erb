@@ -10,5 +10,12 @@
 <% end %>
 
 <%= calendar @all_quotations, :prev_text => '', :next_text => '', empty_date: empty_date_lambda do |quotation| %>
+
+    <% if @p_date != quotation.event_date %>
+        <%= link_to '+', new_quotation_path(:event_date => display_date(quotation.event_date)), class: 'btn-xs btn btn-default calendar-event' %>
+        <% @p_date = quotation.event_date %>
+    <% end %>
+
   <div><%= link_to get_company_name_by_client_id(quotation.client_id), quotation_item_details_path(quotation), class: "btn calendar-event #{quotation.status}" %></div>
+
 <% end %>
