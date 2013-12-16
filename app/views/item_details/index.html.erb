@@ -1,10 +1,9 @@
 <div class="header">
-  <h1><%=get_header_for_quotation(@quotation)%> Details
+  <h1><%=get_header_for_quotation(@quotation)%> Details <b class='<%= @quotation.status %>' style="font-size: 15px;">Status : <%= @quotation.status %></b>
   </h1>
 
   <div class="headerAfter">
     <h2>
-      <b class='<%= @quotation.status %>'>Status : <%= @quotation.status %></b>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @quotation.client.id, :company_name => @quotation.client.company_name %>
           &nbsp; | &nbsp;
@@ -61,7 +60,6 @@
         <%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit'%>
         <br><br>
     <%end%>
-    <%= button_to 'Duplicate', controller: 'quotations', action: 'duplicate', :quotation_id => @quotation.id %>
   </div>
 
 </div>
@@ -140,14 +138,29 @@
     </div>
 </div>
 
-<p>
+
+
   <% if @quotation.is_open_for_edits? %>
-    <%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'default' %>
+    <p><%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'default' %></p>
   <% end %>
 
-  <%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %>
+<hr style="border-width: 2px 0 0;">
 
-  <% if @quotation.is_a_complete_invoice? %>
-    <%= link_to 'Print with Bank', quotation_print_quotations_path(@quotation, :print_bank=>'true'), class: 'default' %>
-  <% end %>
-</p>
+<div class="col-md-4 cold-md-offset-1">
+   <p><%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %><p>
+
+    <% if @quotation.is_a_complete_invoice? %>
+      <p><%= link_to 'Print with Bank', quotation_print_quotations_path(@quotation, :print_bank=>'true'), class: 'default' %></p>
+    <% end %>
+
+</div>
+
+
+<div class="col-md-3 cold-md-offset-4" style="float: right">
+    <p><%= button_to 'Duplicate', controller: 'quotations', action: 'duplicate', :quotation_id => @quotation.id %></p>
+
+    <% if @quotation.status == INVOICE  && @quotation.payment_received_in_full.nil? %>
+      <p><%= button_to 'Mark As Payments Fully Received', controller: 'quotations', action: 'markAsPaymentsFullyReceived', :quotation_id => @quotation.id%></p>
+    <% end %>
+</div>
+

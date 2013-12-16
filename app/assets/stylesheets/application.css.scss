@@ -98,6 +98,12 @@ h2 {
   @extend .btn-success;
 }
 
+.Fulfilled {
+  @extend .btn-xs;
+  background-color: #666666;
+  border-color: #cccccc;
+}
+
 .Invoice {
   @extend .btn-xs;
   @extend .btn-danger;

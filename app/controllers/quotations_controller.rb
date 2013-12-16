@@ -60,6 +60,17 @@ class QuotationsController < ApplicationController
     end
   end
 
+  def markAsPaymentsFullyReceived
+    @quotation = Quotation.find(params[:quotation_id])
+
+    if @quotation.update_attribute(:payment_received_in_full, true)
+      redirect_to quotation_item_details_path(@quotation)
+    else
+      format.html { render action: 'edit' }
+      format.json { render json: @quotation.errors, status: :unprocessable_entity }
+    end
+  end
+
   # DELETE /quotations/1
   # DELETE /quotations/1.json
   def destroy

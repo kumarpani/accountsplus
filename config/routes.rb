@@ -10,6 +10,7 @@ Audioplus::Application.routes.draw do
   get "print_ledger/index"
 
   post "quotations/duplicate"
+  post "quotations/markAsPaymentsFullyReceived"
 
   devise_for :users
 
