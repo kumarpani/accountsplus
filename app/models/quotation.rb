@@ -15,7 +15,11 @@ class Quotation < ActiveRecord::Base
   end
 
   def total_price
-    self.service_tax + item_details.to_a.sum(&:price)
+    self.service_tax + self.total_item_price
+  end
+
+  def total_item_price
+    item_details.to_a.sum(&:price)
   end
 
   def is_a_complete_invoice?
