@@ -60,6 +60,7 @@
         <%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit'%>
         <br><br>
     <%end%>
+    <%= button_to 'Duplicate', controller: 'quotations', action: 'duplicate', :quotation_id => @quotation.id %>
   </div>
 
 </div>
@@ -163,8 +164,6 @@
 
 
 <div class="col-md-3 cold-md-offset-4" style="float: right">
-    <p><%= button_to 'Duplicate', controller: 'quotations', action: 'duplicate', :quotation_id => @quotation.id %></p>
-
     <% if @quotation.status == INVOICE  && @quotation.payment_received_in_full.nil? %>
       <p><%= button_to 'Mark As Payments Fully Received', controller: 'quotations', action: 'markAsPaymentsFullyReceived', :quotation_id => @quotation.id%></p>
     <% end %>
