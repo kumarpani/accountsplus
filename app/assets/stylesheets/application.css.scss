@@ -99,8 +99,8 @@ h2 {
 }
 
 .Fulfilled {
+  @extend .btn-default;
   @extend .btn-xs;
-  background-color: #666666;
   border-color: #cccccc;
 }
 
