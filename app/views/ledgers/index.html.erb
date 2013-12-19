@@ -59,7 +59,7 @@
   </tbody>
 </table>
 
-<%= link_to 'Print', :ledger_details => @ledger_details, :controller => 'print_ledger', :start_date => params[:start_date], :end_date => params[:end_date], :company_name => @client.company_name, class: 'default' %>
+<%= link_to 'Print', :controller => 'print_ledger', :start_date => params[:start_date].to_s, :end_date => params[:end_date].to_s, :client_id => @client.id, :company_name => @client.company_name %>
 
 
 <script>
