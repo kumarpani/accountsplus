@@ -1,0 +1,72 @@
+<div class="header">
+  <h1>Incoming Service Taxes</h1>
+
+  <div class="headerAfter">
+    <h2><%= link_to '+ Add New IST', new_incoming_service_tax_path, class: :new%></h2>
+  </div>
+</div>
+
+<p>Please enter both start and end dates:</p>
+<%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
+    <%= text_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: 'Start Date' %>
+    <%= text_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: 'End Date' %>
+    <%= submit_tag 'Search', name: nil  %>
+<% end %>
+
+
+<% if !@incoming_service_taxes.nil? %>
+
+    <br>
+    <p> Incoming Service tax details between :
+      <b>
+        <%= display_verbose_date(params[:start_date]) %>  &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= display_verbose_date(params[:end_date]) %>
+      </b>
+    </p>
+
+<table class="table gridData table-condensed table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><strong>Sl No</strong></th>
+      <th><strong>Invoice Number</strong></th>
+      <th><strong>Invoice Date</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Event Total</strong></th>
+      <th><strong>Service Tax</strong></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @incoming_service_taxes.each_with_index do |i, index| %>
+  <tr>
+        <td><%= index + 1 %></td>
+        <td><%= i.invoice_number %></td>
+        <td><%= display_date(i[:invoice_date]) %></td>
+        <td><%= i.description %></td>
+        <td class="alignRight"><%= i.event_total %></td>
+        <td class="alignRight"><%= i.service_tax %></td>
+        <td><%= link_to 'Show', i %></td>
+        <td><%= link_to 'Edit', edit_incoming_service_tax_path(i) %></td>
+        <td><%= link_to 'Destroy', i, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><b> Total: </b></td>
+      <td class="alignRight"><b><%= @incoming_service_taxes.sum(&:event_total) %></b></td>
+      <td class="alignRight"><b><%= @incoming_service_taxes.sum(&:service_tax) %></b></td>
+    </tr>
+
+<% end %>
+
+
+</tbody>
+</table>
+
+    <script>
+        $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+        $('#end_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+    </script>
+

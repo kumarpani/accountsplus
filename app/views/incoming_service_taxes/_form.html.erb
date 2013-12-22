@@ -1,0 +1,37 @@
+<%= form_for(@incoming_service_tax) do |f| %>
+  <% if @incoming_service_tax.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@incoming_service_tax.errors.count, "error") %> prohibited this incoming_service_tax from being saved:</h2>
+
+      <ul>
+      <% @incoming_service_tax.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :invoice_number %><br>
+    <%= f.number_field :invoice_number %>
+  </div>
+  <div class="field">
+    <%= f.label :invoice_date %><br>
+    <%= f.date_select :invoice_date %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :event_total %><br>
+    <%= f.text_field :event_total %>
+  </div>
+  <div class="field">
+    <%= f.label :service_tax %><br>
+    <%= f.text_field :service_tax %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

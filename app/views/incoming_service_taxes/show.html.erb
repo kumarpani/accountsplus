@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Invoice number:</strong>
+  <%= @incoming_service_tax.invoice_number %>
+</p>
+
+<p>
+  <strong>Invoice date:</strong>
+  <%= @incoming_service_tax.invoice_date %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @incoming_service_tax.description %>
+</p>
+
+<p>
+  <strong>Event total:</strong>
+  <%= @incoming_service_tax.event_total %>
+</p>
+
+<p>
+  <strong>Service tax:</strong>
+  <%= @incoming_service_tax.service_tax %>
+</p>
+
+<%= link_to 'Edit', edit_incoming_service_tax_path(@incoming_service_tax) %> |
+<%= link_to 'Back', incoming_service_taxes_path %>

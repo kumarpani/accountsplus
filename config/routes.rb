@@ -1,4 +1,5 @@
 Audioplus::Application.routes.draw do
+  resources :incoming_service_taxes
   resources :tasks
 
   post "bank/index"
