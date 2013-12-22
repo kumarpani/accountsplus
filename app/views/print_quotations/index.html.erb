@@ -65,6 +65,10 @@
         <td class="alignRight"><%= number_with_precision(item_detail.price, :precision => 2) %></td>
       </tr>
     <% end %>
+    <tr>
+      <td></td><td><strong>Total:</strong></td><td></td><td></td>
+      <td class="alignRight"><b><%= number_with_precision(@quotation.total_item_price, :precision => 2) %></b></td>
+    </tr>
     <% if @quotation.is_a_complete_invoice? %>
         <tr>
           <td></td>
@@ -84,14 +88,11 @@
           <td></td><td></td>
           <td class="alignRight"><%= @quotation.higher_education_cess %></td>
         </tr>
+        <tr>
+          <td></td><td><strong>Total with taxes:</strong></td><td></td><td></td>
+          <td class="alignRight"><b><%= number_with_precision(@quotation.total_price, :precision => 2) %></b></td>
+        </tr>
     <% end %>
-    <tr>
-      <td></td>
-      <td><b>Total:</b></td>
-      <td></td>
-      <td></td>
-      <td class="alignRight"><b><%= number_with_precision(@quotation.total_price, :precision => 2) %></b></td>
-    </tr>
     </tbody>
   </table>
   <br>
