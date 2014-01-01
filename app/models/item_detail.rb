@@ -1,6 +1,5 @@
 class ItemDetail < ActiveRecord::Base
   belongs_to :quotation
-  belongs_to :vendor, foreign_key: 'vendor_id', class_name: 'Client'
 
   before_save :update_price
 

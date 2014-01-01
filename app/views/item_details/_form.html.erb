@@ -32,18 +32,6 @@
       <%= f.label :days %>
       <%= f.text_field :days %>
     </li>
-    <li>
-      <%= f.label :vendor_id, 'Vendor' %>
-      <%= f.select(:vendor_id, options_for_select(get_all_sorted_companies, @item_detail.vendor_id.nil? ? 0 : @item_detail.vendor_id), { :include_blank => true }, prompt: 'Select Vendor') %>
-    </li>
-    <li>
-      <%= f.label :vendor_quantity, 'Vendor Quantity' %>
-      <%= f.text_field :vendor_quantity %>
-    </li>
-    <li>
-      <%= f.label :vendor_price, 'Vendor Price' %>
-      <%= f.text_field :vendor_price %>
-    </li>
   </ul>
 
   <div class="actions">

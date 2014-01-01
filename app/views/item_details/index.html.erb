@@ -123,26 +123,6 @@
       </tbody>
     </table>
   </div>
-
-    <div class="col-md-3 cold-md-offset-1">
-      <table class="table table-condensed gridData table-striped table-bordered col-md-3 col-md-offset-1">
-        <thead>
-        <tr>
-          <th><strong>Vendor</strong></th>
-          <th><strong>Quantity</strong></th>
-          <th><strong>Amount</strong></th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @item_details.each_with_index do |item_detail| %>
-          <tr>
-            <td><%= item_detail.vendor ? item_detail.vendor.company_name : '-' %></td>
-            <td width=20px; class="alignCenter"><%= item_detail.vendor ? item_detail.vendor_quantity : '-' %></td>
-            <td width=50px; class="alignRight"><%= item_detail.vendor ? item_detail.vendor_price : '' %></td>
-          </tr>
-        <% end %>
-        </table>
-    </div>
 </div>
 
 

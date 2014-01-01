@@ -5,7 +5,6 @@ class Quotation < ActiveRecord::Base
 
   validates_presence_of :event_date, :event_name
   before_save :update_invoice_details
-  after_save :update_vendor_payments
 
 
   serialize :tac
@@ -32,16 +31,6 @@ class Quotation < ActiveRecord::Base
 
   def is_proforma_invoice_being_raised?
     self.status == INVOICE && self.invoice_type == PROFORMA && self.status_changed?
-  end
-
-  def update_vendor_payments
-    if self.status == INVOICE && self.status_changed?
-      self.item_details.select {|i| !i.vendor_id.nil? }.group_by {|i| i.vendor_id}.each_pair {|vendor_id, items|
-        vendor_payment_record = Payment.find_or_create_by(quotation_id: self.id, client_id: vendor_id)
-        sum = items.reduce(0) { |sum, item_detail| sum + item_detail.vendor_price }
-        vendor_payment_record.update(amount: sum, payment_type: 'Debit', paid_on: DateTime.now, description: "#{self.event_date.strftime('%d/%m/%Y')} #{self.event_name}")
-      }
-    end
   end
 
   def update_invoice_details
