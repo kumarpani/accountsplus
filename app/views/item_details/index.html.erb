@@ -145,7 +145,7 @@
 
 <div class="col-md-3 cold-md-offset-4" style="float: right">
     <% if @quotation.status == INVOICE  && @quotation.payment_received_in_full.nil? %>
-      <p><%= button_to 'Mark As Payments Fully Received', controller: 'quotations', action: 'markAsPaymentsFullyReceived', :quotation_id => @quotation.id%></p>
+      <p><%= button_to 'Mark As Payments Fully Received', {controller: 'quotations', action: 'markAsPaymentsFullyReceived', :quotation_id => @quotation.id}, {:onclick => "return confirm('WARNING : Are you sure if full payments are made ?')"} %></p>
     <% end %>
 </div>
 
