@@ -8,7 +8,7 @@ class Ledger
       {date: q.event_date, description: q.event_name, credit: q.total_price, id:q.id }
     };
     @ledger_details = @ledger_details + @client.payments.keep_if { |p| p.item_detail.nil? || p.item_detail.quotation.status == INVOICE }.map { |p|
-      payment = {date: p.paid_on, description: (p.description || '') + (p.mode || '')}
+      payment = {date: p.paid_on, description: (p.description || '') + ' ' + (p.mode || '')}
       payment[p.payment_type.downcase.to_sym] = p.amount
       payment
     }
