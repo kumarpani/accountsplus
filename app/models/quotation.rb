@@ -22,7 +22,7 @@ class Quotation < ActiveRecord::Base
   end
 
   def is_a_complete_invoice?
-    self.status == INVOICE && self.invoice_type == INVOICE && self.status_changed?
+    self.status == INVOICE && self.invoice_type == INVOICE
   end
 
   def is_open_for_edits?
