@@ -33,6 +33,7 @@
       <th><strong>Name</strong></th>
       <th><strong>Event Total</strong></th>
       <th><strong>Service Tax</strong></th>
+      <th></th>
     </tr>
     </thead>
 
@@ -45,6 +46,7 @@
         <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
         <td class="alignRight"><%= get_total_price_by_quotation_id(b[:id]) %></td>
         <td class="alignRight"><%= b[:service_tax] %></td>
+        <td><%= link_to 'Show Details', quotation_item_details_url(b[:id]), class: 'info', :style => 'float:right'%></td>
       </tr>
     <% end %>
     <tr>
