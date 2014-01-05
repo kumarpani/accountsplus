@@ -1,0 +1,27 @@
+// Place all the styles related to the PrintBank controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@media print{
+
+  body
+  {
+    margin: 0 10mm 3mm 25mm;
+    padding: 0;
+  }
+
+
+  .printBankTable tr td{
+    padding: 2px 0 0 5px;
+    font-size: 11px;
+  }
+
+  .printBankTable tr th{
+    padding: 2px 0 0 5px;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+  }
+
+}
