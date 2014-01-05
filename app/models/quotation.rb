@@ -33,9 +33,14 @@ class Quotation < ActiveRecord::Base
     self.status == INVOICE && self.invoice_type == PROFORMA && self.status_changed?
   end
 
+  def is_invoice_being_raised?
+    is_a_complete_invoice? && self.status_changed?
+  end
+
+
   def update_invoice_details
-    self.service_tax = 0.0
-    if self.is_a_complete_invoice?
+    if self.is_invoice_being_raised?
+      self.service_tax = 0.0
       self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
       self.service_tax = ((total_price * 12.36)/100).floor
       self.invoice_raised_date = Date.today

@@ -31,7 +31,7 @@
   </div>
   <div >
     <p class="printLeft printRight">
-      Date: <%= display_date(@quotation.updated_at) %><br/>
+      Date: <%= display_date(self.get_display_date) %><br/>
       Event Date: <%= display_date(@quotation.event_date) %><br/>
       Venue: <%= @quotation.venue %>
     </p>
