@@ -65,6 +65,9 @@
 </tbody>
 </table>
 
+<%= link_to 'Print', :controller => 'print_incoming_service_taxes', :start_date => params[:start_date], :end_date => params[:end_date]%>
+
+
     <script>
         $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
         $('#end_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})

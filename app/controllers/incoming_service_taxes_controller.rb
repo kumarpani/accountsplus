@@ -4,13 +4,7 @@ class IncomingServiceTaxesController < ApplicationController
   # GET /incoming_service_taxes
   # GET /incoming_service_taxes.json
   def index
-    if !params[:start_date].to_s.empty? && !params[:end_date].to_s.empty?
-      @s_date = Date.parse(params[:start_date], '%d/%m/%Y')
-      @e_date = Date.parse(params[:end_date], '%d/%m/%Y')
-
-      @incoming_service_taxes = IncomingServiceTax.where('invoice_date >= ? AND invoice_date <= ?', @s_date, @e_date).order(:invoice_date)
-    end
-
+    @incoming_service_taxes = IncomingServiceTax.new.index(params[:start_date], params[:end_date])
   end
 
   # GET /incoming_service_taxes/1

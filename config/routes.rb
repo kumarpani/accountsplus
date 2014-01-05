@@ -10,6 +10,7 @@ Audioplus::Application.routes.draw do
 
   get "print_ledger/index"
   get "print_bank/index"
+  get "print_incoming_service_taxes/index"
 
   post "quotations/duplicate"
   post "quotations/markAsPaymentsFullyReceived"
