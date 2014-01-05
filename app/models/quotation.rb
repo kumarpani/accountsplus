@@ -75,6 +75,7 @@ class Quotation < ActiveRecord::Base
     @new_quotation.invoice_number=nil
     @new_quotation.event_date = DateTime.now.to_date
     @new_quotation.invoice_raised_date = nil
+    @new_quotation.payment_received_in_full = nil
     @new_quotation.notes = '<< This is DUPLICATE quotation. Please update details manually as necessary >> ' + self.notes.to_s
 
     @new_quotation.save
