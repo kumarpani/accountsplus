@@ -4,7 +4,7 @@ class IncomingServiceTax < ActiveRecord::Base
       @s_date = Date.parse(s_date, '%d/%m/%Y')
       @e_date = Date.parse(e_date, '%d/%m/%Y')
 
-      @bank = IncomingServiceTax.where('invoice_date >= ? AND invoice_date <= ?',  @s_date, @e_date).order(:invoice_date)
+      IncomingServiceTax.where('invoice_date >= ? AND invoice_date <= ?',  @s_date, @e_date).order(:invoice_date)
     end
   end
 
