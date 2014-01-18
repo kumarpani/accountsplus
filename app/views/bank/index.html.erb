@@ -29,6 +29,7 @@
     <tr>
       <th><strong>Sl No</strong></th>
       <th><strong>Invoice Number</strong></th>
+      <th><strong>Event Date</strong></th>
       <th><strong>Invoice Date</strong></th>
       <th><strong>Name</strong></th>
       <th><strong>Event Total</strong></th>
@@ -42,9 +43,10 @@
       <tr>
         <td><%= index + 1 %></td>
         <td><%= b[:invoice_number] %></td>
+        <td><%= display_date(b[:event_date]) %></td>
         <td><%= display_date(b[:invoice_raised_date]) %></td>
         <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
-        <td class="alignRight"><%= get_total_price_by_quotation_id(b[:id]) %></td>
+        <td class="alignRight"><%= get_total_item_price_by_quotation_id(b[:id]) %></td>
         <td class="alignRight"><%= b[:service_tax] %></td>
         <td><%= link_to 'Show Details', quotation_item_details_url(b[:id]), class: 'info', :style => 'float:right'%></td>
       </tr>

@@ -24,7 +24,7 @@
         <td class="alignCenter" width=90px;><%= b[:invoice_number] %></td>
         <td class="alignCenter" width=90px;><%= display_date(b[:invoice_raised_date]) %></td>
         <td width=300px;><%= get_company_name_by_client_id(b[:client_id]) %></td>
-        <td class="alignRight" width=100px;><%= get_total_price_by_quotation_id(b[:id]) %></td>
+        <td class="alignRight" width=100px;><%= get_total_item_price_by_quotation_id(b[:id]) %></td>
         <td class="alignRight" width=100px;><%= b[:service_tax] %></td>
       </tr>
   <% end %>
