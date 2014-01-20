@@ -55,8 +55,9 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
       <td><b> Total: </b></td>
-      <td class="alignRight"><b><%= @bank.sum(&:total_price) %></b></td>
+      <td class="alignRight"><b><%= @bank.sum(&:total_item_price) %></b></td>
       <td class="alignRight"><b><%= @bank.sum(&:service_tax) %></b></td>
     </tr>
 <% end %>
