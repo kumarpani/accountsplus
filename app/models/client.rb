@@ -6,7 +6,7 @@ class Client < ActiveRecord::Base
 
   def self.search(search)
     if search
-      find(:all, :conditions => ['company_name LIKE ? OR contact_person_name LIKE ? OR email LIKE ? OR phone_number ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
+      find(:all, :conditions => ['company_name ILIKE ? OR contact_person_name ILIKE ? OR email ILIKE ? OR phone_number ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%"])
     end
   end
 end
