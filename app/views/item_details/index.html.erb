@@ -41,17 +41,23 @@
         <td><%= @quotation.invoice_type %></td>
       </tr>
 
+        <% if @quotation.is_a_complete_invoice? %>
+          <tr>
+              <td><strong>Invoice Number:</strong></td>
+              <td><%= @quotation.invoice_number %></td>
+          </tr>
+        <% end %>
+
+      <tr>
+        <td><strong>Invoice Raised By:</strong></td>
+        <td><%= @quotation.invoice_raised_by %></td>
+      </tr>
+
       <tr>
         <td><strong>Notes:</strong></td>
         <td><%= @quotation.notes %></td>
       </tr>
 
-      <tr>
-        <% if @quotation.is_a_complete_invoice? %>
-            <td><strong>Invoice Number:</strong></td>
-            <td><%= @quotation.invoice_number %></td>
-        <% end %>
-      </tr>
     </table>
   </div>
 
