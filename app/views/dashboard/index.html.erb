@@ -1,7 +1,12 @@
 <div class="header">
   <h1>Dashboard</h1>
   <div class="headerAfter">
-    <h2><%=display_verbose_date(DateTime.now)%></h2>
+    <h2>
+      <% if user_signed_in? %>
+          <%= current_user.email %> |
+          <%=display_verbose_date(DateTime.now)%>
+      <% end %>
+    </h2>
   </div>
 </div>
 
