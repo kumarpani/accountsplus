@@ -56,7 +56,7 @@
     </thead>
 
     <tbody>
-    <% @quotation.item_details.each_with_index do |item_detail, index| %>
+    <% @quotation.item_details.sort_by{|i| i[:created_at]}.each_with_index do |item_detail, index| %>
       <tr>
         <td class="alignCenter"><%= index + 1 %></td>
         <td><%= item_detail.particulars %></td>
