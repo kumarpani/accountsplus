@@ -81,6 +81,11 @@ class QuotationsController < ApplicationController
     end
   end
 
+  def get_current_user
+    current_user.email
+  end
+
+
   private
   def load_client
     @client = params[:client_id].nil? ? nil : Client.find(params[:client_id]);
