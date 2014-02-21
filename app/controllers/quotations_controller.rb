@@ -50,6 +50,7 @@ class QuotationsController < ApplicationController
   # PATCH/PUT /quotations/1.json
   def update
     respond_to do |format|
+      quotation_params.merge!({:invoice_raised_by => current_user.email})
       if @quotation.update(quotation_params)
         format.html { redirect_to quotation_item_details_path(@quotation), notice: 'Quotation was successfully updated.' }
         format.json { head :no_content }
@@ -81,9 +82,6 @@ class QuotationsController < ApplicationController
     end
   end
 
-  def get_current_user
-    current_user.email
-  end
 
 
   private
