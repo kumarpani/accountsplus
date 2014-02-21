@@ -1,4 +1,6 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <i style="color: #ffffff;font-size: 12px; text-align: left"><%=current_user.email%></i>
+
   <div class="col-md-offset-2 col-md-8">
     <ul class="nav navbar-nav">
       <li>
@@ -14,7 +16,9 @@
         <li><%= link_to 'IST', :controller => 'incoming_service_taxes', :action => :index %></li>
 
     <% end %>
+
     </ul>
+
     <% if user_signed_in? %>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to 'Tasks', tasks_path %></li>
