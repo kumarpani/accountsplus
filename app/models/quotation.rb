@@ -44,12 +44,12 @@ class Quotation < ActiveRecord::Base
       self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
       self.service_tax = ((total_price * 12.36)/100).floor
       self.invoice_raised_date = Date.today
-      self.invoice_raised_by = self.get_current_user
+      self.invoice_raised_by = User.current_user.email
     end
 
     if is_proforma_invoice_being_raised?
       self.invoice_raised_date = Date.today
-      self.invoice_raised_by = self.get_current_user
+      self.invoice_raised_by = User.current_user.email
     end
 
   end
