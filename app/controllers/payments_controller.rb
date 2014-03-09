@@ -31,6 +31,8 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(payment_params)
+    User.current_user = current_user
+    @payment.payment_added_by = User.current_user.email
 
     respond_to do |format|
       if @payment.save
@@ -47,6 +49,9 @@ class PaymentsController < ApplicationController
   # PATCH/PUT /payments/1.json
   def update
     respond_to do |format|
+      User.current_user = current_user
+      @payment.payment_last_modified_by = User.current_user.email
+
       if @payment.update(payment_params)
         format.html { redirect_to payments_path, notice: 'Payment was successfully updated.' }
         format.json { head :no_content }

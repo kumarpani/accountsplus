@@ -21,6 +21,8 @@
     <th><strong>Paid on</strong></th>
     <th><strong>Amount</strong></th>
     <th><strong>Type</strong></th>
+    <th><strong>Added By</strong></th>
+    <th><strong>Last Modified By</strong></th>
     <th></th>
     <th></th>
     <!--<th></th>-->
@@ -36,7 +38,9 @@
       <td><%= display_date(payment.paid_on) %></td>
       <td class="alignRight"><%= payment.amount %></td>
       <td><%= payment.payment_type %></td>
-      <td><%= link_to 'Show Details', payment, class: :info %></td>
+      <td><%= payment.payment_added_by %></td>
+      <td><%= payment.payment_last_modified_by %></td>
+      <td><%= link_to 'Details', payment, class: :info %></td>
       <td><%= link_to 'Ledger', :controller => 'ledgers', :action => 'index', :client_id => payment.client.id, class: 'info' %>
       <!--<td><%= button_to 'X', payment, {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %></td>-->
 
