@@ -80,6 +80,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:client_id, :description, :mode, :paid_on, :amount, :payment_type)
+      params.require(:payment).permit(:client_id, :description, :mode, :paid_on, :amount, :payment_type, :payment_added_by, :payment_last_modified_by)
     end
 end
