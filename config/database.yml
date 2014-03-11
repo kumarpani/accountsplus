@@ -7,7 +7,7 @@ development:
     host: localhost
     adapter: postgresql
     encoding: unicode
-    database: audiopluslocaldb
+    database: avcreationslocaldb
     pool: 5
     password:
 # Warning: The database defined as "test" will be erased and
@@ -16,12 +16,12 @@ development:
 test:
     adapter: postgresql
     encoding: unicode
-    database: audioplus
+    database: avcreationslocaldb
     pool: 5
     password:
 production:
     adapter: postgresql
     encoding: unicode
-    database: audioplus
+    database: avcreationslocaldb
     pool: 5
     password:
