@@ -100,6 +100,8 @@
     <% end %>
     </tbody>
   </table>
+  <p class="alignRight">Rupees: <%= @quotation.total_price.to_i.rupees%></p>
+
   <br>
 
   <% if params[:print_bank] == 'true' && @quotation.is_a_complete_invoice?%>
