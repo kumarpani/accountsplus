@@ -41,7 +41,11 @@
 <br/>
 
 <% if @quotation.is_a_complete_invoice? %>
-  <p style="float: left; font-size: 11px;"> Service Tax Number : AAQFA7787ESD001 </p>
+  <p class="printTaxDetails">
+    IT PAN No : AAQFA7787E<br/>
+    SERVICE TAX NO : AAQFA7787ESD001<br/>
+    SERVICE CATEGORY : Event Management Service.
+  </p>
 <%end%>
 
 <div class="">
@@ -137,5 +141,8 @@
     <% end %>
   <% end %>
   <br>
-  <p style="float: left; font-size: 11px;">For AV Creations</p>
+  <p class="printLeft">
+    For AV Creations<br/>
+    Authorized Signatory
+  </p>
 </div>
