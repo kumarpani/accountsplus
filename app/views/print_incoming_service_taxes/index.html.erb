@@ -11,7 +11,8 @@
     <th><strong>Sl No</strong></th>
     <th><strong>Invoice Number</strong></th>
     <th><strong>Invoice Date</strong></th>
-    <th><strong>Name</strong></th>
+    <th><strong>Company Name</strong></th>
+    <th><strong>Description</strong></th>
     <th><strong>Event Total</strong></th>
     <th><strong>Service Tax</strong></th>
   </tr>
@@ -21,14 +22,20 @@
   <% @incoming_service_taxes.each_with_index do |i, index| %>
       <tr>
         <td class="alignCenter" width=40px;><%= index + 1 %></td>
-        <td class="alignCenter" width=90px;><%= i[:invoice_number] %></td>
+        <td class="alignCenter" width=65px;><%= i[:invoice_number] %></td>
         <td class="alignCenter" width=90px;><%= display_date(i[:invoice_date]) %></td>
-        <td width=300px;><%= i[:description] %></td>
-        <td class="alignRight" width=100px;><%= i[:event_total] %></td>
-        <td class="alignRight" width=100px;><%= i[:service_tax] %></td>
+        <td class="alignLeft" width=250px;>
+          <% if !i.client_id.nil? %>
+              <%= get_company_name_by_client_id(i.client_id) %>
+          <% end %>
+        </td>
+        <td width=170px;><%= i[:description] %></td>
+        <td class="alignRight" width=90px;><%= i[:event_total] %></td>
+        <td class="alignRight" width=90px;><%= i[:service_tax] %></td>
       </tr>
   <% end %>
   <tr>
+    <td></td>
     <td></td>
     <td></td>
     <td></td>
