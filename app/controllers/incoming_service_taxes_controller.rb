@@ -69,6 +69,6 @@ class IncomingServiceTaxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def incoming_service_tax_params
-      params.require(:incoming_service_tax).permit(:invoice_number, :invoice_date, :description, :event_total, :service_tax)
+      params.require(:incoming_service_tax).permit(:invoice_number, :invoice_date, :description, :event_total, :service_tax, :client_id)
     end
 end

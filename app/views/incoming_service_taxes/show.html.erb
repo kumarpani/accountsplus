@@ -11,6 +11,14 @@
 </p>
 
 <p>
+  <strong>Company Name:</strong>
+  <% if !@incoming_service_tax.client_id.nil? %>
+      <%= get_company_name_by_client_id(@incoming_service_tax.client_id) %>
+<% end %>
+
+</p>
+
+<p>
   <strong>Description:</strong>
   <%= @incoming_service_tax.description %>
 </p>
