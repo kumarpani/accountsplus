@@ -20,6 +20,10 @@
     <%= f.date_select :invoice_date %>
   </div>
   <div class="field">
+    <%= f.label :client_id %>
+    <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @incoming_service_tax.client_id.nil? ? 1 : @incoming_service_tax.client_id)) %>
+  </div>
+  <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
