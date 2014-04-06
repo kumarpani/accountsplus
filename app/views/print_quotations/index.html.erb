@@ -1,12 +1,11 @@
 <div class="printLeft"><%= image_tag 'ap.jpg', :width => '100%'%></div>
 <div>
   <p class="printLeft printRight">
-    #6, 2rd Cross<br/>
-    C.S.I. Compound, Mission Road<br/>
-    Bangalore - 5600 27<br/>
-    Tel.: 4205 8284 / 4205 8479<br/>
-    Cell: 96864 54272/3/4<br/>
-    Email: avcreations12@gmail.com
+    <%=ApplicationHelper::ADD_LINE1%><br/>
+    <%=ApplicationHelper::ADD_LINE2%><br/>
+    <%=ApplicationHelper::ADD_LINE3%><br/>
+    Tele Fax: <%=ApplicationHelper::TELEPHONE%>, Cell: <%=ApplicationHelper::MOBILE%><br/>
+    Email: <%=ApplicationHelper::EMAIL%>
   </p>
 </div>
 <p><hr class="hr"></p>
@@ -108,26 +107,26 @@
     <strong style="font-size: 11px">Account Details for NEFT or RTGS</strong>
       <table class="printInvoiceTable table-bordered" style="width: 100%">
       <tbody>
-      <tr>
-        <td>Account Name</td>
-        <td>AV Creations</td>
-      </tr>
-      <tr>
-        <td>Name of the Bank & Branch</td>
-        <td>Indian Bank, Cubbonpet, Bangalore</td>
-      </tr>
-      <tr>
-        <td>Bank Account Number</td>
-        <td>860986003</td>
-      </tr>
-      <tr>
-        <td>Type of Account</td>
-        <td>Current Account</td>
-      </tr>
-      <tr>
-        <td>IFSC Code</td>
-        <td>IDIB 000C107</td>
-      </tr>
+          <tr>
+            <td>Account Name</td>
+            <td><%=ApplicationHelper::BANK_ACC_NAME%></td>
+          </tr>
+          <tr>
+            <td>Name of the Bank & Branch</td>
+            <td><%=ApplicationHelper::BANK_NAME_BRANCH%></td>
+          </tr>
+          <tr>
+            <td>Bank Account Number</td>
+            <td><%=ApplicationHelper::BANK_ACC_NUM%></td>
+          </tr>
+          <tr>
+            <td>Type of Account</td>
+            <td><%=ApplicationHelper::BANK_TYPE_OF_ACC%></td>
+          </tr>
+          <tr>
+            <td>IFSC Code</td>
+            <td><%=ApplicationHelper::BANK_IFSC%></td>
+          </tr>
       </tbody>
     </table>
   <%end%>
@@ -144,7 +143,7 @@
   <% end %>
   <br>
   <p class="printLeft">
-    For AV Creations<br/><br/><br/></br>
+    For <%=ApplicationHelper::NAME%><br/><br/><br/></br>
     Authorized Signatory
   </p>
 </div>
