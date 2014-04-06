@@ -13,7 +13,6 @@
       <% if user_signed_in? %>
         <li><%= link_to 'Calendar', :controller => 'calendar', :action => :index %></li>
         <li><%= link_to 'Clients', clients_path %></li>
-        <li><%= link_to 'Payments', payments_path %></li>
         <li><%= link_to 'Bank', :controller => 'bank', :action => :index %></li>
         <li><%= link_to 'IST', :controller => 'incoming_service_taxes', :action => :index %></li>
 
