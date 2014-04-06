@@ -32,8 +32,16 @@
   <div >
     <p class="printLeft printRight">
       Date: <%= display_date(self.get_display_date) %><br/>
+
       Event Date: <%= display_date(@quotation.event_date) %><br/>
-      Venue: <%= @quotation.venue %>
+
+      <% if !@quotation.venue.nil? %>
+          Venue: <%= @quotation.venue %><br/>
+      <% end %>
+
+      <% if !@quotation.order_placed_by.nil? %>
+          Order Placed By: <%= @quotation.order_placed_by %>
+      <% end %>
     </p>
   </div>
 </div>
