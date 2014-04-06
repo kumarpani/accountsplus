@@ -1,11 +1,11 @@
 <div class="printLeft"><%= image_tag 'ap.jpg', :width => '63%'%></div>
 <div>
   <p class="printLeft printRight">
-    U-26, 3rd Cross, Pipeline,<br/>
-    Krishnappa Block, Malleshwaram,<br/>
-    Bangalore - 5600 03<br/>
-    Tele Fax: 080 23567619, Cell: 98802 73773<br/>
-    Email: audioplus.events@gmail.com
+    <%=ApplicationHelper::ADD_LINE1%><br/>
+    <%=ApplicationHelper::ADD_LINE2%><br/>
+    <%=ApplicationHelper::ADD_LINE3%><br/>
+    Tele Fax: <%=ApplicationHelper::TELEPHONE%>, Cell: <%=ApplicationHelper::MOBILE%><br/>
+    Email: <%=ApplicationHelper::EMAIL%>
   </p>
 </div>
 <p><hr class="hr"></p>
@@ -104,27 +104,27 @@
       <tbody>
       <tr>
         <td>Account Name</td>
-        <td>Audioplus</td>
+        <td><%=ApplicationHelper::BANK_ACC_NAME%></td>
       </tr>
       <tr>
         <td>Name of the Bank & Branch</td>
-        <td>HDFC Bank Ltd, Seshadripuram</td>
+        <td><%=ApplicationHelper::BANK_NAME_BRANCH%></td>
       </tr>
       <tr>
         <td>Bank Account Number</td>
-        <td>03672020000887</td>
+        <td><%=ApplicationHelper::BANK_ACC_NUM%></td>
       </tr>
       <tr>
         <td>Type of Account</td>
-        <td>Current Account</td>
+        <td><%=ApplicationHelper::BANK_TYPE_OF_ACC%></td>
       </tr>
       <tr>
         <td>IFSC Code</td>
-        <td>HDFC0000367</td>
+        <td><%=ApplicationHelper::BANK_IFSC%></td>
       </tr>
       <tr>
         <td>MICR Code</td>
-        <td>560240018</td>
+        <td><%=ApplicationHelper::BANK_MIRC%></td>
       </tr>
       </tbody>
     </table>
@@ -142,7 +142,7 @@
   <% end %>
   <br>
   <p class="printLeft">
-    For Audio Plus<br/><br/><br/></br>
+    For <%=ApplicationHelper::NAME%><br/><br/><br/></br>
     Authorized Signatory
   </p>
 </div>

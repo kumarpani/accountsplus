@@ -1,5 +1,25 @@
 module ApplicationHelper
 
+  # Application Title and Name
+  TITLE = 'Audioplus'
+  NAME = 'Audio Plus'
+
+  # Address
+  ADD_LINE1 = 'U-26, 3rd Cross, Pipeline,'
+  ADD_LINE2 = 'Krishnappa Block, Malleshwaram,'
+  ADD_LINE3 = 'Bangalore - 5600 03'
+  TELEPHONE = '080 23567619'
+  MOBILE = '98802 73773'
+  EMAIL = 'audioplus.events@gmail.com'
+
+  #Bank Details
+  BANK_ACC_NAME = 'Audioplus'
+  BANK_NAME_BRANCH = 'HDFC Bank Ltd, Seshadripuram'
+  BANK_ACC_NUM = '03672020000887'
+  BANK_TYPE_OF_ACC = 'Current Account'
+  BANK_IFSC = 'HDFC0000367'
+  BANK_MIRC = '560240018'
+
   def display_verbose_date(date)
     date.to_date.strftime('%d %B, %Y')
   end
