@@ -14,7 +14,13 @@ class Quotation < ActiveRecord::Base
   end
 
   def total_price
-    self.service_tax + self.total_item_price
+    get_rounded_off_total(self.service_tax + self.total_item_price)
+  end
+
+  def get_rounded_off_total(total)
+    floor_value = total.floor
+    fraction = total - floor_value
+    fraction >= 0.20 ? (floor_value+1) : floor_value;
   end
 
   def total_item_price
@@ -42,7 +48,7 @@ class Quotation < ActiveRecord::Base
     if self.is_invoice_being_raised?
       self.service_tax = 0.0
       self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
-      self.service_tax = ((total_price * 12.36)/100).floor
+      self.service_tax = ((total_item_price * 12.36)/100).round(2)
       self.invoice_raised_date = Date.today
       self.invoice_raised_by = User.current_user.email
     end
@@ -62,13 +68,6 @@ class Quotation < ActiveRecord::Base
     ((self.service_tax * 1)/100).round(2)
   end
 
-  def service_tax_at_12_percent
-    self.service_tax - self.education_cess - self.higher_education_cess
-  end
-
-  def method_missing(method_name, *arguments, &block)
-
-  end
 
   def clone_with_associations
     @new_quotation = self.dup
