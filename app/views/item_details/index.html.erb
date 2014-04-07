@@ -116,7 +116,7 @@
       <% if @quotation.is_a_complete_invoice? %>
         <tr>
           <td></td><td>Service Tax @ 12%</td><td></td><td></td>
-          <td class="alignRight"><%= @quotation.service_tax_at_12_percent %></td>
+          <td class="alignRight"><%= @quotation.service_tax %></td>
         </tr>
           <tr>
             <td></td><td>Education Cess @ 2% (On S.T)</td><td></td><td></td>
@@ -127,7 +127,7 @@
             <td class="alignRight"><%= @quotation.higher_education_cess %></td>
         </tr>
           <tr>
-            <td></td><td><strong>Total with taxes:</strong></td><td></td><td></td>
+            <td></td><td><strong>Total with taxes (rounded off):</strong></td><td></td><td></td>
             <td class="alignRight"><b><%= @quotation.total_price %></b></td>
           </tr>
 
