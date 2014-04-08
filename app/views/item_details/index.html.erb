@@ -98,7 +98,7 @@
           <td width=300px;><%= item_detail.particulars %></td>
           <td width=10px; class="alignCenter"><%= item_detail.quantity %></td>
           <td width=10px; class="alignCenter"><%= item_detail.days %></td>
-          <td width=50px; class="alignRight"><%= item_detail.price %></td>
+          <td width=50px; class="alignRight"><%= number_with_precision(item_detail.price, :precision => 2) %></td>
 
           <% if @quotation.is_open_for_edits? %>
             <td width=60px; class="alignCenter"><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit', :style => 'color:white'%></td>
@@ -109,14 +109,14 @@
       <% end %>
       <tr>
         <td></td><td><strong>Total:</strong></td><td></td><td></td>
-        <td class="alignRight"><b><%= @quotation.total_item_price %></b></td>
+        <td class="alignRight"><b><%= number_with_precision(@quotation.total_item_price, :precision => 2) %></b></td>
       </tr>
 
 
       <% if @quotation.is_a_complete_invoice? %>
         <tr>
           <td></td><td>Service Tax @ 12%</td><td></td><td></td>
-          <td class="alignRight"><%= @quotation.service_tax %></td>
+          <td class="alignRight"><%= @quotation.service_tax_at_12_percent %></td>
         </tr>
           <tr>
             <td></td><td>Education Cess @ 2% (On S.T)</td><td></td><td></td>
@@ -128,7 +128,7 @@
         </tr>
           <tr>
             <td></td><td><strong>Total with taxes (rounded off):</strong></td><td></td><td></td>
-            <td class="alignRight"><b><%= @quotation.total_price %></b></td>
+            <td class="alignRight"><b><%= number_with_precision(@quotation.total_price, :precision => 2) %></b></td>
           </tr>
 
       <% end %>
