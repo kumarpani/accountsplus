@@ -5,7 +5,7 @@
   </b>
 <% end %>
 
-<table class="printBankTable table-bordered table-striped">
+<table class="printServiceTaxesTable table-bordered table-striped">
   <thead>
   <tr>
     <th><strong>Sl No</strong></th>
@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-  <% @bank.each_with_index do |b, index| %>
+  <% @service_tax.each_with_index do |b, index| %>
       <tr>
         <td class="alignCenter" width=40px;><%= index + 1 %></td>
         <td class="alignCenter" width=90px;><%= b[:invoice_number] %></td>
@@ -33,8 +33,8 @@
     <td></td>
     <td></td>
     <td><b> Total: </b></td>
-    <td class="alignRight"><b><%= @bank.sum(&:total_item_price) %></b></td>
-    <td class="alignRight"><b><%= @bank.sum(&:service_tax) %></b></td>
+    <td class="alignRight"><b><%= @service_tax.sum(&:total_item_price) %></b></td>
+    <td class="alignRight"><b><%= @service_tax.sum(&:service_tax) %></b></td>
   </tr>
 
   </tbody>

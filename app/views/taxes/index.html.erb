@@ -1,0 +1,18 @@
+<div class="header">
+  <h1>Taxes</h1>
+  <div class="headerAfter">
+    <h2>
+      <% if user_signed_in? %>
+          <%= current_user.email %> |
+          <%=display_verbose_date(DateTime.now)%>
+      <% end %>
+    </h2>
+  </div>
+</div>
+
+  <ul class="nav navbarTaxes">
+
+      <li><%= link_to 'Service Taxes', :controller => 'service_taxes', :action => :index %></li>
+      <li><%= link_to 'Incoming Service Taxes', :controller => 'incoming_service_taxes', :action => :index %></li>
+
+  </ul>

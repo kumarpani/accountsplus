@@ -2,14 +2,17 @@ AVCreations::Application.routes.draw do
   resources :incoming_service_taxes
   resources :tasks
 
-  post "bank/index"
-  get "bank/index"
+  post "service_taxes/index"
+  get "service_taxes/index"
+
+  get "taxes/index"
+
 
   post "activity/index"
   get "activity/index"
 
   get "print_ledger/index"
-  get "print_bank/index"
+  get "print_service_taxes/index"
   get "print_incoming_service_taxes/index"
 
   post "quotations/duplicate"
