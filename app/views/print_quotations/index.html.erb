@@ -106,7 +106,7 @@
   <p class="printRight">Rupees: <%= @quotation.total_price.to_i.rupees%></p>
   <br>
 
-  <% if params[:print_bank] == 'true' && @quotation.is_a_complete_invoice?%>
+  <% if params[:print_service_taxes] == 'true' && @quotation.is_a_complete_invoice?%>
     <strong style="font-size: 11px">Account Details for NEFT or RTGS</strong>
       <table class="printInvoiceTable table-bordered" style="width: 100%">
       <tbody>

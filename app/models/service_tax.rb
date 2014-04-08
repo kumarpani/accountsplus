@@ -1,4 +1,4 @@
-class Bank
+class ServiceTax
 
   def index(s_date, e_date)
       if !s_date.to_s.empty? && !e_date.to_s.empty?

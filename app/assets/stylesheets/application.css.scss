@@ -41,6 +41,15 @@
 border-bottom: solid #026890;
 }
 
+.navbarTaxes > li > a{
+  font-size:13px;
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: baseline;
+  color: #000000;
+
+}
+
 .navbar-inverse .navbar-nav > li > a{
   color: #FFF;
 }

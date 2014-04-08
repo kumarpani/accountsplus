@@ -1,5 +1,5 @@
 <div class="header">
-  <h1>Bank</h1>
+  <h1>Service Taxes</h1>
 
   <div class="headerAfter">
     <h2><%= display_verbose_date(DateTime.now) %></h2>
@@ -14,7 +14,7 @@
 <% end %>
 
 
-<% if !@bank.nil? %>
+<% if !@service_tax.nil? %>
 
   <br>
   <p> Service tax details between :
@@ -39,7 +39,7 @@
     </thead>
 
     <tbody>
-    <% @bank.each_with_index do |b, index| %>
+    <% @service_tax.each_with_index do |b, index| %>
       <tr>
         <td><%= index + 1 %></td>
         <td><%= b[:invoice_number] %></td>
@@ -57,14 +57,14 @@
       <td></td>
       <td></td>
       <td><b> Total: </b></td>
-      <td class="alignRight"><b><%= @bank.sum(&:total_item_price) %></b></td>
-      <td class="alignRight"><b><%= @bank.sum(&:service_tax) %></b></td>
+      <td class="alignRight"><b><%= @service_tax.sum(&:total_item_price) %></b></td>
+      <td class="alignRight"><b><%= @service_tax.sum(&:service_tax) %></b></td>
     </tr>
 <% end %>
 </tbody>
 </table>
 
-<%= link_to 'Print', :controller => 'print_bank', :start_date => params[:start_date], :end_date => params[:end_date]%>
+<%= link_to 'Print', :controller => 'print_service_taxes', :start_date => params[:start_date], :end_date => params[:end_date]%>
 
 
 <script>

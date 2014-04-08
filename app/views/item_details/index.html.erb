@@ -150,7 +150,7 @@
    <p><%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %><p>
 
     <% if @quotation.is_a_complete_invoice? %>
-      <p><%= link_to 'Print with Bank', quotation_print_quotations_path(@quotation, :print_bank=>'true'), class: 'default' %></p>
+      <p><%= link_to 'Print with Bank', quotation_print_quotations_path(@quotation, :print_service_taxes=>'true'), class: 'default' %></p>
     <% end %>
 
 </div>
