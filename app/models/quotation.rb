@@ -27,6 +27,11 @@ class Quotation < ActiveRecord::Base
     item_details.to_a.sum(&:price)
   end
 
+  def service_tax_at_12_percent
+    ((self.total_item_price * 12)/100).round(2)
+  end
+
+
   def is_a_complete_invoice?
     self.status == INVOICE && self.invoice_type == INVOICE
   end
