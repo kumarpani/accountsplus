@@ -6,6 +6,8 @@ AVCreations::Application.routes.draw do
   get "service_taxes/index"
 
   get "taxes/index"
+  post "tds/index"
+  get "tds/index"
 
 
   post "activity/index"
@@ -14,6 +16,8 @@ AVCreations::Application.routes.draw do
   get "print_ledger/index"
   get "print_service_taxes/index"
   get "print_incoming_service_taxes/index"
+  get "print_tds/index"
+
 
   post "quotations/duplicate"
   post "quotations/markAsPaymentsFullyReceived"

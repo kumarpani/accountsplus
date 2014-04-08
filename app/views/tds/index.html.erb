@@ -1,0 +1,64 @@
+<div class="header">
+  <h1>TDS</h1>
+
+  <div class="headerAfter">
+    <h2><%= display_verbose_date(DateTime.now) %></h2>
+  </div>
+</div>
+
+<p>Please enter both start and end dates:</p>
+<%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
+    <%= text_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: 'Start Date' %>
+    <%= text_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: 'End Date' %>
+    <%= submit_tag 'Search', name: nil  %>
+<% end %>
+
+
+<% if !@tds.nil? %>
+
+    <br>
+    <p> TDS between :
+      <b>
+        <%= display_verbose_date(params[:start_date]) %>  &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= display_verbose_date(params[:end_date]) %>
+      </b>
+    </p>
+
+    <table class="table gridData table-condensed table-striped table-bordered">
+      <thead>
+      <tr>
+        <th><strong>Sl No</strong></th>
+        <th><strong>Client Name</strong></th>
+        <th><strong>Paid On</strong></th>
+        <th><strong>Amount</strong></th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @tds.each_with_index do |t, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= get_company_name_by_client_id(t[:client_id]) %></td>
+            <td><%= display_date(t[:paid_on]) %></td>
+            <td class="alignRight"><%= t[:amount] %></td>
+          </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><b> Total: </b></td>
+        <td class="alignRight"><b><%= @tds.sum(&:amount) %></b></td>
+      </tr>
+<% end %>
+</tbody>
+</table>
+
+<%= link_to 'Print', :controller => 'print_tds', :start_date => params[:start_date], :end_date => params[:end_date]%>
+
+
+<script>
+    $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+    $('#end_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+</script>
+
