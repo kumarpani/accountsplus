@@ -25,11 +25,11 @@
     <th width=155px;><strong>Company Name</strong></th>
     <th width=195px;><strong>Contact Person</strong></th>
     <th width=150px;><strong>Ph Number</strong></th>
-    <th width=207px;><strong>Email</strong></th>
+    <th width=100px;><strong>Email</strong></th>
     <th width=85px;></th>
     <th width=70px;></th>
     <th width=60px;></th>
-    <!--<th width=30px;></th>-->
+    <th width=70px;></th>
   </tr>
   </thead>
 
@@ -43,8 +43,7 @@
       <td><%= link_to 'Quotations', quotations_path(:client_id => client.id, :status => [PENDING, CONFIRMED, CLOSED]), class: 'info' %></td>
       <td><%= link_to 'Invoices', quotations_path(:client_id => client.id, :status => [INVOICE]), class: 'info' %></td>
       <td><%= link_to 'Ledger', client_ledgers_path(client), class: 'info' %></td>
-      <!--<td><%= button_to 'X', client, {:onclick => "return confirm('WARNING : Are you sure to DELETE this Client ? All Quotations and payment details would be lost! You will not be able to UnDo this')", method: :delete, :class => 'deleteBtn'} %></td>-->
-
+      <td><%= link_to 'Payments', payment_path(client), class: 'info' %></td>
     </tr>
   <% end %>
   </tbody>

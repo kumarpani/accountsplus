@@ -40,6 +40,8 @@ class IncomingServiceTaxesController < ApplicationController
   # PATCH/PUT /incoming_service_taxes/1
   # PATCH/PUT /incoming_service_taxes/1.json
   def update
+    authorize @incoming_service_tax
+
     respond_to do |format|
       if @incoming_service_tax.update(incoming_service_tax_params)
         format.html { redirect_to @incoming_service_tax, notice: 'Incoming service tax was successfully updated.' }
@@ -54,6 +56,8 @@ class IncomingServiceTaxesController < ApplicationController
   # DELETE /incoming_service_taxes/1
   # DELETE /incoming_service_taxes/1.json
   def destroy
+    authorize @incoming_service_tax
+
     @incoming_service_tax.destroy
     respond_to do |format|
       format.html { redirect_to incoming_service_taxes_url }

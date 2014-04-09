@@ -25,6 +25,8 @@ class PaymentsController < ApplicationController
 
   # GET /payments/1/edit
   def edit
+    authorize @payment
+
   end
 
   # POST /payments
