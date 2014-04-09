@@ -7,7 +7,7 @@
           <%= link_to 'Ledger', :controller => 'ledgers', :action => 'index', :client_id => params[:client_id]%>
            &nbsp; | &nbsp;
       <%end%>
-      <%= link_to '+ Add New Payment', new_payment_path, class: :new %>
+      <%= link_to '+ Add New Payment', new_payment_path(client_id: params[:client_id]), class: :new %>
     </h2>
   </div>
 </div>
@@ -15,15 +15,13 @@
 <table class="table gridData table-striped">
   <thead>
   <tr>
-    <th><strong>Client</strong></th>
+    <th><strong>Paid on</strong></th>
     <th><strong>Description</strong></th>
     <th><strong>Mode</strong></th>
-    <th><strong>Paid on</strong></th>
     <th><strong>Amount</strong></th>
     <th><strong>Type</strong></th>
     <th><strong>Added By</strong></th>
     <th><strong>Last Modified By</strong></th>
-    <th></th>
     <th></th>
     <!--<th></th>-->
   </tr>
@@ -32,16 +30,14 @@
   <tbody>
   <% @payments.each do |payment| %>
     <tr>
-      <td><%= payment.client.company_name %></td>
+      <td><%= display_date(payment.paid_on) %></td>
       <td><%= payment.description %></td>
       <td><%= payment.mode %></td>
-      <td><%= display_date(payment.paid_on) %></td>
       <td class="alignRight"><%= payment.amount %></td>
       <td><%= payment.payment_type %></td>
       <td><%= payment.payment_added_by %></td>
       <td><%= payment.payment_last_modified_by %></td>
       <td><%= link_to 'Details', payment, class: :info %></td>
-      <td><%= link_to 'Ledger', :controller => 'ledgers', :action => 'index', :client_id => payment.client.id, class: 'info' %>
       <!--<td><%= button_to 'X', payment, {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %></td>-->
 
     </tr>

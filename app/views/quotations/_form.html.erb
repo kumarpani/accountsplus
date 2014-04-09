@@ -19,7 +19,7 @@
     <ul class="field_container">
       <li>
         <%= f.label :client_id %>
-        <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @quotation.client.nil? ? 1 : @quotation.client.id)) %>
+        <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @quotation.client.nil? ? 1 : @quotation.client.id), :include_blank => true) %>
       </li>
       <li>
         <%= f.label :order_placed_by %>
@@ -47,7 +47,7 @@
       </li>
       <li>
         <%= f.label :invoice_type %>
-        <%= f.select(:invoice_type, options_for_select([INVOICE, PROFORMA], @quotation.invoice_type.nil? ? INVOICE : @quotation.invoice_type)) %>
+        <%= f.select(:invoice_type, options_for_select([INVOICE, PROFORMA], @quotation.invoice_type.nil? ? 1 : @quotation.invoice_type), :include_blank => true) %>
       </li>
       <li>
         <%= f.label :status %>
