@@ -29,6 +29,8 @@ class QuotationsController < ApplicationController
 
   # GET /quotations/1/edit
   def edit
+    authorize @quotation
+
   end
 
   # POST /quotations
@@ -75,6 +77,8 @@ class QuotationsController < ApplicationController
   # DELETE /quotations/1
   # DELETE /quotations/1.json
   def destroy
+    authorize @quotation
+
     @quotation.destroy
     respond_to do |format|
       format.html { redirect_to quotations_path(:client_id => @quotation.client_id) }

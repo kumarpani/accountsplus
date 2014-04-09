@@ -33,5 +33,11 @@
   <%= @incoming_service_tax.service_tax %>
 </p>
 
-<%= link_to 'Edit', edit_incoming_service_tax_path(@incoming_service_tax) %> |
+<% if policy(@incoming_service_tax).update? %>
+    <%= link_to 'Edit', edit_incoming_service_tax_path(@incoming_service_tax), class: :info %>
+<%end%>
+<% if policy(@incoming_service_tax).destroy? %>
+    | <%= link_to 'Destroy', @incoming_service_tax, method: :delete, data: { confirm: 'Are you sure?' }, class: :info %>
+<%end%>
+
 <%= link_to 'Back', incoming_service_taxes_path %>

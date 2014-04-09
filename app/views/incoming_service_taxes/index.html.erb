@@ -51,8 +51,7 @@
         <td><%= i.description %></td>
         <td class="alignRight"><%= i.event_total %></td>
         <td class="alignRight"><%= i.service_tax %></td>
-        <td><%= link_to 'Edit', edit_incoming_service_tax_path(i) %></td>
-        <td><%= link_to 'Destroy', i, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Details', i, class: :info %></td>
       </tr>
     <% end %>
     <tr>
