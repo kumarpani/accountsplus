@@ -48,6 +48,8 @@ class PaymentsController < ApplicationController
   # PATCH/PUT /payments/1
   # PATCH/PUT /payments/1.json
   def update
+    authorize @payment
+
     respond_to do |format|
       User.current_user = current_user
       @payment.payment_last_modified_by = User.current_user.email
@@ -65,6 +67,8 @@ class PaymentsController < ApplicationController
   # DELETE /payments/1
   # DELETE /payments/1.json
   def destroy
+    authorize @payment
+
     @payment.destroy
     respond_to do |format|
       format.html { redirect_to payments_url }

@@ -35,6 +35,7 @@ end
 
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'devise'
+gem 'pundit'
 gem 'bootstrap-datepicker-rails'
 gem 'simple_calendar', '~> 0.1.9'
 gem 'rails_12factor', group: :production

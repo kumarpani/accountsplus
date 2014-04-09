@@ -49,8 +49,13 @@
 </table>
 
 
-<%= link_to 'Edit', edit_payment_path(@payment), class: :edit%> |
-<%= link_to 'Back', payments_path %>
 <p>
-<%= button_to 'X', payment_path(), {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %>
+  <% if policy(@payment).update? %>
+    <%= link_to 'Edit', edit_payment_path(@payment), class: :edit%>
+  <%end%>
+  <% if policy(@payment).destroy? %>
+      <%= button_to 'X', payment_path(), {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %>
+  <%end%>
 </p>
+
+<%= link_to 'Back', payments_path(:client_id => @payment.client_id) %>

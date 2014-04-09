@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
     Thread.current[:current_user]
   end
 
+  def is_admin?
+    role == 'ADMIN'
+  end
+
 end
