@@ -20,7 +20,6 @@ class ClientsController < ApplicationController
 
   # GET /clients/1/edit
   def edit
-    authorize @client
   end
 
   # POST /clients

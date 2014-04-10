@@ -6,10 +6,6 @@ class ClientPolicy
     @client = client
   end
 
-  def edit?
-    user.is_admin?
-  end
-
   def destroy?
     user.is_admin?
   end
