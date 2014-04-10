@@ -43,7 +43,7 @@
       <td><%= link_to 'Quotations', quotations_path(:client_id => client.id, :status => [PENDING, CONFIRMED, CLOSED]), class: 'info' %></td>
       <td><%= link_to 'Invoices', quotations_path(:client_id => client.id, :status => [INVOICE]), class: 'info' %></td>
       <td><%= link_to 'Ledger', client_ledgers_path(client), class: 'info' %></td>
-      <td><%= link_to 'Payments', payment_path(client), class: 'info' %></td>
+      <td><%= link_to 'Payments', payments_path(:client_id => client.id), class: 'info' %></td>
     </tr>
   <% end %>
   </tbody>
