@@ -7,7 +7,7 @@ class ClientPolicy
   end
 
   def edit?
-    false
+    user.is_admin?
   end
 
   def destroy?
