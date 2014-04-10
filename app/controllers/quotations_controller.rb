@@ -29,8 +29,6 @@ class QuotationsController < ApplicationController
 
   # GET /quotations/1/edit
   def edit
-    authorize @quotation
-
   end
 
   # POST /quotations

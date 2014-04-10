@@ -6,10 +6,6 @@ class QuotationPolicy
     @quotation = quotation
   end
 
-  def edit?
-    false
-  end
-
   def destroy?
     user.is_admin?
   end
