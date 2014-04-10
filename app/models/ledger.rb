@@ -36,7 +36,7 @@ class Ledger
       @ledger_details = @ledger_details.select{|l| l[:date] >= @st_date and l[:date] <= @ed_date}
 
     else
-      @ledger_details = @ledger_details.sort_by {|l| l[:date]}
+      @ledger_details = @ledger_details.select {|l| l[:date]}
     end
 
   end
