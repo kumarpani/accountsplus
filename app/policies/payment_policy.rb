@@ -27,7 +27,7 @@ class PaymentPolicy
   end
 
   def edit?
-    false
+    user.is_admin?
   end
 
   def destroy?
