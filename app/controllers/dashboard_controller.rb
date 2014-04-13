@@ -1,5 +1,4 @@
 class DashboardController < ApplicationController
-  before_filter :authenticate_user!
 
   def index
     @tasks = Task.all.sort_by {|t| t[:created_at]}
