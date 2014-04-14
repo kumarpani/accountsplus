@@ -6,7 +6,7 @@ class ItemDetailsController < ApplicationController
   # GET /item_details.json
   def index
     @item_groups = @quotation.item_details.group_by { |g| g.item_group_name }
-    @item_groups['Others'] = @item_groups.delete('')
+    @item_groups['Others:'] = @item_groups.delete('')
   end
 
   # GET /item_details/1

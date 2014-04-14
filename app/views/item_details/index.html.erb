@@ -94,13 +94,13 @@
       <tbody>
 
 
-      <% @item_groups.each do |item_group_name, items| %>
-          <%if item_group_name != 'Others' %>
-            <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => item_group_name, :items => items} %>
+      <% @item_groups.each_with_index do |(item_group_name, items), index| %>
+          <%if item_group_name != 'Others:' %>
+            <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => item_group_name, :items => items, :index => index} %>
           <% end %>
       <%end%>
-      <%unless @item_groups['Others'].nil? %>
-        <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => 'Others', :items => @item_groups['Others'] } %>
+      <%unless @item_groups['Others:'].nil? %>
+        <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => 'Others:', :items => @item_groups['Others:'], :index => @item_groups.count } %>
       <% end %>
 
       <tr>

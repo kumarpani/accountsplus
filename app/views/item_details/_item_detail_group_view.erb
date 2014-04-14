@@ -1,6 +1,7 @@
 <!--Show Group Header only if there are groups-->
 <% if @item_groups.count > 1%>
     <tr>
+      <td><strong>(<%=(index + 65).chr%>)</strong></td>
       <td colspan="7"><strong>
         <%=item_group_name%>
       </strong></td>
@@ -11,10 +12,14 @@
 
     <tr>
       <td width=10px; class="alignCenter"><%= index + 1 %></td>
-      <td width=300px;><%= item.particulars %></td>
+      <td width=400px;><%= item.particulars %></td>
       <td width=10px; class="alignCenter"><%= item.quantity %></td>
       <td width=10px; class="alignCenter"><%= item.days %></td>
-      <td width=50px; class="alignRight"><%= number_with_precision(item.price, :precision => 2) %></td>
+      <td width=50px; class="alignRight">
+        <%if item.price != 0 %>
+            <%= number_with_precision(item.price, :precision => 2) %>
+        <%end%>
+      </td>
 
       <% if @quotation.is_open_for_edits? %>
           <td width=60px; class="alignCenter"><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item), class: 'edit', :style => 'color:white'%></td>
