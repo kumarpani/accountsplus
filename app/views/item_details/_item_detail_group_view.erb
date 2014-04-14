@@ -1,0 +1,25 @@
+<!--Show Group Header only if there are groups-->
+<% if @item_groups.count > 1%>
+    <tr>
+      <td colspan="7"><strong>
+        <%=item_group_name%>
+      </strong></td>
+    </tr>
+<%end%>
+
+<% items.sort_by {|s| s[:created_at]}.each_with_index do |item, index| %>
+
+    <tr>
+      <td width=10px; class="alignCenter"><%= index + 1 %></td>
+      <td width=300px;><%= item.particulars %></td>
+      <td width=10px; class="alignCenter"><%= item.quantity %></td>
+      <td width=10px; class="alignCenter"><%= item.days %></td>
+      <td width=50px; class="alignRight"><%= number_with_precision(item.price, :precision => 2) %></td>
+
+      <% if @quotation.is_open_for_edits? %>
+          <td width=60px; class="alignCenter"><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item), class: 'edit', :style => 'color:white'%></td>
+          <td width=50px; class="alignCenter"><%= button_to 'X', [@quotation, item], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", :method => :delete, :class => 'deleteBtn'} %></td>
+      <% end %>
+
+    </tr>
+<% end %>

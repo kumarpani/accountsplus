@@ -21,6 +21,11 @@
       <%= f.select :particulars, options_for_select(get_all_sorted_particulars, @item_detail.particulars), { :include_blank=>true }, { :class => 'editable-select'}%>
     </li>
     <li>
+      <%= f.label :item_group_name%>
+      <%= f.select :item_group_name, options_for_select(get_all_sorted_item_groups, @item_detail.item_group_name), { :include_blank=>true }, { :class => 'editable-select'}%>
+    </li>
+
+    <li>
       <%= f.label :quantity %>
       <%= f.text_field :quantity %>
     </li>
