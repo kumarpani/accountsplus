@@ -92,21 +92,17 @@
       </thead>
 
       <tbody>
-      <% @item_details.sort_by{|i| i[:created_at]}.each_with_index do |item_detail, index| %>
-        <tr>
-          <td width=10px; class="alignCenter"><%= index + 1 %></td>
-          <td width=300px;><%= item_detail.particulars %></td>
-          <td width=10px; class="alignCenter"><%= item_detail.quantity %></td>
-          <td width=10px; class="alignCenter"><%= item_detail.days %></td>
-          <td width=50px; class="alignRight"><%= number_with_precision(item_detail.price, :precision => 2) %></td>
 
-          <% if @quotation.is_open_for_edits? %>
-            <td width=60px; class="alignCenter"><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item_detail), class: 'edit', :style => 'color:white'%></td>
-            <td width=50px; class="alignCenter"><%= button_to 'X', [@quotation, item_detail], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", :method => :delete, :class => 'deleteBtn'} %></td>
+
+      <% @item_groups.each do |item_group_name, items| %>
+          <%if item_group_name != 'Others' %>
+            <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => item_group_name, :items => items} %>
           <% end %>
-
-        </tr>
+      <%end%>
+      <%unless @item_groups['Others'].nil? %>
+        <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => 'Others', :items => @item_groups['Others'] } %>
       <% end %>
+
       <tr>
         <td></td><td><strong>Total:</strong></td><td></td><td></td>
         <td class="alignRight"><b><%= number_with_precision(@quotation.total_item_price, :precision => 2) %></b></td>

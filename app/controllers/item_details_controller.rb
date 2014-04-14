@@ -5,7 +5,8 @@ class ItemDetailsController < ApplicationController
   # GET /item_details
   # GET /item_details.json
   def index
-    @item_details = @quotation.item_details
+    @item_groups = @quotation.item_details.group_by { |g| g.item_group_name }
+    @item_groups['Others'] = @item_groups.delete('')
   end
 
   # GET /item_details/1
@@ -79,6 +80,6 @@ class ItemDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_detail_params
-      params.require(:item_detail).permit(:particulars, :unit_price, :quantity, :days)
+      params.require(:item_detail).permit(:particulars, :unit_price, :quantity, :days, :item_group_name)
     end
 end
