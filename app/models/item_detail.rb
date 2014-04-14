@@ -3,17 +3,25 @@ class ItemDetail < ActiveRecord::Base
 
   before_save :update_price
 
-  validates_presence_of :particulars, :unit_price
+  validates_presence_of :particulars
 
   def update_price
-    if self.days.nil?
-      self.days = 1
-    end
-    if self.quantity.nil?
-      self.quantity = 1
+    days_final =  1
+    if !self.days.nil?
+      days_final = self.days
     end
 
-    self.price = self.unit_price * self.quantity * self.days
+    quantity_final = 1
+    if !self.quantity.nil?
+      quantity_final = self.quantity
+    end
+
+    unit_price_final = 0
+    if !self.unit_price.nil?
+      unit_price_final = self.unit_price
+    end
+
+    self.price = unit_price_final * quantity_final * days_final
 
   end
 
