@@ -40,8 +40,8 @@
       <td><%= client.contact_person_name %></td>
       <td><%= client.phone_number %></td>
       <td><%= client.email %></td>
-      <td><%= link_to 'Quotations', quotations_path(:client_id => client.id, :status => [PENDING, CONFIRMED, CLOSED]), class: 'info' %></td>
-      <td><%= link_to 'Invoices', quotations_path(:client_id => client.id, :status => [INVOICE]), class: 'info' %></td>
+      <td><%= link_to 'Quotations', quotations_path(:client_id => client.id, :status => [STATUS_PENDING, STATUS_CONFIRMED, STATUS_CLOSED]), class: 'info' %></td>
+      <td><%= link_to 'Invoices', quotations_path(:client_id => client.id, :status => [STATUS_INVOICE]), class: 'info' %></td>
       <td><%= link_to 'Ledger', client_ledgers_path(client), class: 'info' %></td>
       <td><%= link_to 'Payments', payments_path(:client_id => client.id), class: 'info' %></td>
     </tr>

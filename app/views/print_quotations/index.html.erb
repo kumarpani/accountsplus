@@ -16,7 +16,7 @@
 
 <div class="">
   <div class="printLeft">
-    <% if @quotation.is_a_complete_invoice? %>
+    <% if @quotation.is_a_complete_tax_invoice? %>
       Invoice No: <%= @quotation.invoice_number %>
       <br/>
     <% else %>
@@ -47,7 +47,7 @@
 </div>
 <br/>
 
-<% if @quotation.is_a_complete_invoice? %>
+<% if @quotation.is_a_complete_tax_invoice? %>
     <p class="printTaxDetails">Service Tax Number : AKAPP9970EST001 </p>
 <%end%>
 
@@ -77,7 +77,7 @@
       <td></td><td><strong>Total:</strong></td><td></td><td></td>
       <td class="alignRight"><b><%= number_with_precision(@quotation.total_item_price, :precision => 2) %></b></td>
     </tr>
-    <% if @quotation.is_a_complete_invoice? %>
+    <% if @quotation.is_a_complete_tax_invoice? %>
         <tr>
           <td></td>
           <td>Service Tax @ 12%</td>
@@ -106,7 +106,7 @@
   <p class="printRight">Rupees: <%= @quotation.total_price.to_i.rupees%></p>
   <br>
 
-  <% if params[:print_service_taxes] == 'true' && @quotation.is_a_complete_invoice?%>
+  <% if params[:print_service_taxes] == 'true' && @quotation.is_a_complete_tax_invoice?%>
     <strong style="font-size: 11px">Account Details for NEFT or RTGS</strong>
       <table class="printInvoiceTable table-bordered" style="width: 100%">
       <tbody>
@@ -138,7 +138,7 @@
     </table>
   <%end%>
 
-  <% if !@quotation.is_a_complete_invoice? %>
+  <% if !@quotation.is_a_complete_tax_invoice? %>
     <% if !@quotation.tac.nil? %>
       <ul class="tac">
         <strong>Terms and Conditions:</strong>

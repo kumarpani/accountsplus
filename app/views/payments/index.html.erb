@@ -2,7 +2,7 @@
   <div class="headerAfter">
     <h2>
       <% !if params[:client_id] %>
-          <%= link_to 'Invoices', :controller => 'quotations', :action => 'index', :client_id => params[:client_id], :status => INVOICE %>
+          <%= link_to 'Invoices', :controller => 'quotations', :action => 'index', :client_id => params[:client_id], :status => STATUS_INVOICE %>
           &nbsp;|&nbsp;
           <%= link_to 'Ledger', :controller => 'ledgers', :action => 'index', :client_id => params[:client_id]%>
            &nbsp; | &nbsp;

@@ -47,14 +47,14 @@
       </li>
       <li>
         <%= f.label :invoice_type %>
-        <%= f.select(:invoice_type, options_for_select([INVOICE, PROFORMA], @quotation.invoice_type.nil? ? 1 : @quotation.invoice_type), :include_blank => true) %>
+        <%= f.select(:invoice_type, options_for_select([INVOICE_TAX, INVOICE_PROFORMA, INVOICE_TAX_EXEMPTED], @quotation.invoice_type.nil? ? 1 : @quotation.invoice_type), :include_blank => true) %>
       </li>
       <li>
         <%= f.label :status %>
         <% if @quotation.status.nil? %>
-            <%= f.select(:status, options_for_select([PENDING, CONFIRMED, CLOSED], @quotation.status.nil? ? PENDING : @quotation.status)) %>
+            <%= f.select(:status, options_for_select([STATUS_PENDING, STATUS_CONFIRMED, STATUS_CLOSED], @quotation.status.nil? ? STATUS_PENDING : @quotation.status)) %>
         <%else%>
-            <%= f.select(:status, options_for_select([PENDING, CONFIRMED, INVOICE, CLOSED], @quotation.status.nil? ? PENDING : @quotation.status)) %>
+            <%= f.select(:status, options_for_select([STATUS_PENDING, STATUS_CONFIRMED, STATUS_INVOICE, STATUS_CLOSED], @quotation.status.nil? ? STATUS_PENDING : @quotation.status)) %>
         <%end%>
       </li>
       <li>

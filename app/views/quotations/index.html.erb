@@ -3,7 +3,7 @@
     <%= if params[:status].nil? then
           'Quotations'
         else
-          params[:status].include?(INVOICE) ? 'Invoices' : 'Quotations'
+          params[:status].include?(STATUS_INVOICE) ? 'Invoices' : 'Quotations'
         end %>
     <% if !@client.nil? %>
         for <i><%= @client.company_name %></i>
