@@ -6,14 +6,12 @@ class ItemDetail < ActiveRecord::Base
   validates_presence_of :particulars
 
   def update_price
-    days_final =  1
-    if !self.days.nil?
-      days_final = self.days
+    if self.days.nil?
+      self.days = 1
     end
 
-    quantity_final = 1
-    if !self.quantity.nil?
-      quantity_final = self.quantity
+    if self.quantity.nil?
+      self.quantity = 1
     end
 
     unit_price_final = 1
@@ -21,7 +19,7 @@ class ItemDetail < ActiveRecord::Base
       unit_price_final = self.unit_price
     end
 
-    self.price = unit_price_final * quantity_final * days_final
+    self.price = unit_price_final * self.quantity * self.days
 
   end
 

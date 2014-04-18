@@ -13,56 +13,76 @@ class Quotation < ActiveRecord::Base
     event_date.to_datetime
   end
 
-  def total_price
-    get_rounded_off_total(self.service_tax + self.total_item_price)
+  def total_item_price
+    item_details.to_a.sum(&:price)
   end
 
-  def get_rounded_off_total(total)
+  def total_price
+    total = self.service_tax + self.total_item_price
     floor_value = total.floor
     fraction = total - floor_value
     fraction >= 0.20 ? (floor_value+1) : floor_value;
   end
 
-  def total_item_price
-    item_details.to_a.sum(&:price)
-  end
-
   def service_tax_at_12_percent
-    ((self.total_item_price * 12)/100).round(2)
-  end
-
-
-  def is_a_complete_invoice?
-    self.status == INVOICE && self.invoice_type == INVOICE
-  end
-
-  def is_open_for_edits?
-    self.status != INVOICE || self.invoice_type == PROFORMA
-  end
-
-  def is_proforma_invoice_being_raised?
-    self.status == INVOICE && self.invoice_type == PROFORMA && self.status_changed?
+    if self.invoice_type == INVOICE_TAX
+      ((self.total_item_price * 12)/100).round(2)
+    else
+      0.0
+    end
   end
 
   def is_invoice_being_raised?
-    is_a_complete_invoice? && self.status_changed?
+    self.status == STATUS_INVOICE && self.status_changed?
+  end
+
+  def is_proforma_invoice_being_raised?
+    self.status == STATUS_INVOICE && self.invoice_type == INVOICE_PROFORMA && self.status_changed?
+  end
+
+  def is_tax_invoice_being_raised?
+    self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX && self.status_changed?
+  end
+
+  def is_tax_exempted_invoice_being_raised?
+    self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX_EXEMPTED && self.status_changed?
+  end
+
+
+  def is_a_complete_tax_invoice?
+    self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX
+  end
+
+  def is_a_complete_tax_exempted_invoice?
+    self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX_EXEMPTED
+  end
+
+  def is_a_complete_proforma_invoice?
+    self.status == STATUS_INVOICE && self.invoice_type == INVOICE_PROFORMA
+  end
+
+
+
+  def is_open_for_edits?
+    self.status != STATUS_INVOICE || self.invoice_type == INVOICE_PROFORMA
   end
 
 
   def update_invoice_details
-    if self.is_invoice_being_raised?
+
+    if is_invoice_being_raised?
       self.service_tax = 0.0
+      self.invoice_raised_date = Date.today
+      self.invoice_raised_by = User.current_user.email
+    end
+
+    if self.is_tax_invoice_being_raised? || self.is_tax_exempted_invoice_being_raised?
       self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
+    end
+
+    if is_tax_invoice_being_raised?
       self.service_tax = ((total_item_price * 12.36)/100).round(2)
-      self.invoice_raised_date = Date.today
-      self.invoice_raised_by = User.current_user.email
     end
-
-    if is_proforma_invoice_being_raised?
-      self.invoice_raised_date = Date.today
-      self.invoice_raised_by = User.current_user.email
-    end
-
   end
 
   def education_cess
@@ -76,7 +96,7 @@ class Quotation < ActiveRecord::Base
 
   def clone_with_associations
     @new_quotation = self.dup
-    @new_quotation.status = PENDING
+    @new_quotation.status = STATUS_PENDING
     @new_quotation.event_name = '[DUPLICATE] ' + self.event_name
     @new_quotation.invoice_number=nil
     @new_quotation.event_date = DateTime.now.to_date

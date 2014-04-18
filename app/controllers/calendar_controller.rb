@@ -1,6 +1,6 @@
 class CalendarController < ApplicationController
   def index
-    valid_quotations = Quotation.where.not(status: CLOSED)
+    valid_quotations = Quotation.where.not(status: STATUS_CLOSED)
     @all_quotations = Array.new
     valid_quotations.each { |quotation|
       quotation.days = quotation.days || 1;

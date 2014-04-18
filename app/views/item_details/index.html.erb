@@ -48,12 +48,12 @@
         <td><%= @quotation.invoice_type %></td>
       </tr>
 
-        <% if @quotation.is_a_complete_invoice? %>
+      <% if @quotation.is_a_complete_tax_invoice? || @quotation.is_a_complete_tax_exempted_invoice?%>
           <tr>
               <td><strong>Invoice Number:</strong></td>
               <td><%= @quotation.invoice_number %></td>
           </tr>
-        <% end %>
+      <% end %>
 
       <tr>
         <td><strong>Invoice Raised By:</strong></td>
@@ -109,7 +109,7 @@
       </tr>
 
 
-      <% if @quotation.is_a_complete_invoice? %>
+      <% if @quotation.is_a_complete_tax_invoice? || @quotation.is_a_complete_tax_exempted_invoice?%>
         <tr>
           <td></td><td>Service Tax @ 12%</td><td></td><td></td>
           <td class="alignRight"><%= @quotation.service_tax_at_12_percent %></td>
@@ -145,7 +145,7 @@
 <div class="col-md-4 cold-md-offset-1">
    <p><%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %><p>
 
-    <% if @quotation.is_a_complete_invoice? %>
+    <% if @quotation.is_a_complete_tax_invoice? %>
       <p><%= link_to 'Print with Bank', quotation_print_quotations_path(@quotation, :print_service_taxes=>'true'), class: 'default' %></p>
     <% end %>
 
@@ -153,7 +153,7 @@
 
 
 <div class="col-md-3 cold-md-offset-4" style="float: right">
-    <% if @quotation.status == INVOICE  && @quotation.payment_received_in_full.nil? %>
+    <% if @quotation.status == STATUS_INVOICE  && @quotation.payment_received_in_full.nil? %>
       <p><%= button_to 'Mark As Payments Fully Received', {controller: 'quotations', action: 'markAsPaymentsFullyReceived', :quotation_id => @quotation.id}, {:onclick => "return confirm('WARNING : Are you sure if full payments are made ?')"} %></p>
     <% end %>
 </div>

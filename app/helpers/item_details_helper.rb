@@ -9,9 +9,9 @@ module ItemDetailsHelper
   end
 
   def get_header_for_quotation(quotation)
-    if quotation.is_a_complete_invoice?
-        'Tax Invoice'
-    elsif quotation.invoice_type == PROFORMA && @quotation.status == INVOICE
+    if quotation.is_a_complete_tax_invoice? || quotation.is_a_complete_tax_exempted_invoice?
+        'Invoice'
+    elsif quotation.is_a_complete_proforma_invoice?
         'Proforma Invoice'
     else
         'Quotation'
