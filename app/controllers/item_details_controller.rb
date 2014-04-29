@@ -9,6 +9,20 @@ class ItemDetailsController < ApplicationController
     @item_groups['Others:'] = @item_groups.delete('')
   end
 
+  def print
+
+    respond_to do |format|
+      format.pdf do
+        pdf = PrintQuotation.new(@quotation.id)
+        send_data pdf.render, filename: "quotation.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      end
+    end
+  end
+
+
+
   # GET /item_details/1
   # GET /item_details/1.json
   def show
