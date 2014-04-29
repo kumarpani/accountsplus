@@ -39,6 +39,8 @@ gem 'pundit'
 gem 'bootstrap-datepicker-rails'
 gem 'simple_calendar', '~> 0.1.9'
 gem 'rails_12factor', group: :production
+gem 'pdf-core'
+gem 'prawn'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -2,6 +2,8 @@ AVCreations::Application.routes.draw do
   resources :incoming_service_taxes
   resources :tasks
 
+  get "item_details/print"
+
   post "service_taxes/index"
   get "service_taxes/index"
 
