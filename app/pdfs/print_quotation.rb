@@ -13,12 +13,10 @@ class PrintQuotation < PrintBase
     logo_and_address()
     title(get_header_for_print_quotation(q))
     quotation_details(q)
-
     if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
       service_tax_details
     end
     items_table(q)
-    display_event_table
   end
 
   def logo_and_address
@@ -50,23 +48,23 @@ class PrintQuotation < PrintBase
     #grid([1.2, 2.83], [1.2, 2]).show
 
     grid([1.2,0], [1.2, 0.7]).bounding_box do
-      if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
-        text("Invoice No: #{q.invoice_number}")
-      end
-      text("To: #{q.client.company_name}", style: :bold)
-      text(q.client.address)
+    if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
+      text("Invoice No: #{q.invoice_number}")
+    end
+    text("To: #{q.client.company_name}", style: :bold)
+    text(q.client.address)
     end
 
     grid([1.2, 2.83], [1.2, 2]).bounding_box do
-      text("Date: #{get_display_date(q).to_date.strftime('%d/%m/%Y')}", align: :right)
-      text("Event Date: #{q.event_date.strftime('%d/%m/%Y')}", align: :right)
+    text("Date: #{get_display_date(q).to_date.strftime('%d/%m/%Y')}", align: :right)
+    text("Event Date: #{q.event_date.strftime('%d/%m/%Y')}", align: :right)
 
-      if !q.venue.nil?
-        text("Venue: #{q.venue}", align: :right)
-      end
-      if !q.order_placed_by.nil?
-        text("Order Placed By: #{q.order_placed_by}", align: :right)
-      end
+    if !q.venue.nil?
+      text("Venue: #{q.venue}", align: :right)
+    end
+    if !q.order_placed_by.nil?
+      text("Order Placed By: #{q.order_placed_by}", align: :right)
+    end
     end
   end
 
@@ -114,11 +112,5 @@ class PrintQuotation < PrintBase
     table(data, :header => true, :cell_style => {:border_width => 0.2, :border_color => 'bdc3c7'})
 
   end
-
-
-  def display_event_table
-      text "\nPlease work #{ApplicationHelper::ADD_LINE1}"
-  end
-
 
 end
