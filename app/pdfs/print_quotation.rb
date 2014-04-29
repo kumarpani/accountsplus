@@ -2,11 +2,6 @@ class PrintQuotation < PrintBase
 
   include PrintQuotationsHelper
 
-  TABLE_WIDTHS = [20, 100, 30, 60]
-  TABLE_HEADERS = ["ID", "Name", "Date", "User"]
-
-
-
   def initialize(id)
     super()
     q = Quotation.find(id)
@@ -39,7 +34,7 @@ class PrintQuotation < PrintBase
   end
 
   def title(title)
-    draw_text title, size: 14, style: :bold_italic, :at => [160, 670]
+    draw_text title, size: 14, style: :bold_italic, :at => [170, 670]
   end
 
   def quotation_details(q)
@@ -57,9 +52,9 @@ class PrintQuotation < PrintBase
     text(q.client.address)
   end
 
-    grid([1.2, 2.83], [1.2, 2]).bounding_box do
-      text("Date: #{get_display_date(q).to_date.strftime('%d/%m/%Y')}", align: :right)
-      text("Event Date: #{q.event_date.strftime('%d/%m/%Y')}", align: :right)
+    grid([1.2, 2.7], [1.2, 2]).bounding_box do
+    text("Date: #{get_display_date(q).to_date.strftime('%d/%m/%Y')}", align: :right)
+    text("Event Date: #{q.event_date.strftime('%d/%m/%Y')}", align: :right)
 
       if !q.venue.nil?
         text("Venue: #{q.venue}", align: :right)
@@ -78,7 +73,13 @@ class PrintQuotation < PrintBase
   end
 
   def items_table(q)
-    data =  [['Sl. No.', 'Particulars', 'Quantity', 'Days', 'Price']]
+    data =  [[
+                {:content => 'Sl. No.', :font_style => :bold, :align => :center},
+                {:content => 'Particulars', :font_style => :bold, :align => :center},
+                {:content => 'Quantity', :font_style => :bold, :align => :center},
+                {:content => 'Days', :font_style => :bold, :align => :center},
+                {:content => 'Price', :font_style => :bold, :align => :center}
+             ]]
 
     @item_groups = q.item_details.group_by { |g| g.item_group_name }
     @item_groups['Others:'] = @item_groups.delete('')
@@ -86,34 +87,34 @@ class PrintQuotation < PrintBase
     @item_groups.each_with_index do |(item_group_name, items), index|
 
       if item_group_name != 'Others:'
-        data += ([[{:content =>"#{item_group_name}", :colspan =>5}]])
+        data += ([[{:content => "(#{(index+65).chr})", :font_style => :bold, :align => :center}, {:content =>"#{item_group_name}", :colspan =>5, :font_style => :bold}]])
         items.sort_by {|s| s[:created_at]}.each_with_index do |item, index|
-          data+=[[index+1, item.particulars, item.quantity, item.days, item.price == 0 ? "" : item.price]]
+          data+=[[{:content => "#{index+1}", :align => :center}, item.particulars, {:content => "#{item.quantity}", :align => :center}, {:content => "#{item.days}", :align => :center}, {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
         end
       end
 
       if item_group_name == 'Others:'
         if @item_groups.size > 1
-          data += ([[{:content =>"Others:", :colspan =>5}]])
+          data += ([[{:content => "(#{(index+65).chr})", :font_style => :bold, :align => :center}, {:content =>"Others:", :colspan =>5, :font_style => :bold}]])
         end
 
         @item_groups['Others:'].sort_by {|s| s[:created_at]}.each_with_index do |item, index|
-          data+=[[index+1, item.particulars, item.quantity, item.days, item.price == 0 ? "" : item.price]]
+          data+=[[{:content => "#{index+1}", :align => :center}, item.particulars, {:content => "#{item.quantity}", :align => :center}, {:content => "#{item.days}", :align => :center}, {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
         end
       end
     end
 
-    data += [["", "Total:", "", "", "#{ApplicationController.helpers.number_with_precision(q.total_item_price, :precision => 2)}"]]
+    data += [["", {:content => "Total:", :font_style => :bold}, "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.total_item_price, :precision => 2)}", :font_style => :bold, :align => :right}]]
 
     if q.is_a_complete_tax_invoice? || q.is_a_complete_tax_exempted_invoice?
-      data += [["", "Service Tax @ 12%", "", "", "#{q.service_tax_at_12_percent}"]]
-      data += [["", "Education Cess @ 2% (On S.T)", "", "", "#{q.education_cess}"]]
-      data += [["", "Secondary & Higher Education Cess @ 1% (On S.T)", "", "", "#{q.higher_education_cess}"]]
-      data += [["", "Total with taxes (rounded off):", "", "", "#{ApplicationController.helpers.number_with_precision(q.total_price, :precision => 2)}"]]
+      data += [["", "Service Tax @ 12%", "", "", {:content => "#{q.service_tax_at_12_percent}", :align => :right}]]
+      data += [["", "Education Cess @ 2% (On S.T)", "", "", {:content => "#{q.education_cess}", :align => :right}]]
+      data += [["", "Secondary & Higher Education Cess @ 1% (On S.T)", "", "", {:content => "#{q.higher_education_cess}", :align => :right}]]
+      data += [["", {:content => "Total with taxes (rounded off):", :font_style => :bold}, "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.total_price, :precision => 2)}", :font_style => :bold, :align => :right}]]
     end
 
 
-    table(data, :header => true, :cell_style => {:border_width => 0.2, :border_color => 'bdc3c7'})
+    table(data, :column_widths => {0 => 40,1 => 250,2 => 50,3 => 50,4 => 60}, :header => true, :cell_style => {:border_width => 0.2, :border_color => 'bdc3c7', :height => 18})
 
   end
 
