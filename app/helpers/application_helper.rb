@@ -20,6 +20,10 @@ module ApplicationHelper
   BANK_IFSC = 'HDFC0000367'
   BANK_MIRC = '560240018'
 
+  #Service Tax Number
+  SERVICE_TAX_NUMBER = 'AKAPP9970EST001'
+
+
   def display_verbose_date(date)
     date.to_date.strftime('%d %B, %Y')
   end
