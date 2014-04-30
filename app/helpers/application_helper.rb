@@ -21,7 +21,10 @@ module ApplicationHelper
   BANK_MIRC = '560240018'
 
   #Service Tax Number
+  PAN_NUMBER = ''
   SERVICE_TAX_NUMBER = 'AKAPP9970EST001'
+  SERVICE_CATEGORY = ''
+
 
 
   def display_verbose_date(date)
