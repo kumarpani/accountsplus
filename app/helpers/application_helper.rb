@@ -22,7 +22,7 @@ module ApplicationHelper
 
   #Service Tax Number
   PAN_NUMBER = 'AAQFA7787E'
-  SERVICE_TAX_NUMBER = 'AKAPP9970EST001'
+  SERVICE_TAX_NUMBER = 'AAQFA7787ESD001'
   SERVICE_CATEGORY = 'Event Management Service.'
 
   def display_verbose_date(date)
