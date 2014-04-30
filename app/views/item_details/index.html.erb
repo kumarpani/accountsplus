@@ -143,14 +143,22 @@
 <hr style="border-width: 2px 0 0;">
 
 <div class="col-md-4 cold-md-offset-1">
-   <p><%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %><p>
+
+  <p>
+    <%= link_to 'Print PDF', :controller => 'item_details', :action => 'print', :format => 'pdf', :quotation_id => @quotation.id%>
+
+    <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
+      <p><%= link_to 'Print PDF With Bank', :controller => 'item_details', :action => 'print', :format => 'pdf', :quotation_id => @quotation.id, :bank => true%></p>
+  <% end %>
+
+  </p>
+
+  <p>
+    <%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %><p>
 
     <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
       <p><%= link_to 'Print with Bank', quotation_print_quotations_path(@quotation, :print_service_taxes=>'true'), class: 'default' %></p>
     <% end %>
-
-  <p>
-    <%= link_to 'Print PDF', :controller => 'item_details', :action => 'print', :format => 'pdf', :quotation_id => @quotation.id%>
   </p>
 
 </div>

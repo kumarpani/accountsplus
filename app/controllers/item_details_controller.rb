@@ -13,7 +13,7 @@ class ItemDetailsController < ApplicationController
 
     respond_to do |format|
       format.pdf do
-        pdf = PrintQuotation.new(@quotation.id)
+        pdf = PrintQuotation.new(@quotation.id, params[:bank])
         send_data pdf.render, filename: "quotation.pdf",
                   type: "application/pdf",
                   disposition: "inline"
