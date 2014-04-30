@@ -4,9 +4,9 @@
 
   <div class="headerAfter">
     <h2>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @quotation.client.id, :company_name => @quotation.client.company_name %>
-          &nbsp; | &nbsp;
+      &nbsp; | &nbsp;
       <%= link_to 'Ledger', client_ledgers_path(@quotation.client) %>
     </h2>
 
@@ -16,30 +16,30 @@
 
 <div class="row">
   <div class="col-md-5">
-      <table class="table table-condensed table-striped table-bordered col-md-offset-0">
+    <table class="table table-condensed table-striped table-bordered col-md-offset-0">
+      <tr>
+        <td><strong>Client name & Address:</strong></td>
+        <td><%= @quotation.client.company_name %>
+          <br><%= @quotation.client.address %></td>
+      </tr>
+      <tr>
+        <td><strong>Event name and Venue:</strong></td>
+        <td><%= @quotation.event_name %>
+          <br><%= @quotation.venue %></td>
+      </tr>
+      <tr>
+        <td><strong>Duration:</strong></td>
+        <td><b><%= display_date(@quotation.event_date) %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
+      </tr>
+      <% if !@quotation.order_placed_by.nil? %>
           <tr>
-            <td><strong>Client name & Address:</strong></td>
-            <td><%= @quotation.client.company_name %>
-              <br><%= @quotation.client.address %></td>
+            <td><strong>Order Placed By:</strong></td>
+            <td><%= @quotation.order_placed_by%></td>
           </tr>
-          <tr>
-            <td><strong>Event name and Venue:</strong></td>
-            <td><%= @quotation.event_name %>
-              <br><%= @quotation.venue %></td>
-          </tr>
-          <tr>
-            <td><strong>Duration:</strong></td>
-            <td><b><%= display_date(@quotation.event_date) %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
-          </tr>
-        <% if !@quotation.order_placed_by.nil? %>
-            <tr>
-              <td><strong>Order Placed By:</strong></td>
-              <td><%= @quotation.order_placed_by%></td>
-            </tr>
-        <% end %>
+      <% end %>
 
-      </table>
-    </div>
+    </table>
+  </div>
 
   <div class="col-md-5 cold-md-offset-0">
     <table class="table table-condensed table-striped table-bordered col-md-5 col-md-offset-0">
@@ -50,8 +50,8 @@
 
       <% if @quotation.is_a_complete_tax_invoice? || @quotation.is_a_complete_tax_exempted_invoice?%>
           <tr>
-              <td><strong>Invoice Number:</strong></td>
-              <td><%= @quotation.invoice_number %></td>
+            <td><strong>Invoice Number:</strong></td>
+            <td><%= @quotation.invoice_number %></td>
           </tr>
       <% end %>
 
@@ -96,11 +96,11 @@
 
       <% @item_groups.each_with_index do |(item_group_name, items), index| %>
           <%if item_group_name != 'Others:' %>
-            <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => item_group_name, :items => items, :index => index} %>
+              <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => item_group_name, :items => items, :index => index} %>
           <% end %>
       <%end%>
       <%unless @item_groups['Others:'].nil? %>
-        <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => 'Others:', :items => @item_groups['Others:'], :index => @item_groups.count } %>
+          <%= render :partial => 'item_details/item_detail_group_view', :locals => {:item_group_name => 'Others:', :items => @item_groups['Others:'], :index => @item_groups.count - 1 } %>
       <% end %>
 
       <tr>
@@ -110,18 +110,18 @@
 
 
       <% if @quotation.is_a_complete_tax_invoice? || @quotation.is_a_complete_tax_exempted_invoice?%>
-        <tr>
-          <td></td><td>Service Tax @ 12%</td><td></td><td></td>
-          <td class="alignRight"><%= @quotation.service_tax_at_12_percent %></td>
-        </tr>
+          <tr>
+            <td></td><td>Service Tax @ 12%</td><td></td><td></td>
+            <td class="alignRight"><%= @quotation.service_tax_at_12_percent %></td>
+          </tr>
           <tr>
             <td></td><td>Education Cess @ 2% (On S.T)</td><td></td><td></td>
             <td class="alignRight"><%= @quotation.education_cess %></td>
-        </tr>
-        <tr>
+          </tr>
+          <tr>
             <td></td><td>Sec. & Higher Edu. Cess @ 1% (On S.T)</td><td></td><td></td>
             <td class="alignRight"><%= @quotation.higher_education_cess %></td>
-        </tr>
+          </tr>
           <tr>
             <td></td><td><strong>Total with taxes (rounded off):</strong></td><td></td><td></td>
             <td class="alignRight"><b><%= number_with_precision(@quotation.total_price, :precision => 2) %></b></td>
@@ -136,9 +136,9 @@
 
 
 
-  <% if @quotation.is_open_for_edits? %>
+<% if @quotation.is_open_for_edits? %>
     <p><%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'default' %></p>
-  <% end %>
+<% end %>
 
 <hr style="border-width: 2px 0 0;">
 
@@ -154,19 +154,19 @@
   </p>
 
   <p>
-    <%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %><p>
+  <%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %><p>
 
-    <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
+  <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
       <p><%= link_to 'Print with Bank', quotation_print_quotations_path(@quotation, :print_service_taxes=>'true'), class: 'default' %></p>
-    <% end %>
+  <% end %>
   </p>
 
 </div>
 
 
 <div class="col-md-3 cold-md-offset-4" style="float: right">
-    <% if @quotation.status == STATUS_INVOICE  && @quotation.payment_received_in_full.nil? %>
+  <% if @quotation.status == STATUS_INVOICE  && @quotation.payment_received_in_full.nil? %>
       <p><%= button_to 'Mark As Payments Fully Received', {controller: 'quotations', action: 'markAsPaymentsFullyReceived', :quotation_id => @quotation.id}, {:onclick => "return confirm('WARNING : Are you sure if full payments are made ?')"} %></p>
-    <% end %>
+  <% end %>
 </div>
 
