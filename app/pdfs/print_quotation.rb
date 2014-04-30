@@ -18,7 +18,7 @@ class PrintQuotation < PrintBase
         bank_details
       end
     end
-    if !q.tac.nil?
+    if !q.is_a_complete_tax_invoice?  and !q.is_a_complete_tax_exempted_invoice? and !q.tac.nil?
       terms_and_conditions(q)
     end
     signature
