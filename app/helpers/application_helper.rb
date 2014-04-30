@@ -21,8 +21,9 @@ module ApplicationHelper
   BANK_MIRC = ''
 
   #Service Tax Number
+  PAN_NUMBER = 'AAQFA7787E'
   SERVICE_TAX_NUMBER = 'AKAPP9970EST001'
-
+  SERVICE_CATEGORY = 'Event Management Service.'
 
   def display_verbose_date(date)
     date.to_date.strftime('%d %B, %Y')

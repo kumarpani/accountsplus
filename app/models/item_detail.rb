@@ -14,7 +14,7 @@ class ItemDetail < ActiveRecord::Base
       self.quantity = 1
     end
 
-    unit_price_final = 1
+    unit_price_final = 0
     if !self.unit_price.nil?
       unit_price_final = self.unit_price
     end

@@ -74,8 +74,17 @@ class PrintQuotation < PrintBase
   end
 
   def service_tax_details
+
+    if ApplicationHelper::PAN_NUMBER != ''
+      text "IT PAN No: #{ApplicationHelper::PAN_NUMBER}"
+    end
+
     text "Service Tax Number: #{ApplicationHelper::SERVICE_TAX_NUMBER}"
-    text "\n"
+
+    if ApplicationHelper::SERVICE_CATEGORY != ''
+      text "Service Category: #{ApplicationHelper::SERVICE_CATEGORY}"
+      text "\n"
+    end
   end
 
   def items_table(q)
@@ -105,17 +114,18 @@ class PrintQuotation < PrintBase
       end
 
       if item_group_name == 'Others:'
-        if @item_groups.size > 1
+        if !items.nil?
           data += ([[{:content => "(#{(index+65).chr})", :font_style => :bold, :align => :center},
                      {:content =>"Others:", :colspan =>5, :font_style => :bold}]])
-        end
 
-        @item_groups['Others:'].sort_by {|s| s[:created_at]}.each_with_index do |item, index|
+          @item_groups['Others:'].sort_by {|s| s[:created_at]}.each_with_index do |item, index|
           data+=[[{:content => "#{index+1}", :align => :center},
                   item.particulars,
                   {:content => "#{item.quantity}", :align => :center},
                   {:content => "#{item.days}", :align => :center},
                   {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
+
+          end
         end
       end
     end
@@ -164,10 +174,13 @@ class PrintQuotation < PrintBase
                  {:content => "#{ApplicationHelper::BANK_IFSC}"}
              ]]
 
-    data += [[
-                 {:content => 'MICR Code', :font_style => :bold},
-                 {:content => "#{ApplicationHelper::BANK_MIRC}"}
-             ]]
+    if ApplicationHelper::BANK_MIRC != ''
+      data += [[
+                   {:content => 'MICR Code', :font_style => :bold},
+                   {:content => "#{ApplicationHelper::BANK_MIRC}"}
+               ]]
+    end
+
     table(data, :column_widths => {0 => 225,1 => 225},
           :cell_style => {:border_width => 0.2, :border_color => 'bdc3c7', :height => 18})
   end
