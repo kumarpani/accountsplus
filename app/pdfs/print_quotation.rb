@@ -27,7 +27,7 @@ class PrintQuotation < PrintBase
   def logo_and_address
     column_box([0, cursor], :columns => 2, :width=>450, :height => 72) do
 
-      image "#{Rails.root}/app/assets/images/ap.jpg", height: 72
+      image "#{Rails.root}/app/assets/images/logo.jpg", height: 72
 
       text("#{ApplicationHelper::ADD_LINE1}", align: :right)
       text("#{ApplicationHelper::ADD_LINE2}", align: :right)
