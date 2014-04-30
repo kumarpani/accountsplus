@@ -114,18 +114,18 @@ class PrintQuotation < PrintBase
       end
 
       if item_group_name == 'Others:'
-        if !items.nil?
-          data += ([[{:content => "(#{(index+65).chr})", :font_style => :bold, :align => :center},
+        if @item_groups.size > 1
+          data += ([[{:content => "(#{(@item_groups.count-1+65).chr})", :font_style => :bold, :align => :center},
                      {:content =>"Others:", :colspan =>5, :font_style => :bold}]])
+        end
+        @item_groups['Others:'].sort_by {|s| s[:created_at]}.each_with_index do |item, index|
+        data+=[[{:content => "#{index+1}", :align => :center},
+                item.particulars,
+                {:content => "#{item.quantity}", :align => :center},
+                {:content => "#{item.days}", :align => :center},
+                {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
 
-          @item_groups['Others:'].sort_by {|s| s[:created_at]}.each_with_index do |item, index|
-          data+=[[{:content => "#{index+1}", :align => :center},
-                  item.particulars,
-                  {:content => "#{item.quantity}", :align => :center},
-                  {:content => "#{item.days}", :align => :center},
-                  {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
 
-          end
         end
       end
     end
