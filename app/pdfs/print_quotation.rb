@@ -107,8 +107,8 @@ class PrintQuotation < PrintBase
         items.sort_by {|s| s[:created_at]}.each_with_index do |item, index|
           data+=[[{:content => "#{index+1}", :align => :center},
                   item.particulars,
-                  {:content => "#{item.quantity}", :align => :center},
-                  {:content => "#{item.days}", :align => :center},
+                  {:content => "#{item.quantity == 0 ? "" : item.quantity}", :align => :center},
+                  {:content => "#{item.days == 0 ? "" : item.days}", :align => :center},
                   {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
         end
       end
@@ -119,13 +119,11 @@ class PrintQuotation < PrintBase
                      {:content =>"Others:", :colspan =>5, :font_style => :bold}]])
         end
         @item_groups['Others:'].sort_by {|s| s[:created_at]}.each_with_index do |item, index|
-        data+=[[{:content => "#{index+1}", :align => :center},
-                item.particulars,
-                {:content => "#{item.quantity}", :align => :center},
-                {:content => "#{item.days}", :align => :center},
-                {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
-
-
+          data+=[[{:content => "#{index+1}", :align => :center},
+                  item.particulars,
+                  {:content => "#{item.quantity == 0 ? "" : item.quantity}", :align => :center},
+                  {:content => "#{item.days == 0 ? "" : item.days}", :align => :center},
+                  {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
         end
       end
     end
