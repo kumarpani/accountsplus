@@ -31,12 +31,10 @@
             <td><strong>Duration:</strong></td>
             <td><b><%= display_date(@quotation.event_date) %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
           </tr>
-        <% if !@quotation.order_placed_by.nil? %>
-            <tr>
-              <td><strong>Order Placed By:</strong></td>
-              <td><%= @quotation.order_placed_by%></td>
-            </tr>
-        <% end %>
+          <tr>
+            <td><strong>Order Placed By:</strong></td>
+            <td><%= @quotation.order_placed_by%></td>
+          </tr>
 
       </table>
     </div>

@@ -64,10 +64,10 @@ class PrintQuotation < PrintBase
       text("Date: #{get_display_date(q).to_date.strftime('%d/%m/%Y')}", align: :right)
       text("Event Date: #{q.event_date.strftime('%d/%m/%Y')}", align: :right)
 
-      if !q.venue.nil?
+      if !q.venue.blank?
         text("Venue: #{q.venue}", align: :right)
       end
-      if !q.order_placed_by.nil?
+      if !q.order_placed_by.blank?
         text("Order Placed By: #{q.order_placed_by}", align: :right)
       end
     end
