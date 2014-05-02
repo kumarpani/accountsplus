@@ -140,9 +140,9 @@ class PrintQuotation < PrintBase
     end
 
 
-    table(data, :column_widths => {0 => 40,1 => 250,2 => 50,3 => 50,4 => 60},
+    table(data, :column_widths => {0 => 45,1 => 245,2 => 50,3 => 50,4 => 60},
           :header => true,
-          :cell_style => {:border_width => 0.2, :border_color => 'bdc3c7', :height => 18})
+          :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})
 
   end
 
@@ -182,7 +182,7 @@ class PrintQuotation < PrintBase
     end
 
     table(data, :column_widths => {0 => 225,1 => 225},
-          :cell_style => {:border_width => 0.2, :border_color => 'bdc3c7', :height => 18})
+          :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})
   end
 
   def terms_and_conditions(q)
