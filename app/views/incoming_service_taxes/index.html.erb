@@ -70,7 +70,9 @@
 </tbody>
 </table>
 
-<%= link_to 'Print', :controller => 'print_incoming_service_taxes', :start_date => params[:start_date], :end_date => params[:end_date]%>
+<p>    <%= link_to 'Print PDF', :controller => 'incoming_service_taxes', :action => 'print', :format => 'pdf', :start_date => params[:start_date], :end_date => params[:end_date]%>
+</p>
+  <%= link_to 'Print', :controller => 'print_incoming_service_taxes', :start_date => params[:start_date], :end_date => params[:end_date]%>
 
 
     <script>
