@@ -20,6 +20,7 @@ Audioplus::Application.routes.draw do
   get "print_tds/index"
 
   get "incoming_service_taxes/print"
+  get "tds/print"
 
 
   post "quotations/duplicate"
