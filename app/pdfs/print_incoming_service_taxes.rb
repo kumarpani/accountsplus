@@ -15,7 +15,7 @@ class PrintIncomingServiceTaxes < PrintBase
   end
 
   def header(start_date, end_date)
-    text("Incoming Service Tax details between : #{display_verbose_date(start_date)} and #{display_verbose_date(end_date)}")
+    text("Incoming Service Tax details between : #{display_verbose_date(start_date)} and #{display_verbose_date(end_date)}", :style => :bold)
     text "\n"
   end
 
@@ -52,7 +52,7 @@ class PrintIncomingServiceTaxes < PrintBase
                  {:content => "#{taxes.sum(&:service_tax)}", :font_style => :bold, :align => :center}
              ]]
 
-    table(data, :column_widths => {0 => 40,1 => 50,2 => 65,3 => 80,4 => 90,5 => 50, 6 => 50},
+    table(data, :column_widths => {0 => 25,1 => 45,2 => 65,3 => 80,4 => 125,5 => 55, 6 => 55},
         :cell_style => {:border_width => 0.2, :border_color => 'bdc3c7', :inline_format => true})
 
   end
