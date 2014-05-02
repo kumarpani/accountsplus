@@ -10,7 +10,7 @@ class PrintBase < Prawn::Document
                                  :page_layout => :portrait,
                                  :right_margin => 40,
                                  :top_margin => 30})
-    font_size 10
+    font_size 9
   end
 
 

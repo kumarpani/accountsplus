@@ -38,21 +38,20 @@ class PrintQuotation < PrintBase
 
     end
 
-    text "\n"
     stroke_horizontal_rule
   end
 
   def title(title)
-    draw_text title, size: 14, style: :bold_italic, :at => [170, 670]
+    draw_text title, size: 14, style: :bold_italic, :at => [180, 685]
   end
 
   def quotation_details(q)
 
-    define_grid(:columns => 4, :rows => 8, :gutter => 35)
-    #grid([1.2, 0], [1.2, 0.7]).show
-    #grid([1.2, 3], [1.2, 2]).show
+    define_grid(:columns => 4, :rows => 15)
+    #grid([2, 0], [1.9, 1]).show
+    #grid([2, 3], [1.9, 2]).show
 
-    grid([1.2,0], [1.2, 0.7]).bounding_box do
+    grid([2, 0], [1.9, 1]).bounding_box do
       if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
         text("Invoice No: #{q.invoice_number}")
       end
@@ -60,7 +59,7 @@ class PrintQuotation < PrintBase
       text(q.client.address)
     end
 
-    grid([1.2, 3], [1.2, 2]).bounding_box do
+    grid([2, 3], [1.9, 2]).bounding_box do
       text("Date: #{get_display_date(q).to_date.strftime('%d/%m/%Y')}", align: :right)
       text("Event Date: #{q.event_date.strftime('%d/%m/%Y')}", align: :right)
 
@@ -142,7 +141,7 @@ class PrintQuotation < PrintBase
 
     table(data, :column_widths => {0 => 45,1 => 245,2 => 50,3 => 50,4 => 60},
           :header => true,
-          :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})
+          :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
 
   end
 
@@ -182,7 +181,7 @@ class PrintQuotation < PrintBase
     end
 
     table(data, :column_widths => {0 => 225,1 => 225},
-          :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})
+          :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
   end
 
   def terms_and_conditions(q)
