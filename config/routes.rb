@@ -22,6 +22,7 @@ AVCreations::Application.routes.draw do
 
   get "incoming_service_taxes/print"
   get "tds/print"
+  get "ledgers/print"
   get "service_taxes/print"
 
 
