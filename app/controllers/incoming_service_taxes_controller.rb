@@ -7,6 +7,18 @@ class IncomingServiceTaxesController < ApplicationController
     @incoming_service_taxes = IncomingServiceTax.new.index(params[:start_date], params[:end_date])
   end
 
+  def print
+    respond_to do |format|
+      format.pdf do
+        pdf = PrintIncomingServiceTaxes.new(params[:start_date], params[:end_date])
+        send_data pdf.render, filename: "service_taxes.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      end
+    end
+  end
+
+
   # GET /incoming_service_taxes/1
   # GET /incoming_service_taxes/1.json
   def show

@@ -1,6 +1,5 @@
 Audioplus::Application.routes.draw do
   get "taxes/index"
-  resources :incoming_service_taxes
   resources :tasks
 
   get "item_details/print"
@@ -20,6 +19,8 @@ Audioplus::Application.routes.draw do
   get "print_incoming_service_taxes/index"
   get "print_tds/index"
 
+  get "incoming_service_taxes/print"
+
 
   post "quotations/duplicate"
   post "quotations/markAsPaymentsFullyReceived"
@@ -37,6 +38,9 @@ Audioplus::Application.routes.draw do
   resources :dashboard, only: :index
   resources :calendar, only: :index
   resources :tasks, only: :index
+
+  resources :incoming_service_taxes
+
 
   root 'dashboard#index'
 
