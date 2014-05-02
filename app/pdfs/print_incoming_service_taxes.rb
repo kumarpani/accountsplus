@@ -53,7 +53,7 @@ class PrintIncomingServiceTaxes < PrintBase
              ]]
 
     table(data, :column_widths => {0 => 25,1 => 45,2 => 65,3 => 80,4 => 125,5 => 55, 6 => 55},
-        :cell_style => {:border_width => 0.2, :border_color => 'bdc3c7', :inline_format => true})
+        :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})
 
   end
 end

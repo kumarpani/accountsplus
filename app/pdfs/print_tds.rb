@@ -44,7 +44,7 @@ class PrintTds < PrintBase
              ]]
 
     table(data, :column_widths => {0 => 40,1 => 250,2 => 60,3 => 65},
-        :cell_style => {:border_width => 0.2, :border_color => 'bdc3c7', :inline_format => true})
+        :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})
 
   end
 end
