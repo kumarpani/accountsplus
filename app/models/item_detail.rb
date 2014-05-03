@@ -21,7 +21,7 @@ class ItemDetail < ActiveRecord::Base
 
     self.price = unit_price_final *
                 (self.quantity != 0 ? self.quantity : 1) *
-                (self.days != 0 ? self.quantity : 1)
+                (self.days != 0 ? self.days : 1)
 
   end
 
