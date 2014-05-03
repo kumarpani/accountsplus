@@ -34,6 +34,7 @@
   <tr>
     <th><strong>Date</strong></th>
     <th><strong>Description of Transaction</strong></th>
+    <th><strong>Invoice Number</strong></th>
     <th><strong>Debit</strong></th>
     <th><strong>Credit</strong></th>
     <th><strong>Balance</strong></th>
@@ -45,6 +46,7 @@
     <tr>
       <td><%= display_date(ledger_detail[:date]) %></td>
       <td width=500px;><%= ledger_detail[:description] %></td>
+      <td width=65px;><%= ledger_detail[:invoice_number] %></td>
       <td class="alignRight"><%= ledger_detail[:debit] %></td>
       <td class="alignRight"><%= ledger_detail[:credit] %></td>
       <td class="alignRight"><%= ledger_detail[:balance] %></td>

@@ -5,7 +5,7 @@ class Ledger
     @client = Client.find(client_id)
 
     @ledger_details = @client.quotations.keep_if { |q| q.status == STATUS_INVOICE }.map { |q|
-      {date: q.event_date, description: q.event_name, credit: q.total_price, id:q.id }
+      {date: q.event_date, description: q.event_name, invoice_number: q.invoice_number, credit: q.total_price, id:q.id }
     };
 
     @ledger_details = @ledger_details + @client.payments.keep_if { |p| p.item_detail.nil? || p.item_detail.quotation.status == STATUS_INVOICE }.map { |p|

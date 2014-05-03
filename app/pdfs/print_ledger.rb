@@ -24,6 +24,7 @@ class PrintLedger < PrintBase
     data =  [[
                  {:content => 'Date', :font_style => :bold, :align => :center},
                  {:content => 'Description of Transaction', :font_style => :bold, :align => :center},
+                 {:content => 'Invoice Number', :font_style => :bold, :align => :center},
                  {:content => 'Debit', :font_style => :bold, :align => :center},
                  {:content => 'Credit', :font_style => :bold, :align => :center},
                  {:content => 'Balance', :font_style => :bold, :align => :center},
@@ -33,6 +34,7 @@ class PrintLedger < PrintBase
 
         data += ([[{:content => "#{display_date(l[:date].to_date)}", :align => :center},
                    {:content =>"#{l[:description]}", :align => :left},
+                   {:content =>"#{l[:invoice_number]}", :align => :center},
                    {:content =>"#{l[:debit]}", :align => :right},
                    {:content => "#{l[:credit]}", :align => :right},
                    {:content =>"#{l[:balance]}", :align => :right},
