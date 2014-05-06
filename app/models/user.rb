@@ -4,7 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,
          #:registerable,
          :recoverable,
-         :rememberable, :trackable, :validatable
+         :rememberable, :trackable, :validatable,
+         :timeoutable
+
+  def timeout_in
+    10.minutes
+  end
 
   def self.current_user=(user)
     Thread.current[:current_user] = user

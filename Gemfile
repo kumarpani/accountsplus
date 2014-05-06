@@ -42,6 +42,10 @@ gem 'rails_12factor', group: :production
 gem 'pdf-core'
 gem 'prawn'
 
+group :development, :test do
+  gem 'foreman'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
