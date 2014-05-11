@@ -5,6 +5,6 @@ STATUS_INVOICE = 'Invoice'
 STATUS_CLOSED = 'Closed'
 
 # Type
-INVOICE_TAX = 'Invoice'
+INVOICE_TAX = 'Tax Invoice'
 INVOICE_PROFORMA = 'Proforma Invoice'
 INVOICE_TAX_EXEMPTED = 'Tax Exempted Invoice'
