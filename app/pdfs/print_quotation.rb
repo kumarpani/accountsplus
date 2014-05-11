@@ -32,7 +32,9 @@ class PrintQuotation < PrintBase
       text("#{ApplicationHelper::ADD_LINE1}", align: :right)
       text("#{ApplicationHelper::ADD_LINE2}", align: :right)
       text("#{ApplicationHelper::ADD_LINE3}", align: :right)
-      text("Tele Fax: #{ApplicationHelper::TELEPHONE}", align: :right)
+      if ApplicationHelper::TELEPHONE != ''
+        text("Tele Fax: #{ApplicationHelper::TELEPHONE}", align: :right)
+      end
       text("Cell: #{ApplicationHelper::MOBILE}", align: :right)
       text("Email: #{ApplicationHelper::EMAIL}", align: :right)
 
@@ -48,10 +50,10 @@ class PrintQuotation < PrintBase
   def quotation_details(q)
 
     define_grid(:columns => 4, :rows => 15)
-    #grid([2, 0], [1.9, 1]).show
-    #grid([2, 3], [1.9, 2]).show
+    #grid([2, 0], [2.3, 1]).show
+    #grid([2, 3], [2.3, 2]).show
 
-    grid([2, 0], [1.9, 1]).bounding_box do
+    grid([2, 0], [2.3, 1]).bounding_box do
       if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
         text("Invoice No: #{q.invoice_number}")
       end
@@ -59,7 +61,7 @@ class PrintQuotation < PrintBase
       text(q.client.address)
     end
 
-    grid([2, 3], [1.9, 2]).bounding_box do
+    grid([2, 3], [2.3, 2]).bounding_box do
       text("Date: #{get_display_date(q).to_date.strftime('%d/%m/%Y')}", align: :right)
       text("Event Date: #{q.event_date.strftime('%d/%m/%Y')}", align: :right)
 

@@ -8,7 +8,7 @@ module ApplicationHelper
   ADD_LINE1 = '#6, 2rd Cross,'
   ADD_LINE2 = 'C.S.I. Compound, Mission Road'
   ADD_LINE3 = 'Bangalore - 5600 27'
-  TELEPHONE = '4205 8284 / 4205 8479'
+  TELEPHONE = ''
   MOBILE = '96864 54272/3/4'
   EMAIL = 'avcreations12@gmail.com'
 
