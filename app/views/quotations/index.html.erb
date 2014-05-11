@@ -1,14 +1,16 @@
 <div class="header">
-  <h1>
-    <%= if params[:status].nil? then
-          'Quotations'
-        else
-          params[:status].include?(STATUS_INVOICE) ? 'Invoices' : 'Quotations'
-        end %>
-    <% if !@client.nil? %>
-        for <i><%= @client.company_name %></i>
-    <% end %>
-  </h1>
+      <h1>
+        <%= if params[:status].nil? then
+              'Quotations for '
+            else
+              params[:status].include?(STATUS_INVOICE) ? 'Invoices for ' : 'Quotations for '
+            end %>
+      </h1>
+        <div class="companyName">
+          <% if !@client.nil? %>
+            <%= @client.company_name %>
+          <% end %>
+        </div>
 
   <div class="headerAfter">
     <h2>

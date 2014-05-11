@@ -48,11 +48,11 @@ class PrintIncomingServiceTaxes < PrintBase
                  "",
                  "",
                  {:content => 'Total:', :font_style => :bold},
-                 {:content => "#{taxes.sum(&:event_total)}", :font_style => :bold, :align => :center},
-                 {:content => "#{taxes.sum(&:service_tax)}", :font_style => :bold, :align => :center}
+                 {:content => "#{taxes.sum(&:event_total)}", :font_style => :bold, :align => :right},
+                 {:content => "#{taxes.sum(&:service_tax)}", :font_style => :bold, :align => :right}
              ]]
 
-    table(data, :column_widths => {0 => 25,1 => 45,2 => 65,3 => 80,4 => 125,5 => 55, 6 => 55},
+    table(data, :column_widths => {0 => 25,1 => 45,2 => 65,3 => 80,4 => 145,5 => 55, 6 => 55},
         :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})
 
   end

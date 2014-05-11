@@ -41,7 +41,7 @@ class PrintLedger < PrintBase
                   ]])
     end
 
-    table(data, :column_widths => {0 => 60,1 => 180,2 => 50,3 => 50, 4 => 50},
+    table(data, :column_widths => {0 => 55,1 => 215, 2 => 50, 3 => 50, 4 => 50, 5 => 50},
         :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})
 
   end
