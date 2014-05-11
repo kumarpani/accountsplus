@@ -56,7 +56,7 @@ class PaymentsController < ApplicationController
       @payment.payment_last_modified_by = User.current_user.email
 
       if @payment.update(payment_params)
-        format.html { redirect_to payments_path, notice: 'Payment was successfully updated.' }
+        format.html { redirect_to payments_path(:client_id => @payment.client.id), notice: 'Payment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -72,7 +72,7 @@ class PaymentsController < ApplicationController
 
     @payment.destroy
     respond_to do |format|
-      format.html { redirect_to payments_url }
+      format.html { redirect_to payments_url(:client_id => @payment.client.id) }
       format.json { head :no_content }
     end
   end
