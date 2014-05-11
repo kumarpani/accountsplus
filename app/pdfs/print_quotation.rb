@@ -25,7 +25,7 @@ class PrintQuotation < PrintBase
   end
 
   def logo_and_address
-    column_box([0, cursor], :columns => 2, :width=>450, :height => 72) do
+    column_box([0, cursor], :columns => 2, :width=>470, :height => 72) do
 
       image "#{Rails.root}/app/assets/images/logo.jpg", height: 72
 
@@ -112,7 +112,7 @@ class PrintQuotation < PrintBase
         end
       end
 
-      if item_group_name == 'Others:'
+      if item_group_name == 'Others:' && !items.nil?
         if @item_groups.size > 1
           data += ([[{:content => "(#{(@item_groups.count-1+65).chr})", :font_style => :bold, :align => :center},
                      {:content =>"Others:", :colspan =>5, :font_style => :bold}]])
@@ -139,7 +139,7 @@ class PrintQuotation < PrintBase
     end
 
 
-    table(data, :column_widths => {0 => 45,1 => 245,2 => 50,3 => 50,4 => 60},
+    table(data, :column_widths => {0 => 45,1 => 265,2 => 50,3 => 50,4 => 60},
           :header => true,
           :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
 
@@ -186,10 +186,15 @@ class PrintQuotation < PrintBase
 
   def terms_and_conditions(q)
     text("\nTerms and Conditions\n", :style => :bold)
-
+    data = [[]]
     q.tac.each do |t|
-      text("#{t}")
+      data +=  [[
+                   {:content => '•', :font_style => :bold},
+                   {:content => "#{t}"}
+               ]]
     end
+    table(data, :column_widths => {0 => 13,1 => 457},
+          :cell_style => {:border_width => 0, :inline_format => true, :padding => 1})
   end
 
   def signature
