@@ -3,4 +3,4 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', payments_path %>
+<%= link_to 'Back', payments_path(:client_id => @payment.client.id) %>
