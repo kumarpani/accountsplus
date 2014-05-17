@@ -41,11 +41,14 @@ class Quotation < ActiveRecord::Base
   end
 
   def is_tax_invoice_being_raised?
-    self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX && self.status_changed?
+    (self.status == STATUS_INVOICE && self.status_changed? && self.invoice_type == INVOICE_TAX) ||
+      (self.status == STATUS_INVOICE &&  self.invoice_type == INVOICE_TAX && self.invoice_type_changed?)
+
   end
 
   def is_tax_exempted_invoice_being_raised?
-    self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX_EXEMPTED && self.status_changed?
+    (self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX_EXEMPTED && self.status_changed?) ||
+      (self.status == STATUS_INVOICE &&  self.invoice_type == INVOICE_TAX_EXEMPTED && self.invoice_type_changed?)
   end
 
 
@@ -78,6 +81,7 @@ class Quotation < ActiveRecord::Base
 
     if self.is_tax_invoice_being_raised? || self.is_tax_exempted_invoice_being_raised?
       self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
+      self.invoice_raised_by = User.current_user.email
     end
 
     if is_tax_invoice_being_raised?
