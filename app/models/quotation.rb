@@ -81,6 +81,7 @@ class Quotation < ActiveRecord::Base
 
     if self.is_tax_invoice_being_raised? || self.is_tax_exempted_invoice_being_raised?
       self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
+      self.invoice_raised_date = Date.today
       self.invoice_raised_by = User.current_user.email
     end
 
