@@ -51,7 +51,7 @@
       </li>
       <li>
         <%= f.label :status %>
-        <%= f.select(:status, options_for_select([STATUS_PENDING, STATUS_CONFIRMED, STATUS_INVOICE, STATUS_CLOSED], @quotation.status)) %>
+        <%= f.select(:status, options_for_select(get_status_options(@quotation), @quotation.status)) %>
       </li>
       <li>
         <%= f.label :notes %>
