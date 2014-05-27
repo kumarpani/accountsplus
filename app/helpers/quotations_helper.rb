@@ -42,13 +42,4 @@ module QuotationsHelper
     Quotation.all.sort_by{|q| q.venue.downcase}.uniq{|d| d[:venue]}.map { |i| [i.id, i.venue] }
   end
 
-  def get_status_options(q)
-    if q.is_a_complete_proforma_invoice?
-      [STATUS_PENDING, STATUS_CONFIRMED, STATUS_INVOICE]
-    else
-      [STATUS_PENDING, STATUS_CONFIRMED, STATUS_INVOICE, STATUS_CLOSED]
-    end
-
-
-  end
 end
