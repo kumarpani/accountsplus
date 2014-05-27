@@ -60,7 +60,7 @@
     </ul>
 
 
-    <% if @quotation.is_open_for_edits?%>
+    <% if @quotation.is_open_for_edits(current_user)%>
       <strong>Terms and Conditions:</strong>
       <div class="field">
         <ul>

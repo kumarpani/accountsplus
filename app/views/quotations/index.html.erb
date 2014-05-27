@@ -53,7 +53,7 @@
 
       <%if policy(quotation).destroy? %>
           <td>
-            <%if quotation.is_open_for_edits?%>
+            <%if quotation.is_open_for_edits(current_user)%>
                 <%= button_to 'X', quotation, {:onclick => "return confirm('WARNING : Are you sure to DELETE this quotation Permanently? You will not be able retrieve this quotation again')", :method=>:delete, :class => 'deleteBtn'} %>
             <% end %>
           </td>

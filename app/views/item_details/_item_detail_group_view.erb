@@ -21,7 +21,7 @@
         <%end%>
       </td>
 
-      <% if @quotation.is_open_for_edits? %>
+      <% if @quotation.is_open_for_edits(current_user) %>
           <td width=60px; class="alignCenter"><%= link_to 'Edit', edit_quotation_item_detail_path(@quotation, item), class: 'edit', :style => 'color:white'%></td>
           <td width=50px; class="alignCenter"><%= button_to 'X', [@quotation, item], {:onclick => "return confirm('WARNING : Are you sure to DELETE this Item ? You will not be able to UnDo this')", :method => :delete, :class => 'deleteBtn'} %></td>
       <% end %>

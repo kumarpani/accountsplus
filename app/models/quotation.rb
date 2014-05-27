@@ -95,20 +95,14 @@ class Quotation < ActiveRecord::Base
 
 # Is the quotation still open for edits
 
-  def is_open_for_edits?
-    self.status != STATUS_INVOICE || self.invoice_type == INVOICE_PROFORMA
+  def is_open_for_edits(usr)
+    self.status != STATUS_INVOICE || (self.invoice_type == INVOICE_PROFORMA && usr.is_admin?)
   end
 
 
 
 
   def update_invoice_details
-
-    if self.is_proforma_invoice_being_converted_to_tax_exempted_invoice? || self.is_proforma_invoice_being_converted_to_tax_invoice?
-      if !User.current_user.is_admin?
-        raise 'NOTE : YOU NEED TO HAVE ADMIN RIGHTS TO CONVERT PROFORMA INVOICE AS (TAX INVOICE OR TAX EXEMPTED INVOICE)'
-      end
-    end
 
     if is_invoice_being_raised?
       self.service_tax = 0.0

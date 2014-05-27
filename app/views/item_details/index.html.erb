@@ -67,7 +67,7 @@
   </div>
 
   <div class="col-md-2 cold-md-offset-0">
-    <% if @quotation.is_open_for_edits? %>
+    <% if @quotation.is_open_for_edits(current_user) %>
         <%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit'%>
         <br><br>
     <%end%>
@@ -134,7 +134,7 @@
 
 
 
-<% if @quotation.is_open_for_edits? %>
+<% if @quotation.is_open_for_edits(current_user) %>
     <p><%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'default' %></p>
 <% end %>
 
