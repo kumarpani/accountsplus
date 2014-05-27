@@ -32,25 +32,52 @@ class Quotation < ActiveRecord::Base
     end
   end
 
+  def education_cess
+    ((self.service_tax * 2)/100).round(2)
+  end
+
+  def higher_education_cess
+    ((self.service_tax * 1)/100).round(2)
+  end
+
+
+
+
+
   def is_invoice_being_raised?
     self.status == STATUS_INVOICE && self.status_changed?
   end
+
+
+
+# Is Invoice Being Raised
 
   def is_proforma_invoice_being_raised?
     self.status == STATUS_INVOICE && self.invoice_type == INVOICE_PROFORMA && self.status_changed?
   end
 
   def is_tax_invoice_being_raised?
-    (self.status == STATUS_INVOICE && self.status_changed? && self.invoice_type == INVOICE_TAX) ||
-      (self.status == STATUS_INVOICE &&  self.invoice_type == INVOICE_TAX && self.invoice_type_changed?)
-
+    self.status == STATUS_INVOICE && self.status_changed? && self.invoice_type == INVOICE_TAX
   end
 
   def is_tax_exempted_invoice_being_raised?
-    (self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX_EXEMPTED && self.status_changed?) ||
-      (self.status == STATUS_INVOICE &&  self.invoice_type == INVOICE_TAX_EXEMPTED && self.invoice_type_changed?)
+    self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX_EXEMPTED && self.status_changed?
   end
 
+
+# Is proforma invoice being converted to (Tax Invoice or Tax Exempted Invoice)
+
+  def is_proforma_invoice_being_converted_to_tax_invoice?
+    self.status == STATUS_INVOICE &&  self.invoice_type == INVOICE_TAX && self.invoice_type_changed?
+  end
+
+  def is_proforma_invoice_being_converted_to_tax_exempted_invoice?
+    self.status == STATUS_INVOICE &&  self.invoice_type == INVOICE_TAX_EXEMPTED && self.invoice_type_changed?
+  end
+
+
+
+# Has invoice been raised already ?
 
   def is_a_complete_tax_invoice?
     self.status == STATUS_INVOICE && self.invoice_type == INVOICE_TAX
@@ -66,12 +93,22 @@ class Quotation < ActiveRecord::Base
 
 
 
+# Is the quotation still open for edits
+
   def is_open_for_edits?
     self.status != STATUS_INVOICE || self.invoice_type == INVOICE_PROFORMA
   end
 
 
+
+
   def update_invoice_details
+
+    if self.is_proforma_invoice_being_converted_to_tax_exempted_invoice? || self.is_proforma_invoice_being_converted_to_tax_invoice?
+      if !User.current_user.is_admin?
+        raise 'NOTE : YOU NEED TO HAVE ADMIN RIGHTS TO CONVERT PROFORMA INVOICE AS (TAX INVOICE OR TAX EXEMPTED INVOICE)'
+      end
+    end
 
     if is_invoice_being_raised?
       self.service_tax = 0.0
@@ -79,24 +116,22 @@ class Quotation < ActiveRecord::Base
       self.invoice_raised_by = User.current_user.email
     end
 
-    if self.is_tax_invoice_being_raised? || self.is_tax_exempted_invoice_being_raised?
+    if self.is_tax_invoice_being_raised?           ||
+        self.is_tax_exempted_invoice_being_raised? ||
+        self.is_proforma_invoice_being_converted_to_tax_invoice? ||
+        self.is_proforma_invoice_being_converted_to_tax_exempted_invoice?
+
       self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
       self.invoice_raised_date = Date.today
       self.invoice_raised_by = User.current_user.email
+
     end
 
-    if is_tax_invoice_being_raised?
+    if is_tax_invoice_being_raised? || is_proforma_invoice_being_converted_to_tax_invoice?
       self.service_tax = ((total_item_price * 12.36)/100).round(2)
     end
   end
 
-  def education_cess
-     ((self.service_tax * 2)/100).round(2)
-  end
-
-  def higher_education_cess
-    ((self.service_tax * 1)/100).round(2)
-  end
 
 
   def clone_with_associations

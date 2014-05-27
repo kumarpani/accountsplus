@@ -29,6 +29,10 @@ class QuotationsController < ApplicationController
 
   # GET /quotations/1/edit
   def edit
+    # Do not allow to edit the quotations unless it is open for editing
+    if !@quotation.is_open_for_edits?
+      redirect_to quotation_item_details_path(@quotation)
+    end
   end
 
   # POST /quotations
