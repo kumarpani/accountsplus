@@ -108,7 +108,7 @@ class PrintQuotation < PrintBase
                   item.particulars,
                   {:content => "#{item.quantity == 0 ? "" : item.quantity}", :align => :center},
                   {:content => "#{item.days == 0 ? "" : item.days}", :align => :center},
-                  {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
+                  {:content => "#{item.price == 0 ? "" : ApplicationController.helpers.number_with_precision(item.price, :precision =>2)}", :align => :right}]]
         end
       end
 
@@ -122,7 +122,7 @@ class PrintQuotation < PrintBase
                   item.particulars,
                   {:content => "#{item.quantity == 0 ? "" : item.quantity}", :align => :center},
                   {:content => "#{item.days == 0 ? "" : item.days}", :align => :center},
-                  {:content => "#{item.price == 0 ? "" : item.price}", :align => :right}]]
+                  {:content => "#{item.price == 0 ? "" : ApplicationController.helpers.number_with_precision(item.price, :precision =>2)}", :align => :right}]]
 
 
         end
@@ -132,7 +132,7 @@ class PrintQuotation < PrintBase
     data += [["", {:content => "Total:", :font_style => :bold}, "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.total_item_price, :precision => 2)}", :font_style => :bold, :align => :right}]]
 
     if q.is_a_complete_tax_invoice? || q.is_a_complete_tax_exempted_invoice?
-      data += [["", "Service Tax @ 12%", "", "", {:content => "#{q.service_tax_at_12_percent}", :align => :right}]]
+      data += [["", "Service Tax @ 12%", "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.service_tax_at_12_percent, :precision => 2)}", :align => :right}]]
       data += [["", "Education Cess @ 2% (On S.T)", "", "", {:content => "#{q.education_cess}", :align => :right}]]
       data += [["", "Secondary & Higher Education Cess @ 1% (On S.T)", "", "", {:content => "#{q.higher_education_cess}", :align => :right}]]
       data += [["", {:content => "Total with taxes (rounded off):", :font_style => :bold}, "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.total_price, :precision => 2)}", :font_style => :bold, :align => :right}]]
