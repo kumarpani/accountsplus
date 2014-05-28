@@ -20,7 +20,6 @@
 
     <% if user_signed_in? %>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Tasks', tasks_path %></li>
         <li><%= link_to 'Activity', :controller => 'activity', :action => :index%></li>
         <li>
           <%= link_to(destroy_user_session_path, :method => :delete) do %>

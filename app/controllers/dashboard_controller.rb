@@ -2,8 +2,6 @@ class DashboardController < ApplicationController
 
   def index
 
-    @tasks = Task.all.sort_by {|t| t[:created_at]}
-
     @upcoming_quotations = Quotation.where('event_date >= ? AND status = ?', Date.today, STATUS_CONFIRMED).order('event_date ASC')
 
     @pending_payments = Client.all.map {|c|
