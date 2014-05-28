@@ -26,18 +26,18 @@ class Quotation < ActiveRecord::Base
 
   def service_tax_at_12_percent
     if self.invoice_type == INVOICE_TAX
-      ApplicationController.helpers.number_with_precision(((self.total_item_price * 12)/100).round(2), :precision => 2)
+      ((self.total_item_price * 12)/100).round(2)
     else
       0.00
     end
   end
 
   def education_cess
-    ((self.service_tax * 2)/100).round(2)
+    ((self.service_tax_at_12_percent * 2)/100).round(2)
   end
 
   def higher_education_cess
-    ((self.service_tax * 1)/100).round(2)
+    ((self.service_tax_at_12_percent * 1)/100).round(2)
   end
 
 
