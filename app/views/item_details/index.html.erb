@@ -151,14 +151,6 @@
 
   </p>
 
-  <p>
-    <%= link_to 'Print', quotation_print_quotations_path(@quotation), class: 'default' %><p>
-
-    <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
-      <p><%= link_to 'Print with Bank', quotation_print_quotations_path(@quotation, :print_service_taxes=>'true'), class: 'default' %></p>
-    <% end %>
-  </p>
-
 </div>
 
 
