@@ -8,13 +8,13 @@ class Ledger
       {date: q.event_date, description: q.event_name, invoice_number: q.invoice_number, credit: q.total_price, id:q.id }
     };
 
-    @ledger_details = @ledger_details + @client.payments.keep_if { |p| p.item_detail.nil? || p.item_detail.quotation.status == STATUS_INVOICE }.map { |p|
+    @ledger_details = @ledger_details + @client.payments.map { |p|
       payment = {date: p.paid_on, description: (p.description || '') + ' ' + (p.mode || '')}
       payment[p.payment_type.downcase.to_sym] = p.amount
       payment
     }
 
-    @ledger_details = @ledger_details + @client.incoming_service_taxes.keep_if { |i| !i.client_id.nil? }.map { |i|
+    @ledger_details = @ledger_details + @client.incoming_service_taxes.map { |i|
       ist = {date: i.invoice_date, description: ('InComing Service Tax: ') + (i.description || '')}
       ist[:debit] = i.event_total
       ist
