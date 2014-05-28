@@ -28,6 +28,17 @@ class PaymentsController < ApplicationController
 
   end
 
+  def print
+    respond_to do |format|
+      format.pdf do
+        pdf = PrintPayment.new
+        send_data pdf.render, filename: "print_payment.pdf",
+                  type: "application/pdf",
+                  disposition: "inline"
+      end
+    end
+  end
+
   # POST /payments
   # POST /payments.json
   def create
@@ -76,6 +87,8 @@ class PaymentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

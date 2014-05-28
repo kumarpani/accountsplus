@@ -7,7 +7,9 @@ AVCreations::Application.routes.draw do
   post "service_taxes/index"
   get "service_taxes/index"
 
-  get "taxes/index"
+  post "payments/index"
+  get "payments/index"
+
   post "tds/index"
   get "tds/index"
 
@@ -24,6 +26,7 @@ AVCreations::Application.routes.draw do
   get "tds/print"
   get "ledgers/print"
   get "service_taxes/print"
+  get "payments/print"
 
 
   post "quotations/duplicate"
