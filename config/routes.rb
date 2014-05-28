@@ -1,8 +1,6 @@
 AVCreations::Application.routes.draw do
-  resources :tasks
-  get "taxes/index"
 
-  get "item_details/print"
+  get "taxes/index"
 
   post "service_taxes/index"
   get "service_taxes/index"
@@ -21,6 +19,7 @@ AVCreations::Application.routes.draw do
   get "print_service_taxes/index"
   get "print_incoming_service_taxes/index"
   get "print_tds/index"
+  get "item_details/print"
 
   get "incoming_service_taxes/print"
   get "tds/print"
@@ -44,7 +43,6 @@ AVCreations::Application.routes.draw do
   end
   resources :dashboard, only: :index
   resources :calendar, only: :index
-  resources :tasks, only: :index
 
   resources :incoming_service_taxes
 
