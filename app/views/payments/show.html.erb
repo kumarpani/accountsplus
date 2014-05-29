@@ -54,7 +54,7 @@
     <%= link_to 'Edit', edit_payment_path(@payment), class: :edit%>
   <%end%>
 
-  <%= link_to 'Print PDF', :controller => 'payments', :action => 'print', :format => 'pdf'%>
+  <%= link_to 'Print PDF', :controller => 'payments', :action => 'print', :format => 'pdf', :payment_type => @payment.payment_type%>
   <% if policy(@payment).destroy? %>
       <%= button_to 'X', payment_path(), {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %>
   <%end%>
