@@ -31,7 +31,7 @@ class PaymentsController < ApplicationController
   def print
     respond_to do |format|
       format.pdf do
-        pdf = PrintPayment.new
+        pdf = PrintPayment.new(params[:payment_type])
         send_data pdf.render, filename: "print_payment.pdf",
                   type: "application/pdf",
                   disposition: "inline"
