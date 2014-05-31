@@ -2,5 +2,5 @@
 require File.expand_path('../application', __FILE__)
 
 # Initialize the Rails application.
-AVCreations::Application.initialize!
+Accountsplus::Application.initialize!
 
