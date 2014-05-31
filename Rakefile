@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Audioplus::Application.load_tasks
+Accountsplus::Application.load_tasks

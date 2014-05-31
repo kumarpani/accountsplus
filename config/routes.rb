@@ -1,4 +1,4 @@
-Audioplus::Application.routes.draw do
+Accountsplus::Application.routes.draw do
 
   get "taxes/index"
 
