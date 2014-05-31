@@ -1,17 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="header"><h1><%= @client.company_name %></h1></div>
 
-<p>
-  <div class="header"><h1>Client Details</h1></div>
-  <br>
-</p>
+<ul class="nav nav-tabs nav-tabs-ul">
+  <li class="active disabled"><a href="#">Home</a></li>
+  <li class="#"><a href="#">Quotations</a></li>
+  <li><a href="#">Invoices</a></li>
+  <li><a href="#">Payments</a></li>
+  <li><a href="#">Ledger</a></li>
+</ul>
+
+
+<br>
 
 
 <table class="table table-striped">
   <tbody>
-      <tr>
-        <td><strong>Client Name:</strong></td>
-        <td><%= @client.company_name %></td>
-      </tr>
       <tr>
         <td><strong>Contact Person Name:</strong></td>
         <td><%= @client.contact_person_name %></td>
