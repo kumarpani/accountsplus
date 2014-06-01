@@ -1,6 +1,13 @@
-<div class="header"><h1>Editing Payment</h1></div>
+<div class="header">
+  <h1  class="col-md-6 col-md-offset-2 companyName"><%= @payment.client.company_name %></h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+</div>
+
+<div class="belowHeader">
+  <h3>Editing Payments</h3><br>
 
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Back', payments_path(:client_id => @payment.client.id) %>
+    <%= link_to 'Back', payment_url(:client_id => @payment.client.id, :company_name => @payment.client.company_name) %>
+</div>

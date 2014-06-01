@@ -1,92 +1,92 @@
 <div class="header">
-  <h1>Activities</h1>
-  <div class="headerAfter">
-    <h2><%=display_verbose_date(DateTime.now)%></h2>
-  </div>
+  <h1 class="col-md-6 col-md-offset-2">Activities</h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
-<p>Please enter both start and end dates:</p>
-<%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
-    <%= text_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: 'Start Date' %>
-    <%= text_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: 'End Date' %>
-    <%= submit_tag 'Search', name: nil  %>
-<% end %>
-<hr>
 
-<p><b> Invoices raised between : <%= get_dates_message(params[:start_date], params[:end_date]) %></b> </p>
+<div class="belowHeader">
+    <p>Please enter both start and end dates:</p>
+    <%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
+        <%= text_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: 'Start Date' %>
+        <%= text_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: 'End Date' %>
+        <%= submit_tag 'Search', name: nil  %>
+    <% end %>
+    <hr>
 
-<table class="table table-striped gridData">
+    <p><b> Invoices raised between : <%= get_dates_message(params[:start_date], params[:end_date]) %></b> </p>
 
-  <thead>
-  <tr>
-    <th><strong>Sl. No.</strong></th>
-    <th>Invoice Type</th>
-    <th><strong>Invoice Number</strong></th>
-    <th>Company Name</th>
-    <th>Event Date</th>
-    <th>Invoice Raised Date</th>
-    <th>Amount</th>
-    <th>Invoice Raised By</th>
-  </tr>
-  </thead>
+    <table class="table table-striped gridData">
 
-  <% @invoices_raised.each_with_index do |i, index| %>
-
-    <tr>
-      <td class="alignCenter"><%= index + 1 %></td>
-      <td><%= i.invoice_type %></td>
-      <td><%= i.invoice_number %></td>
-      <td><%= i.client.company_name %></td>
-      <td><%= display_date(i.event_date) %></td>
-      <td><%= display_date(i.invoice_raised_date) %></td>
-      <td class="alignRight"><%= i.total_price %></td>
-      <td><%= i.invoice_raised_by %></td>
+      <thead>
       <tr>
+        <th><strong>Sl. No.</strong></th>
+        <th>Invoice Type</th>
+        <th><strong>Invoice Number</strong></th>
+        <th>Company Name</th>
+        <th>Event Date</th>
+        <th>Invoice Raised Date</th>
+        <th>Amount</th>
+        <th>Invoice Raised By</th>
+      </tr>
+      </thead>
 
-  <% end %>
+      <% @invoices_raised.each_with_index do |i, index| %>
 
-</table>
+        <tr>
+          <td class="alignCenter"><%= index + 1 %></td>
+          <td><%= i.invoice_type %></td>
+          <td><%= i.invoice_number %></td>
+          <td><%= i.client.company_name %></td>
+          <td><%= display_date(i.event_date) %></td>
+          <td><%= display_date(i.invoice_raised_date) %></td>
+          <td class="alignRight"><%= i.total_price %></td>
+          <td><%= i.invoice_raised_by %></td>
+          <tr>
+
+      <% end %>
+
+    </table>
 
 
-<p><b> Payments Created/Updated between : <%= get_dates_message(params[:start_date], params[:end_date]) %></b> </p>
+    <p><b> Payments Created/Updated between : <%= get_dates_message(params[:start_date], params[:end_date]) %></b> </p>
 
-<table class="table table-striped gridData">
+    <table class="table table-striped gridData">
 
-  <thead>
-  <tr>
-    <th><strong>Sl. No.</strong></th>
-    <th>Client</th>
-    <th>Description</th>
-    <th>Mode</th>
-    <th>Paid On</th>
-    <th>Amount</th>
-    <th>Type</th>
-    <th>Created On</th>
-    <th>Updated On</th>
-  </tr>
-  </thead>
-
-  <% @payments_changed.each_with_index do |p, index| %>
-
+      <thead>
       <tr>
-        <td class="alignCenter"><%= index + 1 %></td>
-        <td><%= p.client.company_name %></td>
-        <td><%= p.description %></td>
-        <td><%= p.mode %></td>
-        <td><%= display_date(p.paid_on) %></td>
-        <td><%= p.amount %></td>
-        <td><%= p.payment_type %></td>
-        <td><%= display_date(p.created_at.to_date) + ' | ' + p.created_at.strftime("%H:%M:%S")%></td>
-        <td><%= display_date(p.updated_at.to_date) + ' | ' + p.updated_at.strftime("%H:%M:%S")%></td>
-      <tr>
+        <th><strong>Sl. No.</strong></th>
+        <th>Client</th>
+        <th>Description</th>
+        <th>Mode</th>
+        <th>Paid On</th>
+        <th>Amount</th>
+        <th>Type</th>
+        <th>Created On</th>
+        <th>Updated On</th>
+      </tr>
+      </thead>
 
-  <% end %>
+      <% @payments_changed.each_with_index do |p, index| %>
 
-</table>
+          <tr>
+            <td class="alignCenter"><%= index + 1 %></td>
+            <td><%= p.client.company_name %></td>
+            <td><%= p.description %></td>
+            <td><%= p.mode %></td>
+            <td><%= display_date(p.paid_on) %></td>
+            <td><%= p.amount %></td>
+            <td><%= p.payment_type %></td>
+            <td><%= display_date(p.created_at.to_date) + ' | ' + p.created_at.strftime("%H:%M:%S")%></td>
+            <td><%= display_date(p.updated_at.to_date) + ' | ' + p.updated_at.strftime("%H:%M:%S")%></td>
+          <tr>
 
+      <% end %>
 
-<script>
-    $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
-    $('#end_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
-</script>
+    </table>
+</div>
+
+    <script>
+        $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+        $('#end_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+    </script>
 

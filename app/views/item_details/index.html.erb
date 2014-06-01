@@ -1,45 +1,60 @@
 <div class="header">
-  <h1><%=get_header_for_quotation(@quotation)%> Details <b class='<%= @quotation.status %>' style="font-size: 15px;">Status : <%= @quotation.status %></b>
+  <h1  class="col-md-6 col-md-offset-2 companyName"><%= @quotation.client.company_name %>
+    &nbsp;<b class='<%= @quotation.status %>' style="font-size: 15px;">Status : <%= @quotation.status %></b> </h1>
   </h1>
 
-  <div class="headerAfter">
-    <h2>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @quotation.client.id, :company_name => @quotation.client.company_name %>
-      &nbsp; | &nbsp;
-      <%= link_to 'Ledger', client_ledgers_path(@quotation.client) %>
-    </h2>
 
-  </div>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
 
-<div class="row">
-  <div class="col-md-5">
-    <table class="table table-condensed table-striped table-bordered col-md-offset-0">
-      <tr>
-        <td><strong>Client name & Address:</strong></td>
-        <td><%= @quotation.client.company_name %>
-          <br><%= @quotation.client.address %></td>
-      </tr>
-      <tr>
-        <td><strong>Event name and Venue:</strong></td>
-        <td><%= @quotation.event_name %>
-          <br><%= @quotation.venue %></td>
-      </tr>
-      <tr>
-        <td><strong>Duration:</strong></td>
-        <td><b><%= display_date(@quotation.event_date) %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
-      </tr>
-      <tr>
-        <td><strong>Order Placed By:</strong></td>
-        <td><%= @quotation.order_placed_by%></td>
-      </tr>
+<ul class="belowHeader nav nav-tabs nav-tabs-ul">
+  <% if @quotation.status == STATUS_INVOICE %>
+      <li><h3>Invoice  Details &nbsp;&nbsp;&nbsp;&nbsp;</h3></li>
+  <% else %>
+      <li><h3>Quotation Details &nbsp;&nbsp;&nbsp;&nbsp;</h3></li>
+  <% end %>
 
+  <li class="#"><%= link_to 'Home', client_path(@quotation.client.id) %></li>
+  <li class="#"><%= link_to 'Quotations', quotations_path(:client_id => @quotation.client.id, :status => [STATUS_PENDING, STATUS_CONFIRMED, STATUS_CLOSED])%></li>
+  <li class="#"><%= link_to 'Invoices', quotations_path(:client_id => @quotation.client.id, :status => [STATUS_INVOICE])%></li>
+  <li class="#"><%= link_to 'Payments', payments_path(:client_id => @quotation.client.id, :company_name => @quotation.client.company_name)%></li>
+  <li class="#"><%= link_to 'Ledger', client_ledgers_path(@quotation.client.id)%></li>
+</ul>
+
+
+<div class="headerAfter">
+  <% if @quotation.is_open_for_edits(current_user) %>
+      <h2 class="headerAfter"><%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit'%></h2>
+  <%end%>
+
+</div>
+<br>
+
+<div class="row"><br>
+  <div class="col-md-7">
+      <table class="table table-condensed table-striped table-bordered col-md-offset-0">
+          <tr>
+            <td><strong>Client Address:</strong></td>
+            <td><%= @quotation.client.address %></td>
+          </tr>
+          <tr>
+            <td><strong>Event name and Venue:</strong></td>
+            <td><%= @quotation.event_name %>
+              <br><%= @quotation.venue %></td>
+          </tr>
+          <tr>
+            <td><strong>Duration:</strong></td>
+            <td><b><%= display_date(@quotation.event_date) %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
+          </tr>
+          <tr>
+            <td><strong>Order Placed By:</strong></td>
+            <td><%= @quotation.order_placed_by%></td>
+          </tr>
     </table>
   </div>
 
-  <div class="col-md-5 cold-md-offset-0">
+  <div class="col-md-5 col-md-offset-0">
     <table class="table table-condensed table-striped table-bordered col-md-5 col-md-offset-0">
       <tr>
         <td><strong>Invoice Type:</strong></td>
@@ -66,15 +81,9 @@
     </table>
   </div>
 
-  <div class="col-md-2 cold-md-offset-0">
-    <% if @quotation.is_open_for_edits(current_user) %>
-        <%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit'%>
-        <br><br>
-    <%end%>
-    <%= button_to 'Duplicate', controller: 'quotations', action: 'duplicate', :quotation_id => @quotation.id %>
-  </div>
 
-</div>
+
+  </div>
 
 <div class="row">
   <div class="col-md-8">
@@ -138,7 +147,7 @@
     <p><%= link_to 'New Item detail', new_quotation_item_detail_path(@quotation), class: 'default' %></p>
 <% end %>
 
-<hr style="border-width: 2px 0 0;">
+<hr style="border-width: 1px 0 0; width: 100%; border-color: darkgray">
 
 <div class="col-md-4 cold-md-offset-1">
 
@@ -153,10 +162,17 @@
 
 </div>
 
+<ul>
+    <% if @quotation.status == STATUS_INVOICE  && @quotation.payment_received_in_full.nil? %>
+        <li class="headerAfter"><%= button_to 'Mark As Payments Fully Received', {controller: 'quotations', action: 'markAsPaymentsFullyReceived', :quotation_id => @quotation.id}, {:onclick => "return confirm('WARNING : Are you sure if full payments are made ?')"} %></li>
+        <br><br>
+    <% end %>
+    <li class="headerAfter"><%= button_to 'Duplicate This Quotation', controller: 'quotations', action: 'duplicate', :quotation_id => @quotation.id %></li>
+</ul>
 
-<div class="col-md-3 cold-md-offset-4" style="float: right">
-  <% if @quotation.status == STATUS_INVOICE  && @quotation.payment_received_in_full.nil? %>
-      <p><%= button_to 'Mark As Payments Fully Received', {controller: 'quotations', action: 'markAsPaymentsFullyReceived', :quotation_id => @quotation.id}, {:onclick => "return confirm('WARNING : Are you sure if full payments are made ?')"} %></p>
-  <% end %>
-</div>
+<br><br>
+
+
+<hr style="border-width: 3px 0 0; width: 100%; border-color: darkgray">
+<br>
 

@@ -1,3 +1,10 @@
-<div class="header"><h1>New Item Detail</h1></div>
+<div class="header">
+  <h1  class="col-md-6 col-md-offset-2 companyName"><%= @quotation.client.company_name %></h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+</div>
 
-<%= render 'form' %>
+<div class="belowHeader">
+  <h3>New Item Details</h3><br>
+  <%= render 'form' %>
+</div>
+
