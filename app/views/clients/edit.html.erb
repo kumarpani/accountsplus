@@ -1,8 +1,10 @@
-
-
 <div class="header">
-  <h1 class="col-md-6 col-md-offset-2">Editing Client</h1>
+  <h1 class="col-md-6 col-md-offset-2 companyName"><%= @client.company_name %></h1>
   <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
-<%= render 'form' %>
+<div class="belowHeader">
+  <h3>Editing Client</h3>
+
+  <%= render 'form' %>
+</div>
