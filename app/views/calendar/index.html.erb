@@ -1,9 +1,9 @@
 <div class="header">
-  <h1>Calender</h1>
-  <div class="headerAfter">
-    <h2><%=display_verbose_date(DateTime.now)%></h2>
-  </div>
+  <h1 class="col-md-6 col-md-offset-2">Calender</h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
+
+<div class="belowHeader">
 
 <% empty_date_lambda = lambda do |date| %>
   <%= link_to '+', new_quotation_path(:event_date => display_date(date)), class: 'btn-xs btn btn-default calendar-event' %>
@@ -20,3 +20,5 @@
                    class: "btn calendar-event #{quotation.payment_received_in_full ? 'Fulfilled' : quotation.status}" %></div>
 
 <% end %>
+
+</div>

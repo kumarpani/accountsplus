@@ -1,57 +1,53 @@
 <div class="header">
-  <h1>Dashboard</h1>
-  <div class="headerAfter">
-    <h2>
-      <% if user_signed_in? %>
-          <%= current_user.email %> |
-          <%=display_verbose_date(DateTime.now)%>
-      <% end %>
-    </h2>
-  </div>
+  <h1 class="col-md-6 col-md-offset-2">Dashboard</h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
-<h2><u>List of upcoming events : </u></h2>
-<table class="table gridData table-striped">
-  <thead>
-  <tr>
-    <th>Event Date</th>
-    <th>Client</th>
-    <th>Event Name</th>
-    <th>Day(s)</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @upcoming_quotations.each do |quotation| %>
-    <tr>
-      <td><%= display_date(quotation.event_date)%></td>
-      <td><%= quotation.client.company_name %></td>
-      <td><%= quotation.event_name %></td>
-      <td><%= quotation.days %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
 
-<h2><u>Pending Payments :</u></h2>
-<table class="table gridData table-striped">
-<thead>
-<tr>
-  <th>Client Name</th>
-  <th>Contact Person</th>
-  <th>Phone Number</th>
-  <th>Email</th>
-  <th>Owes</th>
-</tr>
-</thead>
-<tbody>
-<% @pending_payments.each do |quotation| %>
-  <tr>
-    <td><%= quotation[:client].company_name %></td>
-    <td><%= quotation[:client].contact_person_name %></td>
-    <td><%= quotation[:client].phone_number %></td>
-    <td><%= quotation[:client].email %></td>
-    <td class="alignRight"><%=quotation[:owes]%></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
+<div class="belowHeader">
+    <h2><u>List of upcoming events : </u></h2>
+    <table class="table gridData table-striped">
+      <thead>
+      <tr>
+        <th>Event Date</th>
+        <th>Client</th>
+        <th>Event Name</th>
+        <th>Day(s)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @upcoming_quotations.each do |quotation| %>
+        <tr>
+          <td><%= display_date(quotation.event_date)%></td>
+          <td><%= quotation.client.company_name %></td>
+          <td><%= quotation.event_name %></td>
+          <td><%= quotation.days %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <h2><u>Pending Payments :</u></h2>
+    <table class="table gridData table-striped">
+    <thead>
+    <tr>
+      <th>Client Name</th>
+      <th>Contact Person</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Owes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @pending_payments.each do |quotation| %>
+      <tr>
+        <td><%= quotation[:client].company_name %></td>
+        <td><%= quotation[:client].contact_person_name %></td>
+        <td><%= quotation[:client].phone_number %></td>
+        <td><%= quotation[:client].email %></td>
+        <td class="alignRight"><%=quotation[:owes]%></td>
+      </tr>
+    <% end %>
+    </tbody>
+    </table>
+</div>

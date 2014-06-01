@@ -1,64 +1,64 @@
 <div class="header">
-      <h1>
-        <%= if params[:status].nil? then
-              'Quotations for '
-            else
-              params[:status].include?(STATUS_INVOICE) ? 'Invoices for ' : 'Quotations for '
-            end %>
-      </h1>
-        <div class="companyName">
-          <% if !@client.nil? %>
-            <%= @client.company_name %>
-          <% end %>
-        </div>
-
-  <div class="headerAfter">
-    <h2>
-    <% if @client.nil? %>
-        <%= link_to '+ New Quotation', new_quotation_path(), class: 'new' %>
-    <% else %>
-          <%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @client.id, :company_name => @client.company_name %>
-          &nbsp; | &nbsp;
-          <%= link_to 'Ledger', client_ledgers_path(@client)%>
-          &nbsp; | &nbsp;
-          <%= link_to '+ New Quotation', new_quotation_path(client_id: @client.id), class: 'new' %>
-    <% end %>
-    </h2>
-  </div>
+  <h1 class="col-md-6 col-md-offset-2 companyName"><%= @client.company_name %></h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
-
-
-<table class="table gridData table-striped">
-  <thead>
-  <tr>
-    <th><strong>Name</strong></th>
-    <th><strong>Event Date</strong></th>
-    <th><strong>Invoice Type</strong></th>
-    <th><strong>Status</strong></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @quotations.each do |quotation| %>
-    <tr>
-      <td><%= quotation.event_name %></td>
-      <td><%= display_date(quotation.event_date) %></td>
-      <td><%= quotation.invoice_type %></td>
-      <td><%= quotation.status %></td>
-      <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info' %></td>
-
-
-      <%if policy(quotation).destroy? %>
-          <td>
-            <%if quotation.is_open_for_edits(current_user)%>
-                <%= button_to 'X', quotation, {:onclick => "return confirm('WARNING : Are you sure to DELETE this quotation Permanently? You will not be able retrieve this quotation again')", :method=>:delete, :class => 'deleteBtn'} %>
-            <% end %>
-          </td>
+<div class="belowHeader">
+    <ul class="nav nav-tabs nav-tabs-ul">
+        <li class="#"><%= link_to 'Home', client_path(@client.id)%></li>
+      <% if params[:status].nil? || !params[:status].include?(STATUS_INVOICE) %>
+        <li class="active disabled"><%= link_to 'Quotations', quotations_path(:client_id => @client.id, :status => [STATUS_PENDING, STATUS_CONFIRMED, STATUS_CLOSED])%></li>
+      <%else %>
+          <li class="#"><%= link_to 'Quotations', quotations_path(:client_id => @client.id, :status => [STATUS_PENDING, STATUS_CONFIRMED, STATUS_CLOSED])%></li>
       <%end%>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+
+      <% if !params[:status].nil? && params[:status].include?(STATUS_INVOICE) %>
+          <li class="active disabled"><%= link_to 'Invoices', quotations_path(:client_id => @client.id, :status => [STATUS_INVOICE])%></li>
+      <%else %>
+          <li class="#"><%= link_to 'Invoices', quotations_path(:client_id => @client.id, :status => [STATUS_INVOICE])%></li>
+      <%end%>
+
+
+      <li class="#"><%= link_to 'Payments', :controller => 'payments', :action => 'index', :client_id => @client.id, :company_name => @client.company_name %></li>
+      <li class="#"><%= link_to 'Ledger', client_ledgers_path(@client.id)%></li>
+    </ul>
+
+    <h2 class="headerAfter"><%= link_to '+ Add New Quotation', new_quotation_path(client_id: @client.id)%></h2>
+
+
+    <table class="belowHeader table gridData table-striped">
+      <thead>
+      <tr>
+        <th><strong>Name</strong></th>
+        <th><strong>Event Date</strong></th>
+        <th><strong>Invoice Type</strong></th>
+        <th><strong>Status</strong></th>
+        <th><strong>Total Price</strong></th>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @quotations.each do |quotation| %>
+        <tr>
+          <td><%= quotation.event_name %></td>
+          <td><%= display_date(quotation.event_date) %></td>
+          <td><%= quotation.invoice_type %></td>
+          <td><%= quotation.status %></td>
+          <td><%= quotation.total_price %></td>
+          <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info' %></td>
+
+
+          <%if policy(quotation).destroy? %>
+              <td>
+                <%if quotation.is_open_for_edits(current_user)%>
+                    <%= button_to 'X', quotation, {:onclick => "return confirm('WARNING : Are you sure to DELETE this quotation Permanently? You will not be able retrieve this quotation again')", :method=>:delete, :class => 'deleteBtn'} %>
+                <% end %>
+              </td>
+          <%end%>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+</div>

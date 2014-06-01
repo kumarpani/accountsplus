@@ -1,71 +1,70 @@
 <div class="header">
-  <h1>Service Taxes</h1>
-
-  <div class="headerAfter">
-    <h2><%= display_verbose_date(DateTime.now) %></h2>
-  </div>
+  <h1 class="col-md-6 col-md-offset-2">Service Taxes</h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
-<p>Please enter both start and end dates:</p>
-<%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
-  <%= text_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: 'Start Date' %>
-  <%= text_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: 'End Date' %>
-  <%= submit_tag 'Search', name: nil  %>
-<% end %>
 
-
-<% if !@service_tax.nil? %>
-
-  <br>
-  <p> Service tax details between :
-    <b>
-      <%= display_verbose_date(params[:start_date]) %>  &nbsp;&nbsp;|&nbsp;&nbsp;
-      <%= display_verbose_date(params[:end_date]) %>
-    </b>
-  </p>
-
-  <table class="table gridData table-condensed table-striped table-bordered">
-    <thead>
-    <tr>
-      <th><strong>Sl No</strong></th>
-      <th><strong>Invoice Number</strong></th>
-      <th><strong>Event Date</strong></th>
-      <th><strong>Invoice Date</strong></th>
-      <th><strong>Name</strong></th>
-      <th><strong>Event Total</strong></th>
-      <th><strong>Service Tax</strong></th>
-      <th></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @service_tax.each_with_index do |b, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= b[:invoice_number] %></td>
-        <td><%= display_date(b[:event_date]) %></td>
-        <td><%= display_date(b[:invoice_raised_date]) %></td>
-        <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
-        <td class="alignRight"><%= get_total_item_price_by_quotation_id(b[:id]) %></td>
-        <td class="alignRight"><%= b[:service_tax] %></td>
-        <td><%= link_to 'Show Details', quotation_item_details_url(b[:id]), class: 'info', :style => 'float:right'%></td>
-      </tr>
+<div class="belowHeader">
+    <p>Please enter both start and end dates:</p>
+    <%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
+      <%= text_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: 'Start Date' %>
+      <%= text_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: 'End Date' %>
+      <%= submit_tag 'Search', name: nil  %>
     <% end %>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><b> Total: </b></td>
-      <td class="alignRight"><b><%= @service_tax.sum(&:total_item_price) %></b></td>
-      <td class="alignRight"><b><%= @service_tax.sum(&:service_tax) %></b></td>
-    </tr>
-<% end %>
-</tbody>
-</table>
 
-<p><%= link_to 'Print PDF', :controller => 'service_taxes', :action => 'print', :format => 'pdf', :start_date => params[:start_date], :end_date => params[:end_date]%></p>
 
+    <% if !@service_tax.nil? %>
+
+      <br>
+      <p> Service tax details between :
+        <b>
+          <%= display_verbose_date(params[:start_date]) %>  &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= display_verbose_date(params[:end_date]) %>
+        </b>
+      </p>
+
+      <table class="table gridData table-condensed table-striped table-bordered">
+        <thead>
+        <tr>
+          <th><strong>Sl No</strong></th>
+          <th><strong>Invoice Number</strong></th>
+          <th><strong>Event Date</strong></th>
+          <th><strong>Invoice Date</strong></th>
+          <th><strong>Name</strong></th>
+          <th><strong>Event Total</strong></th>
+          <th><strong>Service Tax</strong></th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @service_tax.each_with_index do |b, index| %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= b[:invoice_number] %></td>
+            <td><%= display_date(b[:event_date]) %></td>
+            <td><%= display_date(b[:invoice_raised_date]) %></td>
+            <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
+            <td class="alignRight"><%= get_total_item_price_by_quotation_id(b[:id]) %></td>
+            <td class="alignRight"><%= b[:service_tax] %></td>
+            <td><%= link_to 'Show Details', quotation_item_details_url(b[:id]), class: 'info', :style => 'float:right'%></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><b> Total: </b></td>
+          <td class="alignRight"><b><%= @service_tax.sum(&:total_item_price) %></b></td>
+          <td class="alignRight"><b><%= @service_tax.sum(&:service_tax) %></b></td>
+        </tr>
+    <% end %>
+    </tbody>
+    </table>
+
+    <p><%= link_to 'Print PDF', :controller => 'service_taxes', :action => 'print', :format => 'pdf', :start_date => params[:start_date], :end_date => params[:end_date]%></p>
+</div>
 
 <script>
   $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})

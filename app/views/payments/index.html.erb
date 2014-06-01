@@ -1,48 +1,51 @@
 <div class="header">
-  <h1>Payments for&nbsp;</h1><div class="companyName"><%= get_company_name_by_client_id(params[:client_id]) %></div>
-
-  <div class="headerAfter">
-    <h2>
-      <% !if params[:client_id] %>
-          <%= link_to 'Invoices', :controller => 'quotations', :action => 'index', :client_id => params[:client_id], :status => STATUS_INVOICE %>
-          &nbsp;|&nbsp;
-          <%= link_to 'Ledger', :controller => 'ledgers', :action => 'index', :client_id => params[:client_id]%>
-           &nbsp; | &nbsp;
-      <%end%>
-      <%= link_to '+ Add New Payment', new_payment_path(client_id: params[:client_id]), class: :new %>
-    </h2>
-  </div>
+  <h1 class="col-md-6 col-md-offset-2 companyName"><%= params[:company_name] %></h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
-<table class="table gridData table-striped">
-  <thead>
-  <tr>
-    <th><strong>Paid on</strong></th>
-    <th><strong>Description</strong></th>
-    <th><strong>Mode</strong></th>
-    <th><strong>Amount</strong></th>
-    <th><strong>Type</strong></th>
-    <th><strong>Added By</strong></th>
-    <th><strong>Last Modified By</strong></th>
-    <th></th>
-    <!--<th></th>-->
-  </tr>
-  </thead>
 
-  <tbody>
-  <% @payments.each do |payment| %>
-    <tr>
-      <td><%= display_date(payment.paid_on) %></td>
-      <td><%= payment.description %></td>
-      <td><%= payment.mode %></td>
-      <td class="alignRight"><%= payment.amount %></td>
-      <td><%= payment.payment_type %></td>
-      <td><%= payment.payment_added_by %></td>
-      <td><%= payment.payment_last_modified_by %></td>
-      <td><%= link_to 'Details', payment, class: :info %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="belowHeader">
+    <ul class="nav nav-tabs nav-tabs-ul">
+      <li class="#"><%= link_to 'Home', client_path(params[:client_id])%></li>
+      <li class="#"><%= link_to 'Quotations', quotations_path(:client_id => params[:client_id], :status => [STATUS_PENDING, STATUS_CONFIRMED, STATUS_CLOSED])%></li>
+      <li class="#"><%= link_to 'Invoices', quotations_path(:client_id => params[:client_id], :status => [STATUS_INVOICE])%></li>
+      <li class="active disabled"><a href="#">Payments</a></li>
+      <li class="#"><%= link_to 'Ledger', client_ledgers_path(params[:client_id])%></li>
+    </ul>
 
-<br>
+    <h2 class="headerAfter"><%= link_to '+ Add New Payment', new_payment_path(client_id: params[:client_id]), class: :new %></h2>
+
+
+    <table class="table gridData table-striped">
+      <thead>
+      <tr>
+        <th><strong>Paid on</strong></th>
+        <th><strong>Description</strong></th>
+        <th><strong>Mode</strong></th>
+        <th><strong>Amount</strong></th>
+        <th><strong>Type</strong></th>
+        <th><strong>Added By</strong></th>
+        <th><strong>Last Modified By</strong></th>
+        <th></th>
+        <!--<th></th>-->
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @payments.each do |payment| %>
+        <tr>
+          <td><%= display_date(payment.paid_on) %></td>
+          <td><%= payment.description %></td>
+          <td><%= payment.mode %></td>
+          <td class="alignRight"><%= payment.amount %></td>
+          <td><%= payment.payment_type %></td>
+          <td><%= payment.payment_added_by %></td>
+          <td><%= payment.payment_last_modified_by %></td>
+          <td><%= link_to 'Details', payment, class: :info %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br>
+</div>

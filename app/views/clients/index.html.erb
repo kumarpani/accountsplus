@@ -1,51 +1,46 @@
 <div class="header">
-  <h1>Clients</h1>
-  <div class="headerAfter">
-    <h2>
-    <%= link_to '+ Add New Client', new_client_path, class: :new%>
-    </h2>
-  </div>
+  <h1  class="col-md-6 col-md-offset-2">Clients</h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
-<p>Click "Search" button without any input to see all Clients. Or Search by entering part of Company name/Contact person/Phone number/Email address:</p>
+<div class="belowHeader">
 
-<p>
-<%=form_tag clients_path, :method => 'get' do %>
-        <%= text_field_tag :search, params[:search], :style => 'float:left;', :class => 'searchInput' %>
-        <%= submit_tag 'Search', :name => nil, :style => 'float:left;', :class => 'searchBtn' %>
-<%end%>
-</p>
-<br><br><br>
+    <h2 class="headerAfter"><%= link_to '+ Add New Client', new_client_path, class: :new%></h2>
+    <p>Click "Search" button without any input to see all Clients. Or Search by entering part of Company name/Contact person/Phone number/Email address:</p>
 
-<% if !@clients.nil? %>
+    <p>
+    <%=form_tag clients_path, :method => 'get' do %>
+            <%= text_field_tag :search, params[:search], :style => 'float:left;', :class => 'searchInput' %>
+            <%= submit_tag 'Search', :name => nil, :style => 'float:left;', :class => 'searchBtn' %>
+    <%end%>
+    </p>
+    <br><br><br>
 
-<table class="table gridData table-striped">
-  <thead>
-  <tr>
-    <th width=155px;><strong>Company Name</strong></th>
-    <th width=195px;><strong>Contact Person</strong></th>
-    <th width=150px;><strong>Ph Number</strong></th>
-    <th width=100px;><strong>Email</strong></th>
-    <th width=85px;></th>
-    <th width=70px;></th>
-    <th width=60px;></th>
-    <th width=70px;></th>
-  </tr>
-  </thead>
+    <% if !@clients.nil? %>
 
-  <tbody>
-  <% @clients.sort_by {|c| c[:company_name].downcase}.each do |client| %>
-    <tr>
-      <td><%= link_to client.company_name, client_path(client.id)%></td>
-      <td><%= client.contact_person_name %></td>
-      <td><%= client.phone_number %></td>
-      <td><%= client.email %></td>
-      <td><%= link_to 'Quotations', quotations_path(:client_id => client.id, :status => [STATUS_PENDING, STATUS_CONFIRMED, STATUS_CLOSED]), class: 'info' %></td>
-      <td><%= link_to 'Invoices', quotations_path(:client_id => client.id, :status => [STATUS_INVOICE]), class: 'info' %></td>
-      <td><%= link_to 'Ledger', client_ledgers_path(client), class: 'info' %></td>
-      <td><%= link_to 'Payments', payments_path(:client_id => client.id), class: 'info' %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<%end%>
+    <table class="table gridData table-striped">
+      <thead>
+      <tr>
+        <th width=220;><strong>Company Name</strong></th>
+        <th width=195px;><strong>Contact Person</strong></th>
+        <th width=120px;><strong>Ph Number</strong></th>
+        <th width=100px;><strong>Email</strong></th>
+        <th width=300px;></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @clients.sort_by {|c| c[:company_name].downcase}.each do |client| %>
+        <tr>
+          <td><%= client.company_name%></td>
+          <td><%= client.contact_person_name %></td>
+          <td><%= client.phone_number %></td>
+          <td><%= client.email %></td>
+          <td><%= link_to 'Select Client', client_path(client.id), class: 'info'%></td>
+
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%end%>
+</div>
