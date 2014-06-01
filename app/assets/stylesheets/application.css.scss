@@ -16,6 +16,10 @@
 
 @import 'bootstrap';
 
+.signIn {
+  padding: 10px;
+}
+
 .header {
   width: 100%;
   text-align: justify;
@@ -124,7 +128,7 @@ h2 {
 h3 {
   font-size: 22px;
   font-color:#428bca;
-
+  text-decoration: underline;
 }
 
 .rest-of-the-world {
