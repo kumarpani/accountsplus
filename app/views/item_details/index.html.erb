@@ -24,7 +24,7 @@
 
 <div class="headerAfter">
   <% if @quotation.is_open_for_edits(current_user) %>
-      <h2 class="headerAfter"><%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit'%></h2>
+      <h2 class="headerAfter"><%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit', :style => 'color:white'%></h2>
   <%end%>
 
 </div>

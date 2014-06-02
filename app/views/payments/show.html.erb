@@ -58,7 +58,7 @@
 
     <p>
       <% if policy(@payment).update? %>
-        <%= link_to 'Edit', edit_payment_path(@payment), class: :edit%>
+        <%= link_to 'Edit', edit_payment_path(@payment), class: :edit, style: 'color:white'%>
       <%end%>
 
       <%= link_to 'Print PDF', :controller => 'payments', :action => 'print', :format => 'pdf', :payment_type => @payment.payment_type%>
