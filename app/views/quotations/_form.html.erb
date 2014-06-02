@@ -13,7 +13,14 @@
 
     <div class="actions" style="text-align: right;">
       <%= submit_tag 'Update Quotation', {:onclick => "return confirm('WARNING : Are you sure updating quotations. If you are raising INVOICE, please be sure of details.')"}%>
-      <%=link_to 'Back To Quotation', quotation_item_details_path(@quotation.id)%>
+
+      <% if !@quotation.id.nil? %>
+        <%=link_to 'Back To Quotation', quotation_item_details_path(@quotation.id)%>
+      <% elsif !params[:client_id].nil?%>
+        <%= link_to 'Back To Client Home', client_path(params[:client_id])%>
+      <% else %>
+        <%= link_to 'Back To Calendar', :controller => 'calendar', :action => :index %>
+      <%end%>
     </div>
 
     <ul class="field_container">

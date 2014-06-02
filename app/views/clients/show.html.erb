@@ -13,7 +13,7 @@
     </ul>
 
     <br>
-    <p class="headerAfter"><%= link_to 'Edit Client Details', edit_client_path(@client), class: 'edit' %></p>
+    <p class="headerAfter"><%= link_to 'Edit Client Details', edit_client_path(@client), class: 'edit', style: 'color:white' %></p>
     <br><br>
 
     <div class="col-md-9">
@@ -21,7 +21,7 @@
     <table class="table table-striped table-bordered gridData">
       <tbody>
           <tr>
-            <td><strong>Contact Person Name:</strong></td>
+            <td width=200px;><strong>Contact Person Name:</strong></td>
             <td><%= @client.contact_person_name %></td>
             </tr>
           <tr>
