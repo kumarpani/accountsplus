@@ -23,7 +23,7 @@
       <li class="#"><%= link_to 'Ledger', client_ledgers_path(@client.id)%></li>
     </ul>
 
-    <h2 class="headerAfter"><%= link_to '+ Add New Quotation', new_quotation_path(client_id: @client.id)%></h2>
+    <h2 class="headerAfter"><%= link_to '+ Add New Quotation', new_quotation_path(client_id: @client.id, company_name: @client.company_name)%></h2>
 
 
     <table class="belowHeader table gridData table-striped">
@@ -47,7 +47,7 @@
           <td><%= quotation.invoice_type %></td>
           <td><%= quotation.status %></td>
           <td><%= quotation.total_price %></td>
-          <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info' %></td>
+          <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info', :style => 'color:white' %></td>
 
 
           <%if policy(quotation).destroy? %>
