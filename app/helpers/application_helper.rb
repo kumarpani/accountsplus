@@ -1,28 +1,28 @@
 module ApplicationHelper
 
   # Application Title and Name
-  TITLE = 'Audioplus'
-  NAME = 'Audio Plus'
+  TITLE = 'AccountsDemo'
+  NAME = 'Accounts Demo'
 
   # Address
-  ADD_LINE1 = 'U-26, 3rd Cross, Pipeline,'
-  ADD_LINE2 = 'Krishnappa Block, Malleshwaram,'
-  ADD_LINE3 = 'Bangalore - 5600 03'
-  TELEPHONE = '080 23567619'
-  MOBILE = '98802 73773'
-  EMAIL = 'audioplus.events@gmail.com'
+  ADD_LINE1 = 'Address line 1'
+  ADD_LINE2 = 'Address line 2'
+  ADD_LINE3 = 'City'
+  TELEPHONE = '888 88888888'
+  MOBILE = '99999 99999'
+  EMAIL = 'your_email@your_domain.com'
 
   #Bank Details
-  BANK_ACC_NAME = 'Audioplus'
-  BANK_NAME_BRANCH = 'HDFC Bank Ltd, Seshadripuram'
-  BANK_ACC_NUM = '03672020000887'
-  BANK_TYPE_OF_ACC = 'Current Account'
-  BANK_IFSC = 'HDFC0000367'
-  BANK_MIRC = '560240018'
+  BANK_ACC_NAME = 'Account Name'
+  BANK_NAME_BRANCH = 'Bank Name and Branch'
+  BANK_ACC_NUM = 'Account Number'
+  BANK_TYPE_OF_ACC = 'Account Type'
+  BANK_IFSC = 'IFSC Code'
+  BANK_MIRC = 'MIRC Code'
 
   #Service Tax Number
   PAN_NUMBER = ''
-  SERVICE_TAX_NUMBER = 'AKAPP9970EST001'
+  SERVICE_TAX_NUMBER = 'Service Tax Number'
   SERVICE_CATEGORY = ''
 
 
