@@ -14,7 +14,7 @@ class ActivityController < ApplicationController
     @payments_changed += Payment.where('updated_at >= ? AND updated_at <= ?', @s_date, @e_date).where('created_at != updated_at')
     @payments_changed = @payments_changed.sort_by {|p| p[:updated_at]}.reverse
 
-    @quotations_raised = Quotation.where('created_at >= ? AND created_at <= ?', @s_date, @e_date).order(:invoice_raised_date).reverse_order
+    @quotations_raised = Quotation.where('created_at >= ? AND created_at <= ?', @s_date, @e_date).order(:created_at).reverse_order
 
   end
 
