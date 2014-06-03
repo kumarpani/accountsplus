@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Clients") do |sheet|
+  Client.select {|c| c[:created_at] >= params[:start_date] and c[:created_at] <= params[:end_date]}.each do |cl|
+    sheet.add_row [cl.id]
+  end
+end
