@@ -25,6 +25,10 @@ Accountsplus::Application.routes.draw do
   post "quotations/duplicate"
   post "quotations/markAsPaymentsFullyReceived"
 
+  get "backup/index"
+  get "backup/backup_data"
+
+
   devise_for :users
 
   resources :payments
