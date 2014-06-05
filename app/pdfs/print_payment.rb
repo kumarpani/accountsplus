@@ -55,32 +55,34 @@ class PrintPayment < PrintBase
   def cash_voucher(payment, email)
     text ("\n")
     data =  [
-                 [{:content => 'Date: ' + payment.paid_on.strftime("%d/%m/%Y"), :font_style => :bold, :align => :right}],
-                 [{:content => 'Pay to: ' + payment.client.company_name, :font_style => :bold, :align => :left}],
-                 [{:content => 'Rupees: ' + payment.amount.to_s, :font_style => :bold, :align => :left}],
-                 [{:content => 'By: ' + payment.mode, :font_style => :bold, :align => :left}],
-                 [{:content => 'Being: ' + payment.description, :font_style => :bold, :align => :left}],
-                 [{:content => 'Prepared by: ' + email, :font_style => :bold, :align => :left}],
+                 [{:content => 'Date:', :font_style => :bold},        {:content => payment.paid_on.strftime("%d/%m/%Y"), :font_style => :italic}],
+                 [{:content => 'Pay to:', :font_style => :bold},      {:content => payment.client.company_name, :font_style => :italic}],
+                 [{:content => 'Rupees:', :font_style => :bold},      {:content => payment.amount.to_s + ' (Rupees: ' + payment.amount.to_i.rupees + ')', :font_style => :italic}],
+                 [{:content => 'By:', :font_style => :bold},          {:content => payment.mode, :font_style => :italic}],
+                 [{:content => 'Being:', :font_style => :bold},       {:content => payment.description, :font_style => :italic}],
+                 [{:content => 'Prepared by:', :font_style => :bold}, {:content => email, :font_style => :italic, :align => :left}],
+                 [{:content => ''}, {:content => 'Receiver\'s Signature', :font_style => :bold, :align => :right}],
              ]
 
-    table(data, :column_widths => {0 => 450},
-          :cell_style => {:border_width => 0, :height => 25, :inline_format => true, :padding => 3})
+    table(data, :column_widths => {0 => 120, 1=> 350},
+          :cell_style => {:border_width => 0, :height => 21, :inline_format => true, :padding => 3, :size => 10})
 
   end
 
  def receipt(payment, email)
    text ("\n")
    data =  [
-       [{:content => 'Date: '+ payment.paid_on.strftime("%d/%m/%Y"), :font_style => :bold, :align => :right}],
-       [{:content => 'Received with thanks from: ' + payment.client.company_name, :font_style => :bold, :align => :left}],
-       [{:content => 'a sum of Rupees: ' + payment.amount.to_s(), :font_style => :bold, :align => :left}],
-       [{:content => 'towards: ' + payment.description, :font_style => :bold, :align => :left}],
-       [{:content => 'by: ' + payment.mode, :font_style => :bold, :align => :left}],
-       [{:content => 'Prepared by: ' + email, :font_style => :bold, :align => :left}]
+       [{:content => 'Date:', :font_style => :bold},        {:content => payment.paid_on.strftime("%d/%m/%Y"), :font_style => :italic}],
+       [{:content => 'Received with thanks from:', :font_style => :bold},      {:content => payment.client.company_name, :font_style => :italic}],
+       [{:content => 'A sum of Rupees:', :font_style => :bold},      {:content => payment.amount.to_s + ' (Rupees: ' + payment.amount.to_i.rupees + ')', :font_style => :italic}],
+       [{:content => 'Towards:', :font_style => :bold},          {:content => payment.description, :font_style => :italic}],
+       [{:content => 'By:', :font_style => :bold},       {:content => payment.mode, :font_style => :italic}],
+       [{:content => 'Prepared by:', :font_style => :bold}, {:content => email, :font_style => :italic, :align => :left}],
+       [{:content => ''}, {:content => 'Receiver\'s Signature', :font_style => :bold, :align => :right}],
    ]
 
-   table(data, :column_widths => {0 => 450},
-         :cell_style => {:border_width => 0, :height => 25, :inline_format => true, :padding => 3})
+   table(data, :column_widths => {0 => 170, 1=> 300},
+         :cell_style => {:border_width => 0, :height => 21, :inline_format => true, :padding => 3, :size => 10})
 
  end
 

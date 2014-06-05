@@ -84,30 +84,34 @@
 
     </table>
 </div>
-<p><b> Quotations Created between : <%= get_dates_message(params[:start_date], params[:end_date]) %></b> </p>
+<p><b> Quotations Created/Edited between : <%= get_dates_message(params[:start_date], params[:end_date]) %></b> </p>
 
 <table class="table table-striped gridData">
 
   <thead>
   <tr>
     <th><strong>Sl. No.</strong></th>
-    <th><strong>Name</strong></th>
+    <th><strong>Company Name</strong></th>
+    <th><strong>Event</strong></th>
     <th><strong>Event Date</strong></th>
-    <th><strong>Total Price</strong></th>
-    <th><strong>Invoice Type</strong></th>
     <th><strong>Status</strong></th>
+    <th>Created On</th>
+    <th>Updated On</th>
+
   </tr>
   </thead>
 
-  <% @quotations_raised.each_with_index do |quotation, index| %>
+  <% @quotations_changed.each_with_index do |quotation, index| %>
 
       <tr>
         <td class="alignCenter"><%= index + 1 %></td>
+        <td><%= quotation.client.company_name %></td>
         <td><%= quotation.event_name %></td>
         <td><%= display_date(quotation.event_date) %></td>
-        <td><%= quotation.total_price %></td>
-        <td><%= quotation.invoice_type %></td>
         <td><%= quotation.status %></td>
+        <td><%= display_date(quotation.created_at.to_date) + ' | ' + quotation.created_at.strftime("%H:%M:%S")%></td>
+        <td><%= display_date(quotation.updated_at.to_date) + ' | ' + quotation.updated_at.strftime("%H:%M:%S")%></td>
+
       <tr>
 
   <% end %>
