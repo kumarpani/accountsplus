@@ -26,7 +26,11 @@
     </li>
     <li>
       <%= f.label :paid_on %>
-      <%= f.text_field :paid_on, :value => display_date(@payment.paid_on)%>
+      <% if @payment.paid_on.nil? %>
+          <%= f.text_field :paid_on%>
+      <%else%>
+          <%= f.text_field :paid_on, :value => display_date(@payment.paid_on)%>
+      <%end%>
 
     </li>
     <li>
