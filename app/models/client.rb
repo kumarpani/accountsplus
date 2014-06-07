@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  acts_as_xlsx
+  # acts_as_xlsx
 
   has_many :quotations, :dependent => :delete_all
   has_many :payments, :dependent => :delete_all
