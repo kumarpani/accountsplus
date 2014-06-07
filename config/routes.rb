@@ -29,7 +29,7 @@ Accountsplus::Application.routes.draw do
   get "backup/backup_data"
 
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :payments
   resources :clients do
