@@ -41,6 +41,10 @@
       <%= f.label :payment_type %>
       <%= f.select(:payment_type, options_for_select(%w(Debit Credit))) %>
     </li>
+    <li>
+      <%= f.label :paid_to %>
+      <%= f.text_field :paid_to %>
+    </li>
   </ul>
 
   <div class="actions">
