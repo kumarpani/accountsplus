@@ -1,6 +1,6 @@
 class PrintPayment < PrintBase
 
- def initialize(payment_id, email)
+ def initialize(payment_id, first_name, last_name)
     super()
 
     payment = Payment.find(payment_id)
@@ -8,14 +8,13 @@ class PrintPayment < PrintBase
     header(payment)
 
     if payment.payment_type =='Debit'
-      receipt(payment, email)
+      receipt(payment)
     end
 
     else if payment.payment_type =='Credit'
-        cash_voucher(payment, email)
+        cash_voucher(payment, first_name, last_name)
          end
 
-  # signature
  end
 
 
@@ -50,17 +49,16 @@ class PrintPayment < PrintBase
 
  end
 
-  def cash_voucher(payment, email)
+  def cash_voucher(payment, first_name, last_name)
     text ("\n")
     data =  [
                  [{:content => 'Date:', :font_style => :bold},        {:content => payment.paid_on.strftime("%d/%m/%Y"), :font_style => :italic}],
-                 [{:content => 'Pay to:', :font_style => :bold},      {:content => payment.client.company_name, :font_style => :italic}],
-                 [{:content => 'Received by:', :font_style => :bold},      {:content => payment.paid_to, :font_style => :italic}],
+                 [{:content => 'Paid to:', :font_style => :bold},      {:content => payment.received_by + ' from ' + payment.client.company_name, :font_style => :italic}],
                  [{:content => 'Rupees:', :font_style => :bold},      {:content => payment.amount.to_s + ' (Rupees: ' + payment.amount.to_i.rupees + ')', :font_style => :italic}],
                  [{:content => 'By:', :font_style => :bold},          {:content => payment.mode, :font_style => :italic}],
                  [{:content => 'Being:', :font_style => :bold},       {:content => payment.description, :font_style => :italic}],
-                 [{:content => 'Prepared by:', :font_style => :bold}, {:content => email, :font_style => :italic, :align => :left}],
-                 [{:content => ''}, {:content => 'Receiver\'s Signature', :font_style => :bold, :align => :right}],
+                 [{:content => 'Prepared by:', :font_style => :bold}, {:content => 'Receiver\'s Signature', :font_style => :bold, :align => :center}],
+                 [{:content => "#{first_name} #{last_name}", :font_style => :italic}, {:content => ''}],
              ]
 
     table(data, :column_widths => {0 => 120, 1=> 350},
@@ -68,17 +66,15 @@ class PrintPayment < PrintBase
 
   end
 
- def receipt(payment, email)
+ def receipt(payment)
    text ("\n")
    data =  [
        [{:content => 'Date:', :font_style => :bold},        {:content => payment.paid_on.strftime("%d/%m/%Y"), :font_style => :italic}],
        [{:content => 'Received with thanks from:', :font_style => :bold},      {:content => payment.client.company_name, :font_style => :italic}],
-       [{:content => 'Received by:', :font_style => :bold},      {:content => payment.paid_to, :font_style => :italic}],
        [{:content => 'A sum of Rupees:', :font_style => :bold},      {:content => payment.amount.to_s + ' (Rupees: ' + payment.amount.to_i.rupees + ')', :font_style => :italic}],
        [{:content => 'Towards:', :font_style => :bold},          {:content => payment.description, :font_style => :italic}],
        [{:content => 'By:', :font_style => :bold},       {:content => payment.mode, :font_style => :italic}],
-       [{:content => 'Prepared by:', :font_style => :bold}, {:content => email, :font_style => :italic, :align => :left}],
-       [{:content => ''}, {:content => 'Receiver\'s Signature', :font_style => :bold, :align => :right}],
+       [{:content => ''}, {:content => "For #{ApplicationHelper::NAME}", :font_style => :bold, :align => :center}],
    ]
 
    table(data, :column_widths => {0 => 170, 1=> 300},
@@ -86,9 +82,4 @@ class PrintPayment < PrintBase
 
  end
 
- def signature
-   text("\nFor #{ApplicationHelper::NAME}\n\n\n\n", :align => :right)
-   text("Authorized Signature", :align => :right)
-
- end
-end                                     
+end

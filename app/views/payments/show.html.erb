@@ -25,7 +25,7 @@
           </tr>
           <tr>
             <td><strong>Received by</strong></td>
-            <td><%= @payment.paid_to %></td>
+            <td><%= @payment.received_by %></td>
           </tr>
           <tr>
             <td><strong>Description</strong></td>
@@ -65,7 +65,7 @@
         <%= link_to 'Edit', edit_payment_path(@payment), class: :edit, style: 'color:white'%>
       <%end%>
 
-      <%= link_to 'Print PDF', :controller => 'payments', :action => 'print', :format => 'pdf', :payment_id => @payment.id, :email => current_user.first_name %>
+      <%= link_to 'Print PDF', :controller => 'payments', :action => 'print', :format => 'pdf', :payment_id => @payment.id, :first_name => current_user.first_name, :last_name => current_user.last_name %>
       <% if policy(@payment).destroy? %>
           <%= button_to 'X', payment_path(), {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %>
       <%end%>

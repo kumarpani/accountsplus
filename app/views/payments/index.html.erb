@@ -24,7 +24,7 @@
         <th><strong>Mode</strong></th>
         <th><strong>Amount</strong></th>
         <th><strong>Type</strong></th>
-        <th><strong>Paid To</strong></th>
+        <th><strong>Received By</strong></th>
         <th><strong>Added By</strong></th>
         <th><strong>Last Modified By</strong></th>
         <th></th>
@@ -40,7 +40,7 @@
           <td><%= payment.mode %></td>
           <td class="alignRight"><%= payment.amount %></td>
           <td><%= payment.payment_type %></td>
-          <td><%= payment.paid_to %></td>
+          <td><%= payment.received_by %></td>
           <td><%= payment.payment_added_by %></td>
           <td><%= payment.payment_last_modified_by %></td>
           <td><%= link_to 'Details', payment, class: :info, style: 'color:white' %></td>
