@@ -17,6 +17,10 @@
       <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @payment.client.nil? ? 1 : @payment.client.id)) %>
     </li>
     <li>
+      <%= f.label :Received_by %>
+      <%= f.text_field :paid_to %>
+    </li>
+    <li>
       <%= f.label :description %>
       <%= f.text_area :description %>
     </li>
@@ -41,10 +45,7 @@
       <%= f.label :payment_type %>
       <%= f.select(:payment_type, options_for_select(%w(Debit Credit))) %>
     </li>
-    <li>
-      <%= f.label :paid_to %>
-      <%= f.text_field :paid_to %>
-    </li>
+
   </ul>
 
   <div class="actions">

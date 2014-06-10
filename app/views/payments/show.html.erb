@@ -24,6 +24,10 @@
             <td><%= @payment.client.company_name %></td>
           </tr>
           <tr>
+            <td><strong>Received by</strong></td>
+            <td><%= @payment.paid_to %></td>
+          </tr>
+          <tr>
             <td><strong>Description</strong></td>
             <td><%= @payment.description %></td>
           </tr>
@@ -42,10 +46,6 @@
           <tr>
             <td><strong>Type</strong></td>
             <td><%= @payment.payment_type %></td>
-          </tr>
-          <tr>
-            <td><strong>Paid to</strong></td>
-            <td><%= @payment.paid_to %></td>
           </tr>
           <tr>
             <td><strong>Added By</strong></td>
