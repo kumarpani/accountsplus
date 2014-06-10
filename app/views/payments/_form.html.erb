@@ -43,7 +43,7 @@
     </li>
     <li>
       <%= f.label :payment_type %>
-      <%= f.select(:payment_type, options_for_select(%w(Debit Credit))) %>
+      <%= f.select(:payment_type, options_for_select(%w(Debit Credit), @payment.payment_type)) %>
     </li>
 
   </ul>
