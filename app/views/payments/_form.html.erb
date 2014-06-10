@@ -17,7 +17,7 @@
       <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @payment.client.nil? ? 1 : @payment.client.id)) %>
     </li>
     <li>
-      <%= f.label :Received_by %>
+      <%= f.label :received_by %>
       <%= f.text_field :paid_to %>
     </li>
     <li>
