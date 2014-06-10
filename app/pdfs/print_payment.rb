@@ -53,7 +53,7 @@ class PrintPayment < PrintBase
     text ("\n")
     data =  [
                  [{:content => 'Date:', :font_style => :bold},        {:content => payment.paid_on.strftime("%d/%m/%Y"), :font_style => :italic}],
-                 [{:content => 'Paid to:', :font_style => :bold},      {:content => payment.received_by + ' from ' + payment.client.company_name, :font_style => :italic}],
+                 [{:content => 'Paid to:', :font_style => :bold},      {:content => get_received_by(payment.received_by, payment.client.company_name), :font_style => :italic}],
                  [{:content => 'Rupees:', :font_style => :bold},      {:content => payment.amount.to_s + ' (Rupees: ' + payment.amount.to_i.rupees + ')', :font_style => :italic}],
                  [{:content => 'By:', :font_style => :bold},          {:content => payment.mode, :font_style => :italic}],
                  [{:content => 'Being:', :font_style => :bold},       {:content => payment.description, :font_style => :italic}],
@@ -81,5 +81,13 @@ class PrintPayment < PrintBase
          :cell_style => {:border_width => 0, :inline_format => true, :padding => 3, :size => 10})
 
  end
+
+  def get_received_by(received_by, company_name)
+    if received_by.nil? || received_by == ''
+      company_name
+    else
+      received_by + ' from ' + company_name
+    end
+  end
 
 end
