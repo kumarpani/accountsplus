@@ -7,13 +7,13 @@
 
   <% @months = %w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec) %>
 
-  <% @m = params[:month].nil? ? Date.current.month : @months.index(params[:month])+1 %>
+  <% @m = params[:month].nil? ? Date.current.month : params[:month] %>
   <% @y = params[:year].nil? ? Date.current.year : params[:year] %>
 
 
   <%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
       Choose Month and Year to Jump to :
-      <%= select_tag(:month, options_for_select(@months, @months.to(@m-1)), class: 'form-control') %>
+      <%= select_tag(:month, options_for_select(Array[*@months.collect{|v,i| [v, @months.index(v)+1] }], @m.to_i), class: 'form-control') %>
       <%= select_tag(:year, options_for_select(%w(2013 2014), @y), class: 'form-control') %>
       <%= submit_tag 'Go', name: nil  %>
   <% end %>
