@@ -4,9 +4,7 @@ class PrintPayment < PrintBase
     super()
 
     payment = Payment.find(payment_id)
-    @user = User.current_user
     logo_and_address
-    text(@user)
     header(payment)
 
     if payment.payment_type =='Debit'
@@ -57,6 +55,7 @@ class PrintPayment < PrintBase
     data =  [
                  [{:content => 'Date:', :font_style => :bold},        {:content => payment.paid_on.strftime("%d/%m/%Y"), :font_style => :italic}],
                  [{:content => 'Pay to:', :font_style => :bold},      {:content => payment.client.company_name, :font_style => :italic}],
+                 [{:content => 'Received by:', :font_style => :bold},      {:content => payment.paid_to, :font_style => :italic}],
                  [{:content => 'Rupees:', :font_style => :bold},      {:content => payment.amount.to_s + ' (Rupees: ' + payment.amount.to_i.rupees + ')', :font_style => :italic}],
                  [{:content => 'By:', :font_style => :bold},          {:content => payment.mode, :font_style => :italic}],
                  [{:content => 'Being:', :font_style => :bold},       {:content => payment.description, :font_style => :italic}],
@@ -74,6 +73,7 @@ class PrintPayment < PrintBase
    data =  [
        [{:content => 'Date:', :font_style => :bold},        {:content => payment.paid_on.strftime("%d/%m/%Y"), :font_style => :italic}],
        [{:content => 'Received with thanks from:', :font_style => :bold},      {:content => payment.client.company_name, :font_style => :italic}],
+       [{:content => 'Received by:', :font_style => :bold},      {:content => payment.paid_to, :font_style => :italic}],
        [{:content => 'A sum of Rupees:', :font_style => :bold},      {:content => payment.amount.to_s + ' (Rupees: ' + payment.amount.to_i.rupees + ')', :font_style => :italic}],
        [{:content => 'Towards:', :font_style => :bold},          {:content => payment.description, :font_style => :italic}],
        [{:content => 'By:', :font_style => :bold},       {:content => payment.mode, :font_style => :italic}],
