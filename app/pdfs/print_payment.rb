@@ -65,7 +65,7 @@ class PrintPayment < PrintBase
              ]
 
     table(data, :column_widths => {0 => 120, 1=> 350},
-          :cell_style => {:border_width => 0, :height => 21, :inline_format => true, :padding => 3, :size => 10})
+          :cell_style => {:border_width => 0, :inline_format => true, :padding => 3, :size => 10})
 
   end
 
@@ -82,7 +82,7 @@ class PrintPayment < PrintBase
    ]
 
    table(data, :column_widths => {0 => 170, 1=> 300},
-         :cell_style => {:border_width => 0, :height => 21, :inline_format => true, :padding => 3, :size => 10})
+         :cell_style => {:border_width => 0, :inline_format => true, :padding => 3, :size => 10})
 
  end
 
