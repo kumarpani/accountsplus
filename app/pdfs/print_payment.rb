@@ -58,6 +58,10 @@ class PrintPayment < PrintBase
                  [{:content => 'By:', :font_style => :bold},          {:content => payment.mode, :font_style => :italic}],
                  [{:content => 'Being:', :font_style => :bold},       {:content => payment.description, :font_style => :italic}],
                  [{:content => 'Prepared by:', :font_style => :bold}, {:content => 'Receiver\'s Signature', :font_style => :bold, :align => :center}],
+                 [{:content => ''}],
+                 [{:content => ''}],
+                 [{:content => ''}],
+                 [{:content => ''}],
                  [{:content => "#{first_name} #{last_name}", :font_style => :italic}, {:content => ''}],
              ]
 
