@@ -17,6 +17,10 @@
       <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @payment.client.nil? ? 1 : @payment.client.id)) %>
     </li>
     <li>
+      <%= f.label :received_by %>
+      <%= f.text_field :received_by %>
+    </li>
+    <li>
       <%= f.label :description %>
       <%= f.text_area :description %>
     </li>
@@ -26,7 +30,11 @@
     </li>
     <li>
       <%= f.label :paid_on %>
-      <%= f.text_field :paid_on, :value => display_date(@payment.paid_on)%>
+      <% if @payment.paid_on.nil? %>
+          <%= f.text_field :paid_on%>
+      <%else%>
+          <%= f.text_field :paid_on, :value => display_date(@payment.paid_on)%>
+      <%end%>
 
     </li>
     <li>
@@ -35,8 +43,9 @@
     </li>
     <li>
       <%= f.label :payment_type %>
-      <%= f.select(:payment_type, options_for_select(%w(Debit Credit))) %>
+      <%= f.select(:payment_type, options_for_select(%w(Debit Credit), @payment.payment_type)) %>
     </li>
+
   </ul>
 
   <div class="actions">

@@ -31,7 +31,7 @@ class PaymentsController < ApplicationController
   def print
     respond_to do |format|
       format.pdf do
-        pdf = PrintPayment.new(params[:payment_type])
+        pdf = PrintPayment.new(params[:payment_id], params[:first_name], params[:last_name])
         send_data pdf.render, filename: "print_payment.pdf",
                   type: "application/pdf",
                   disposition: "inline"
@@ -98,6 +98,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:client_id, :description, :mode, :paid_on, :amount, :payment_type, :payment_added_by, :payment_last_modified_by)
+      params.require(:payment).permit(:client_id, :description, :mode, :paid_on, :amount, :payment_type, :received_by, :payment_added_by, :payment_last_modified_by)
     end
 end

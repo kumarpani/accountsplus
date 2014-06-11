@@ -1,0 +1,33 @@
+<div class="header">
+  <h1 class="col-md-6 col-md-offset-2">Backup</h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+</div>
+
+
+<div class="belowHeader">
+  <h2>Back up all clients to excel workbook:</h2>
+
+  <br>
+  <p>Please enter both start and end dates for filtering:</p>
+  <%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
+      <%= text_field_tag :start_date, params[:start_date], class: 'form-control', placeholder: 'Start Date' %>
+      <%= text_field_tag :end_date, params[:end_date], class: 'form-control', placeholder: 'End Date' %>
+      <%= submit_tag 'Search', name: nil  %>
+  <% end %>
+  <br>
+
+    <% if !params[:start_date].to_s.empty? && !params[:end_date].to_s.empty? %>
+
+      <p> Click on the below link to Export all data between <%=params[:start_date]%> and <%=params[:end_date]%> as an excel file: </p>
+
+
+        <%= link_to 'Download to Excel', :controller => 'backup', :action => :backup_data, :start_date => params[:start_date], :end_date => params[:end_date]%>
+
+    <% end %>
+
+</div>
+
+<script>
+    $('#start_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+    $('#end_date').datepicker({format: 'dd-mm-yyyy', autoclose: true, todayHighlight: true, clearBtn: true})
+</script>

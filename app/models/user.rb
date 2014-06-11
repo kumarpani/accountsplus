@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
          :validatable,
          :timeoutable
 
+  validates_presence_of :first_name
+
+
   def timeout_in
     10.minutes
   end

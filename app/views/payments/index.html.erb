@@ -1,6 +1,6 @@
 <div class="header">
   <h1 class="col-md-6 col-md-offset-2 companyName"><%= params[:company_name] %></h1>
-  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
 
@@ -24,6 +24,7 @@
         <th><strong>Mode</strong></th>
         <th><strong>Amount</strong></th>
         <th><strong>Type</strong></th>
+        <th><strong>Received By</strong></th>
         <th><strong>Added By</strong></th>
         <th><strong>Last Modified By</strong></th>
         <th></th>
@@ -39,6 +40,7 @@
           <td><%= payment.mode %></td>
           <td class="alignRight"><%= payment.amount %></td>
           <td><%= payment.payment_type %></td>
+          <td><%= payment.received_by %></td>
           <td><%= payment.payment_added_by %></td>
           <td><%= payment.payment_last_modified_by %></td>
           <td><%= link_to 'Details', payment, class: :info, style: 'color:white' %></td>

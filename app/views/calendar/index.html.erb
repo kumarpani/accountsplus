@@ -1,15 +1,33 @@
 <div class="header">
   <h1 class="col-md-6 col-md-offset-2">Calender</h1>
-  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.email %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
 </div>
 
 <div class="belowHeader">
 
-<% empty_date_lambda = lambda do |date| %>
+  <% @months = %w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec) %>
+
+  <% @m = params[:month].nil? ? Date.current.month : params[:month] %>
+  <% @y = params[:year].nil? ? Date.current.year : params[:year] %>
+
+
+  <%= form_tag({}, {class: 'form-inline', method: 'get'}) do %>
+      Choose Month and Year to Jump to :
+      <%= select_tag(:month, options_for_select(Array[*@months.collect{|v,i| [v, @months.index(v)+1] }], @m.to_i), class: 'form-control') %>
+      <%= select_tag(:year, options_for_select(%w(2013 2014), @y), class: 'form-control') %>
+      <%= submit_tag 'Go', name: nil  %>
+  <% end %>
+
+
+
+  <% empty_date_lambda = lambda do |date| %>
   <%= link_to '+', new_quotation_path(:event_date => display_date(date)), class: 'btn-xs btn btn-default calendar-event' %>
 <% end %>
 
-<%= calendar @all_quotations, :prev_text => '', :next_text => '', empty_date: empty_date_lambda do |quotation| %>
+
+<%= calendar @all_quotations, :prev_text => '', :next_text => '',
+                               :month=>@m.to_i, :year=>@y.to_i,
+                               empty_date: empty_date_lambda do |quotation| %>
 
     <% if @p_date != quotation.event_date %>
         <%= link_to '+', new_quotation_path(:event_date => display_date(quotation.event_date)), class: 'btn-xs btn btn-default calendar-event' %>
@@ -22,3 +40,4 @@
 <% end %>
 
 </div>
+
