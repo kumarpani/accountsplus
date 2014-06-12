@@ -1,43 +1,50 @@
-<p id="notice"><%= notice %></p>
+<div class="header">
+  <h1 class="col-md-6 col-md-offset-2 companyName">"Incoming Service Taxes"</h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+</div>
 
-<p>
-  <strong>Invoice number:</strong>
-  <%= @incoming_service_tax.invoice_number %>
-</p>
+<div class="belowHeader">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Invoice date:</strong>
-  <%= @incoming_service_tax.invoice_date %>
-</p>
+    <p>
+        <strong>Invoice number:</strong>
+        <%= @incoming_service_tax.invoice_number %>
+    </p>
 
-<p>
-  <strong>Company Name:</strong>
-  <% if !@incoming_service_tax.client_id.nil? %>
-      <%= get_company_name_by_client_id(@incoming_service_tax.client_id) %>
-<% end %>
+    <p>
+        <strong>Invoice date:</strong>
+        <%= @incoming_service_tax.invoice_date %>
+    </p>
 
-</p>
+    <p>
+        <strong>Company Name:</strong>
+         <% if !@incoming_service_tax.client_id.nil? %>
+            <%= get_company_name_by_client_id(@incoming_service_tax.client_id) %>
+        <% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @incoming_service_tax.description %>
-</p>
+    </p>
 
-<p>
-  <strong>Event total:</strong>
-  <%= @incoming_service_tax.event_total %>
-</p>
+    <p>
+        <strong>Description:</strong>
+        <%= @incoming_service_tax.description %>
+    </p>
 
-<p>
-  <strong>Service tax:</strong>
-  <%= @incoming_service_tax.service_tax %>
-</p>
+    <p>
+        <strong>Event total:</strong>
+        <%= @incoming_service_tax.event_total %>
+    </p>
 
-<% if policy(@incoming_service_tax).update? %>
-    <%= link_to 'Edit', edit_incoming_service_tax_path(@incoming_service_tax), class: :info %>
-<%end%>
-<% if policy(@incoming_service_tax).destroy? %>
+    <p>
+        <strong>Service tax:</strong>
+        <%= @incoming_service_tax.service_tax %>
+    </p>
+
+    <% if policy(@incoming_service_tax).update? %>
+        <%= link_to 'Edit', edit_incoming_service_tax_path(@incoming_service_tax), class: :info %>
+    <%end%>
+    <% if policy(@incoming_service_tax).destroy? %>
     | <%= link_to 'Destroy', @incoming_service_tax, method: :delete, data: { confirm: 'Are you sure?' }, class: :info %>
-<%end%>
+    <%end%>
 
-<%= link_to 'Back', incoming_service_taxes_path %>
+    <%= link_to 'Back', incoming_service_taxes_path %>
+</div>
