@@ -150,6 +150,22 @@
 
 <div class="col-md-4 cold-md-offset-1">
 
+
+  <%= form_tag({controller: 'item_details', action: 'print', :format => 'pdf'}, {class: 'form-inline', method: 'get'}) do %>
+      <%= check_box_tag(:unit_price)%>
+      <%= label :unit_price, 'Show Unit Price' %>
+      <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
+          <br>
+          <%= check_box_tag(:bank)%>
+          <%= label :bank, 'Show Bank Account Details' %>
+      <%end%>
+
+      <%= hidden_field_tag(:quotation_id, @quotation.id) %>
+      <br>
+      <%= submit_tag 'Print PDF', name: nil%>
+  <% end %>
+
+
   <p>
     <%= link_to 'Print PDF', :controller => 'item_details', :action => 'print', :format => 'pdf', :quotation_id => @quotation.id%>
 
@@ -175,3 +191,6 @@
 <hr style="border-width: 3px 0 0; width: 100%; border-color: darkgray">
 <br>
 
+<script>
+    $("#show_unit_price").prop('checked')
+</script>
