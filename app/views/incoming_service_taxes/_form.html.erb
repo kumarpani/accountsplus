@@ -14,14 +14,14 @@
     <ul class="field_container">
         <li>
             <%= f.label :invoice_number %>
-            <%= f.number_field :invoice_number %>
+            <%= f.text_field :invoice_number %>
         </li>
         <li>
             <%= f.label :invoice_date %>
             <% if @incoming_service_tax.invoice_date.nil? %>
-                <%= f.text_field :invoice_date %>
+                <%= f.text_field :invoice_date, placeholder: 'Invoice Date'  %>
             <%else%>
-                <%= f.text_field :invoice_date, :value => display_date(@incoming_service_tax.invoice_date) %>
+                <%= f.text_field :invoice_date, :value => display_date(@incoming_service_tax.invoice_date), :placeholder => 'Invoice Date'  %>
             <%end%>
 
         </li>

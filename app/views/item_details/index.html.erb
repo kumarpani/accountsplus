@@ -3,11 +3,11 @@
     &nbsp;<b class='<%= @quotation.status %>' style="font-size: 15px;">Status : <%= @quotation.status %></b> </h1>
   </h1>
 
-  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+  <div><h2 class="col-md-4 col-md-offset-0"><%=get_user_and_date%></h2></div>
 </div>
 
 
-<ul class="belowHeader nav nav-tabs nav-tabs-ul">
+<ul class="belowHeader nav nav-tabs">
   <% if @quotation.status == STATUS_INVOICE %>
       <li><h3>Invoice  Details &nbsp;&nbsp;&nbsp;&nbsp;</h3></li>
   <% else %>
@@ -21,13 +21,10 @@
   <li class="#"><%= link_to 'Ledger', client_ledgers_path(@quotation.client.id)%></li>
 </ul>
 
-
-<div class="headerAfter">
-  <% if @quotation.is_open_for_edits(current_user) %>
+<% if @quotation.is_open_for_edits(current_user) %>
       <h2 class="headerAfter"><%= link_to 'Edit Quotation', edit_quotation_path(@quotation), class: 'edit', :style => 'color:white'%></h2>
-  <%end%>
+<%end%>
 
-</div>
 <br>
 
 <div class="row"><br>

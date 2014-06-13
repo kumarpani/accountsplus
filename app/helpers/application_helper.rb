@@ -47,6 +47,10 @@ module ApplicationHelper
     Client.all.sort_by{|c| c.company_name.downcase}.map { |client| [client.company_name, client.id] }
   end
 
+  def get_user_and_date
+    current_user.first_name + ' | ' + display_verbose_date(DateTime.now)
+  end
+
 
 
 end
