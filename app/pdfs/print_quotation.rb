@@ -12,7 +12,11 @@ class PrintQuotation < PrintBase
       service_tax_details
     end
     items_table(q, unit_price)
-    price_in_rupees(q.total_price.to_i.rupees)
+    if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
+      price_in_rupees(q.total_price.to_i.rupees)
+    else
+      price_in_rupees(q.total_item_price.to_i.rupees)
+    end
     if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
       if !bank.nil?
         bank_details
