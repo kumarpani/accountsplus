@@ -163,16 +163,6 @@
       <%= submit_tag 'Print PDF', name: nil%>
   <% end %>
 
-
-  <p>
-    <%= link_to 'Print PDF', :controller => 'item_details', :action => 'print', :format => 'pdf', :quotation_id => @quotation.id%>
-
-    <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
-      <p><%= link_to 'Print PDF With Bank', :controller => 'item_details', :action => 'print', :format => 'pdf', :quotation_id => @quotation.id, :bank => true%></p>
-  <% end %>
-
-  </p>
-
 </div>
 
 <ul>
