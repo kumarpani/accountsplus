@@ -28,7 +28,7 @@ class BackupController < ApplicationController
 
     end
 
-    send_file t.path, :filename => "backup.zip"
+    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "backup.zip"
 
 
     #redirect_to(backup_data)
