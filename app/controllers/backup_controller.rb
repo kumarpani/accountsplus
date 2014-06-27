@@ -19,10 +19,11 @@ class BackupController < ApplicationController
         wb.add_worksheet(name: "Clients") do |sheet|
           sheet.add_row [c.id, c.company_name], types: [:string, :string]
         end
-        p.serialize(file_name)
+        tempfile_new = Tempfile.new(file_name, Rails.root.join('tmp'))
+        p.serialize(tempfile_new)
         z.put_next_entry(file_name)
-        z.write File.open(file_name,"rb").read
-        File.delete(file_name)
+        z.write File.open(tempfile_new,"rb").read
+        File.delete(tempfile_new)
 
       end
 
