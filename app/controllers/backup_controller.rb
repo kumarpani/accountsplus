@@ -20,9 +20,9 @@ class BackupController < ApplicationController
           sheet.add_row [c.id, c.company_name], types: [:string, :string]
         end
         tempfile_new = Tempfile.new(file_name, Rails.root.join('tmp'))
-        p.serialize(tempfile_new)
+        p.serialize(tempfile_new.path)
         z.put_next_entry(file_name)
-        z.write File.open(tempfile_new,"rb").read
+        z.write File.open(tempfile_new.path,"rb").read
         File.delete(tempfile_new)
 
       end
