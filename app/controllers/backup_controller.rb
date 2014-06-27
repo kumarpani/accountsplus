@@ -30,6 +30,7 @@ class BackupController < ApplicationController
       end
 
     end
+    t.close
 
     send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "backup.zip"
 
