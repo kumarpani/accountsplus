@@ -15,7 +15,7 @@
 
             <ul class="nav navbar-nav navbar-right">
               <% if current_user.is_admin? %>
-                  <!--<li><%= link_to 'Backup', :controller => 'backup', :action => :index%></li>-->
+                  <li><%= link_to 'Backup', :controller => 'backup', :action => :index%></li>
               <%end%>
                 <li><%= link_to 'Activity', :controller => 'activity', :action => :index%></li>
                 <li>

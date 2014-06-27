@@ -41,10 +41,7 @@ gem 'simple_calendar', '~> 0.1.9'
 gem 'rails_12factor', group: :production
 gem 'pdf-core'
 gem 'prawn'
-# gem 'axlsx'
-# gem 'acts_as_xlsx'
-# gem 'axlsx_rails'
-# gem 'rubyzip'
+gem 'axlsx'
 
 group :development, :test do
   gem 'foreman'
