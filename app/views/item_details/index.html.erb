@@ -1,6 +1,6 @@
 <div class="header">
   <h1  class="col-md-6 col-md-offset-2 companyName"><%= @quotation.client.company_name %>
-    &nbsp;<b class='<%= @quotation.status %>' style="font-size: 15px;">Status : <%= @quotation.status %></b> </h1>
+    &nbsp;<b class='<%= get_quotation_status_color_class_by_id(@quotation.id) %>' style="font-size: 15px;">Status : <%= @quotation.status %></b> </h1>
   </h1>
 
   <div><h2 class="col-md-4 col-md-offset-0"><%=get_user_and_date%></h2></div>

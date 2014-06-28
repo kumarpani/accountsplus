@@ -35,7 +35,7 @@
     <% end %>
 
   <div><%= link_to get_company_name_by_client_id(quotation.client_id), quotation_item_details_path(quotation),
-                   class: "btn calendar-event #{quotation.payment_received_in_full ? 'Fulfilled' : quotation.status}" %></div>
+                   class: "btn calendar-event #{get_quotation_status_color_class_by_id(quotation.id)}" %></div>
 
 <% end %>
 

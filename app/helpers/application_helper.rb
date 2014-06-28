@@ -51,6 +51,9 @@ module ApplicationHelper
     current_user.first_name + ' | ' + display_verbose_date(DateTime.now)
   end
 
-
+  def get_quotation_status_color_class_by_id(id)
+    q = Quotation.find(id)
+    q.payment_received_in_full ? 'Fulfilled' : q.status
+  end
 
 end
