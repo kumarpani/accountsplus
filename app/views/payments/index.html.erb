@@ -22,6 +22,7 @@
         <th><strong>Paid on</strong></th>
         <th><strong>Description</strong></th>
         <th><strong>Mode</strong></th>
+        <th><strong>Reference Number</strong></th>
         <th><strong>Amount</strong></th>
         <th><strong>Type</strong></th>
         <th><strong>Received By</strong></th>
@@ -38,6 +39,7 @@
           <td><%= display_date(payment.paid_on) %></td>
           <td><%= payment.description %></td>
           <td><%= payment.mode %></td>
+          <td><%= payment.reference_number %></td>
           <td class="alignRight"><%= payment.amount %></td>
           <td><%= payment.payment_type %></td>
           <td><%= payment.received_by %></td>

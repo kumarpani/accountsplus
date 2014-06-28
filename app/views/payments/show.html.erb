@@ -42,6 +42,11 @@
             <td><%= @payment.mode %></td>
           </tr>
           <tr>
+            <td><strong>Reference Number</strong></td>
+            <td><%= @payment.reference_number %></td>
+          </tr>
+
+          <tr>
             <td><strong>Paid on</strong></td>
             <td><%= @payment.paid_on.strftime("%d/%m/%Y")%></td>
           </tr>
