@@ -56,7 +56,7 @@
           <td class="alignRight"><%= ledger_detail[:balance] %></td>
           <td>
           <% if !ledger_detail[:id].nil? %>
-            <%= link_to 'Show Details', quotation_item_details_url(ledger_detail[:id]), class: 'info', :style => 'float:right; color:white'%>
+            <%= link_to 'Show Details', quotation_item_details_url(ledger_detail[:id]), class: "btn calendar-event #{get_quotation_status_color_class_by_id(ledger_detail[:id])}", :style => 'float:right'%>
           <%end%>
           </td>
 
