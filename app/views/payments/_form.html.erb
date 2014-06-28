@@ -29,6 +29,10 @@
       <%= f.select(:mode, options_for_select(%w(Cash Cheque Online TDS Discount Invoice Adjustment DD), @payment.mode.nil? ? 1 : @payment.mode)) %>
     </li>
     <li>
+      <%= f.label :reference_number %>
+      <%= f.text_field :reference_number %>
+    </li>
+    <li>
       <%= f.label :paid_on %>
       <% if @payment.paid_on.nil? %>
           <%= f.text_field :paid_on%>
