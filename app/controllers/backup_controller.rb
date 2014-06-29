@@ -10,7 +10,7 @@ class BackupController < ApplicationController
 
 
     Zip::OutputStream.open(t.path) do |z|
-      Client.select {|client| client.created_at >= params[:start_date] and client.created_at <= params[:end_date]}.each do |c|
+      Client.all.each do |c|
 
         file_name = "#{c.company_name}.xlsx"
         p = Axlsx::Package.new
@@ -19,6 +19,8 @@ class BackupController < ApplicationController
 
         add_client_sheet(c, wb)
         add_payments_sheet(c.id, wb, params[:start_date], params[:end_date])
+        add_ledger_sheet(c.id, wb, params[:start_date], params[:end_date])
+        add_ist_sheet(c.id, wb, params[:start_date], params[:end_date])
 
         tempfile_new = Tempfile.new(file_name, Rails.root.join('tmp'))
         p.serialize(tempfile_new)
@@ -38,7 +40,7 @@ class BackupController < ApplicationController
   end
 
   private def add_client_sheet(c, wb)
-    wb.add_worksheet(name: "Clients") do |sheet|
+    wb.add_worksheet(name: "Client") do |sheet|
       sheet.add_row ['ID', c.id], types: [:string, :string]
       sheet.add_row ['Company Name', c.company_name], types: [:string, :string]
       sheet.add_row ['Contact Person Name', c.contact_person_name], types: [:string, :string]
@@ -59,7 +61,8 @@ class BackupController < ApplicationController
                     types: [:string, :string, :string, :string, :string, :string, :string, :string,
                             :string, :string, :string, :string, :string, :string]
 
-      Payment.select {|p| p.client_id == client_id && p.created_at >= start_date && p.created_at <= end_date}.sort_by { |p| p[:updated_at] }.reverse.each do |p|
+      Payment.select {|p| p.client_id == client_id && p.created_at >= start_date && p.created_at <= end_date}
+             .sort_by { |p| p[:updated_at] }.reverse.each do |p|
 
         sheet.add_row [p.id, p.client_id, p.quotation_id, p.paid_on.strftime('%d/%m/%Y'), p.description, p.mode, p.reference_number, p.amount,
                           p.payment_type, p.received_by, p.payment_added_by, p.payment_last_modified_by,
@@ -71,6 +74,41 @@ class BackupController < ApplicationController
 
     end
   end
+
+  private def add_ledger_sheet(client_id, wb, start_date, end_date)
+    wb.add_worksheet(name: "Ledger") do |sheet|
+
+      sheet.add_row ['Client ID', 'Date', 'Description Of Transaction', 'Invoice Number', 'Debit', 'Credit', 'Balance'],
+                    types: [:string, :string, :string, :string, :string, :string, :string]
+
+      @ledger_details = Ledger.new.index(start_date.to_s, end_date.to_s, client_id)
+
+      @ledger_details.each do |l|
+        sheet.add_row [client_id, l[:date].strftime('%d/%m/%Y'), l[:description], l[:invoice_number], l[:debit], l[:credit], l[:balance]],
+                      types: [:string, :string, :string, :string, :string, :string, :string]
+      end
+
+    end
+  end
+
+  private def add_ist_sheet(client_id, wb, start_date, end_date)
+            wb.add_worksheet(name: "Incoming Service Taxes") do |sheet|
+
+              sheet.add_row ['ID', 'Client ID', 'Invoice Number', 'Invoice Date', 'Description',
+                                  'Event Total', 'Service Tax', 'Created At', 'Updated At'],
+                            types: [:string, :string, :string, :string, :string, :string, :string, :string, :string]
+
+              IncomingServiceTax.select {|i| i.client_id == client_id.to_s && i.created_at >= start_date && i.created_at <= end_date}
+                                .sort_by { |i| i[:invoice_date] }.each do |i|
+
+                sheet.add_row [i.id, i.client_id, i.invoice_number, i.invoice_date.strftime('%d/%m/%Y'), i.description,
+                                  i.event_total, i.service_tax, i.created_at, i.updated_at],
+                              types: [:string, :string, :string, :string, :string, :string, :string, :string, :string]
+
+              end
+
+            end
+          end
 
 
 end
