@@ -8,37 +8,52 @@ class BackupController < ApplicationController
     zipfile = "backup_" + DateTime.now.strftime("%H%M%s") + ".zip"
     t = Tempfile.new(zipfile, Rails.root.join('tmp'))
 
+    Thread.new do
 
-    Zip::OutputStream.open(t.path) do |z|
-      Client.all.each do |c|
+        Zip::OutputStream.open(t.path) do |z|
+          Client.all.each do |c|
 
-        file_name = "#{c.company_name}.xlsx"
-        p = Axlsx::Package.new
-        wb = p.workbook
-        p.use_shared_strings = true
+            file_name = "#{c.company_name}.xlsx"
+            p = Axlsx::Package.new
+            wb = p.workbook
+            p.use_shared_strings = true
 
-        add_client_sheet(c, wb)
-        add_invoices_sheet(c.id, wb, params[:start_date], params[:end_date])
-        add_payments_sheet(c.id, wb, params[:start_date], params[:end_date])
-        add_ledger_sheet(c.id, wb, params[:start_date], params[:end_date])
-        add_ist_sheet(c.id, wb, params[:start_date], params[:end_date])
+            add_client_sheet(c, wb)
+            add_invoices_sheet(c.id, wb, params[:start_date], params[:end_date])
+            add_payments_sheet(c.id, wb, params[:start_date], params[:end_date])
+            add_ledger_sheet(c.id, wb, params[:start_date], params[:end_date])
+            add_ist_sheet(c.id, wb, params[:start_date], params[:end_date])
 
-        tempfile_new = Tempfile.new(file_name, Rails.root.join('tmp'))
-        p.serialize(tempfile_new)
-        z.put_next_entry(file_name)
-        File.open(tempfile_new,"rb") do |f|
-          z.write f.read
+            tempfile_new = Tempfile.new(file_name, Rails.root.join('tmp'))
+            p.serialize(tempfile_new)
+            z.put_next_entry(file_name)
+            File.open(tempfile_new,"rb") do |f|
+              z.write f.read
+            end
+            File.delete(tempfile_new)
+
+          end
+
         end
-        File.delete(tempfile_new)
+        t.close
 
-      end
+        send_mail(t)
+
+        #send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "backup.zip"
+        mail = ActionMailer::Base.mail(:from => 'queries.sulabha.sw.in@gmail.com', :to => current_user.email,
+                                       :subject => 'Test',
+                                       :body => 'Test Body')
+        m.attachments['backup.zip'] = File.read(t.path)
+        mail.deliver
+        FileUtils.rm(t.path)
 
     end
-    t.close
+  end
 
-    send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "backup.zip"
+  private def send_mail(t)
 
   end
+
 
   private def add_client_sheet(c, wb)
     wb.add_worksheet(name: "Client") do |sheet|
@@ -122,7 +137,12 @@ class BackupController < ApplicationController
         sheet.add_row ['Event Name', q.event_name, '', 'Venue', q.venue], types: [:string, :string, :string, :string, :string]
         sheet.add_row ['Event Date', q.event_date.strftime('%d/%m/%Y'), '', 'Days', q.days], types: [:string, :string, :string, :string, :string]
         sheet.add_row ['Invoice Type', q.invoice_type, '', 'Status', q.status], types: [:string, :string, :string, :string, :string]
-        sheet.add_row ['Invoice Number', q.invoice_number, '', 'Invoice Raised Date', q.invoice_raised_date.strftime('%d/%m/%Y')], types: [:string, :string, :string, :string, :string]
+        ird = ''
+        if !q.invoice_raised_date.nil?
+          ird = q.invoice_raised_date.strftime('%d/%m/%Y')
+        end
+
+        sheet.add_row ['Invoice Number', q.invoice_number, '', 'Invoice Raised Date', ird], types: [:string, :string, :string, :string, :string]
         sheet.add_row ['Order Placed By', q.order_placed_by, '', 'Invoice Raised By', q.invoice_raised_by], types: [:string, :string, :string, :string, :string]
         sheet.add_row ['Created At', q.created_at, '', 'Updated At', q.updated_at], types: [:string, :string, :string, :string, :string]
         sheet.add_row ['notes', q.notes], types: [:string, :string]
