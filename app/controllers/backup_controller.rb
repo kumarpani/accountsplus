@@ -40,7 +40,7 @@ class BackupController < ApplicationController
         #send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "backup.zip"
 
         mail = ActionMailer::Base.mail(:from => 'queries.sulabha.sw.in@gmail.com', :to => current_user.email, :subject => 'Test')
-        mail.attachments[zipfile] = {mime_type: 'application/zip', content: open(t.path).read}
+        mail.attachments[zipfile] = {content_type: 'application/zip', body: File.read(t.path), filename: 'a.zip'}
         mail.deliver
         FileUtils.rm(t.path)
 
