@@ -42,7 +42,7 @@ class BackupController < ApplicationController
                                        :subject => 'Test',
                                        :body => 'Test Body',
                                        :content_type => 'multipart/mixed')
-        mail.attachments[zipfile] = File.read(t.path)
+        mail.attachments[zipfile] = open(t.path).read
         mail.deliver
         FileUtils.rm(t.path)
 
