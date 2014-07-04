@@ -5,12 +5,13 @@ class BackupController < ApplicationController
 
     authorize @backup
 
-    zipfile = "backup_" + DateTime.now.strftime("%H%M%s") + ".zip"
-    t = Tempfile.new(zipfile, Rails.root.join('tmp'))
 
     Thread.new do
 
-        Zip::OutputStream.open(t.path) do |z|
+      zipfile = "backup_" + DateTime.now.strftime("%H%M%s") + ".zip"
+      t = Tempfile.new(zipfile, Rails.root.join('tmp'))
+
+      Zip::OutputStream.open(t.path) do |z|
           Client.all.each do |c|
 
             file_name = "#{c.company_name}.xlsx"
@@ -34,17 +35,17 @@ class BackupController < ApplicationController
 
           end
 
-        end
-        t.close
+      end
+      t.close
 
-        #send_file t.path, :type => 'application/zip', :disposition => 'attachment', :filename => "backup.zip"
+      ApplicationMailer.send_backup_mail(current_user.email, t.path, params[:start_date], params[:end_date]).deliver
 
-        mail = ActionMailer::Base.mail(:from => 'queries.sulabha.sw.in@gmail.com', :to => current_user.email, :subject => 'Test')
-        mail.attachments[zipfile] = {content_type: 'application/zip', body: File.read(t.path), filename: 'a.zip'}
-        mail.deliver
-        FileUtils.rm(t.path)
+      FileUtils.rm(t.path)
 
     end
+
+    redirect_to :controller => 'dashboard', :action => 'index'
+
   end
 
 
@@ -126,20 +127,17 @@ class BackupController < ApplicationController
       Quotation.select {|q| q.client_id == client_id && q.status == STATUS_INVOICE && q.created_at >= start_date && q.created_at <= end_date}
             .sort_by { |q| q[:created_at] }.each do |q|
 
-        sheet.add_row ['ID', q.id, '', 'Client Id', q.client_id], types: [:string, :string, :string, :string, :string]
-        sheet.add_row ['Event Name', q.event_name, '', 'Venue', q.venue], types: [:string, :string, :string, :string, :string]
-        sheet.add_row ['Event Date', q.event_date.strftime('%d/%m/%Y'), '', 'Days', q.days], types: [:string, :string, :string, :string, :string]
-        sheet.add_row ['Invoice Type', q.invoice_type, '', 'Status', q.status], types: [:string, :string, :string, :string, :string]
+        sheet.add_row ['ID', q.id, 'Client Id', q.client_id], types: [:string, :string, :string, :string, :string]
+        sheet.add_row ['Event Date (Days)', q.event_date.strftime('%d/%m/%Y')+' ('+q.days.to_s+')', 'Event Name', q.event_name, 'Venue', q.venue], types: [:string, :string, :string, :string, :string, :string, :string, :string]
+
         ird = ''
         if !q.invoice_raised_date.nil?
           ird = q.invoice_raised_date.strftime('%d/%m/%Y')
         end
 
-        sheet.add_row ['Invoice Number', q.invoice_number, '', 'Invoice Raised Date', ird], types: [:string, :string, :string, :string, :string]
-        sheet.add_row ['Order Placed By', q.order_placed_by, '', 'Invoice Raised By', q.invoice_raised_by], types: [:string, :string, :string, :string, :string]
-        sheet.add_row ['Created At', q.created_at, '', 'Updated At', q.updated_at], types: [:string, :string, :string, :string, :string]
-        sheet.add_row ['notes', q.notes], types: [:string, :string]
-        sheet.add_row ['Terms and Conditions', q.tac], types: [:string, :string]
+        sheet.add_row ['Invoice Number', q.invoice_number, 'Invoice Type', q.invoice_type, 'Status', q.status], types: [:string, :string, :string, :string, :string, :string, :string, :string]
+        sheet.add_row ['Invoice Raised Date', ird, 'Invoice Raised By', q.invoice_raised_by, 'Order Placed By', q.order_placed_by], types: [:string, :string, :string, :string, :string]
+        sheet.add_row ['Created At', q.created_at, 'Updated At', q.updated_at, 'Notes', q.notes, 'Terms & Conditions', q.tac], types: [:string, :string, :string, :string, :string, :string, :string, :string, :string, :string, :string]
 
         sheet.add_row [''], types: [:string]
 
