@@ -5,7 +5,9 @@ class QuotationsController < ApplicationController
   # GET /quotations
   # GET /quotations.json
   def index
-    @quotations = Quotation.where(client_id: params[:client_id]).sort_by {|e| e[:event_date]}.reverse
+    @quotations = Quotation.where(client_id: params[:client_id])
+    @quotations = params[:status].nil? ? @quotations : @quotations.keep_if {|q| params[:status].include? q.status}
+    @quotations = @quotations.sort_by {|e| e[:event_date]}.reverse
   end
 
   # GET /quotations/1
