@@ -227,6 +227,9 @@ class PrintQuotation < PrintBase
   def terms_and_conditions(q)
     text("\nTerms and Conditions\n", :style => :bold)
     data = [[]]
+    if !q.custom_tac.nil?
+      data += custom_terms_conditions(q)
+    end
     q.tac.each do |t|
       data +=  [[
                    {:content => '•', :font_style => :bold},
@@ -235,6 +238,17 @@ class PrintQuotation < PrintBase
     end
     table(data, :column_widths => {0 => 13,1 => 457},
           :cell_style => {:border_width => 0, :inline_format => true, :padding => 1})
+  end
+
+  def custom_terms_conditions(q)
+    data = [[]]
+    q.custom_tac.split(/\r\n/).each do |t|
+      data +=  [[
+                    {:content => '•', :font_style => :bold},
+                    {:content => "#{t}"}
+                ]]
+    end
+    data
   end
 
   def signature
