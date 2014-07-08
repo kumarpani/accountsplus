@@ -12,20 +12,14 @@ module ApplicationHelper
   MOBILE = '98802 73773'
   EMAIL = 'audioplus.events@gmail.com'
 
-  #Bank Details
-  BANK_ACC_NAME = 'Audioplus'
-  BANK_NAME_BRANCH = 'HDFC Bank Ltd, Seshadripuram'
-  BANK_ACC_NUM = '03672020000887'
-  BANK_TYPE_OF_ACC = 'Current Account'
-  BANK_IFSC = 'HDFC0000367'
-  BANK_MIRC = '560240018'
 
   #Service Tax Number
   PAN_NUMBER = ''
   SERVICE_TAX_NUMBER = 'AKAPP9970EST001'
   SERVICE_CATEGORY = ''
 
-
+  BANKS = [Bank.new('HDFC', 'HDFC Bank Ltd', 'Seshadripuram', 'HDFC0000367', '560240018', 'Audioplus', '03672020000887', 'Current Account'),
+           Bank.new('CANARA' ,'CANARA Bank', 'Malleswaram', 'CNRB0000409', '560015072', 'Audioplus', '0409201004561', 'Current Account')]
 
   def display_verbose_date(date)
     date.to_date.strftime('%d %B, %Y')

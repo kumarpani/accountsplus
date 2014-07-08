@@ -153,9 +153,11 @@
       <%= check_box_tag(:unit_price)%>
       <%= label :unit_price, 'Show Unit Price' %>
       <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
-          <br>
-          <%= check_box_tag(:bank)%>
-          <%= label :bank, 'Show Bank Account Details' %>
+          <% ApplicationHelper::BANKS.each do |b| %>
+              <br>
+              <%= radio_button_tag(:bank, b.nick_name)%>
+              <%= label b.nick_name, 'Show ' + b.nick_name + ' Bank Account Details' %>
+          <% end %>
       <%end%>
 
       <%= hidden_field_tag(:quotation_id, @quotation.id) %>
