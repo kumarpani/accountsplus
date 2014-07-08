@@ -12,18 +12,12 @@ module ApplicationHelper
   MOBILE = '96864 54272/3/4'
   EMAIL = 'avcreations12@gmail.com'
 
-  #Bank Details
-  BANK_ACC_NAME = 'AV Creations'
-  BANK_NAME_BRANCH = 'Indian Bank, Cubbonpet, Bangalore'
-  BANK_ACC_NUM = '860986003'
-  BANK_TYPE_OF_ACC = 'Current Account'
-  BANK_IFSC = 'IDIB 000C107'
-  BANK_MIRC = ''
-
   #Service Tax Number
   PAN_NUMBER = 'AAQFA7787E'
   SERVICE_TAX_NUMBER = 'AAQFA7787ESD001'
   SERVICE_CATEGORY = 'Event Management Service.'
+
+  BANKS = [Bank.new('Indian', 'Indian Bank', 'Cubbonpet, Bangalore', 'IDIB 000C107', '', 'AV Creations', '860986003', 'Current Account')]
 
   def display_verbose_date(date)
     date.to_date.strftime('%d %B, %Y')

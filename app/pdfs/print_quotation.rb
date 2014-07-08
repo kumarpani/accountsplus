@@ -19,7 +19,7 @@ class PrintQuotation < PrintBase
     end
     if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
       if !bank.nil?
-        bank_details
+        bank_details(bank)
       end
     end
     if !q.is_a_complete_tax_invoice?  and !q.is_a_complete_tax_exempted_invoice? and !q.tac.nil?
@@ -189,34 +189,36 @@ class PrintQuotation < PrintBase
     text("\nRupees:#{price}", :align => :right)
   end
 
-  def bank_details
+  def bank_details(nick_name)
+
+    b = ApplicationHelper::BANKS.find{|b| b.nick_name == nick_name}
 
     text("\nAccount Details for NEFT or RTGS\n", :style => :bold)
     data =  [[
                  {:content => 'Account Name', :font_style => :bold},
-                 {:content => "#{ApplicationHelper::BANK_ACC_NAME}"}
+                 {:content => b.account_name}
              ]]
     data += [[
                  {:content => 'Name of the Bank & Branch', :font_style => :bold},
-                 {:content => "#{ApplicationHelper::BANK_NAME_BRANCH}"}
+                 {:content => b.name + ' ,' + b.branch}
              ]]
     data += [[
                  {:content => 'Bank Account Number', :font_style => :bold},
-                 {:content => "#{ApplicationHelper::BANK_ACC_NUM}"}
+                 {:content =>b.account_number}
              ]]
     data += [[
                  {:content => 'Type of Account', :font_style => :bold},
-                 {:content => "#{ApplicationHelper::BANK_TYPE_OF_ACC}"}
+                 {:content => b.account_type}
              ]]
     data += [[
                  {:content => 'IFSC Code', :font_style => :bold},
-                 {:content => "#{ApplicationHelper::BANK_IFSC}"}
+                 {:content => b.ifsc}
              ]]
 
-    if ApplicationHelper::BANK_MIRC != ''
+    if b.mirc != ''
       data += [[
                    {:content => 'MICR Code', :font_style => :bold},
-                   {:content => "#{ApplicationHelper::BANK_MIRC}"}
+                   {:content => b.mirc}
                ]]
     end
 
