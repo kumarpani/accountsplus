@@ -19,13 +19,12 @@
     <table class="table gridData table-striped">
       <thead>
       <tr>
+        <th><strong>#</strong></th>
         <th><strong>Paid on</strong></th>
         <th><strong>Description</strong></th>
         <th><strong>Mode</strong></th>
-        <th><strong>Reference Number</strong></th>
         <th><strong>Amount</strong></th>
         <th><strong>Type</strong></th>
-        <th><strong>Received By</strong></th>
         <th><strong>Added By</strong></th>
         <th><strong>Last Modified By</strong></th>
         <th></th>
@@ -34,15 +33,14 @@
       </thead>
 
       <tbody>
-      <% @payments.each do |payment| %>
+      <% @payments.each_with_index do |payment, i| %>
         <tr>
+          <td><%= i+1 %></td>
           <td><%= display_date(payment.paid_on) %></td>
           <td><%= payment.description %></td>
           <td><%= payment.mode %></td>
-          <td><%= payment.reference_number %></td>
           <td class="alignRight"><%= payment.amount %></td>
           <td><%= payment.payment_type %></td>
-          <td><%= payment.received_by %></td>
           <td><%= payment.payment_added_by %></td>
           <td><%= payment.payment_last_modified_by %></td>
           <td><%= link_to 'Details', payment, class: :info, style: 'color:white' %></td>
