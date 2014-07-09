@@ -6,6 +6,7 @@
 <div class="belowHeader">
 
     <h2 class="headerAfter"><%= link_to '+ Add New Client', new_client_path, class: :new%></h2>
+    <br>
     <p>Click "Search" button without any input to see all Clients. Or Search by entering part of Company name/Contact person/Phone number/Email address:</p>
 
     <p>
@@ -21,6 +22,7 @@
     <table class="table gridData table-striped">
       <thead>
       <tr>
+        <th width=60;><strong>#</strong></th>
         <th width=220;><strong>Company Name</strong></th>
         <th width=195px;><strong>Contact Person</strong></th>
         <th width=120px;><strong>Ph Number</strong></th>
@@ -30,8 +32,9 @@
       </thead>
 
       <tbody>
-      <% @clients.sort_by {|c| c[:company_name].downcase}.each do |client| %>
+      <% @clients.sort_by {|c| c[:company_name].downcase}.each_with_index do |client, i| %>
         <tr>
+          <td><%= i+1 %></td>
           <td><%= client.company_name%></td>
           <td><%= client.contact_person_name %></td>
           <td><%= client.phone_number %></td>

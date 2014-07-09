@@ -165,22 +165,26 @@ h3 {
 .Pending {
   @extend .btn-xs;
   @extend .btn-warning;
+  font-size: 14px;
 }
 
 .Confirmed {
   @extend .btn-xs;
   @extend .btn-success;
+  font-size: 14px;
 }
 
 .Fulfilled {
   @extend .btn-default;
   @extend .btn-xs;
   border-color: #cccccc;
+  font-size: 14px;
 }
 
 .Invoice {
   @extend .btn-xs;
   @extend .btn-danger;
+  font-size: 14px;
 }
 
 input[type="submit"] {
@@ -303,6 +307,10 @@ body {
 
 .gridData a{
   color: #007ca3;
+}
+
+.table tbody tr td.gray {
+  background-color: #e6f1f6;
 }
 
 a.info{

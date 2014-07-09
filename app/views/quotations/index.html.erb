@@ -26,9 +26,10 @@
     <h2 class="headerAfter"><%= link_to '+ Add New Quotation', new_quotation_path(client_id: @client.id, company_name: @client.company_name)%></h2>
 
 
-    <table class="belowHeader table gridData table-striped">
+    <table class="belowHeader table gridData">
       <thead>
       <tr>
+        <th><strong>#</strong></th>
         <th><strong>Name</strong></th>
         <th><strong>Event Date</strong></th>
         <th><strong>Invoice Type</strong></th>
@@ -40,12 +41,14 @@
       </thead>
 
       <tbody>
-      <% @quotations.each do |quotation| %>
+      <% @quotations.each_with_index do |quotation, i| %>
         <tr>
+          <td><%= i+1 %></td>
           <td><%= quotation.event_name %></td>
           <td><%= display_date(quotation.event_date) %></td>
           <td><%= quotation.invoice_type %></td>
-          <td><%= quotation.status %></td>
+          <td class='<%= get_quotation_status_color_class_by_id(quotation.id)%>'><%= quotation.status %></td>
+
           <td><%= quotation.total_price %></td>
           <td><%= link_to 'Show Details', quotation_item_details_path(quotation), class: 'info', :style => 'color:white' %></td>
 

@@ -14,56 +14,58 @@
       <li class="#"><%= link_to 'Ledger', client_ledgers_path(@payment.client.id)%></li>
     </ul>
 
+  <br>
+  <p class="headerAfter">
+    <% if policy(@payment).update? %>
+        <%= link_to 'Edit payment details', edit_payment_path(@payment), class: :edit, style: 'color:white'%>
+    <%end%>
+  </p>
+  <br><br>
 
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-      </thead>
 
+
+
+    <table class="table table-bordered table-hover">
       <tbody>
           <tr>
-            <td><strong>Client</strong></td>
+            <td width=170px; class="gray"><strong>Client:</strong></td>
             <td><%= @payment.client.company_name %></td>
           </tr>
           <tr>
-            <td><strong>Received by</strong></td>
+            <td class="gray"><strong>Received by:</strong></td>
             <td><%= @payment.received_by %></td>
           </tr>
           <tr>
-            <td><strong>Description</strong></td>
+            <td class="gray"><strong>Description:</strong></td>
             <td><%= @payment.description %></td>
           </tr>
           <tr>
-            <td><strong>Mode</strong></td>
+            <td class="gray"><strong>Mode:</strong></td>
             <td><%= @payment.mode %></td>
           </tr>
           <tr>
-            <td><strong>Reference Number</strong></td>
+            <td class="gray"><strong>Reference Number:</strong></td>
             <td><%= @payment.reference_number %></td>
           </tr>
 
           <tr>
-            <td><strong>Paid on</strong></td>
+            <td class="gray"><strong>Paid on:</strong></td>
             <td><%= @payment.paid_on.strftime("%d/%m/%Y")%></td>
           </tr>
           <tr>
-            <td><strong>Amount</strong></td>
+            <td class="gray"><strong>Amount:</strong></td>
             <td><%= @payment.amount %></td>
           </tr>
           <tr>
-            <td><strong>Type</strong></td>
+            <td class="gray"><strong>Type:</strong></td>
             <td><%= @payment.payment_type %></td>
           </tr>
           <tr>
-            <td><strong>Added By</strong></td>
+            <td class="gray"><strong>Added By:</strong></td>
             <td><%= @payment.payment_added_by %></td>
           </tr>
           <tr>
-            <td><strong>Last Modified By</strong></td>
+            <td class="gray"><strong>Last Modified By:</strong></td>
             <td><%= @payment.payment_last_modified_by %></td>
           </tr>
 
@@ -73,9 +75,6 @@
       <%= link_to 'Print PDF', :controller => 'payments', :action => 'print', :format => 'pdf', :payment_id => @payment.id, :first_name => current_user.first_name, :last_name => current_user.last_name %>
         <br><br>
 
-      <% if policy(@payment).update? %>
-        <%= link_to 'Edit', edit_payment_path(@payment), class: :edit, style: 'color:white'%>
-      <%end%>
 
         <br><br>
 
