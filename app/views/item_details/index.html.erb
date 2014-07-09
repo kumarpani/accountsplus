@@ -24,60 +24,43 @@
   <%end%>
 
 
-  <div class="row"><br>
-    <div class="col-md-7">
       <table class="table table-condensed table-bordered col-md-offset-0">
         <tr>
-          <td width=190px; class="gray"><strong>Status:</strong></td>
-          <td class='<%= get_quotation_status_color_class_by_id(@quotation.id) %>' style="font-size: 15px;"><%= @quotation.status %></td>
+          <td width=175px; class="gray"><strong>Status:</strong></td>
+          <td width=300px; class='<%= get_quotation_status_color_class_by_id(@quotation.id) %>' style="font-size: 15px;"><%= @quotation.status %></td>
+
+          <td width=150px; class="gray"><strong>Invoice Type:</strong></td>
+          <td><%= @quotation.invoice_type %></td>
+
         </tr>
 
         <tr>
-          <td width=190px; class="gray"><strong>Event name @ Venue:</strong></td>
+          <td class="gray"><strong>Event name @ Venue:</strong></td>
           <td><%= @quotation.event_name %> @ <%= @quotation.venue %></td>
+
+          <td class="gray"><strong>Notes:</strong></td>
+          <td><%= @quotation.notes %></td>
+
         </tr>
         <tr>
           <td class="gray"><strong>Duration:</strong></td>
           <td><b><%= display_date(@quotation.event_date) %></b> for <b><%= @quotation.days || 1 %></b> day(s)</td>
+
+          <td class="gray"><strong>Invoice Raised By:</strong></td>
+          <td><%= @quotation.invoice_raised_by %></td>
+
         </tr>
         <tr>
           <td class="gray"><strong>Order Placed By:</strong></td>
           <td><%= @quotation.order_placed_by%></td>
+
+          <td class="gray"><strong>Invoice Number:</strong></td>
+          <td><%= @quotation.invoice_number %></td>
+
         </tr>
 
       </table>
-    </div>
 
-    <div class="col-md-5 col-md-offset-0">
-      <table class="table table-condensed  table-bordered col-md-5 col-md-offset-0">
-        <tr>
-          <td width=150px; class="gray"><strong>Invoice Type:</strong></td>
-          <td><%= @quotation.invoice_type %></td>
-        </tr>
-
-        <% if @quotation.is_a_complete_tax_invoice? || @quotation.is_a_complete_tax_exempted_invoice?%>
-            <tr>
-              <td class="gray"><strong>Invoice Number:</strong></td>
-              <td><%= @quotation.invoice_number %></td>
-            </tr>
-        <% end %>
-
-        <tr>
-          <td class="gray"><strong>Invoice Raised By:</strong></td>
-          <td><%= @quotation.invoice_raised_by %></td>
-        </tr>
-
-        <tr>
-          <td class="gray"><strong>Notes:</strong></td>
-          <td><%= @quotation.notes %></td>
-        </tr>
-
-      </table>
-    </div>
-
-
-
-  </div>
 
   <div class="row">
     <div class="col-md-8">
