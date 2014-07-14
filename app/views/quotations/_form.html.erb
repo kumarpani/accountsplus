@@ -64,19 +64,21 @@
         <%= f.label :notes %>
         <%= f.text_area :notes%>
       </li>
+      <li>
+        <%= f.label 'Additional Terms' %>
+        <%= f.text_area :custom_tac%>
+      </li>
     </ul>
 
 
-    <% if @quotation.is_open_for_edits(current_user)%>
-      <strong>Terms and Conditions:</strong>
-      <div class="field">
+    <strong>Terms and Conditions:</strong>
+    <div class="field">
         <ul>
           <% get_terms_and_conditions.each do |t| %>
             <li><%= f.check_box(:tac, {:multiple => true}, t, nil)%> <%= t %></li>
           <% end %>
         </ul>
-      </div>
-    <% end %>
+    </div>
 
     <script>
         $('#quotation_event_date').datepicker({format: 'dd-mm-yyyy', autoclose:true, todayHighlight:true, clearBtn:true})

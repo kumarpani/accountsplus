@@ -12,20 +12,12 @@ module ApplicationHelper
   MOBILE = '99999 99999'
   EMAIL = 'your_email@your_domain.com'
 
-  #Bank Details
-  BANK_ACC_NAME = 'Account Name'
-  BANK_NAME_BRANCH = 'Bank Name and Branch'
-  BANK_ACC_NUM = 'Account Number'
-  BANK_TYPE_OF_ACC = 'Account Type'
-  BANK_IFSC = 'IFSC Code'
-  BANK_MIRC = 'MIRC Code'
-
   #Service Tax Number
   PAN_NUMBER = ''
   SERVICE_TAX_NUMBER = 'Service Tax Number'
   SERVICE_CATEGORY = ''
 
-
+  BANKS = [Bank.new('Bank Nick Name', 'Bank Name', 'Branch', 'IFSC', 'MIRC', 'Audioplus', 'Acc Num', 'Current Account')]
 
   def display_verbose_date(date)
     date.to_date.strftime('%d %B, %Y')
@@ -47,6 +39,13 @@ module ApplicationHelper
     Client.all.sort_by{|c| c.company_name.downcase}.map { |client| [client.company_name, client.id] }
   end
 
+  def get_user_and_date
+    current_user.first_name + ' | ' + display_verbose_date(DateTime.now)
+  end
 
+  def get_quotation_status_color_class_by_id(id)
+    q = Quotation.find(id)
+    q.payment_received_in_full ? 'Fulfilled' : q.status
+  end
 
 end

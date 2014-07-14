@@ -1,6 +1,6 @@
 <div class="header">
   <h1 class="col-md-6 col-md-offset-2 companyName"><%= params[:company_name] %></h1>
-  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+  <div><h2 class="col-md-4 col-md-offset-0"><%=get_user_and_date%></h2></div>
 </div>
 
 
@@ -16,15 +16,15 @@
     <h2 class="headerAfter"><%= link_to '+ Add New Payment', new_payment_path(client_id: params[:client_id]), class: :new %></h2>
 
 
-    <table class="table gridData table-striped">
+    <table class="table gridData table-hover">
       <thead>
       <tr>
+        <th><strong>#</strong></th>
         <th><strong>Paid on</strong></th>
         <th><strong>Description</strong></th>
         <th><strong>Mode</strong></th>
         <th><strong>Amount</strong></th>
         <th><strong>Type</strong></th>
-        <th><strong>Received By</strong></th>
         <th><strong>Added By</strong></th>
         <th><strong>Last Modified By</strong></th>
         <th></th>
@@ -33,14 +33,14 @@
       </thead>
 
       <tbody>
-      <% @payments.each do |payment| %>
+      <% @payments.each_with_index do |payment, i| %>
         <tr>
+          <td><%= i+1 %></td>
           <td><%= display_date(payment.paid_on) %></td>
           <td><%= payment.description %></td>
           <td><%= payment.mode %></td>
           <td class="alignRight"><%= payment.amount %></td>
           <td><%= payment.payment_type %></td>
-          <td><%= payment.received_by %></td>
           <td><%= payment.payment_added_by %></td>
           <td><%= payment.payment_last_modified_by %></td>
           <td><%= link_to 'Details', payment, class: :info, style: 'color:white' %></td>

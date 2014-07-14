@@ -1,43 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div class="header">
+  <h1 class="col-md-6 col-md-offset-2 companyName">Incoming Service Taxes</h1>
+  <div><h2 class="col-md-4 col-md-offset-0"><%=get_user_and_date%></h2></div>
+</div>
 
-<p>
-  <strong>Invoice number:</strong>
-  <%= @incoming_service_tax.invoice_number %>
-</p>
+<div class="belowHeader">
 
-<p>
-  <strong>Invoice date:</strong>
-  <%= @incoming_service_tax.invoice_date %>
-</p>
+  <p class="headerAfter">
+  <br>
+  <% if policy(@incoming_service_tax).update? %>
+      <%= link_to 'Edit details', edit_incoming_service_tax_path(@incoming_service_tax), class: :edit, style: 'color:white'%>
+  <%end%>
+  </p>
+  <br><br>
 
-<p>
-  <strong>Company Name:</strong>
-  <% if !@incoming_service_tax.client_id.nil? %>
-      <%= get_company_name_by_client_id(@incoming_service_tax.client_id) %>
-<% end %>
 
-</p>
+  <table class="table table-bordered table-hover">
 
-<p>
-  <strong>Description:</strong>
-  <%= @incoming_service_tax.description %>
-</p>
+    <tbody>
+    <tr>
+      <td class="gray"><strong>Invoice number:</strong></td>
+      <td><%= @incoming_service_tax.invoice_number %></td>
+    </tr>
+    <tr>
+      <td class="gray"><strong>Invoice date:</strong></td>
+      <td><%= @incoming_service_tax.invoice_date %></td>
+    </tr>
+    <tr>
+      <td class="gray"><strong>Company name:</strong></td>
+      <td>
+        <% if !@incoming_service_tax.client_id.nil? %>
+            <%= get_company_name_by_client_id(@incoming_service_tax.client_id) %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td width=200px; class="gray"><strong>Description:</strong></td>
+      <td><%= @incoming_service_tax.description %></td>
+    </tr>
+    <tr>
+      <td class="gray"><strong>Event total:</strong></td>
+      <td><%= @incoming_service_tax.event_total %></td>
+    </tr>
+    <tr>
+      <td class="gray"><strong>SERVICE TAX:</strong></td>
+      <td><%= @incoming_service_tax.service_tax %></td>
+    </tr>
+  </table>
 
-<p>
-  <strong>Event total:</strong>
-  <%= @incoming_service_tax.event_total %>
-</p>
+  <%= link_to 'Back', incoming_service_taxes_path %>
+  <br><br>
+    <% if policy(@incoming_service_tax).destroy? %>
+        <%= button_to 'X', @incoming_service_tax, method: :delete, data: { confirm: 'Are you sure?' }, class: 'deleteBtn' %>
+    <%end%>
 
-<p>
-  <strong>Service tax:</strong>
-  <%= @incoming_service_tax.service_tax %>
-</p>
-
-<% if policy(@incoming_service_tax).update? %>
-    <%= link_to 'Edit', edit_incoming_service_tax_path(@incoming_service_tax), class: :info %>
-<%end%>
-<% if policy(@incoming_service_tax).destroy? %>
-    | <%= link_to 'Destroy', @incoming_service_tax, method: :delete, data: { confirm: 'Are you sure?' }, class: :info %>
-<%end%>
-
-<%= link_to 'Back', incoming_service_taxes_path %>
+</div>

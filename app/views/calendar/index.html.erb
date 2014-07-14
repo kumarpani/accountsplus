@@ -1,6 +1,6 @@
 <div class="header">
   <h1 class="col-md-6 col-md-offset-2">Calender</h1>
-  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+  <div><h2 class="col-md-4 col-md-offset-0"><%=get_user_and_date%></h2></div>
 </div>
 
 <div class="belowHeader">
@@ -35,7 +35,7 @@
     <% end %>
 
   <div><%= link_to get_company_name_by_client_id(quotation.client_id), quotation_item_details_path(quotation),
-                   class: "btn calendar-event #{quotation.payment_received_in_full ? 'Fulfilled' : quotation.status}" %></div>
+                   class: "btn calendar-event #{get_quotation_status_color_class_by_id(quotation.id)}" %></div>
 
 <% end %>
 

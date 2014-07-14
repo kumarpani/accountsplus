@@ -8,3 +8,4 @@ STATUS_CLOSED = 'Closed'
 INVOICE_TAX = 'Tax Invoice'
 INVOICE_PROFORMA = 'Proforma Invoice'
 INVOICE_TAX_EXEMPTED = 'Tax Exempted Invoice'
+

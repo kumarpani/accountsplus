@@ -1,12 +1,12 @@
 <div class="header">
   <h1 class="col-md-6 col-md-offset-2">Dashboard</h1>
-  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+  <div><h2 class="col-md-4 col-md-offset-0"><%=get_user_and_date%></h2></div>
 </div>
 
 
 <div class="belowHeader">
     <h2><u>List of upcoming events : </u></h2>
-    <table class="table gridData table-striped">
+    <table class="table gridData table-hover">
       <thead>
       <tr>
         <th>Event Date</th>
@@ -28,7 +28,7 @@
     </table>
 
     <h2><u>Pending Payments :</u></h2>
-    <table class="table gridData table-striped">
+    <table class="table gridData table-hover">
     <thead>
     <tr>
       <th>Client Name</th>

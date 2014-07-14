@@ -1,75 +1,86 @@
 <div class="header">
   <h1 class="col-md-6 col-md-offset-2 companyName"><%=@payment.client.company_name%></h1>
-  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+  <div><h2 class="col-md-4 col-md-offset-0"><%=get_user_and_date%></h2></div>
 </div>
 
-
 <div class="belowHeader">
-    <p id="notice"><%= notice %></p>
+    <ul class="nav nav-tabs nav-tabs-ul">
+          <li><h3>Payment  Details &nbsp;&nbsp;&nbsp;&nbsp;</h3></li>
 
-    <h3>Payment Details</h3>
+      <li class="#"><%= link_to 'Home', client_path(@payment.client.id) %></li>
+      <li class="#"><%= link_to 'Quotations', quotations_path(:client_id => @payment.client.id, :status => [STATUS_PENDING, STATUS_CONFIRMED, STATUS_CLOSED])%></li>
+      <li class="#"><%= link_to 'Invoices', quotations_path(:client_id => @payment.client.id, :status => [STATUS_INVOICE])%></li>
+      <li class="#"><%= link_to 'Payments', payments_path(:client_id => @payment.client.id, :company_name => @payment.client.company_name)%></li>
+      <li class="#"><%= link_to 'Ledger', client_ledgers_path(@payment.client.id)%></li>
+    </ul>
 
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-      </thead>
+  <br>
+  <p class="headerAfter">
+    <% if policy(@payment).update? %>
+        <%= link_to 'Edit payment details', edit_payment_path(@payment), class: :edit, style: 'color:white'%>
+    <%end%>
+  </p>
+  <br><br>
 
+
+
+
+    <table class="table table-bordered table-hover">
       <tbody>
           <tr>
-            <td><strong>Client</strong></td>
+            <td width=170px; class="gray"><strong>Client:</strong></td>
             <td><%= @payment.client.company_name %></td>
           </tr>
           <tr>
-            <td><strong>Received by</strong></td>
+            <td class="gray"><strong>Received by:</strong></td>
             <td><%= @payment.received_by %></td>
           </tr>
           <tr>
-            <td><strong>Description</strong></td>
+            <td class="gray"><strong>Description:</strong></td>
             <td><%= @payment.description %></td>
           </tr>
           <tr>
-            <td><strong>Mode</strong></td>
+            <td class="gray"><strong>Mode:</strong></td>
             <td><%= @payment.mode %></td>
           </tr>
           <tr>
-            <td><strong>Paid on</strong></td>
+            <td class="gray"><strong>Reference Number:</strong></td>
+            <td><%= @payment.reference_number %></td>
+          </tr>
+
+          <tr>
+            <td class="gray"><strong>Paid on:</strong></td>
             <td><%= @payment.paid_on.strftime("%d/%m/%Y")%></td>
           </tr>
           <tr>
-            <td><strong>Amount</strong></td>
+            <td class="gray"><strong>Amount:</strong></td>
             <td><%= @payment.amount %></td>
           </tr>
           <tr>
-            <td><strong>Type</strong></td>
+            <td class="gray"><strong>Type:</strong></td>
             <td><%= @payment.payment_type %></td>
           </tr>
           <tr>
-            <td><strong>Added By</strong></td>
+            <td class="gray"><strong>Added By:</strong></td>
             <td><%= @payment.payment_added_by %></td>
           </tr>
           <tr>
-            <td><strong>Last Modified By</strong></td>
+            <td class="gray"><strong>Last Modified By:</strong></td>
             <td><%= @payment.payment_last_modified_by %></td>
           </tr>
 
       </tbody>
     </table>
 
-
-    <p>
-      <% if policy(@payment).update? %>
-        <%= link_to 'Edit', edit_payment_path(@payment), class: :edit, style: 'color:white'%>
-      <%end%>
-
       <%= link_to 'Print PDF', :controller => 'payments', :action => 'print', :format => 'pdf', :payment_id => @payment.id, :first_name => current_user.first_name, :last_name => current_user.last_name %>
-      <% if policy(@payment).destroy? %>
-          <%= button_to 'X', payment_path(), {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %>
-      <%end%>
-    </p>
+        <br><br>
 
-    <%= link_to 'Back', payments_path(:client_id => @payment.client_id, :company_name => @payment.client.company_name) %>
+
+        <br><br>
+
+      <% if policy(@payment).destroy? %>
+        <%= button_to 'X', payment_path(), {:onclick => "return confirm('WARNING : Are you sure to DELETE this Payment Permanently? You will not be able to UnDo this')", :method=>:delete, :class => 'deleteBtn'} %>
+      <%end%>
+
+
 </div>

@@ -5,11 +5,9 @@ class QuotationsController < ApplicationController
   # GET /quotations
   # GET /quotations.json
   def index
-    @quotations = params[:client_id].nil? ? Quotation.all : Quotation.where(client_id: params[:client_id])
+    @quotations = Quotation.where(client_id: params[:client_id])
     @quotations = params[:status].nil? ? @quotations : @quotations.keep_if {|q| params[:status].include? q.status}
-
     @quotations = @quotations.sort_by {|e| e[:event_date]}.reverse
-
   end
 
   # GET /quotations/1
@@ -102,6 +100,6 @@ class QuotationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def quotation_params
-    params.require(:quotation).permit(:client_id, :event_name, :status, :event_date, :venue, :days, :invoice_type, :notes, :order_placed_by, :tac => [])
+    params.require(:quotation).permit(:client_id, :event_name, :status, :event_date, :venue, :days, :invoice_type, :notes, :order_placed_by, :custom_tac, :tac => [])
   end
 end

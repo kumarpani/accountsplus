@@ -1,41 +1,58 @@
-<%= form_for(@incoming_service_tax) do |f| %>
-  <% if @incoming_service_tax.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@incoming_service_tax.errors.count, "error") %> prohibited this incoming_service_tax from being saved:</h2>
+<div class="belowHeader">
 
-      <ul>
-      <% @incoming_service_tax.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+    <%= form_for(@incoming_service_tax) do |f| %>
+      <% if @incoming_service_tax.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@incoming_service_tax.errors.count, "error") %> prohibited this incoming_service_tax from being saved:</h2>
+
+          <ul>
+          <% @incoming_service_tax.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :invoice_number %><br>
-    <%= f.number_field :invoice_number %>
-  </div>
-  <div class="field">
-    <%= f.label :invoice_date %><br>
-    <%= f.date_select :invoice_date %>
-  </div>
-  <div class="field">
-    <%= f.label :client_id %>
-    <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @incoming_service_tax.client_id.nil? ? 1 : @incoming_service_tax.client_id)) %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :event_total %><br>
-    <%= f.text_field :event_total %>
-  </div>
-  <div class="field">
-    <%= f.label :service_tax %><br>
-    <%= f.text_field :service_tax %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+        <ul class="field_container">
+            <li>
+                <%= f.label :invoice_number %>
+                <%= f.text_field :invoice_number %>
+            </li>
+            <li>
+                <%= f.label :invoice_date %>
+                <% if @incoming_service_tax.invoice_date.nil? %>
+                    <%= f.text_field :invoice_date, placeholder: 'Invoice Date'  %>
+                <%else%>
+                    <%= f.text_field :invoice_date, :value => display_date(@incoming_service_tax.invoice_date), :placeholder => 'Invoice Date'  %>
+                <%end%>
+
+            </li>
+            <li>
+                <%= f.label :client_id %>
+                <%= f.select(:client_id, options_for_select(get_all_sorted_companies, @incoming_service_tax.client_id.nil? ? 1 : @incoming_service_tax.client_id)) %>
+            </li>
+            <li>
+                <%= f.label :description %>
+                 <%= f.text_field :description %>
+            </li>
+            <li>
+                <%= f.label :event_total %>
+                <%= f.text_field :event_total %>
+            </li>
+            <li>
+                <%= f.label :service_tax %>
+                <%= f.text_field :service_tax %>
+            </li>
+
+        </ul>
+
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+
+        <script>
+            $('#incoming_service_tax_invoice_date').datepicker({format: 'dd-mm-yyyy', autoclose:true, todayHighlight:true, clearBtn:true})
+        </script>
+
+    <% end %>
+</div>

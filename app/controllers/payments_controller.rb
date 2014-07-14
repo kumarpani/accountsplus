@@ -4,11 +4,7 @@ class PaymentsController < ApplicationController
   # GET /payments
   # GET /payments.json
   def index
-    if !params[:client_id].nil?
       @payments = Payment.where(:client_id => params[:client_id]).order(:updated_at).reverse_order
-    else
-      @payments = Payment.all.order(:updated_at).reverse_order
-    end
   end
 
   # GET /payments/1
@@ -98,6 +94,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:client_id, :description, :mode, :paid_on, :amount, :payment_type, :received_by, :payment_added_by, :payment_last_modified_by)
+      params.require(:payment).permit(:client_id, :description, :mode, :reference_number, :paid_on, :amount, :payment_type, :received_by, :payment_added_by, :payment_last_modified_by)
     end
 end

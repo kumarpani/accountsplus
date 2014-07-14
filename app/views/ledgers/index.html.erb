@@ -1,6 +1,6 @@
 <div class="header">
   <h1 class="col-md-6 col-md-offset-2 companyName"><%= @client.company_name %></h1>
-  <div><h2 class="col-md-4 col-md-offset-0"><%= current_user.first_name %> | <%=display_verbose_date(DateTime.now)%></h2></div>
+  <div><h2 class="col-md-4 col-md-offset-0"><%=get_user_and_date%></h2></div>
 </div>
 
 <div class="belowHeader">
@@ -33,7 +33,7 @@
     <% end %>
 
 
-    <table class="table table-condensed gridData table-striped table-bordered">
+    <table class="table table-condensed gridData table-hover">
       <thead>
       <tr>
         <th><strong>Date</strong></th>
@@ -56,7 +56,7 @@
           <td class="alignRight"><%= ledger_detail[:balance] %></td>
           <td>
           <% if !ledger_detail[:id].nil? %>
-            <%= link_to 'Show Details', quotation_item_details_url(ledger_detail[:id]), class: 'info', :style => 'float:right; color:white'%>
+            <%= link_to 'Show Details', quotation_item_details_url(ledger_detail[:id]), class: "btn calendar-event #{get_quotation_status_color_class_by_id(ledger_detail[:id])}", :style => 'float:right'%>
           <%end%>
           </td>
 
