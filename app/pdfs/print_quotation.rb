@@ -227,19 +227,23 @@ class PrintQuotation < PrintBase
   end
 
   def terms_and_conditions(q)
-    text("\nTerms and Conditions\n", :style => :bold)
     data = [[]]
     if !q.custom_tac.nil?
       data += custom_terms_conditions(q)
     end
-    q.tac.each do |t|
+    q.tac.select{ |t| t != ''}.each do |t|
       data +=  [[
                    {:content => '•', :font_style => :bold},
                    {:content => "#{t}"}
                ]]
     end
-    table(data, :column_widths => {0 => 13,1 => 457},
-          :cell_style => {:border_width => 0, :inline_format => true, :padding => 1})
+
+    if (data.length > 2)
+      text("\nTerms and Conditions\n", :style => :bold)
+      table(data, :column_widths => {0 => 13,1 => 457},
+            :cell_style => {:border_width => 0, :inline_format => true, :padding => 1})
+
+    end
   end
 
   def custom_terms_conditions(q)
