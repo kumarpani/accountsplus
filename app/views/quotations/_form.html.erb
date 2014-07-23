@@ -75,7 +75,7 @@
     <div class="field">
         <ul>
           <% get_terms_and_conditions.each do |t| %>
-            <li><%= f.check_box(:tac, {:multiple => true}, t, nil)%> <%= t %></li>
+            <li><%= f.check_box(:tac, {:multiple => true}, t, [])%> <%= t %></li>
           <% end %>
         </ul>
     </div>
