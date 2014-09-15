@@ -9,6 +9,7 @@ module ApplicationHelper
   ADD_LINE2 = 'AmaraJyothi Layout,'
   ADD_LINE3 = 'Domlur, Bangalore - 560071'
   MOBILE = '98456 32084'
+  TELEPHONE = '98456 32084'
   EMAIL = 'info@testvagrant.com'
 
 
