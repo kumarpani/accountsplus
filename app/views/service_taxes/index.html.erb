@@ -47,7 +47,10 @@
             <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
             <td class="alignRight"><%= get_total_item_price_by_quotation_id(b[:id]) %></td>
             <td class="alignRight"><%= b[:service_tax] %></td>
-            <td><%= link_to 'Show Details', quotation_item_details_url(b[:id]), class: 'info', :style => 'float:right'%></td>
+            <td>
+              <%= link_to 'Show Details', quotation_item_details_url(b[:id]), class: "btn calendar-event #{get_quotation_status_color_class_by_id(b[:id])}", :style => 'float:right'%>
+            </td>
+
           </tr>
         <% end %>
         <tr>
