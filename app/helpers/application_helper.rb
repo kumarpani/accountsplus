@@ -1,25 +1,25 @@
 module ApplicationHelper
 
   # Application Title and Name
-  TITLE = 'Audioplus'
-  NAME = 'Audio Plus'
+  TITLE = 'TestVagrant'
+  NAME = 'TestVagrant'
 
   # Address
-  ADD_LINE1 = 'U-26, 3rd Cross, Pipeline,'
-  ADD_LINE2 = 'Krishnappa Block, Malleshwaram,'
-  ADD_LINE3 = 'Bangalore - 5600 03'
-  TELEPHONE = '080 23567619'
-  MOBILE = '98802 73773'
-  EMAIL = 'audioplus.events@gmail.com'
+  ADD_LINE1 = '462, 7th Main West Wing,'
+  ADD_LINE2 = 'AmaraJyothi Layout,'
+  ADD_LINE3 = 'Domlur, Bangalore - 560071'
+  MOBILE = '98456 32084'
+  TELEPHONE = '98456 32084'
+  EMAIL = 'info@testvagrant.com'
 
 
   #Service Tax Number
   PAN_NUMBER = ''
-  SERVICE_TAX_NUMBER = 'AKAPP9970EST001'
+  SERVICE_TAX_NUMBER = 'YET_TO_BE_OBTAINED'
   SERVICE_CATEGORY = ''
 
-  BANKS = [Bank.new('HDFC', 'HDFC Bank Ltd', 'Seshadripuram', 'HDFC0000367', '560240018', 'Audioplus', '03672020000887', 'Current Account'),
-           Bank.new('CANARA' ,'CANARA Bank', 'Malleswaram', 'CNRB0000409', '560015072', 'Audioplus', '0409201004561', 'Current Account')]
+  BANKS = [Bank.new('Kotak', 'Kotak Mahindra Bank Ltd', 'Indiranagar', 'KKBK0000431', '6011476025', 'TestVagrant', '', 'Current Account')
+           ]
 
   def display_verbose_date(date)
     date.to_date.strftime('%d %B, %Y')

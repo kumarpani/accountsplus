@@ -36,8 +36,7 @@ class PrintQuotation < PrintBase
       text("#{ApplicationHelper::ADD_LINE1}", align: :right)
       text("#{ApplicationHelper::ADD_LINE2}", align: :right)
       text("#{ApplicationHelper::ADD_LINE3}", align: :right)
-      text("Tele Fax: #{ApplicationHelper::TELEPHONE}", align: :right)
-      text("Cell: #{ApplicationHelper::MOBILE}", align: :right)
+      text("Mobile: #{ApplicationHelper::MOBILE}", align: :right)
       text("Email: #{ApplicationHelper::EMAIL}", align: :right)
 
     end
