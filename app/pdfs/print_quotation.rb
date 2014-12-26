@@ -78,7 +78,7 @@ class PrintQuotation < PrintBase
   def service_tax_details
 
     if ApplicationHelper::PAN_NUMBER != ''
-      text "IT PAN No: #{ApplicationHelper::PAN_NUMBER}"
+      text "PAN Number: #{ApplicationHelper::PAN_NUMBER}"
     end
 
     text "Service Tax Number: #{ApplicationHelper::SERVICE_TAX_NUMBER}"

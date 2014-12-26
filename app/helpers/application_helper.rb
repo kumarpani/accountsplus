@@ -14,11 +14,11 @@ module ApplicationHelper
 
 
   #Service Tax Number
-  PAN_NUMBER = ''
-  SERVICE_TAX_NUMBER = 'YET_TO_BE_OBTAINED'
+  PAN_NUMBER = 'AAFCT0855Q'
+  SERVICE_TAX_NUMBER = 'AAFCT0855QSD001'
   SERVICE_CATEGORY = ''
 
-  BANKS = [Bank.new('Kotak', 'Kotak Mahindra Bank Ltd', 'Indiranagar', 'KKBK0000431', '6011476025', 'TestVagrant', '', 'Current Account')
+  BANKS = [Bank.new('Kotak', 'Kotak Mahindra Bank Ltd', 'Indiranagar', 'KKBK0000431', '', 'TestVagrant', '6011476025', 'Current Account')
            ]
 
   def display_verbose_date(date)
