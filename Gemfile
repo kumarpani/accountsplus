@@ -28,24 +28,25 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-group :doc do
+# group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
-end
+# end
 
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'devise'
 gem 'pundit'
 gem 'bootstrap-datepicker-rails'
 gem 'simple_calendar', '~> 0.1.9'
-gem 'rails_12factor', group: :production
+gem 'rails_12factor'
+# , group: :production
 gem 'pdf-core'
 gem 'prawn'
 gem 'axlsx'
 
-group :development, :test do
-  gem 'foreman'
-end
+# group :development, :test do
+#   gem 'foreman'
+# end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
