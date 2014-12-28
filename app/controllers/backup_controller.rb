@@ -4,7 +4,7 @@ class BackupController < ApplicationController
     # @backup = Backup.new
     #
     # authorize @backup
-    # 
+    #
     #
     # Thread.new do
     #
@@ -49,7 +49,7 @@ class BackupController < ApplicationController
   end
 
 
-  private def add_client_sheet(c, wb)
+  # private def add_client_sheet(c, wb)
     # wb.add_worksheet(name: "Client") do |sheet|
     #   sheet.add_row(['ID', c.id], types: [:string, :string])
     #   sheet.add_row(['Company Name', c.company_name], types: [:string, :string])
@@ -60,9 +60,9 @@ class BackupController < ApplicationController
     #   sheet.add_row(['Email', c.email], types: [:string, :string])
     #   sheet.add_row(['Email 2', c.email_1], types: [:string, :string])
     # end
-  end
+  # end
 
-  private def add_payments_sheet(client_id, wb, start_date, end_date)
+  # private def add_payments_sheet(client_id, wb, start_date, end_date)
     # wb.add_worksheet(name: "Payments") do |sheet|
     #
     #   sheet.add_row(['ID', 'Client ID', 'Quotation ID', 'Paid On', 'Description', 'Mode', 'Reference Number', 'Amount',
@@ -83,9 +83,9 @@ class BackupController < ApplicationController
     #   end
     #
     # end
-  end
+  # end
 
-  private def add_ledger_sheet(client_id, wb, start_date, end_date)
+  # private def add_ledger_sheet(client_id, wb, start_date, end_date)
     # wb.add_worksheet(name: "Ledger") do |sheet|
     #
     #   sheet.add_row(['Client ID', 'Date', 'Description Of Transaction', 'Invoice Number', 'Debit', 'Credit', 'Balance'],
@@ -99,9 +99,9 @@ class BackupController < ApplicationController
     #   end
     #
     # end
-  end
+  # end
 
-  private def add_ist_sheet(client_id, wb, start_date, end_date)
+  # private def add_ist_sheet(client_id, wb, start_date, end_date)
     # wb.add_worksheet(name: "Incoming Service Taxes") do |sheet|
     #
     #   sheet.add_row(['ID', 'Client ID', 'Invoice Number', 'Invoice Date', 'Description',
@@ -118,10 +118,10 @@ class BackupController < ApplicationController
     #   end
     #
     # end
-  end
+  # end
 
 
-  private def add_invoices_sheet(client_id, wb, start_date, end_date)
+  # private def add_invoices_sheet(client_id, wb, start_date, end_date)
     # wb.add_worksheet(name: "Invoices") do |sheet|
     #
     #   Quotation.select {|q| q.client_id == client_id && q.status == STATUS_INVOICE && q.created_at >= start_date && q.created_at <= end_date}
@@ -151,10 +151,10 @@ class BackupController < ApplicationController
     #   end
     #
     # end
-  end
+  # end
 
 
-  private def add_item_details(q, sheet)
+  # private def add_item_details(q, sheet)
   #   sheet.add_row(['ID', 'Particulars', 'Quantity', 'Days', 'Unit Price', 'Price', 'Item Group Name'])
   #
   #   q.item_details.sort_by {|i| i[:item_group_name]}.each do |i|
@@ -177,6 +177,6 @@ class BackupController < ApplicationController
   #                   types: [:string, :string, :string, :string, :string, :string])
   #
   #   end
-  end
+  # end
 
 end
