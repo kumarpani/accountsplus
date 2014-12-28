@@ -1,50 +1,50 @@
 class BackupController < ApplicationController
   def backup_data
 
-    @backup = Backup.new
-
-    authorize @backup
-
-
-    Thread.new do
-
-      zipfile = "backup_" + DateTime.now.strftime("%H%M%s") + ".zip"
-      t = Tempfile.new(zipfile, Rails.root.join('tmp'))
-
-      Zip::OutputStream.open(t.path) do |z|
-          Client.all.each do |c|
-
-            file_name = "#{c.company_name}.xlsx"
-            p = Axlsx::Package.new
-            wb = p.workbook
-            p.use_shared_strings = true
-
-            add_client_sheet(c, wb)
-            add_invoices_sheet(c.id, wb, params[:start_date], params[:end_date])
-            add_payments_sheet(c.id, wb, params[:start_date], params[:end_date])
-            add_ledger_sheet(c.id, wb, params[:start_date], params[:end_date])
-            add_ist_sheet(c.id, wb, params[:start_date], params[:end_date])
-
-            tempfile_new = Tempfile.new(file_name, Rails.root.join('tmp'))
-            p.serialize(tempfile_new)
-            z.put_next_entry(file_name)
-            File.open(tempfile_new,"rb") do |f|
-              z.write f.read
-            end
-            File.delete(tempfile_new)
-
-          end
-
-      end
-      t.close
-
-      ApplicationMailer.send_backup_mail(current_user.email, t.path, params[:start_date], params[:end_date]).deliver
-
-      FileUtils.rm(t.path)
-
-    end
-
-    redirect_to :controller => 'dashboard', :action => 'index'
+    # @backup = Backup.new
+    #
+    # authorize @backup
+    # 
+    #
+    # Thread.new do
+    #
+    #   zipfile = "backup_" + DateTime.now.strftime("%H%M%s") + ".zip"
+    #   t = Tempfile.new(zipfile, Rails.root.join('tmp'))
+    #
+    #   Zip::OutputStream.open(t.path) do |z|
+    #       Client.all.each do |c|
+    #
+    #         file_name = "#{c.company_name}.xlsx"
+    #         p = Axlsx::Package.new
+    #         wb = p.workbook
+    #         p.use_shared_strings = true
+    #
+    #         add_client_sheet(c, wb)
+    #         add_invoices_sheet(c.id, wb, params[:start_date], params[:end_date])
+    #         add_payments_sheet(c.id, wb, params[:start_date], params[:end_date])
+    #         add_ledger_sheet(c.id, wb, params[:start_date], params[:end_date])
+    #         add_ist_sheet(c.id, wb, params[:start_date], params[:end_date])
+    #
+    #         tempfile_new = Tempfile.new(file_name, Rails.root.join('tmp'))
+    #         p.serialize(tempfile_new)
+    #         z.put_next_entry(file_name)
+    #         File.open(tempfile_new,"rb") do |f|
+    #           z.write f.read
+    #         end
+    #         File.delete(tempfile_new)
+    #
+    #       end
+    #
+    #   end
+    #   t.close
+    #
+    #   ApplicationMailer.send_backup_mail(current_user.email, t.path, params[:start_date], params[:end_date]).deliver
+    #
+    #   FileUtils.rm(t.path)
+    #
+    # end
+    #
+    # redirect_to :controller => 'dashboard', :action => 'index'
 
   end
 
