@@ -59,4 +59,4 @@ gem 'axlsx'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-ruby "2.0.0"
+#ruby "2.0.0"
