@@ -197,7 +197,7 @@ class PrintQuotation < PrintBase
              ]]
     data += [[
                  {:content => 'Name of the Bank & Branch', :font_style => :bold},
-                 {:content => b.name + ' ,' + b.branch}
+                 {:content => b.name + ', ' + b.branch}
              ]]
     data += [[
                  {:content => 'Bank Account Number', :font_style => :bold},
