@@ -18,7 +18,7 @@ module ApplicationHelper
   SERVICE_TAX_NUMBER = 'AAFCT0855QSD001'
   SERVICE_CATEGORY = ''
 
-  BANKS = [Bank.new('Kotak', 'Kotak Mahindra Bank Ltd', 'Indiranagar', 'KKBK0000431', '', 'TestVagrant', '6011476025', 'Current Account')
+  BANKS = [Bank.new('HDFC', 'HDFC Bank Ltd', 'BommanaHalli', 'HDFC0001048', '', 'TESTVAGRANT TECHNOLOGIES PRIVATE LIMITED', '50200010377183', 'Current Account')
            ]
 
   def display_verbose_date(date)
