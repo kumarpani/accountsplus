@@ -3,7 +3,7 @@ module QuotationsHelper
     return [
 
     'Payment Terms – 50% in advance as Cheque, DD or Pay Order on conformation of the event with P.O or letter of conformation & Rest 50% of the payment should be made 2 days before the event.',
-    '12.36% Service Tax Extra on the Billing Amount.',
+    SERVICE_TAX_PERCENTAGE + '% Service Tax Extra on the Billing Amount.',
     'Order should confirm at least 30 days before the Event.',
     'Order should confirm at least 15 days before the Event.',
     'Order should confirm at least 10 days before the Event.',
