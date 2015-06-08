@@ -255,7 +255,7 @@ class PrintQuotation < PrintBase
 
   def signature
     text("\nFor #{ApplicationHelper::NAME}\n\n\n\n")
-    image "#{Rails.root}/app/assets/images/signature.jpg", height: 50
+    image "#{Rails.root}/app/assets/images/sealandsign.jpg", height: 50
     text("Authorized Signatory")
 
   end
