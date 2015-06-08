@@ -96,7 +96,7 @@
 
           <% if @quotation.is_a_complete_tax_invoice? || @quotation.is_a_complete_tax_exempted_invoice?%>
             <tr>
-              <td></td><td>Service Tax @ <%= SERVICE_TAX_PERCENTAGE%></td><td></td><td></td>
+              <td></td><td>Service Tax @ <%= SERVICE_TAX_PERCENTAGE%>%</td><td></td><td></td>
               <td class="alignRight"><%= @quotation.service_tax_to_display %></td>
             </tr>
               <tr>
