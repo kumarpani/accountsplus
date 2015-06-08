@@ -9,3 +9,6 @@ INVOICE_TAX = 'Tax Invoice'
 INVOICE_PROFORMA = 'Proforma Invoice'
 INVOICE_TAX_EXEMPTED = 'Tax Exempted Invoice'
 
+# Service Tax
+SERVICE_TAX_PERCENTAGE = 14
+

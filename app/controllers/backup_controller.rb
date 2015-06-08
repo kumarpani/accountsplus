@@ -167,11 +167,7 @@ class BackupController < ApplicationController
         types: [:string, :string, :string, :string, :string, :string]
 
     if q.is_a_complete_tax_invoice? || q.is_a_complete_tax_exempted_invoice?
-      sheet.add_row ['', 'Service Tax @ 12%', '', '', '', q.service_tax_at_12_percent],
-                    types: [:string, :string, :string, :string, :string, :string]
-      sheet.add_row ['', 'Education Cess @ 2% (On S.T)', '', '', '', q.education_cess],
-                    types: [:string, :string, :string, :string, :string, :string]
-      sheet.add_row ['', 'Sec. & Higher Edu. Cess @ 1% (On S.T)', '', '', '', q.higher_education_cess],
+      sheet.add_row ['', 'Service Tax @ 12%', '', '', '', q.service_tax_to_display],
                     types: [:string, :string, :string, :string, :string, :string]
       sheet.add_row ['', 'Total with taxes (rounded off):', '', '', '', ApplicationController.helpers.number_with_precision(q.total_price, :precision => 2)],
                     types: [:string, :string, :string, :string, :string, :string]
