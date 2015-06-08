@@ -24,23 +24,13 @@ class Quotation < ActiveRecord::Base
     fraction >= 0.20 ? (floor_value+1) : floor_value;
   end
 
-  def service_tax_at_12_percent
+  def service_tax_to_display
     if self.invoice_type == INVOICE_TAX
-      ((self.total_item_price * 12)/100).round(2)
+      self.service_tax
     else
       0.00
     end
   end
-
-  def education_cess
-    ((self.service_tax_at_12_percent * 2)/100).round(2)
-  end
-
-  def higher_education_cess
-    ((self.service_tax_at_12_percent * 1)/100).round(2)
-  end
-
-
 
 
 
@@ -122,10 +112,13 @@ class Quotation < ActiveRecord::Base
     end
 
     if is_tax_invoice_being_raised? || is_proforma_invoice_being_converted_to_tax_invoice?
-      self.service_tax = ((total_item_price * 12.36)/100).round(2)
+      get_service_tax
     end
   end
 
+  def get_service_tax
+    self.service_tax = ((total_item_price * SERVICE_TAX_PERCENTAGE)/100).round(2)
+  end
 
 
   def clone_with_associations

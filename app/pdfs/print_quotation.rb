@@ -155,9 +155,7 @@ class PrintQuotation < PrintBase
     end
 
     if q.is_a_complete_tax_invoice? || q.is_a_complete_tax_exempted_invoice?
-      data += [["", "Service Tax @ 12%", "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.service_tax_at_12_percent, :precision => 2)}", :align => :right}]]
-      data += [["", "Education Cess @ 2% (On S.T)", "", "", {:content => "#{q.education_cess}", :align => :right}]]
-      data += [["", "Secondary & Higher Education Cess @ 1% (On S.T)", "", "", {:content => "#{q.higher_education_cess}", :align => :right}]]
+      data += [["", {:content => "Service Tax @ #{SERVICE_TAX_PERCENTAGE}%"}, "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.service_tax_to_display, :precision => 2)}", :align => :right}]]
       data += [["", {:content => "Total with taxes (rounded off):", :font_style => :bold}, "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.total_price, :precision => 2)}", :font_style => :bold, :align => :right}]]
 
       if !unit_price.nil?

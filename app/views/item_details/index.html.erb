@@ -96,16 +96,8 @@
 
           <% if @quotation.is_a_complete_tax_invoice? || @quotation.is_a_complete_tax_exempted_invoice?%>
             <tr>
-              <td></td><td>Service Tax @ 12%</td><td></td><td></td>
-              <td class="alignRight"><%= @quotation.service_tax_at_12_percent %></td>
-            </tr>
-              <tr>
-                <td></td><td>Education Cess @ 2% (On S.T)</td><td></td><td></td>
-                <td class="alignRight"><%= @quotation.education_cess %></td>
-            </tr>
-            <tr>
-                <td></td><td>Sec. & Higher Edu. Cess @ 1% (On S.T)</td><td></td><td></td>
-                <td class="alignRight"><%= @quotation.higher_education_cess %></td>
+              <td></td><td>Service Tax @ <%= SERVICE_TAX_PERCENTAGE%></td><td></td><td></td>
+              <td class="alignRight"><%= @quotation.service_tax_to_display %></td>
             </tr>
               <tr>
                 <td></td><td><strong>Total with taxes (rounded off):</strong></td><td></td><td></td>
