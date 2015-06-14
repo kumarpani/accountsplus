@@ -257,6 +257,8 @@ class PrintQuotation < PrintBase
     text("\nFor #{ApplicationHelper::NAME}\n")
     if !seal.nil?
       image "#{Rails.root}/app/assets/images/sealandsign.jpg", height: 70
+    else
+      text("\n\n\n\n")
     end
     text("Authorized Signatory")
 
