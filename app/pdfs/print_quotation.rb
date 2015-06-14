@@ -2,7 +2,7 @@ class PrintQuotation < PrintBase
 
   include PrintQuotationsHelper
 
-  def initialize(id, unit_price=nil, bank=nil)
+  def initialize(id, unit_price=nil, bank=nil, seal=nil)
     super()
     q = Quotation.find(id)
     logo_and_address()
@@ -25,7 +25,7 @@ class PrintQuotation < PrintBase
     if !q.is_a_complete_tax_invoice?  and !q.is_a_complete_tax_exempted_invoice? and !q.tac.nil?
       terms_and_conditions(q)
     end
-    signature
+    signature(seal)
   end
 
   def logo_and_address
@@ -253,9 +253,11 @@ class PrintQuotation < PrintBase
     data
   end
 
-  def signature
+  def signature(seal)
     text("\nFor #{ApplicationHelper::NAME}\n")
-    image "#{Rails.root}/app/assets/images/sealandsign.jpg", height: 70
+    if !seal.nil?
+      image "#{Rails.root}/app/assets/images/sealandsign.jpg", height: 70
+    end
     text("Authorized Signatory")
 
   end

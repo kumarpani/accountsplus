@@ -125,6 +125,8 @@
       <%= form_tag({controller: 'item_details', action: 'print', :format => 'pdf'}, {class: 'form-inline', method: 'get'}) do %>
           <%= check_box_tag(:unit_price)%>
           <%= label :unit_price, 'Show Unit Price' %>
+          <%= check_box_tag(:seal)%>
+          <%= label :seal, 'Show Seal' %>
           <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
               <% ApplicationHelper::BANKS.each do |b| %>
                   <br>
@@ -156,6 +158,7 @@
 
     <script>
         $("#show_unit_price").prop('checked')
+        $("#show_seal").prop('checked')
     </script>
 
 </div>
