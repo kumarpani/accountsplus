@@ -185,7 +185,8 @@
               break;
             // Tab
             case 9:
-              context.pickListItem(context.selectedListItem());
+              //context.pickListItem(context.selectedListItem());
+              context.hideList();
               break;
             // Esc
             case 27:
