@@ -7,6 +7,11 @@ class PaymentsController < ApplicationController
       @payments = Payment.where(:client_id => params[:client_id]).order(:updated_at).reverse_order
   end
 
+
+  def filter
+    @filtered_payments = Payment.new.filter(params[:start_date], params[:end_date])
+  end
+
   # GET /payments/1
   # GET /payments/1.json
   def show

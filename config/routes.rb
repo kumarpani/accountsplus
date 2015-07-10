@@ -19,6 +19,7 @@ Accountsplus::Application.routes.draw do
   get "ledgers/print"
   get "service_taxes/print"
   get "payments/print"
+  get "payments/filter"
   get "item_details/print"
 
 
