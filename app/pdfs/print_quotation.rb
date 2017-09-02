@@ -2,26 +2,40 @@ class PrintQuotation < PrintBase
 
   include PrintQuotationsHelper
 
-  def initialize(id, unit_price=nil, bank=nil, seal=nil)
+  def initialize(id, unit_price=nil, bank=nil, seal=nil, gst=nil)
     super()
     q = Quotation.find(id)
-    logo_and_address()
-    title(get_header_for_print_quotation(q))
-    quotation_details(q)
-    if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
-      service_tax_details
+
+    if !gst.nil?
+      logo_and_address_gst
+      title_gst(get_header_for_print_quotation(q))
+      quotation_details_gst(q)
+      items_table_gst(q, unit_price)
+    else
+      logo_and_address
+      title(get_header_for_print_quotation(q))
+      quotation_details(q)
+
+      if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
+        service_tax_details
+      end
+
+      items_table(q, unit_price)
     end
-    items_table(q, unit_price)
+
+
     if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
       price_in_rupees(q.total_price.to_i.rupees)
     else
       price_in_rupees(q.total_item_price.to_i.rupees)
     end
+
     if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
       if !bank.nil?
         bank_details(bank)
       end
     end
+
     if !q.is_a_complete_tax_invoice?  and !q.is_a_complete_tax_exempted_invoice? and !q.tac.nil?
       terms_and_conditions(q)
     end
@@ -45,8 +59,33 @@ class PrintQuotation < PrintBase
     stroke_horizontal_rule
   end
 
+  def logo_and_address_gst
+    column_box([0, cursor], :columns => 2, :width=>470, :height => 72) do
+
+      image "#{Rails.root}/app/assets/images/logo.jpg", height: 72
+
+      text("#{ApplicationHelper::ADD_LINE1}", align: :right)
+      text("#{ApplicationHelper::ADD_LINE2}", align: :right)
+      text("#{ApplicationHelper::ADD_LINE3}", align: :right)
+      text("Ph : #{ApplicationHelper::TELEPHONE} Cell : #{ApplicationHelper::MOBILE}", align: :right)
+      text("Email: #{ApplicationHelper::EMAIL}", align: :right)
+
+    end
+  end
+
   def title(title)
     draw_text title, size: 14, style: :bold_italic, :at => [180, 685]
+  end
+
+  def title_gst(title)
+
+    data = [
+              [{:content => title, :font_style => :bold, :align => :center, :background_color => 'ccffff'}],
+              ["GSTIN : #{ApplicationHelper::GSTIN} / State Code : #{ApplicationHelper::STATE_CODE}"]
+    ]
+    table(data, :column_widths => {0 => 470},
+          :header => true,
+          :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5, :align => :center})
   end
 
   def quotation_details(q)
@@ -75,6 +114,39 @@ class PrintQuotation < PrintBase
       end
     end
   end
+
+  def quotation_details_gst(q)
+
+    define_grid(:columns => 4, :rows => 14)
+    # grid([2, 0], [1.9, 1]).show
+    # grid([2.1, 3], [1.9, 2.42]).show
+
+    grid([2, 0], [1.9, 1]).bounding_box do
+      text("To: #{q.client.company_name}", style: :bold)
+      text(q.client.address)
+      text(" ")
+      text ("GSTIN : Client's GST Number")
+    end
+
+    grid([2.1, 3], [1.9, 2.42]).bounding_box do
+
+      data = [[]]
+      if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
+        data += [["Invoice No:", "#{q.invoice_number}"]]
+      end
+      data += [["Invoice Date:", "#{get_display_date(q).to_date.strftime('%d/%m/%Y')}"],
+              ["Event Date:", "#{q.event_date.strftime('%d/%m/%Y')}"]]
+
+      if !q.venue.blank?
+        data += [["Venue:", "#{q.venue}"]]
+      end
+
+      table(data, :column_widths => {0 => 65, 1=> 120},
+            :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
+    end
+
+  end
+
 
   def service_tax_details
 
@@ -105,6 +177,22 @@ class PrintQuotation < PrintBase
 
   end
 
+  def get_item_table_header_gst(unit_price)
+    data =  [[
+                 {:content => 'Sl. No.', :font_style => :bold, :align => :center},
+                 {:content => 'Description', :font_style => :bold, :align => :center},
+                 {:content => 'SAC Code', :font_style => :bold, :align => :center},
+                 {:content => 'Qty', :font_style => :bold, :align => :center},
+                 {:content => 'Days', :font_style => :bold, :align => :center},
+             ]]
+    if !unit_price.nil?
+      data[0] += [{:content => 'Unit Price', :font_style => :bold, :align => :center}]
+    end
+    data[0] += [{:content => 'Amount', :font_style => :bold, :align => :center}]
+    data
+
+  end
+
 
   def get_item_data(items, unit_price)
     data = [[]]
@@ -124,6 +212,24 @@ class PrintQuotation < PrintBase
     data
   end
 
+  def get_item_data_gst(items, unit_price)
+    data = [[]]
+    items.sort_by {|s| s[:created_at]}.each_with_index do |item, index|
+      data+=[[
+                 {:content => "#{index+1}", :align => :center},
+                 item.particulars,
+                 {:content => "998596", :align => :center},
+                 {:content => "#{item.quantity == 0 ? "" : item.quantity}", :align => :center},
+                 {:content => "#{item.days == 0 ? "" : item.days}", :align => :center},
+             ]]
+      if !unit_price.nil?
+        data[index+1] += [{:content => "#{item.unit_price == 0 ? "" : ApplicationController.helpers.number_with_precision(item.unit_price, :precision =>2)}", :align => :right}]
+      end
+      data[index+1] += [{:content => "#{item.price == 0 ? "" : ApplicationController.helpers.number_with_precision(item.price, :precision =>2)}", :align => :right}]
+    end
+    data.delete_at(0)
+    data
+  end
 
 
   def items_table(q, unit_price)
@@ -180,6 +286,62 @@ class PrintQuotation < PrintBase
           :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
     end
   end
+
+
+  def items_table_gst(q, unit_price)
+    data = get_item_table_header_gst(unit_price)
+
+    @item_groups = q.item_details.group_by { |g| g.item_group_name }
+    @item_groups['Others:'] = @item_groups.delete('')
+
+    @item_groups.each_with_index do |(item_group_name, items), index|
+
+      if item_group_name != 'Others:'
+        data += ([[{:content => "(#{(index+65).chr})", :font_style => :bold, :align => :center},
+                   {:content =>"#{item_group_name}", :colspan =>5, :font_style => :bold}]])
+        data += get_item_data_gst(items, unit_price)
+      end
+
+      if item_group_name == 'Others:' && !items.nil?
+        if @item_groups.size > 1
+          data += ([[{:content => "(#{(@item_groups.count-1+65).chr})", :font_style => :bold, :align => :center},
+                     {:content =>"Others:", :colspan =>5, :font_style => :bold}]])
+        end
+        data += get_item_data_gst(items, unit_price)
+      end
+    end
+
+    data += [["", {:content => "Total Value", :font_style => :bold}, "", "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.total_item_price, :precision => 2)}", :font_style => :bold, :align => :right}]]
+    if !unit_price.nil?
+      data[data.size-1].insert(2, "")
+    end
+
+    if q.is_a_complete_tax_invoice? || q.is_a_complete_tax_exempted_invoice?
+      data += [["", {:content => "CGST Tax @ #{CGST_SERVICE_TAX_PERCENTAGE}%"}, "", "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.service_tax_to_display/2, :precision => 2)}", :align => :right}]]
+      data += [["", {:content => "SGST Tax @ #{SGST_SERVICE_TAX_PERCENTAGE}%"}, "", "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.service_tax_to_display/2, :precision => 2)}", :align => :right}]]
+      data += [["", {:content => "Total with taxes (rounded off):", :font_style => :bold}, "", "", "", {:content => "#{ApplicationController.helpers.number_with_precision(q.total_price, :precision => 2)}", :font_style => :bold, :align => :right}]]
+
+      if !unit_price.nil?
+        data[data.size-3].insert(2, "")
+        data[data.size-2].insert(2, "")
+        data[data.size-1].insert(2, "")
+      end
+
+    end
+
+    if unit_price.nil?
+      table(data, :column_widths => {0 => 35,1 => 275,2 => 50,3 => 30,4 => 30,5 => 50},
+            :header => true,
+            :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
+
+    else
+      table(data, :column_widths => {0 => 35,1 => 225,2 => 50,3 => 30,4 => 30,5 => 50, 6 => 50},
+            :header => true,
+            :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
+    end
+  end
+
+
 
   def price_in_rupees(price)
     text("\nRupees:#{price}", :align => :right)

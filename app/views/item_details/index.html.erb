@@ -95,7 +95,7 @@
 
           <% if @quotation.is_a_complete_tax_invoice? || @quotation.is_a_complete_tax_exempted_invoice?%>
             <tr>
-              <td></td><td>Service Tax @ <%= SERVICE_TAX_PERCENTAGE%>%</td><td></td><td></td>
+              <td></td><td>Service Tax @ <%= GST_SERVICE_TAX_PERCENTAGE%>%</td><td></td><td></td>
               <td class="alignRight"><%= @quotation.service_tax_to_display %></td>
             </tr>
               <tr>
@@ -124,8 +124,13 @@
       <%= form_tag({controller: 'item_details', action: 'print', :format => 'pdf'}, {class: 'form-inline', method: 'get'}) do %>
           <%= check_box_tag(:unit_price)%>
           <%= label :unit_price, 'Show Unit Price' %>
+
           <%= check_box_tag(:seal)%>
           <%= label :seal, 'Show Seal' %>
+
+          <%= check_box_tag(:gst, 1, true)%>
+          <%= label :gst, 'GST' %>
+
           <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
               <% ApplicationHelper::BANKS.each do |b| %>
                   <br>
@@ -158,6 +163,7 @@
     <script>
         $("#show_unit_price").prop('checked')
         $("#show_seal").prop('checked')
+        $("#gst").prop('checked')
     </script>
 
 </div>

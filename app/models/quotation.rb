@@ -117,7 +117,7 @@ class Quotation < ActiveRecord::Base
   end
 
   def get_service_tax
-    self.service_tax = ((total_item_price * SERVICE_TAX_PERCENTAGE)/100).round(2)
+    self.service_tax = ((total_item_price * GST_SERVICE_TAX_PERCENTAGE)/100).round(2)
   end
 
 

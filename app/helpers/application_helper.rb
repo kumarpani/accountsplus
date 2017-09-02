@@ -12,6 +12,9 @@ module ApplicationHelper
   MOBILE = '98802 73773'
   EMAIL = 'audioplus.events@gmail.com'
 
+  # GST
+  GSTIN = '29AKAPP9970E1ZQ'
+  STATE_CODE = '29'
 
   #Service Tax Number
   PAN_NUMBER = ''
