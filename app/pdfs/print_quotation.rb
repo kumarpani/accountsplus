@@ -125,7 +125,7 @@ class PrintQuotation < PrintBase
       text("To: #{q.client.company_name}", style: :bold)
       text(q.client.address)
       text(" ")
-      text ("GSTIN : Client's GST Number")
+      text ("GSTIN : #{q.client.gstin}")
     end
 
     grid([2.1, 3], [1.9, 2.42]).bounding_box do
