@@ -134,8 +134,12 @@ class PrintQuotation < PrintBase
       if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
         data += [["Invoice No:", "#{q.invoice_number}".to_s[4..6]]]
       end
+      event_dates = q.event_date.strftime('%d/%m/%Y')
+      if not q.event_end_date.nil?
+        event_dates += " to #{q.event_end_date.strftime('%d/%m/%Y')}"
+      end
       data += [["Invoice Date:", "#{get_display_date(q).to_date.strftime('%d/%m/%Y')}"],
-              ["Event Date:", "#{q.event_date.strftime('%d/%m/%Y')}"]]
+              ["Event Date:", "#{event_dates}"]]
 
       if !q.venue.blank?
         data += [["Venue:", "#{q.venue}"]]

@@ -49,6 +49,14 @@
         <%end%>
       </li>
       <li>
+        <%= f.label :event_end_date %>
+        <% if @quotation.event_end_date.nil? %>
+            <%= f.text_field :event_end_date%>
+        <%else%>
+            <%= f.text_field :event_end_date, :value => display_date(@quotation.event_end_date)%>
+        <%end%>
+      </li>
+      <li>
         <%= f.label :days %>
         <%= f.text_field :days %>
       </li>
@@ -82,5 +90,6 @@
 
     <script>
         $('#quotation_event_date').datepicker({format: 'dd-mm-yyyy', autoclose:true, todayHighlight:true, clearBtn:true})
+        $('#quotation_event_end_date').datepicker({format: 'dd-mm-yyyy', autoclose:true, todayHighlight:true, clearBtn:true})
     </script>
 <% end %>
