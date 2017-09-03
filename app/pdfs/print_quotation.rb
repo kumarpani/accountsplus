@@ -218,7 +218,7 @@ class PrintQuotation < PrintBase
       data+=[[
                  {:content => "#{index+1}", :align => :center},
                  item.particulars,
-                 {:content => "998596", :align => :center},
+                 {:content => "#{item.saccode}", :align => :center},
                  {:content => "#{item.quantity == 0 ? "" : item.quantity}", :align => :center},
                  {:content => "#{item.days == 0 ? "" : item.days}", :align => :center},
              ]]
