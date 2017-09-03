@@ -132,7 +132,7 @@ class PrintQuotation < PrintBase
 
       data = [[]]
       if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
-        data += [["Invoice No:", "#{q.invoice_number}"]]
+        data += [["Invoice No:", "#{q.invoice_number}".to_s[4..6]]]
       end
       data += [["Invoice Date:", "#{get_display_date(q).to_date.strftime('%d/%m/%Y')}"],
               ["Event Date:", "#{q.event_date.strftime('%d/%m/%Y')}"]]
