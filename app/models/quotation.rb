@@ -97,7 +97,9 @@ class Quotation < ActiveRecord::Base
 
     if is_invoice_being_raised?
       self.service_tax = 0.0
-      self.invoice_raised_date = Date.today
+      if (self.invoice_raised_date.nil?)
+        self.invoice_raised_date = Date.today
+      end
       self.invoice_raised_by = User.current_user.email
     end
 
@@ -107,7 +109,9 @@ class Quotation < ActiveRecord::Base
         self.is_proforma_invoice_being_converted_to_tax_exempted_invoice?
 
       self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
-      self.invoice_raised_date = Date.today
+      if (self.invoice_raised_date.nil?)
+        self.invoice_raised_date = Date.today
+      end
       self.invoice_raised_by = User.current_user.email
 
     end
