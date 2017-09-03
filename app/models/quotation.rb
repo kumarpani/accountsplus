@@ -108,7 +108,7 @@ class Quotation < ActiveRecord::Base
         self.is_proforma_invoice_being_converted_to_tax_invoice? ||
         self.is_proforma_invoice_being_converted_to_tax_exempted_invoice?
 
-      self.invoice_number = self.invoice_number.nil? ? Quotation.maximum('invoice_number').to_i + 1 : self.invoice_number;
+      self.invoice_number = self.invoice_number.nil? ? get_next_invoice_number : self.invoice_number;
       if (self.invoice_raised_date.nil?)
         self.invoice_raised_date = Date.today
       end
@@ -119,6 +119,31 @@ class Quotation < ActiveRecord::Base
     if is_tax_invoice_being_raised? || is_proforma_invoice_being_converted_to_tax_invoice?
       get_service_tax
     end
+  end
+
+  def get_next_invoice_number
+
+    if Date.today.month > 3
+      current_year = Date.today.year.to_s[2..4]
+      next_year = Date.today.year.next.to_s[2..4]
+      inv_num = current_year + next_year + '100'
+    else
+      previous_year = (Date.today.year-1).to_s[2..4]
+      current_year = Date.today.year.to_s[2..4]
+      inv_num = previous_year + current_year + '100'
+
+    end
+
+    if Quotation.where(invoice_number: inv_num.to_i).empty?
+      inv_num.to_i
+    else
+      length = Quotation.maximum('invoice_number').to_s.length
+      num = Quotation.maximum('invoice_number').to_s[4..length].to_i + 1
+
+      (Quotation.maximum('invoice_number').to_s[0..3] + num.to_s).to_i
+
+    end
+
   end
 
   def get_service_tax
