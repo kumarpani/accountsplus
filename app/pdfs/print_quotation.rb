@@ -219,10 +219,14 @@ class PrintQuotation < PrintBase
   def get_item_data_gst(items, unit_price)
     data = [[]]
     items.sort_by {|s| s[:created_at]}.each_with_index do |item, index|
+      sac = item.saccode
+      if item.saccode == ""
+        sac = "998596"
+      end
       data+=[[
                  {:content => "#{index+1}", :align => :center},
                  item.particulars,
-                 {:content => "#{item.saccode}", :align => :center},
+                 {:content => "#{sac}", :align => :center},
                  {:content => "#{item.quantity == 0 ? "" : item.quantity}", :align => :center},
                  {:content => "#{item.days == 0 ? "" : item.days}", :align => :center},
              ]]
