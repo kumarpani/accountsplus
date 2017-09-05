@@ -29,7 +29,11 @@ module ApplicationHelper
   end
 
   def display_date(date)
-    date.strftime('%d/%m/%Y')
+    if not date.nil?
+      date.strftime('%d/%m/%Y')
+    else
+      ""
+    end
   end
 
   def get_company_name_by_client_id(client_id)
