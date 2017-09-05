@@ -86,8 +86,7 @@ class Quotation < ActiveRecord::Base
 # Is the quotation still open for edits
 
   def is_open_for_edits(usr)
-    # self.status != STATUS_INVOICE || (self.invoice_type == INVOICE_PROFORMA && usr.is_admin?)
-    usr.is_admin?
+    self.status != STATUS_INVOICE || (self.invoice_type == INVOICE_PROFORMA && usr.is_admin?)
   end
 
 
