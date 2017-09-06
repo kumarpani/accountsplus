@@ -90,7 +90,9 @@ class Quotation < ActiveRecord::Base
     self.status != STATUS_INVOICE || (self.invoice_type == INVOICE_PROFORMA && usr.is_admin?) || usr.is_admin?
   end
 
-
+  def is_a_quotation?
+    self.status != STATUS_INVOICE && self.status != INVOICE_PROFORMA
+  end
 
 
   def update_invoice_details

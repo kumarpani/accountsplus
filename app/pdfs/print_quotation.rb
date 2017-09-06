@@ -138,14 +138,20 @@ class PrintQuotation < PrintBase
       if not q.event_end_date.nil?
         event_dates += " to #{q.event_end_date.strftime('%d/%m/%Y')}"
       end
-      data += [["Invoice Date:", "#{get_display_date(q).to_date.strftime('%d/%m/%Y')}"],
-              ["Event Date:", "#{event_dates}"]]
+
+      if q.is_a_quotation?
+        data += [["Quotation Date:", "#{get_display_date(q).to_date.strftime('%d/%m/%Y')}"]]
+      else
+        data += [["Invoice Date:", "#{get_display_date(q).to_date.strftime('%d/%m/%Y')}"]]
+      end
+
+      data += [["Event Date:", "#{event_dates}"]]
 
       if !q.venue.blank?
         data += [["Venue:", "#{q.venue}"]]
       end
 
-      table(data, :column_widths => {0 => 65, 1=> 120},
+      table(data, :column_widths => {0 => 70, 1=> 115},
             :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
     end
 
