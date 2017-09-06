@@ -157,6 +157,9 @@ class Quotation < ActiveRecord::Base
     if is_a_quotation?
       name += "_Quotation_"
       name += self.updated_at.strftime('%d-%^b-%Y')
+    elsif self.invoice_type == INVOICE_PROFORMA
+      name += "_ProformaInvoice_"
+      name += self.invoice_raised_date.strftime('%d-%^b-%Y')
     else
       name += "_Invoice_"
       name += self.invoice_number.to_s[4..6]
