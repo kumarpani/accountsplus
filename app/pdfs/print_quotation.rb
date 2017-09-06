@@ -185,7 +185,7 @@ class PrintQuotation < PrintBase
     data =  [[
                  {:content => 'Sl. No.', :font_style => :bold, :align => :center},
                  {:content => 'Description', :font_style => :bold, :align => :center},
-                 {:content => 'SAC Code', :font_style => :bold, :align => :center},
+                 {:content => 'HSN/SAC Code', :font_style => :bold, :align => :center},
                  {:content => 'Qty', :font_style => :bold, :align => :center},
                  {:content => 'Days', :font_style => :bold, :align => :center},
              ]]
@@ -338,12 +338,12 @@ class PrintQuotation < PrintBase
     end
 
     if unit_price.nil?
-      table(data, :column_widths => {0 => 35,1 => 275,2 => 50,3 => 30,4 => 30,5 => 50},
+      table(data, :column_widths => {0 => 35,1 => 255,2 => 70,3 => 30,4 => 30,5 => 50},
             :header => true,
             :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
 
     else
-      table(data, :column_widths => {0 => 35,1 => 225,2 => 50,3 => 30,4 => 30,5 => 50, 6 => 50},
+      table(data, :column_widths => {0 => 35,1 => 205,2 => 70,3 => 30,4 => 30,5 => 50, 6 => 50},
             :header => true,
             :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
     end

@@ -83,7 +83,13 @@
     <div class="field">
         <ul>
           <% get_terms_and_conditions.each do |t| %>
-            <li><%= f.check_box(:tac, {:multiple => true}, t, [])%> <%= t %></li>
+
+              <% if t.include? "18" %>
+                  <li><%= f.check_box(:tac, {:multiple => true, :checked => true}, t, [])%> <%= t %></li>
+              <%else%>
+                  <li><%= f.check_box(:tac, {:multiple => true}, t, [])%> <%= t %></li>
+              <%end%>
+
           <% end %>
         </ul>
     </div>
