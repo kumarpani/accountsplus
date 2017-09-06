@@ -158,6 +158,8 @@ class Quotation < ActiveRecord::Base
       name += "_Quotation_"
     else
       name += "_Invoice_"
+      name += self.invoice_number.to_s[4..6]
+      name += "_"
     end
     name += self.invoice_raised_date.strftime('%d-%^b-%Y')
     name += ".pdf"
