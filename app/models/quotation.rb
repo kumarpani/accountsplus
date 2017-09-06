@@ -156,12 +156,13 @@ class Quotation < ActiveRecord::Base
     name = self.client.company_name
     if is_a_quotation?
       name += "_Quotation_"
+      name += self.updated_at.strftime('%d-%^b-%Y')
     else
       name += "_Invoice_"
       name += self.invoice_number.to_s[4..6]
       name += "_"
+      name += self.invoice_raised_date.strftime('%d-%^b-%Y')
     end
-    name += self.invoice_raised_date.strftime('%d-%^b-%Y')
     name += ".pdf"
 
   end
