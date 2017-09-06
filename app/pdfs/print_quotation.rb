@@ -60,9 +60,9 @@ class PrintQuotation < PrintBase
   end
 
   def logo_and_address_gst
-    column_box([0, cursor], :columns => 2, :width=>470, :height => 72) do
+    column_box([0, cursor], :columns => 2, :width=>470, :height => 55) do
 
-      image "#{Rails.root}/app/assets/images/logo.jpg", height: 72
+      image "#{Rails.root}/app/assets/images/logo.jpg", height: 55
 
       text("#{ApplicationHelper::ADD_LINE1}", align: :right)
       text("#{ApplicationHelper::ADD_LINE2}", align: :right)
@@ -79,9 +79,10 @@ class PrintQuotation < PrintBase
 
   def title_gst(title)
 
+    myGstin = "GSTIN : #{ApplicationHelper::GSTIN} / State Code : #{ApplicationHelper::STATE_CODE}"
     data = [
               [{:content => title, :font_style => :bold, :align => :center, :background_color => 'ccffff'}],
-              ["GSTIN : #{ApplicationHelper::GSTIN} / State Code : #{ApplicationHelper::STATE_CODE}"]
+              [{:content => myGstin, :align => :center, :background_color => 'ccffff'}]
     ]
     table(data, :column_widths => {0 => 470},
           :header => true,
@@ -125,7 +126,7 @@ class PrintQuotation < PrintBase
       text("To: #{q.client.company_name}", style: :bold)
       text(q.client.address)
       text(" ")
-      text ("GSTIN : #{q.client.gstin}")
+      text ("Client's GSTIN : #{q.client.gstin}")
     end
 
     grid([2.1, 3], [1.9, 2.42]).bounding_box do
