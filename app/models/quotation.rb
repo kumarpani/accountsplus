@@ -152,6 +152,17 @@ class Quotation < ActiveRecord::Base
     self.service_tax = ((total_item_price * GST_SERVICE_TAX_PERCENTAGE)/100).round(2)
   end
 
+  def get_pdf_name
+    name = self.client.company_name
+    if is_a_quotation?
+      name += "_Quotation_"
+    else
+      name += "_Invoice_"
+    end
+    name += self.invoice_raised_date.strftime('%d-%^b-%Y')
+    name += ".pdf"
+
+  end
 
   def clone_with_associations
     @new_quotation = self.dup
