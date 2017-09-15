@@ -40,8 +40,8 @@ module ApplicationHelper
     Client.find(client_id).company_name
   end
 
-  def get_total_item_price_by_quotation_id(quotation_id)
-    Quotation.find(quotation_id).total_item_price
+  def get_total_by_quotation_id(quotation_id)
+    Quotation.find(quotation_id).total_price
   end
 
   def get_all_sorted_companies

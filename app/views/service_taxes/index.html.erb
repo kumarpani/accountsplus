@@ -1,5 +1,5 @@
 <div class="header">
-  <h1 class="col-md-6 col-md-offset-2">Service Taxes</h1>
+  <h1 class="col-md-6 col-md-offset-2">GST</h1>
 </div>
 
 
@@ -30,9 +30,14 @@
           <th><strong>Event Date</strong></th>
           <th><strong>Invoice Date</strong></th>
           <th><strong>Name</strong></th>
-          <th><strong>Event Total</strong></th>
-          <th><strong>Service Tax</strong></th>
-          <th></th>
+          <th><strong>Grand Total</strong></th>
+          <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+              <th><strong>CGST</strong></th>
+              <th><strong>SGST</strong></th>
+          <%else%>
+              <th><strong>Service Tax</strong></th>
+          <%end%>
+              <th></th>
         </tr>
         </thead>
 
@@ -44,10 +49,16 @@
             <td><%= display_date(b[:event_date]) %></td>
             <td><%= display_date(b[:invoice_raised_date]) %></td>
             <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
-            <td class="alignRight"><%= get_total_item_price_by_quotation_id(b[:id]) %></td>
-            <td class="alignRight"><%= b[:service_tax] %></td>
+            <td class="alignRight"><%= get_total_by_quotation_id(b[:id]) %></td>
+            <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+                <td class="alignRight"><%= ApplicationController.helpers.number_with_precision(b[:service_tax]/2, :precision => 2) %></td>
+                <td class="alignRight"><%= ApplicationController.helpers.number_with_precision(b[:service_tax]/2, :precision => 2) %></td>
             <td>
-              <%= link_to 'Show Details', quotation_item_details_url(b[:id]), class: "btn calendar-event #{get_quotation_status_color_class_by_id(b[:id])}", :style => 'float:right'%>
+            <%else%>
+                <td class="alignRight"><%= b[:service_tax] %></td>
+            <%end%>
+
+                <%= link_to 'Show Details', quotation_item_details_url(b[:id]), class: "btn calendar-event #{get_quotation_status_color_class_by_id(b[:id])}", :style => 'float:right'%>
             </td>
 
           </tr>
@@ -58,8 +69,16 @@
           <td></td>
           <td></td>
           <td><b> Total: </b></td>
-          <td class="alignRight"><b><%= @service_tax.sum(&:total_item_price) %></b></td>
-          <td class="alignRight"><b><%= @service_tax.sum(&:service_tax) %></b></td>
+          <td class="alignRight"><b><%= @service_tax.sum(&:total_price) %></b></td>
+
+          <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+              <td class="alignRight"><%= ApplicationController.helpers.number_with_precision(@service_tax.sum(&:service_tax)/2, :precision => 2) %></td>
+              <td class="alignRight"><%= ApplicationController.helpers.number_with_precision(@service_tax.sum(&:service_tax)/2, :precision => 2) %></td>
+              <td>
+          <%else%>
+              <td class="alignRight"><b><%= @service_tax.sum(&:service_tax) %></b></td>
+          <%end%>
+
         </tr>
     <% end %>
     </tbody>
