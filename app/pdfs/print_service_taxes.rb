@@ -15,12 +15,17 @@ class PrintServiceTaxes < PrintBase
   end
 
   def header(start_date, end_date)
-    text("Service Tax details between : #{display_verbose_date(start_date)} and #{display_verbose_date(end_date)}", :style => :bold)
-    text "\n"
+    if isGST(Date.parse(start_date))
+      text("GST details between : #{display_verbose_date(start_date)} and #{display_verbose_date(end_date)}", :style => :bold)
+    else
+      text("Service Tax details between : #{display_verbose_date(start_date)} and #{display_verbose_date(end_date)}", :style => :bold)
+    end
+
+      text "\n"
   end
 
   def taxes_table(tax, start_date)
-       if Date.parse(start_date) >= Date.new(2017, 7, 1)
+       if isGST(Date.parse(start_date))
           data =  [[
                  {:content => 'Sl. No.', :font_style => :bold, :align => :center},
                  {:content => 'Invoice Number', :font_style => :bold, :align => :center},
@@ -45,10 +50,10 @@ class PrintServiceTaxes < PrintBase
 
     tax.each_with_index do |t, index|
 
-        if Date.parse(start_date) >= Date.new(2017, 7, 1)
+        if isGST(Date.parse(start_date))
           data += [[
                       {:content => "#{index+1}", :align => :center},
-                      {:content =>"#{t.invoice_number}", :align => :center},
+                      {:content =>"#{t.invoice_number}".to_s[4..6], :align => :center},
                       {:content =>"#{display_date(t.invoice_raised_date)}"},
                       {:content => "#{get_company_name_by_client_id(t.client_id)}"},
                       {:content =>"#{get_total_by_quotation_id(t.id)}", :align => :right},
@@ -68,7 +73,7 @@ class PrintServiceTaxes < PrintBase
     end
 
 
-    if Date.parse(start_date) >= Date.new(2017, 7, 1)
+    if isGST(Date.parse(start_date))
       data += [[
                    "",
                    "",
@@ -90,7 +95,7 @@ class PrintServiceTaxes < PrintBase
     end
 
 
-    if Date.parse(start_date) >= Date.new(2017, 7, 1)
+    if isGST(Date.parse(start_date))
 
       table(data, :column_widths => {0 => 40,1 => 50,2 => 60,3 => 170, 4 => 50, 5 => 40, 6 => 40},
             :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})

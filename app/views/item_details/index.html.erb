@@ -128,9 +128,6 @@
           <%= check_box_tag(:seal, 1, true)%>
           <%= label :seal, 'Show Seal' %>
 
-          <%= check_box_tag(:gst, 1, true)%>
-          <%= label :gst, 'GST' %>
-
           <% if @quotation.is_a_complete_tax_invoice?  or @quotation.is_a_complete_tax_exempted_invoice?%>
               <% ApplicationHelper::BANKS.each do |b| %>
                   <br>
@@ -163,7 +160,6 @@
     <script>
         $("#show_unit_price").prop('checked')
         $("#show_seal").prop('checked')
-        $("#gst").prop('checked')
     </script>
 
 </div>

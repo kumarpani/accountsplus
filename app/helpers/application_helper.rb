@@ -28,6 +28,11 @@ module ApplicationHelper
     date.to_date.strftime('%d %B, %Y')
   end
 
+  def isGST(date)
+    date >= Date.new(2017, 7, 1)
+  end
+
+
   def display_date(date)
     if not date.nil?
       date.strftime('%d/%m/%Y')

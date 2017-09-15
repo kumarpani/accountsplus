@@ -1,12 +1,14 @@
 class PrintQuotation < PrintBase
 
   include PrintQuotationsHelper
+  include ApplicationHelper
 
-  def initialize(id, unit_price=nil, bank=nil, seal=nil, gst=nil)
+
+  def initialize(id, unit_price=nil, bank=nil, seal=nil)
     super()
     q = Quotation.find(id)
 
-    if !gst.nil?
+    if isGST(q.invoice_raised_date)
       logo_and_address_gst
       title_gst(get_header_for_print_quotation(q))
       quotation_details_gst(q)
