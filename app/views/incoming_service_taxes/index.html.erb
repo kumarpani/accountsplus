@@ -20,7 +20,12 @@
     <% if !@incoming_service_taxes.nil? %>
 
         <br>
-        <p> Incoming Service tax details between :
+        <p>
+          <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+                Incoming GST details between :
+          <%else%>
+              Incoming Service tax details between :
+          <%end%>
           <b>
             <%= display_verbose_date(params[:start_date]) %>  &nbsp;&nbsp;|&nbsp;&nbsp;
             <%= display_verbose_date(params[:end_date]) %>
@@ -36,7 +41,12 @@
           <th><strong>Company Name</strong></th>
           <th><strong>Description</strong></th>
           <th><strong>Event Total</strong></th>
-          <th><strong>Service Tax</strong></th>
+          <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+              <th><strong>CGST</strong></th>
+              <th><strong>SGST</strong></th>
+          <%else%>
+              <th><strong>Service Tax</strong></th>
+          <%end%>
         </tr>
       </thead>
 
@@ -53,7 +63,14 @@
             </td>
             <td><%= i.description %></td>
             <td class="alignRight"><%= i.event_total %></td>
+
+        <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+            <td class="alignRight"><%= i.cgst %></td>
+            <td class="alignRight"><%= i.sgst %></td>
+        <%else%>
             <td class="alignRight"><%= i.service_tax %></td>
+        <%end%>
+
             <td><%= link_to 'Details', i, class: :info %></td>
           </tr>
         <% end %>
@@ -64,7 +81,13 @@
           <td></td>
           <td><b> Total: </b></td>
           <td class="alignRight"><b><%= @incoming_service_taxes.sum(&:event_total) %></b></td>
-          <td class="alignRight"><b><%= @incoming_service_taxes.sum(&:service_tax) %></b></td>
+
+          <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+              <td class="alignRight"><b><%= @incoming_service_taxes.sum(&:cgst) %></b></td>
+              <td class="alignRight"><b><%= @incoming_service_taxes.sum(&:sgst) %></b></td>
+          <%else%>
+                <td class="alignRight"><b><%= @incoming_service_taxes.sum(&:service_tax) %></b></td>
+          <%end%>
         </tr>
 
     <% end %>
