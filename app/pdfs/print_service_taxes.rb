@@ -31,6 +31,7 @@ class PrintServiceTaxes < PrintBase
                  {:content => 'Invoice Number', :font_style => :bold, :align => :center},
                  {:content => 'Invoice Date', :font_style => :bold, :align => :center},
                  {:content => 'Name', :font_style => :bold, :align => :center},
+                 {:content => 'Client GST', :font_style => :bold, :align => :center},
                  {:content => 'Grand Total', :font_style => :bold, :align => :center},
                  {:content => 'CGST', :font_style => :bold, :align => :center},
                  {:content => 'SGST', :font_style => :bold, :align => :center}
@@ -56,6 +57,7 @@ class PrintServiceTaxes < PrintBase
                       {:content =>"#{t.invoice_number}".to_s[4..6], :align => :center},
                       {:content =>"#{display_date(t.invoice_raised_date)}"},
                       {:content => "#{get_company_name_by_client_id(t.client_id)}"},
+                      {:content => "#{get_company_gstin_by_client_id(t.client_id)}"},
                       {:content =>"#{get_total_by_quotation_id(t.id)}", :align => :right},
                       {:content => "#{ApplicationController.helpers.number_with_precision(t.service_tax/2, :precision => 2)}"},
                       {:content => "#{ApplicationController.helpers.number_with_precision(t.service_tax/2, :precision => 2)}"}
@@ -78,6 +80,7 @@ class PrintServiceTaxes < PrintBase
                    "",
                    "",
                    "",
+                   "",
                    {:content => 'Total:', :font_style => :bold},
                    {:content => "#{tax.sum(&:total_price)}", :font_style => :bold, :align => :right},
                    {:content => "#{ApplicationController.helpers.number_with_precision(tax.sum(&:service_tax)/2, :precision => 2)}", :font_style => :bold, :align => :right},
@@ -97,7 +100,7 @@ class PrintServiceTaxes < PrintBase
 
     if isGST(Date.parse(start_date))
 
-      table(data, :column_widths => {0 => 40,1 => 50,2 => 60,3 => 170, 4 => 50, 5 => 40, 6 => 40},
+      table(data, :column_widths => {0 => 25,1 => 40,2 => 55,3 => 165, 4 => 50, 5 => 40, 6 => 45, 7 => 45},
             :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 3})
     else
 

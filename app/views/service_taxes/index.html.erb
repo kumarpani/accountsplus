@@ -15,7 +15,12 @@
     <% if !@service_tax.nil? %>
 
       <br>
-      <p> Service tax details between :
+      <p>
+        <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+            GST tax details between :
+        <%else%>
+            Service tax details between :
+        <%end%>
         <b>
           <%= display_verbose_date(params[:start_date]) %>  &nbsp;&nbsp;|&nbsp;&nbsp;
           <%= display_verbose_date(params[:end_date]) %>
@@ -30,7 +35,10 @@
           <th><strong>Event Date</strong></th>
           <th><strong>Invoice Date</strong></th>
           <th><strong>Name</strong></th>
-          <th><strong>Grand Total</strong></th>
+          <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+              <th><strong>Client GST</strong></th>
+          <%end%>
+        <th><strong>Grand Total</strong></th>
           <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
               <th><strong>CGST</strong></th>
               <th><strong>SGST</strong></th>
@@ -49,7 +57,11 @@
             <td><%= display_date(b[:event_date]) %></td>
             <td><%= display_date(b[:invoice_raised_date]) %></td>
             <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
-            <td class="alignRight"><%= get_total_by_quotation_id(b[:id]) %></td>
+            <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
+                <td><%= get_company_gstin_by_client_id(b[:client_id]) %></td>
+          <%end%>
+
+          <td class="alignRight"><%= get_total_by_quotation_id(b[:id]) %></td>
             <% if Date.parse(params[:start_date]) >= Date.new(2017, 7, 1)%>
                 <td class="alignRight"><%= ApplicationController.helpers.number_with_precision(b[:service_tax]/2, :precision => 2) %></td>
                 <td class="alignRight"><%= ApplicationController.helpers.number_with_precision(b[:service_tax]/2, :precision => 2) %></td>
@@ -64,6 +76,7 @@
           </tr>
         <% end %>
         <tr>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>

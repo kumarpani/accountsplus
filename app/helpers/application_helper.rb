@@ -45,6 +45,10 @@ module ApplicationHelper
     Client.find(client_id).company_name
   end
 
+  def get_company_gstin_by_client_id(client_id)
+    Client.find(client_id).gstin
+  end
+
   def get_total_by_quotation_id(quotation_id)
     Quotation.find(quotation_id).total_price
   end
