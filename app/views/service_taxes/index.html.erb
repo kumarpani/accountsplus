@@ -53,7 +53,7 @@
         <% @service_tax.each_with_index do |b, index| %>
           <tr>
             <td><%= index + 1 %></td>
-            <td><%= b[:invoice_number] %></td>
+            <td><%= b[:invoice_number].to_s[4..6] %></td>
             <td><%= display_date(b[:event_date]) %></td>
             <td><%= display_date(b[:invoice_raised_date]) %></td>
             <td><%= get_company_name_by_client_id(b[:client_id]) %></td>
