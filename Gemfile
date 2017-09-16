@@ -42,6 +42,7 @@ gem 'rails_12factor'
 # , group: :production
 gem 'pdf-core'
 gem 'prawn'
+gem 'prawn-table'
 gem 'axlsx'
 
 # group :development, :test do
