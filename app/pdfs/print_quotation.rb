@@ -121,17 +121,17 @@ class PrintQuotation < PrintBase
   def quotation_details_gst(q)
 
     define_grid(:columns => 4, :rows => 14)
-     grid([2, 0], [1.9, 1]).show
-     grid([2.1, 3], [1.9, 2.42]).show
+     # grid([1.65, 0], [1.9, 1]).show
+     # grid([1.57, 3], [1.9, 2.2]).show
 
-    grid([2, 0], [1.9, 1]).bounding_box do
+    grid([1.65, 0], [1.9, 1]).bounding_box do
       text("To: #{q.client.company_name}", style: :bold)
       text(q.client.address)
       text(" ")
       text ("Client's GSTIN : #{q.client.gstin}")
     end
 
-    grid([2.1, 3], [1.9, 2.42]).bounding_box do
+    grid([1.57, 3], [1.9, 2.2]).bounding_box do
 
       data = [[]]
       if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
@@ -154,7 +154,7 @@ class PrintQuotation < PrintBase
         data += [["Venue:", "#{q.venue}"]]
       end
 
-      table(data, :column_widths => {0 => 70, 1=> 115},
+      table(data, :column_widths => {0 => 70, 1=> 141},
             :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
     end
 
