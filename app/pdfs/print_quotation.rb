@@ -8,7 +8,7 @@ class PrintQuotation < PrintBase
     super()
     q = Quotation.find(id)
 
-    if isGST(q.invoice_raised_date)
+    if q.invoice_raised_date.nil? || isGST(q.invoice_raised_date)
       logo_and_address_gst
       title_gst(get_header_for_print_quotation(q))
       quotation_details_gst(q)
