@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
 
   def timeout_in
-    10.minutes
+    30.minutes
   end
 
   def self.current_user=(user)
