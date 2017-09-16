@@ -56,11 +56,14 @@
 
           <td class="gray"><strong>Invoice Number:</strong></td>
 
+
+       <%if !@quotation.invoice_raised_date.nil?%>
           <%if @quotation.invoice_raised_date >= Date.new(2017, 7, 1)%>
-          <td><%= @quotation.invoice_number.to_s[4..6] %></td>
-              <%else%>
-          <td><%= @quotation.invoice_number %></td>
-<%end%>
+                <td><%= @quotation.invoice_number.to_s[4..6] %></td>
+          <%else%>
+                <td><%= @quotation.invoice_number %></td>
+          <%end%>
+       <%end%>
         </tr>
 
       </table>
