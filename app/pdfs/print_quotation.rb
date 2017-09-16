@@ -121,8 +121,8 @@ class PrintQuotation < PrintBase
   def quotation_details_gst(q)
 
     define_grid(:columns => 4, :rows => 14)
-    # grid([2, 0], [1.9, 1]).show
-    # grid([2.1, 3], [1.9, 2.42]).show
+     grid([2, 0], [1.9, 1]).show
+     grid([2.1, 3], [1.9, 2.42]).show
 
     grid([2, 0], [1.9, 1]).bounding_box do
       text("To: #{q.client.company_name}", style: :bold)

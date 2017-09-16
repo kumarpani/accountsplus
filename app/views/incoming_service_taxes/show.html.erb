@@ -44,6 +44,14 @@
       <td class="gray"><strong>SERVICE TAX:</strong></td>
       <td><%= @incoming_service_tax.service_tax %></td>
     </tr>
+    <tr>
+      <td class="gray"><strong>CGST:</strong></td>
+      <td><%= @incoming_service_tax.cgst %></td>
+    </tr>
+    <tr>
+      <td class="gray"><strong>SGST:</strong></td>
+      <td><%= @incoming_service_tax.sgst %></td>
+    </tr>
   </table>
 
   <%= link_to 'Back', incoming_service_taxes_path %>
