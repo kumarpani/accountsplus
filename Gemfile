@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.2'
-gem 'tzinfo-data'
+gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
@@ -38,7 +37,7 @@ gem 'bootstrap-sass', '~> 3.1.0'
 gem 'devise'
 gem 'pundit'
 gem 'bootstrap-datepicker-rails'
-gem 'simple_calendar', '~> 2.0'
+gem 'simple_calendar', '~> 0.1.9'
 gem 'rails_12factor'
 # , group: :production
 gem 'pdf-core'
