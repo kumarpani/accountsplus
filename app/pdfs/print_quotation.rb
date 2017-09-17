@@ -375,14 +375,18 @@ class PrintQuotation < PrintBase
     b = ApplicationHelper::BANKS.find{|b| b.nick_name == nick_name}
 
     data =  [[
-                 {:content => "For #{ApplicationHelper::NAME}", :borders => [:right]},
-                 {:content => 'Account Details for NEFT or RTGS : ', :font_style => :bold, :colspan => 2},
+                 {:content => ' ', :font_style => :bold, :colspan => 3, :borders => []},
 
              ]]
     data +=  [[
-                 {:image => "#{Rails.root}/app/assets/images/sealandsign.jpg", :image_height => 70, :image_width => 70, :borders => [:right], :rowspan => 5},
+                 {:content => 'Account Details for NEFT or RTGS : ', :font_style => :bold, :colspan => 2},
+                 {:content => "For #{ApplicationHelper::NAME}", :borders => [:left], :align => :right},
+
+             ]]
+    data +=  [[
                  {:content => 'Account Name', :font_style => :bold},
-                 {:content => b.account_name}
+                 {:content => b.account_name},
+                 {:image => "#{Rails.root}/app/assets/images/sealandsign.jpg", :image_height => 70, :image_width => 70, :borders => [:left], :rowspan => 5, :position => :right},
              ]]
     data += [[
 
@@ -407,13 +411,13 @@ class PrintQuotation < PrintBase
 
     if b.mirc != ''
       data += [[
-                   {:content => 'Authorized Signatory', :borders => [:right]},
                    {:content => 'MICR Code', :font_style => :bold},
-                   {:content => b.mirc}
+                   {:content => b.mirc},
+                   {:content => 'Authorized Signatory', :borders => [:left], :align => :right},
                ]]
     end
 
-    table(data, :column_widths => {0 => 190,1 => 130,2=>150},
+    table(data, :column_widths => {0 => 130,1=>150,2 => 190},
           :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
   end
 
