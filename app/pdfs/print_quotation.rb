@@ -33,9 +33,7 @@ class PrintQuotation < PrintBase
     end
 
     if q.is_a_complete_tax_invoice?  or q.is_a_complete_tax_exempted_invoice?
-      if !bank.nil?
-        bank_details(bank)
-      end
+        bank_details(bank, seal)
     end
 
     if !q.is_a_complete_tax_invoice?  and !q.is_a_complete_tax_exempted_invoice? and !q.tac.nil?
@@ -367,7 +365,12 @@ class PrintQuotation < PrintBase
     text("\nRupees:#{price}", :align => :right)
   end
 
-  def bank_details(nick_name)
+  def bank_details(nick_name, seal)
+
+    if nick_name.nil?
+      signature(seal)
+      return;
+    end
 
     b = ApplicationHelper::BANKS.find{|b| b.nick_name == nick_name}
 
