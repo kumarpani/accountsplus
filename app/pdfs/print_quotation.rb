@@ -41,7 +41,10 @@ class PrintQuotation < PrintBase
     if !q.is_a_complete_tax_invoice?  and !q.is_a_complete_tax_exempted_invoice? and !q.tac.nil?
       terms_and_conditions(q)
     end
-    signature(seal)
+    if q.invoice_raised_date.nil? || !isGST(q.invoice_raised_date)
+
+      signature(seal)
+    end
   end
 
   def logo_and_address
@@ -192,16 +195,16 @@ class PrintQuotation < PrintBase
 
   def get_item_table_header_gst(unit_price)
     data =  [[
-                 {:content => 'Sl. No.', :font_style => :bold, :align => :center},
-                 {:content => 'Description', :font_style => :bold, :align => :center},
-                 {:content => 'HSN/SAC', :font_style => :bold, :align => :center},
-                 {:content => 'Qty', :font_style => :bold, :align => :center},
-                 {:content => 'Days', :font_style => :bold, :align => :center},
+                 {:content => 'Sl. No.', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
+                 {:content => 'Description', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
+                 {:content => 'HSN/SAC', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
+                 {:content => 'Qty', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
+                 {:content => 'Days', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
              ]]
     if !unit_price.nil?
-      data[0] += [{:content => 'Unit Price', :font_style => :bold, :align => :center}]
+      data[0] += [{:content => 'Unit Price', :font_style => :bold, :align => :center, :background_color => 'ccffff'}]
     end
-    data[0] += [{:content => 'Amount', :font_style => :bold, :align => :center}]
+    data[0] += [{:content => 'Amount', :font_style => :bold, :align => :center, :background_color => 'ccffff'}]
     data
 
   end
@@ -368,36 +371,46 @@ class PrintQuotation < PrintBase
 
     b = ApplicationHelper::BANKS.find{|b| b.nick_name == nick_name}
 
-    text("\nAccount Details for NEFT or RTGS\n", :style => :bold)
     data =  [[
+                 {:content => "For #{ApplicationHelper::NAME}", :borders => [:right]},
+                 {:content => 'Account Details for NEFT or RTGS : ', :font_style => :bold, :colspan => 2},
+
+             ]]
+    data +=  [[
+                 {:image => "#{Rails.root}/app/assets/images/sealandsign.jpg", :image_height => 70, :image_width => 70, :borders => [:right], :rowspan => 5},
                  {:content => 'Account Name', :font_style => :bold},
                  {:content => b.account_name}
              ]]
     data += [[
+
                  {:content => 'Name of the Bank & Branch', :font_style => :bold},
                  {:content => b.name + ' ,' + b.branch}
              ]]
     data += [[
+
                  {:content => 'Bank Account Number', :font_style => :bold},
                  {:content =>b.account_number}
              ]]
     data += [[
+
                  {:content => 'Type of Account', :font_style => :bold},
                  {:content => b.account_type}
              ]]
     data += [[
+
                  {:content => 'IFSC Code', :font_style => :bold},
                  {:content => b.ifsc}
              ]]
 
     if b.mirc != ''
       data += [[
+                   {:content => 'Authorized Signatory', :borders => [:right]},
                    {:content => 'MICR Code', :font_style => :bold},
                    {:content => b.mirc}
                ]]
     end
 
-    table(data, :column_widths => {0 => 225,1 => 225},
+    table(data, :column_widths => {0 => 190,1 => 130,2=>150},
           :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
   end
 
