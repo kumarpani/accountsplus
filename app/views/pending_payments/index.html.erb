@@ -1,0 +1,31 @@
+<div class="header">
+  <h1 class="col-md-6 col-md-offset-2">Pending Payments</h1>
+</div>
+
+
+<div class="belowHeader">
+
+    <h2><u>Pending Payments :</u></h2>
+    <table class="table gridData table-hover">
+    <thead>
+    <tr>
+      <th>Client Name</th>
+      <th>Contact Person</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Owes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @pending_payments.each do |quotation| %>
+      <tr>
+        <td><%= quotation[:client].company_name %></td>
+        <td><%= quotation[:client].contact_person_name %></td>
+        <td><%= quotation[:client].phone_number %></td>
+        <td><%= quotation[:client].email %></td>
+        <td class="alignRight"><%=quotation[:owes]%></td>
+      </tr>
+    <% end %>
+    </tbody>
+    </table>
+</div>

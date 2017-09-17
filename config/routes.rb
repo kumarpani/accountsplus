@@ -2,6 +2,8 @@ Accountsplus::Application.routes.draw do
 
   get "taxes/index"
 
+  get "pending_payments/index"
+
   post "service_taxes/index"
   get "service_taxes/index"
 
