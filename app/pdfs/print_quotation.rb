@@ -193,7 +193,7 @@ class PrintQuotation < PrintBase
 
   def get_item_table_header_gst(unit_price)
     data =  [[
-                 {:content => 'S.N', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
+                 {:content => 'SN', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
                  {:content => 'Description', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
                  {:content => 'HSN/SAC', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
                  {:content => 'Qty', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
