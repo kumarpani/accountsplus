@@ -193,7 +193,7 @@ class PrintQuotation < PrintBase
 
   def get_item_table_header_gst(unit_price)
     data =  [[
-                 {:content => 'Sl. No.', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
+                 {:content => 'S.N', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
                  {:content => 'Description', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
                  {:content => 'HSN/SAC', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
                  {:content => 'Qty', :font_style => :bold, :align => :center, :background_color => 'ccffff'},
@@ -348,12 +348,12 @@ class PrintQuotation < PrintBase
     end
 
     if unit_price.nil?
-      table(data, :column_widths => {0 => 35,1 => 280,2 => 45,3 => 30,4 => 30,5 => 50},
+      table(data, :column_widths => {0 => 25,1 => 280,2 => 45,3 => 30,4 => 30,5 => 60},
             :header => true,
             :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
 
     else
-      table(data, :column_widths => {0 => 35,1 => 230,2 => 45,3 => 30,4 => 30,5 => 50, 6 => 50},
+      table(data, :column_widths => {0 => 25,1 => 230,2 => 45,3 => 30,4 => 30,5 => 50, 6 => 60},
             :header => true,
             :cell_style => {:border_width => 0.2, :border_color => '7f8c8d', :inline_format => true, :padding => 2.5})
     end
